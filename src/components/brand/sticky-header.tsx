@@ -56,9 +56,17 @@ export function StickyHeader({ customer }: { customer: CustomerSessionSummary | 
             <Link
               href={customer ? "/account" : "/auth"}
               aria-label={customer ? "My account" : "Login or sign up"}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-line)] bg-white/86 text-[var(--color-forest)] md:h-11 md:w-11"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-line)] bg-white/86 text-[var(--color-forest)] md:hidden"
             >
               <UserRound className="h-4 w-4" />
+            </Link>
+
+            <Link
+              href={customer ? "/account" : "/auth"}
+              className="hidden items-center gap-2 rounded-full border border-[var(--color-line)] bg-white/88 px-4 py-2 text-sm font-medium text-[var(--color-ink)] md:inline-flex"
+            >
+              <UserRound className="h-4 w-4 text-[var(--color-forest)]" />
+              {customer ? "My Account" : "Login / Sign Up"}
             </Link>
 
             <details className="relative lg:hidden">
@@ -140,14 +148,8 @@ export function StickyHeader({ customer }: { customer: CustomerSessionSummary | 
               </span>
             </Link>
           ))}
-          <div className="ml-auto flex items-center gap-2">
-            <Link
-              href={customer ? "/account" : "/auth"}
-              className="rounded-full border border-[var(--color-line)] bg-white/88 px-4 py-2 text-sm font-medium text-[var(--color-ink)]"
-            >
-              {customer ? "My Account" : "Login / Sign Up"}
-            </Link>
-            {customer ? (
+          {customer ? (
+            <div className="ml-auto flex items-center gap-2">
               <form action={signOutCustomerAction}>
                 <button
                   type="submit"
@@ -156,8 +158,8 @@ export function StickyHeader({ customer }: { customer: CustomerSessionSummary | 
                   Logout
                 </button>
               </form>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
         </div>
 
         <div className="mobile-scroll-row mt-2.5 flex gap-2 overflow-x-auto pb-1 lg:hidden">
