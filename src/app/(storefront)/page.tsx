@@ -104,7 +104,16 @@ export default function Page() {
                   <span class="review-count">(112)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -129,7 +138,16 @@ export default function Page() {
                   <span class="review-count">(94)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -154,7 +172,16 @@ export default function Page() {
                   <span class="review-count">(156)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -179,7 +206,16 @@ export default function Page() {
                   <span class="review-count">(88)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -254,7 +290,16 @@ export default function Page() {
                   <span class="review-count">(105)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -279,7 +324,16 @@ export default function Page() {
                   <span class="review-count">(120)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -304,7 +358,16 @@ export default function Page() {
                   <span class="review-count">(215)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -329,7 +392,16 @@ export default function Page() {
                   <span class="review-count">(110)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -530,7 +602,16 @@ export default function Page() {
                   <span class="review-count">(124)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -555,7 +636,16 @@ export default function Page() {
                   <span class="review-count">(142)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -580,7 +670,16 @@ export default function Page() {
                   <span class="review-count">(98)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>
@@ -605,7 +704,16 @@ export default function Page() {
                   <span class="review-count">(115)</span>
                 </div>
                 <div class="product-price-row">
-                  <span class="product-price">₹149</span>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="product-price">₹199</span>
+                      <span style="text-decoration: line-through; color: #888; font-size: 0.8rem;">₹299</span>
+                    </div>
+                    <div style="background: #FAF7F2; padding: 4px 8px; border: 1px solid #D4AF37; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                      <span style="color: #B8860B; font-weight: 600;">Gold Member: ₹149</span>
+                    </div>
+                  </div>
                   <button class="btn-add-to-cart">View Options</button>
                 </div>
               </div>

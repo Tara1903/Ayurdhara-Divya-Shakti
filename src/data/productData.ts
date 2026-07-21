@@ -76,25 +76,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-kids-smart-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-kids-smart-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-kids-smart-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-kids-smart-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-kids-smart-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-kids-smart-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -128,7 +137,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "kids-gentle-blend",
@@ -163,25 +173,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-kids-gentle-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-kids-gentle-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-kids-gentle-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-kids-gentle-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-kids-gentle-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-kids-gentle-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -215,7 +234,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "kids-daily-blend",
@@ -250,25 +270,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-kids-daily-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-kids-daily-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-kids-daily-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-kids-daily-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-kids-daily-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-kids-daily-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -302,7 +331,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "kids-pure-blend",
@@ -337,25 +367,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-kids-pure-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-kids-pure-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-kids-pure-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-kids-pure-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-kids-pure-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-kids-pure-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -389,7 +428,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "men-strength-blend",
@@ -424,25 +464,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-men-strength-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-men-strength-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-men-strength-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-men-strength-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-men-strength-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-men-strength-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -476,7 +525,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "men-vital-blend",
@@ -511,25 +561,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-men-vital-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-men-vital-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-men-vital-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-men-vital-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-men-vital-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-men-vital-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -563,7 +622,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "men-balance-blend",
@@ -598,25 +658,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-men-balance-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-men-balance-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-men-balance-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-men-balance-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-men-balance-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-men-balance-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -650,7 +719,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "men-pure-blend",
@@ -685,25 +755,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-men-pure-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-men-pure-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-men-pure-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-men-pure-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-men-pure-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-men-pure-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -737,7 +816,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "women-harmony-blend",
@@ -772,25 +852,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-women-harmony-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-women-harmony-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-women-harmony-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-women-harmony-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-women-harmony-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-women-harmony-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -824,7 +913,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "women-care-blend",
@@ -859,25 +949,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-women-care-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-women-care-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-women-care-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-women-care-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-women-care-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-women-care-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -911,7 +1010,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "women-glow-blend",
@@ -946,25 +1046,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-women-glow-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-women-glow-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-women-glow-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-women-glow-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-women-glow-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-women-glow-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -998,7 +1107,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "women-pure-blend",
@@ -1033,25 +1143,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-women-pure-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-women-pure-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-women-pure-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-women-pure-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-women-pure-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-women-pure-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1085,7 +1204,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "senior-comfort-blend",
@@ -1120,25 +1240,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-senior-comfort-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-senior-comfort-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-senior-comfort-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-senior-comfort-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-senior-comfort-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-senior-comfort-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1172,7 +1301,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "senior-vital-blend",
@@ -1207,25 +1337,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-senior-vital-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-senior-vital-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-senior-vital-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-senior-vital-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-senior-vital-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-senior-vital-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1259,7 +1398,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "senior-balance-blend",
@@ -1294,25 +1434,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-senior-balance-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-senior-balance-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-senior-balance-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-senior-balance-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-senior-balance-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-senior-balance-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1346,7 +1495,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "senior-pure-blend",
@@ -1381,25 +1531,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "10 ml",
-        "price": 149,
-        "originalPrice": 249,
-        "image": "/images/products/nabhi-senior-pure-10ml.jpg"
+        "price": 199,
+        "originalPrice": 299,
+        "image": "/images/products/nabhi-senior-pure-10ml.jpg",
+        "goldMemberPrice": 149,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "15 ml",
-        "price": 249,
-        "originalPrice": 399,
-        "image": "/images/products/nabhi-senior-pure-15ml.jpg"
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/nabhi-senior-pure-15ml.jpg",
+        "goldMemberPrice": 249,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
-        "size": "50 ml",
-        "price": 599,
-        "originalPrice": 899,
-        "image": "/images/products/nabhi-senior-pure-15ml.jpg"
+        "size": "60 ml",
+        "price": 899,
+        "originalPrice": 1199,
+        "image": "/images/products/nabhi-senior-pure-15ml.jpg",
+        "goldMemberPrice": 699,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 149,
-    "originalPrice": 249,
+    "price": 199,
+    "originalPrice": 299,
     "discount": 40,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1433,7 +1592,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 149
   },
   {
     "id": "kids-soft-steps-blend",
@@ -1468,25 +1628,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "30 ml",
-        "price": 399,
-        "originalPrice": 599,
-        "image": "/images/products/feet-kids-soft-steps-30ml.jpg"
-      },
-      {
-        "size": "150 ml",
-        "price": 1499,
-        "originalPrice": 2199,
-        "image": "/images/products/feet-kids-soft-steps-150ml.jpg"
+        "price": 499,
+        "originalPrice": 699,
+        "image": "/images/products/feet-kids-soft-steps-30ml.jpg",
+        "goldMemberPrice": 399,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "500 ml",
-        "price": 2999,
+        "price": 3999,
         "originalPrice": 5999,
-        "image": "/images/products/feet-kids-soft-steps-150ml.jpg"
+        "image": "/images/products/feet-kids-soft-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
+      },
+      {
+        "size": "500 ml",
+        "price": 3999,
+        "originalPrice": 5999,
+        "image": "/images/products/feet-kids-soft-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 399,
-    "originalPrice": 599,
+    "price": 499,
+    "originalPrice": 699,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1520,7 +1689,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 399
   },
   {
     "id": "men-active-steps-blend",
@@ -1555,25 +1725,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "30 ml",
-        "price": 399,
-        "originalPrice": 599,
-        "image": "/images/products/feet-men-active-steps-30ml.jpg"
-      },
-      {
-        "size": "150 ml",
-        "price": 1499,
-        "originalPrice": 2199,
-        "image": "/images/products/feet-men-active-steps-150ml.jpg"
+        "price": 499,
+        "originalPrice": 699,
+        "image": "/images/products/feet-men-active-steps-30ml.jpg",
+        "goldMemberPrice": 399,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "500 ml",
-        "price": 2999,
+        "price": 3999,
         "originalPrice": 5999,
-        "image": "/images/products/feet-men-active-steps-150ml.jpg"
+        "image": "/images/products/feet-men-active-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
+      },
+      {
+        "size": "500 ml",
+        "price": 3999,
+        "originalPrice": 5999,
+        "image": "/images/products/feet-men-active-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 399,
-    "originalPrice": 599,
+    "price": 499,
+    "originalPrice": 699,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1607,7 +1786,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 399
   },
   {
     "id": "women-comfort-steps-blend",
@@ -1642,25 +1822,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "30 ml",
-        "price": 399,
-        "originalPrice": 599,
-        "image": "/images/products/feet-women-comfort-steps-30ml.jpg"
-      },
-      {
-        "size": "150 ml",
-        "price": 1499,
-        "originalPrice": 2199,
-        "image": "/images/products/feet-women-comfort-steps-150ml.jpg"
+        "price": 499,
+        "originalPrice": 699,
+        "image": "/images/products/feet-women-comfort-steps-30ml.jpg",
+        "goldMemberPrice": 399,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "500 ml",
-        "price": 2999,
+        "price": 3999,
         "originalPrice": 5999,
-        "image": "/images/products/feet-women-comfort-steps-150ml.jpg"
+        "image": "/images/products/feet-women-comfort-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
+      },
+      {
+        "size": "500 ml",
+        "price": 3999,
+        "originalPrice": 5999,
+        "image": "/images/products/feet-women-comfort-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 399,
-    "originalPrice": 599,
+    "price": 499,
+    "originalPrice": 699,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1694,7 +1883,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 399
   },
   {
     "id": "senior-relax-steps-blend",
@@ -1729,25 +1919,34 @@ export const products: Product[] = [
     "variants": [
       {
         "size": "30 ml",
-        "price": 399,
-        "originalPrice": 599,
-        "image": "/images/products/feet-senior-relax-steps-30ml.jpg"
-      },
-      {
-        "size": "150 ml",
-        "price": 1499,
-        "originalPrice": 2199,
-        "image": "/images/products/feet-senior-relax-steps-150ml.jpg"
+        "price": 499,
+        "originalPrice": 699,
+        "image": "/images/products/feet-senior-relax-steps-30ml.jpg",
+        "goldMemberPrice": 399,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       },
       {
         "size": "500 ml",
-        "price": 2999,
+        "price": 3999,
         "originalPrice": 5999,
-        "image": "/images/products/feet-senior-relax-steps-150ml.jpg"
+        "image": "/images/products/feet-senior-relax-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
+      },
+      {
+        "size": "500 ml",
+        "price": 3999,
+        "originalPrice": 5999,
+        "image": "/images/products/feet-senior-relax-steps-150ml.jpg",
+        "goldMemberPrice": 2999,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
       }
     ],
-    "price": 399,
-    "originalPrice": 599,
+    "price": 499,
+    "originalPrice": 699,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1781,7 +1980,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMemberPrice": 399
   },
   {
     "id": "individual-trial-combo",
@@ -1813,8 +2013,8 @@ export const products: Product[] = [
       "/images/products/combo-individual-trial.jpg"
     ],
     "variants": [],
-    "price": 480,
-    "originalPrice": 720,
+    "price": 499,
+    "originalPrice": 999,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1848,7 +2048,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMembershipEligible": false
   },
   {
     "id": "family-trial-pack",
@@ -1880,8 +2081,8 @@ export const products: Product[] = [
       "/images/products/combo-family-trial.jpg"
     ],
     "variants": [],
-    "price": 1399,
-    "originalPrice": 2099,
+    "price": 999,
+    "originalPrice": 1999,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1915,7 +2116,8 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMembershipEligible": false
   },
   {
     "id": "individual-gold-wellness-pack",
@@ -1948,7 +2150,7 @@ export const products: Product[] = [
     ],
     "variants": [],
     "price": 1899,
-    "originalPrice": 2849,
+    "originalPrice": 3999,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -1982,7 +2184,10 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMembershipEligible": true,
+    "durationText": "Up to 90 Days",
+    "totalQuantityMl": "210 ml"
   },
   {
     "id": "family-gold-wellness-pack",
@@ -2014,8 +2219,8 @@ export const products: Product[] = [
       "/images/products/combo-family-gold.jpg"
     ],
     "variants": [],
-    "price": 5999,
-    "originalPrice": 8999,
+    "price": 4999,
+    "originalPrice": 9999,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -2049,7 +2254,10 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMembershipEligible": true,
+    "durationText": "Up to 90 Days",
+    "totalQuantityMl": "840 ml"
   },
   {
     "id": "premium-wellness-pack",
@@ -2081,8 +2289,8 @@ export const products: Product[] = [
       "/images/products/combo-individual-premium.jpg"
     ],
     "variants": [],
-    "price": 3999,
-    "originalPrice": 5999,
+    "price": 4499,
+    "originalPrice": 9999,
     "discount": 33,
     "rating": 4.8,
     "reviewCount": 124,
@@ -2116,7 +2324,10 @@ export const products: Product[] = [
       }
     ],
     "relatedProductIds": [],
-    "routineProductIds": []
+    "routineProductIds": [],
+    "goldMembershipEligible": true,
+    "durationText": "Up to 9-10 Months",
+    "totalQuantityMl": "740 ml"
   }
 ];
 
