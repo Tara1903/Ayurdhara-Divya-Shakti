@@ -410,8 +410,14 @@ function initCollections() {
     });
 
     // Initialize
-    updateProductCount();
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const q = urlParams.get('q');
+    if (q && searchInput) {
+        searchInput.value = q;
+        applyAllFilters();
+    } else {
+        updateProductCount();
+    }
 }
 
 if (document.readyState === 'loading') {
