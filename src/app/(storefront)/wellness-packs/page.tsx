@@ -8,7 +8,7 @@ const categories = [
   {
     title: "Trial Starter Pack",
     subtitle: "Daily resilience, routine support, and wellness picks.",
-    href: "/products/individual-trial-combo",
+    href: "/collections?category=Trial Starter Pack",
     image: "/images/categories/trial-starter.jpg",
     icon: <Shield size={20} strokeWidth={1.5} />,
     badge: "POPULAR"
@@ -16,35 +16,35 @@ const categories = [
   {
     title: "Gold Trial (Super Starter)",
     subtitle: "Advanced support and family-ready wellness picks.",
-    href: "/products/family-trial-pack",
+    href: "/collections?category=Gold Trial (Super Starter)",
     image: "/images/categories/gold-trial.jpg",
     icon: <TestTube size={20} strokeWidth={1.5} />
   },
   {
     title: "Gold Wellness Course",
     subtitle: "Individual wellness routines for a softer night.",
-    href: "/products/individual-gold-wellness-pack",
+    href: "/collections?category=Gold Wellness Course",
     image: "/images/categories/gold-wellness.jpg",
     icon: <Sparkles size={20} strokeWidth={1.5} />
   },
   {
     title: "Family Gold Wellness Course",
     subtitle: "Beauty-support powders and family-led routines.",
-    href: "/products/family-gold-wellness-pack",
+    href: "/collections?category=Family Gold Wellness Course",
     image: "/images/categories/family-gold.jpg",
     icon: <Sun size={20} strokeWidth={1.5} />
   },
   {
     title: "Premium Wellness Course",
     subtitle: "Ingredient-led shopping for calmer, more ritual-driven lives.",
-    href: "/products/premium-wellness-pack",
+    href: "/collections?category=Premium Wellness Course",
     image: "/images/categories/premium-course.jpg",
     icon: <Leaf size={20} strokeWidth={1.5} />
   },
   {
     title: "Hair Trial Combo",
     subtitle: "Single oils and blends built for quick daily hair wellness habits.",
-    href: "/products/hair-trial-combo",
+    href: "/collections?category=Hair Trial Combo",
     image: "/images/categories/hair-combo.png",
     icon: <Droplets size={20} strokeWidth={1.5} />,
     badge: "NEW"
@@ -52,7 +52,7 @@ const categories = [
   {
     title: "Hair Gold Wellness Combo",
     subtitle: "Premium combos and flagship kits that feel giftable.",
-    href: "/products/hair-gold-wellness-combo",
+    href: "/collections?category=Hair Gold Wellness Combo",
     image: "/images/categories/hair-gold.png",
     icon: <Gift size={20} strokeWidth={1.5} />
   }

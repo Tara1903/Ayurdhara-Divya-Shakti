@@ -412,8 +412,26 @@ function initCollections() {
     // Initialize
     const urlParams = new URLSearchParams(window.location.search);
     const q = urlParams.get('q');
+    const categoryParam = urlParams.get('category');
+    
+    let needsFilter = false;
+
     if (q && searchInput) {
         searchInput.value = q;
+        needsFilter = true;
+    }
+    
+    if (categoryParam) {
+        categoryPills.forEach(p => p.classList.remove('active'));
+        const activePill = Array.from(categoryPills).find(p => p.getAttribute('data-category') === categoryParam);
+        if (activePill) {
+            activePill.classList.add('active');
+        }
+        currentCategory = categoryParam;
+        needsFilter = true;
+    }
+
+    if (needsFilter) {
         applyAllFilters();
     } else {
         updateProductCount();
