@@ -8,9 +8,14 @@ export default function NavLogic() {
     // Splash screen logic
     const intro = document.getElementById('intro-sequence');
     if (intro) {
-      setTimeout(() => {
-        intro.classList.add('hidden');
-      }, 2800);
+      if (!sessionStorage.getItem('introPlayed')) {
+        setTimeout(() => {
+          intro.classList.add('hidden');
+          sessionStorage.setItem('introPlayed', 'true');
+        }, 2800);
+      } else {
+        intro.style.display = 'none';
+      }
     }
 
     if (!nav) return;
