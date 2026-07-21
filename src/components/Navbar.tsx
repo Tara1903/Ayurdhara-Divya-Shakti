@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ShoppingBag, User, Search } from 'lucide-react';
+import { ShoppingBag, User, Search, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { useAuthStore } from '@/store/authStore';
 
@@ -17,7 +17,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === '/';
   
-  // Hydration fix: only render cart count after component mounts
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -27,37 +26,53 @@ export default function Navbar() {
   return (
     <>
       <nav className="site-nav" id="site-nav">
-        <div className="container flex justify-between items-center">
+        <div className="container flex justify-between items-center" style={{ height: '100%' }}>
           
-          {/* Left: Search Bar */}
-          <div className="nav-search-container" style={{ flex: 1, maxWidth: '300px' }}>
-            <form action="/collections" method="get" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-              <Search size={18} style={{ position: 'absolute', left: '10px', color: 'var(--stone)' }} />
+          {/* Left Side: Search (Top) / Logo (Scrolled) */}
+          <div className="nav-brand-container" style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+            
+            {/* Search Bar - Hidden when scrolled */}
+            <form action="/collections" method="get" className="nav-search hide-on-scrolled" style={{ position: 'relative', display: 'flex', alignItems: 'center', maxWidth: '280px', width: '100%', transition: 'opacity 0.3s ease' }}>
+              <Search size={18} style={{ position: 'absolute', left: '12px', color: 'var(--charcoal)', opacity: 0.7 }} />
               <input 
                 type="search" 
                 name="q" 
-                placeholder="Search" 
-                className="input-minimal" 
+                placeholder="Search products..." 
                 style={{ 
-                  paddingLeft: '2.5rem', 
-                  borderBottom: '1px solid var(--charcoal)',
-                  opacity: 0.7,
-                  fontSize: '0.9rem',
-                  paddingTop: '0.5rem',
-                  paddingBottom: '0.5rem'
+                  width: '100%',
+                  padding: '0.6rem 1rem 0.6rem 2.5rem', 
+                  background: 'transparent',
+                  border: '1px solid rgba(45, 41, 38, 0.2)',
+                  borderRadius: '30px',
+                  color: 'var(--charcoal)',
+                  fontSize: '0.95rem',
+                  outline: 'none',
+                  transition: 'border-color 0.3s ease'
                 }}
+                onFocus={(e) => e.target.style.borderColor = 'var(--charcoal)'}
+                onBlur={(e) => e.target.style.borderColor = 'rgba(45, 41, 38, 0.2)'}
               />
             </form>
+
+            {/* Logo - Shown when scrolled */}
+            <Link href="/" className="nav-brand flex items-center magnetic show-on-scrolled" style={{ gap: '0.75rem', textDecoration: 'none', opacity: 0, position: 'absolute', pointerEvents: 'none', transition: 'opacity 0.3s ease' }}>
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.2" className="brand-icon text-charcoal">
+                <path d="M12 22C12 22 4 15 4 8.5C4 4 7.5 2 12 2C16.5 2 20 4 20 8.5C20 15 12 22 12 22Z" strokeLinejoin="round" />
+                <path d="M12 22V8" />
+                <path d="M12 15C10 12 8 10.5 8 10.5" strokeLinecap="round" />
+                <path d="M12 15C14 12 16 10.5 16 10.5" strokeLinecap="round" />
+              </svg>
+              <span className="text-charcoal brand-text" style={{ fontSize: '1.25rem', fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
+                Ayurdhara Divya Shakti
+              </span>
+            </Link>
+
           </div>
 
-          {/* Right: Hamburger Menu */}
+          {/* Right Side: Hamburger Menu ONLY */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <button className="nav-toggle magnetic" id="nav-toggle">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
+            <button className="nav-toggle magnetic" id="nav-toggle" style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal)' }}>
+              <Menu size={28} strokeWidth={1.2} />
             </button>
           </div>
         </div>
@@ -65,33 +80,68 @@ export default function Navbar() {
 
       {/* Universal Nav Overlay (Desktop & Mobile) */}
       <div className="mobile-nav-overlay" id="mobile-nav-overlay">
-        <button className="nav-close" id="nav-close">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
+        <button className="nav-close" id="nav-close" style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'transparent', border: 'none', color: 'var(--ivory)', cursor: 'pointer', padding: '0.5rem' }}>
+          <X size={36} strokeWidth={1} />
         </button>
-        <div className="mobile-nav-links">
-          <Link href="/" className="mobile-nav-link text-charcoal">Home</Link>
-          <Link href="/collections" className="mobile-nav-link text-charcoal" style={{ color: 'var(--gold)' }}>Collections</Link>
-          <Link href="/#philosophy" className="mobile-nav-link text-charcoal">Philosophy</Link>
-          <Link href="/#ingredients" className="mobile-nav-link text-charcoal">Ingredients</Link>
-          <Link href="/#craft" className="mobile-nav-link text-charcoal">Craft</Link>
-          <Link href="/#journal" className="mobile-nav-link text-charcoal">Journal</Link>
+        <div className="mobile-nav-links" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center', width: '100%', maxWidth: '300px' }}>
           
-          <div style={{ height: '1px', background: 'rgba(45, 41, 38, 0.1)', margin: '1rem 0' }}></div>
+          <Link href="/" className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Home</Link>
+          <Link href="/collections" className="mobile-nav-link text-gold magnetic" style={{ textDecoration: 'none' }}>Collections</Link>
+          <Link href="/#philosophy" className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Philosophy</Link>
+          <Link href="/#ingredients" className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Ingredients</Link>
           
-          <Link href={user ? '/account' : '/login'} className="mobile-nav-link text-charcoal" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <User size={20} />
-            {user ? 'My Account' : 'Login / Register'}
+          <div style={{ width: '100%', height: '1px', background: 'rgba(250, 247, 242, 0.15)', margin: '1rem 0' }}></div>
+          
+          <Link href={user ? '/account' : '/login'} className="magnetic" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--ivory)', textDecoration: 'none', fontSize: '1.25rem', fontFamily: 'var(--font-sans)' }}>
+            <User size={22} />
+            <span>{user ? 'My Account' : 'Login / Register'}</span>
           </Link>
           
-          <button onClick={() => { toggleCart(); document.getElementById('mobile-nav-overlay')?.classList.remove('active'); }} className="mobile-nav-link text-charcoal" style={{ background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', fontSize: 'inherit', padding: 0, display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <ShoppingBag size={20} />
-            Cart {mounted && cartCount > 0 ? `(${cartCount})` : ''}
+          <button onClick={() => { toggleCart(); document.getElementById('mobile-nav-overlay')?.classList.remove('open'); document.body.style.overflow = ''; }} className="magnetic" style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--ivory)', fontSize: '1.25rem', fontFamily: 'var(--font-sans)', padding: 0 }}>
+            <ShoppingBag size={22} />
+            <span>Cart {mounted && cartCount > 0 ? `(${cartCount})` : ''}</span>
           </button>
+          
         </div>
       </div>
+
+      {/* Inline styles for scroll behavior */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .site-nav.scrolled .hide-on-scrolled {
+          opacity: 0 !important;
+          pointer-events: none;
+        }
+        .site-nav.scrolled .show-on-scrolled {
+          opacity: 1 !important;
+          pointer-events: auto !important;
+        }
+        
+        .mobile-nav-overlay {
+          position: fixed;
+          inset: 0;
+          background-color: var(--deep);
+          z-index: 9900;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.4s ease;
+        }
+        .mobile-nav-overlay.open {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .mobile-nav-link {
+          font-family: var(--font-serif);
+          font-size: 2.5rem;
+          color: var(--ivory);
+        }
+        .text-gold {
+          color: var(--gold);
+        }
+      `}} />
     </>
   );
 }
