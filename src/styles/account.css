@@ -1,0 +1,339 @@
+/* ========================================
+   AUTH & ACCOUNT STYLES — Phase 6
+   Ayurdhara Divya Shakti
+   Clean, focused, premium — minimal distraction
+   ======================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ivory);
+  padding: 4rem 1.5rem;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+  background: white;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--sand);
+  text-align: center;
+}
+
+.auth-header {
+  margin-bottom: 2rem;
+}
+
+.auth-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 2.25rem;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.auth-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  font-family: var(--font-sans, 'Inter', sans-serif);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--sand);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  color: var(--charcoal);
+  background: white;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  outline: none;
+}
+
+.auth-input:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(44, 62, 45, 0.08);
+}
+
+.auth-input.error {
+  border-color: #DC2626;
+}
+
+.auth-error-msg {
+  font-size: 0.75rem;
+  color: #DC2626;
+  margin-top: 0.25rem;
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -0.5rem;
+}
+
+.auth-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--stone);
+  cursor: pointer;
+}
+
+.auth-link {
+  font-size: 0.85rem;
+  color: var(--olive);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--charcoal);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 200ms ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.auth-btn:hover:not(:disabled) {
+  background: var(--forest);
+}
+
+.auth-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: var(--stone);
+  text-align: center;
+}
+
+.auth-alert {
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  color: #DC2626;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* ── ACCOUNT LAYOUT ── */
+.account-layout {
+  min-height: 100vh;
+  background: var(--ivory);
+  padding-top: 80px; /* Navbar */
+}
+
+.account-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ── ACCOUNT NAV ── */
+.account-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: sticky;
+  top: 100px;
+}
+
+.account-nav-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.5rem;
+  color: var(--charcoal);
+  margin-bottom: 1.5rem;
+}
+
+.account-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--stone);
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+
+.account-nav-link:hover {
+  background: rgba(44, 62, 45, 0.04);
+  color: var(--charcoal);
+}
+
+.account-nav-link.active {
+  background: rgba(92, 107, 79, 0.1);
+  color: var(--olive);
+  font-weight: 600;
+}
+
+.account-nav-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.account-nav-divider {
+  height: 1px;
+  background: var(--sand);
+  margin: 0.5rem 0;
+}
+
+.account-signout {
+  color: #DC2626;
+  background: transparent;
+  border: none;
+  padding: 0.875rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: background 200ms;
+}
+
+.account-signout:hover {
+  background: rgba(220, 38, 38, 0.05);
+}
+
+/* ── ACCOUNT MAIN CONTENT ── */
+.account-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.account-header {
+  margin-bottom: 1rem;
+}
+
+.account-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 2.25rem;
+  color: var(--charcoal);
+}
+
+.account-subtitle {
+  font-size: 0.95rem;
+  color: var(--stone);
+  margin-top: 0.5rem;
+}
+
+.account-card {
+  background: white;
+  border: 1px solid var(--sand);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.account-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.account-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.account-card-action {
+  font-size: 0.85rem;
+  color: var(--olive);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  .account-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .account-nav {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-bottom: 1px solid var(--sand);
+  }
+  
+  .account-nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .account-nav-title {
+    display: none;
+  }
+  
+  .account-nav-link {
+    white-space: nowrap;
+  }
+  
+  .account-nav-divider {
+    display: none;
+  }
+  
+  .auth-container {
+    padding: 2.5rem 1.5rem;
+  }
+}

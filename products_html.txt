@@ -1,0 +1,1135 @@
+
+        <!-- Product 1 -->
+        <div class="col-product-card reveal"  data-category="kids" data-goals="energy" data-price="149" data-rating="5" data-name="Kids Smart Blend">
+          <div class="col-card-img-wrap">
+            <div class="col-card-badge badge-bestseller">Bestseller</div>
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-kids-smart-10ml.jpg" loading="lazy" alt="Kids Smart Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Kids Smart Blend</h3>
+            <span class="col-card-benefit">Supports Focus, Memory & Learning</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-kids-smart-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-kids-smart-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-kids-smart-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="col-product-card reveal"  data-category="kids" data-goals="sleep" data-price="149" data-rating="5" data-name="Kids Gentle Blend">
+          <div class="col-card-img-wrap">
+            <div class="col-card-badge badge-bestseller">Bestseller</div>
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-kids-gentle-10ml.jpg" loading="lazy" alt="Kids Gentle Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Kids Gentle Blend</h3>
+            <span class="col-card-benefit">Gentle Care, Calms & Soothes</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-kids-gentle-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-kids-gentle-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-kids-gentle-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="col-product-card reveal"  data-category="kids" data-goals="immunity" data-price="149" data-rating="5" data-name="Kids Daily Blend">
+          <div class="col-card-img-wrap">
+            <div class="col-card-badge badge-bestseller">Bestseller</div>
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-kids-daily-10ml.jpg" loading="lazy" alt="Kids Daily Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Kids Daily Blend</h3>
+            <span class="col-card-benefit">Daily Wellness, Stronger Immunity</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-kids-daily-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-kids-daily-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-kids-daily-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="col-product-card reveal"  data-category="kids" data-goals="detox" data-price="149" data-rating="5" data-name="Kids Pure Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-kids-pure-10ml.jpg" loading="lazy" alt="Kids Pure Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Kids Pure Blend</h3>
+            <span class="col-card-benefit">Pure & Natural, Safe for Kids</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-kids-pure-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-kids-pure-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-kids-pure-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="col-product-card reveal"  data-category="stress-relief" data-goals="energy" data-price="149" data-rating="5" data-name="Men Strength Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-men-strength-10ml.jpg" loading="lazy" alt="Men Strength Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Men Strength Blend</h3>
+            <span class="col-card-benefit">Builds Strength, Stamina & Energy</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-men-strength-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-men-strength-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-men-strength-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="col-product-card reveal"  data-category="stress-relief" data-goals="energy" data-price="149" data-rating="5" data-name="Men Vital Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-men-vital-10ml.jpg" loading="lazy" alt="Men Vital Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Men Vital Blend</h3>
+            <span class="col-card-benefit">Boosts Vitality, Power & Confidence</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-men-vital-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-men-vital-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-men-vital-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="col-product-card reveal"  data-category="stress-relief" data-goals="stress" data-price="149" data-rating="5" data-name="Men Balance Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-men-balance-10ml.jpg" loading="lazy" alt="Men Balance Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Men Balance Blend</h3>
+            <span class="col-card-benefit">Balances Body, Mind & Emotions</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-men-balance-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-men-balance-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-men-balance-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="col-product-card reveal"  data-category="stress-relief" data-goals="detox" data-price="149" data-rating="5" data-name="Men Pure Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-men-pure-10ml.jpg" loading="lazy" alt="Men Pure Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Men Pure Blend</h3>
+            <span class="col-card-benefit">Pure & Natural, Daily Wellness</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-men-pure-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-men-pure-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-men-pure-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="womens" data-goals="stress" data-price="149" data-rating="5" data-name="Women Harmony Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-women-harmony-10ml.jpg" loading="lazy" alt="Women Harmony Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Women Harmony Blend</h3>
+            <span class="col-card-benefit">Hormonal Balance, Inner Harmony</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-women-harmony-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-women-harmony-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-women-harmony-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="womens" data-goals="stress" data-price="149" data-rating="5" data-name="Women Care Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-women-care-10ml.jpg" loading="lazy" alt="Women Care Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Women Care Blend</h3>
+            <span class="col-card-benefit">Daily Care, Comfort & Relief</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-women-care-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-women-care-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-women-care-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="skin-care" data-goals="skin" data-price="149" data-rating="5" data-name="Women Glow Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-women-glow-10ml.jpg" loading="lazy" alt="Women Glow Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Women Glow Blend</h3>
+            <span class="col-card-benefit">Natural Glow, Radiant Skin</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-women-glow-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-women-glow-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-women-glow-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="womens" data-goals="detox" data-price="149" data-rating="5" data-name="Women Pure Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-women-pure-10ml.jpg" loading="lazy" alt="Women Pure Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Women Pure Blend</h3>
+            <span class="col-card-benefit">Pure & Natural, Complete Wellness</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-women-pure-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-women-pure-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-women-pure-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 13 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="stress-relief" data-goals="stress" data-price="149" data-rating="5" data-name="Senior Comfort Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-senior-comfort-10ml.jpg" loading="lazy" alt="Senior Comfort Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Senior Comfort Blend</h3>
+            <span class="col-card-benefit">Relieves Discomfort, Joint Ease</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-senior-comfort-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-senior-comfort-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-senior-comfort-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 14 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="stress-relief" data-goals="energy" data-price="149" data-rating="5" data-name="Senior Vital Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-senior-vital-10ml.jpg" loading="lazy" alt="Senior Vital Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Senior Vital Blend</h3>
+            <span class="col-card-benefit">Improves Vitality, Energy</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-senior-vital-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-senior-vital-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-senior-vital-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 15 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="stress-relief" data-goals="sleep" data-price="149" data-rating="5" data-name="Senior Balance Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-senior-balance-10ml.jpg" loading="lazy" alt="Senior Balance Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Senior Balance Blend</h3>
+            <span class="col-card-benefit">Restores Balance, Calm & Relax</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-senior-balance-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-senior-balance-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-senior-balance-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 16 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="stress-relief" data-goals="detox" data-price="149" data-rating="5" data-name="Senior Pure Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/nabhi-senior-pure-10ml.jpg" loading="lazy" alt="Senior Pure Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Senior Pure Blend</h3>
+            <span class="col-card-benefit">Pure & Natural, Daily Wellness</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="149" 
+          data-mrp="249" 
+          data-img="/images/products/nabhi-senior-pure-10ml.jpg">
+          10 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="249" 
+          data-mrp="399" 
+          data-img="/images/products/nabhi-senior-pure-15ml.jpg">
+          15 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="599" 
+          data-mrp="899" 
+          data-img="/images/products/nabhi-senior-pure-15ml.jpg">
+          50 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹149</span>
+              <span class="col-card-original-price">₹249</span>
+              <span class="col-card-discount">Save 40%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 17 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="kids" data-goals="sleep" data-price="399" data-rating="5" data-name="Kids Soft Steps Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/feet-kids-soft-steps-30ml.jpg" loading="lazy" alt="Kids Soft Steps Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Kids Soft Steps Blend</h3>
+            <span class="col-card-benefit">Nourishes, Soothes & Supports Growth</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="399" 
+          data-mrp="599" 
+          data-img="/images/products/feet-kids-soft-steps-30ml.jpg">
+          30 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="1499" 
+          data-mrp="2199" 
+          data-img="/images/products/feet-kids-soft-steps-150ml.jpg">
+          150 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="2999" 
+          data-mrp="5999" 
+          data-img="/images/products/feet-kids-soft-steps-150ml.jpg">
+          500 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹399</span>
+              <span class="col-card-original-price">₹599</span>
+              <span class="col-card-discount">Save 33%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 18 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="stress-relief" data-goals="energy" data-price="399" data-rating="5" data-name="Men Active Steps Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/feet-men-active-steps-30ml.jpg" loading="lazy" alt="Men Active Steps Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Men Active Steps Blend</h3>
+            <span class="col-card-benefit">Relieves Fatigue, Refreshes</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="399" 
+          data-mrp="599" 
+          data-img="/images/products/feet-men-active-steps-30ml.jpg">
+          30 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="1499" 
+          data-mrp="2199" 
+          data-img="/images/products/feet-men-active-steps-150ml.jpg">
+          150 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="2999" 
+          data-mrp="5999" 
+          data-img="/images/products/feet-men-active-steps-150ml.jpg">
+          500 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹399</span>
+              <span class="col-card-original-price">₹599</span>
+              <span class="col-card-discount">Save 33%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 19 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="womens" data-goals="stress" data-price="399" data-rating="5" data-name="Women Comfort Steps Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/feet-women-comfort-steps-30ml.jpg" loading="lazy" alt="Women Comfort Steps Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Women Comfort Steps Blend</h3>
+            <span class="col-card-benefit">Relieves Stress, Reduces Swelling</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="399" 
+          data-mrp="599" 
+          data-img="/images/products/feet-women-comfort-steps-30ml.jpg">
+          30 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="1499" 
+          data-mrp="2199" 
+          data-img="/images/products/feet-women-comfort-steps-150ml.jpg">
+          150 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="2999" 
+          data-mrp="5999" 
+          data-img="/images/products/feet-women-comfort-steps-150ml.jpg">
+          500 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹399</span>
+              <span class="col-card-original-price">₹599</span>
+              <span class="col-card-discount">Save 33%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 20 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="stress-relief" data-goals="sleep" data-price="399" data-rating="5" data-name="Senior Relax Steps Blend">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/feet-senior-relax-steps-30ml.jpg" loading="lazy" alt="Senior Relax Steps Blend" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Senior Relax Steps Blend</h3>
+            <span class="col-card-benefit">Relaxes Muscles, Restful Sleep</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants">
+      
+        <button class="variant-pill active" 
+          data-price="399" 
+          data-mrp="599" 
+          data-img="/images/products/feet-senior-relax-steps-30ml.jpg">
+          30 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="1499" 
+          data-mrp="2199" 
+          data-img="/images/products/feet-senior-relax-steps-150ml.jpg">
+          150 ml
+        </button>
+      
+        <button class="variant-pill " 
+          data-price="2999" 
+          data-mrp="5999" 
+          data-img="/images/products/feet-senior-relax-steps-150ml.jpg">
+          500 ml
+        </button>
+      
+    </div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹399</span>
+              <span class="col-card-original-price">₹599</span>
+              <span class="col-card-discount">Save 33%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 21 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="immunity" data-goals="detox" data-price="480" data-rating="5" data-name="Individual Trial Combo">
+          <div class="col-card-img-wrap">
+            
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/combo-individual-trial.jpg" loading="lazy" alt="Individual Trial Combo" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Individual Trial Combo</h3>
+            <span class="col-card-benefit">10ml Nabhi + 30ml Feet</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants"><span class="variant-label">Combo Pack</span></div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹480</span>
+              <span class="col-card-original-price">₹599</span>
+              <span class="col-card-discount">Save 20%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 22 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="immunity" data-goals="detox" data-price="1399" data-rating="5" data-name="Family Trial Pack">
+          <div class="col-card-img-wrap">
+            <div class="col-card-badge badge-limited">Value Pack</div>
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/combo-family-trial.jpg" loading="lazy" alt="Family Trial Pack" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Family Trial Pack</h3>
+            <span class="col-card-benefit">Complete family wellness</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants"><span class="variant-label">Combo Pack</span></div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹1399</span>
+              <span class="col-card-original-price">₹1799</span>
+              <span class="col-card-discount">Save 22%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 23 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="immunity" data-goals="detox" data-price="1899" data-rating="5" data-name="Individual Gold Wellness Pack">
+          <div class="col-card-img-wrap">
+            <div class="col-card-badge badge-limited">Value Pack</div>
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/combo-individual-gold.jpg" loading="lazy" alt="Individual Gold Wellness Pack" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Individual Gold Wellness Pack</h3>
+            <span class="col-card-benefit">4 x 15ml Nabhi + 150ml Feet</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants"><span class="variant-label">Combo Pack</span></div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹1899</span>
+              <span class="col-card-original-price">₹2599</span>
+              <span class="col-card-discount">Save 27%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 24 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="immunity" data-goals="detox" data-price="5999" data-rating="5" data-name="Family Gold Wellness Pack">
+          <div class="col-card-img-wrap">
+            <div class="col-card-badge badge-limited">Value Pack</div>
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/combo-family-gold.jpg" loading="lazy" alt="Family Gold Wellness Pack" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Family Gold Wellness Pack</h3>
+            <span class="col-card-benefit">240ml Nabhi + 600ml Feet</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants"><span class="variant-label">Combo Pack</span></div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹5999</span>
+              <span class="col-card-original-price">₹10499</span>
+              <span class="col-card-discount">Save 43%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 25 -->
+        <div class="col-product-card reveal load-more-item" style="display:none;" data-category="immunity" data-goals="detox" data-price="3999" data-rating="5" data-name="Premium Wellness Pack">
+          <div class="col-card-img-wrap">
+            <div class="col-card-badge badge-limited">Value Pack</div>
+            <button class="col-card-wishlist" aria-label="Add to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </button>
+            <img src="/images/products/combo-individual-premium.jpg" loading="lazy" alt="Premium Wellness Pack" class="product-main-img">
+            <button class="col-card-quickview">Quick View</button>
+          </div>
+          <div class="col-card-details">
+            <h3 class="col-card-name">Premium Wellness Pack</h3>
+            <span class="col-card-benefit">4 x 50ml Nabhi + 500ml Feet</span>
+            <div class="col-card-rating">
+              <span class="col-card-stars">★★★★★</span>
+              <span class="col-card-reviews">(120)</span>
+            </div>
+            <div class="col-card-variants"><span class="variant-label">Combo Pack</span></div>
+            <div class="col-card-pricing">
+              <span class="col-card-price">₹3999</span>
+              <span class="col-card-original-price">₹8999</span>
+              <span class="col-card-discount">Save 56%</span>
+            </div>
+            <button class="col-card-add-btn">Add to Cart</button>
+          </div>
+        </div>

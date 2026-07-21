@@ -1,0 +1,81 @@
+/* Typography System */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap');
+
+.font-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-sans {
+  font-family: 'Outfit', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.text-display {
+  font-size: var(--text-display);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.text-hero {
+  font-size: var(--text-hero);
+  font-weight: 400;
+}
+
+.text-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--text-title);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.text-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--text-subtitle);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.text-body {
+  font-family: 'Outfit', sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.7;
+  font-weight: 300;
+  color: var(--charcoal);
+  opacity: 0.85;
+}
+
+.text-caption {
+  font-family: 'Outfit', sans-serif;
+  font-size: var(--text-caption);
+  color: var(--stone);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.text-overline {
+  font-family: 'Outfit', sans-serif;
+  font-size: var(--text-overline);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-ivory { color: var(--ivory); }
+.text-forest { color: var(--forest); }
+.text-earth { color: var(--earth); }
+.text-charcoal { color: var(--charcoal); }
+.text-gold { color: var(--gold); }
+.text-stone { color: var(--stone); }

@@ -1,0 +1,576 @@
+/* src/styles/pdp.css */
+
+.pdp-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 2rem 4rem; /* Accounts for fixed navbar */
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* 1. Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: -2rem; /* Pull up slightly */
+}
+
+.breadcrumbs a {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+  color: var(--primary);
+}
+
+.breadcrumbs span {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* 2. Hero Section */
+.pdp-hero {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.pdp-gallery {
+  flex: 0 0 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 100px;
+}
+
+.pdp-main-image-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-light);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.pdp-thumbnails {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none; /* Firefox */
+}
+
+.pdp-thumbnails::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.thumbnail {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  background: var(--surface-light);
+}
+
+.thumbnail.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(22, 101, 52, 0.1);
+}
+
+.thumbnail:hover {
+  opacity: 0.8;
+}
+
+/* Right Side - Info Panel */
+.pdp-info-panel {
+  flex: 0 0 calc(45% - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-badge {
+  display: inline-block;
+  background: var(--secondary-light);
+  color: var(--primary-dark);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+
+.pdp-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.pdp-category {
+  font-size: 1.1rem;
+  color: var(--primary);
+  font-weight: 500;
+  margin-top: -0.5rem;
+}
+
+.pdp-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.pdp-benefit-line {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+}
+
+.pdp-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pdp-price {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.pdp-mrp {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+
+.pdp-discount {
+  background: #fef08a;
+  color: #854d0e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pdp-tax-info {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: -1rem;
+}
+
+/* Variant Selector */
+.variant-selector {
+  margin-top: 1rem;
+}
+
+.variant-selector h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.variant-pills {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.variant-pill {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  background: white;
+  color: var(--text-dark);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.variant-pill:hover {
+  border-color: var(--primary);
+}
+
+.variant-pill.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Quantity and Actions */
+.pdp-actions-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 52px;
+}
+
+.qty-btn {
+  background: white;
+  border: none;
+  width: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text-dark);
+  transition: background 0.2s;
+}
+
+.qty-btn:hover {
+  background: var(--surface-light);
+}
+
+.qty-input {
+  width: 50px;
+  height: 100%;
+  border: none;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.btn-large {
+  flex: 1;
+  height: 52px;
+  font-size: 1.1rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+.buy-now-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.buy-now-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.pdp-trust-badges {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* 3. Key Benefits */
+.pdp-section {
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.pdp-section h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--primary-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.benefit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--surface-light);
+  border-radius: var(--radius-lg);
+  transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+}
+
+.benefit-icon {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.benefit-card p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* 4. Product Story */
+.pdp-story {
+  background: var(--primary-dark);
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.pdp-story h2 {
+  color: var(--secondary-light);
+  border: none;
+}
+
+.story-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.story-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+/* 5. Ingredients */
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.ingredient-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.ingredient-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.ing-img-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: var(--surface-light);
+}
+
+.ingredient-info {
+  padding: 1.5rem;
+}
+
+.ingredient-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--primary-dark);
+  margin: 0 0 0.25rem 0;
+}
+
+.botanical-name {
+  font-style: italic;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+}
+
+/* 6. How to Use */
+.usage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  background: var(--surface-light);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+}
+
+.usage-step h4 {
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Accordions */
+.accordion {
+  border-top: 1px solid var(--border-color);
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.accordion-header {
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.accordion-icon {
+  color: var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.open .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+.accordion-item.open .accordion-content {
+  max-height: 500px;
+  padding-bottom: 1.5rem;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specs-table th, .specs-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.specs-table th {
+  width: 30%;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.specs-table td {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Sticky Mobile Bar */
+.mobile-sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-top: 1px solid rgba(22, 101, 52, 0.1);
+}
+
+.mobile-sticky-bar.visible {
+  transform: translateY(0);
+}
+
+.mobile-sticky-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.mobile-sticky-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.mobile-sticky-bar .btn {
+  padding: 0.75rem 2rem;
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .pdp-hero {
+    flex-direction: column;
+  }
+  .pdp-gallery, .pdp-info-panel {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  .pdp-gallery {
+    position: relative;
+    top: 0;
+  }
+  .pdp-main-image-container {
+    height: 400px;
+  }
+  .usage-grid {
+    grid-template-columns: 1fr;
+  }
+  .mobile-sticky-bar {
+    display: block;
+  }
+}

@@ -1,0 +1,304 @@
+/* UI Components */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  transition: all var(--duration-fast) var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--forest);
+  color: var(--ivory);
+  border: 1px solid var(--forest);
+}
+
+.btn-primary:hover {
+  background-color: var(--deep);
+  border-color: var(--deep);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--charcoal);
+  border: 1px solid var(--charcoal);
+}
+
+.btn-outline:hover {
+  background-color: var(--charcoal);
+  color: var(--ivory);
+}
+
+/* Text Links */
+.link-editorial {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  color: var(--charcoal);
+}
+
+.link-editorial::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.link-editorial:hover::after {
+  transform: scaleX(1);
+}
+
+/* Form Inputs */
+.input-minimal {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--sand);
+  padding: 0.75rem 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  color: inherit;
+  width: 100%;
+  transition: border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.input-minimal:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+
+.input-minimal::placeholder {
+  color: var(--stone);
+  font-weight: 300;
+}
+
+/* Cards */
+.card-product {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.card-product-img {
+  border-radius: var(--img-radius-soft);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background-color: var(--cream);
+  position: relative;
+}
+
+.card-product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--img-hover-duration) var(--ease-smooth);
+}
+
+.card-product:hover .card-product-img img {
+  transform: scale(var(--img-hover-scale));
+}
+
+.card-product-details {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Premium Product Card (E-Commerce) */
+.product-card-premium {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  group: product; /* useful for hover states if supported, otherwise just use pure CSS hierarchy */
+  text-decoration: none;
+}
+
+.product-card-premium-img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* enforce 1:1 */
+  border-radius: var(--img-radius-soft);
+  overflow: hidden;
+  position: relative;
+  background-color: var(--sand);
+  margin-bottom: var(--space-16);
+}
+
+.product-card-premium-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--img-hover-duration) var(--ease-smooth);
+}
+
+.product-card-premium:hover .product-card-premium-img img {
+  transform: scale(1.04);
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn:hover {
+  background: var(--ivory);
+  transform: scale(1.1);
+}
+
+.wishlist-btn svg {
+  stroke: var(--charcoal);
+}
+
+.quick-view {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-12);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(4px);
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card-premium:hover .quick-view {
+  transform: translateY(0);
+}
+
+.product-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.product-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+}
+
+.product-benefit {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--stone);
+  margin-bottom: var(--space-8);
+}
+
+.product-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.star-rating {
+  color: #C5A572; /* Gold */
+  font-size: 0.875rem;
+}
+
+.review-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  color: var(--stone);
+}
+
+.product-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.product-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--charcoal);
+}
+
+.btn-add-to-cart {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--charcoal);
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(45, 41, 38, 0.3);
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-to-cart:hover {
+  border-bottom-color: var(--charcoal);
+}
+
+/* Hover reveal area for products */
+.card-product-reveal {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all var(--duration-medium) var(--ease-spring);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+}
+
+.card-product:hover .card-product-reveal {
+  max-height: 50px;
+  opacity: 1;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--sage);
+  color: var(--ivory);
+}

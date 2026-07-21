@@ -1,0 +1,585 @@
+/* Chapter-Specific Styles */
+
+/* Chapter I: Arrival */
+#intro-sequence {
+  position: fixed;
+  inset: 0;
+  background-color: var(--deep);
+  color: var(--ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  /* Theatrical curtain slide up */
+  transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+#intro-sequence.hidden {
+  transform: translateY(-100vh);
+  pointer-events: none;
+}
+
+.intro-brand {
+  opacity: 0;
+  letter-spacing: 0.3em; /* Start wide */
+  /* Fade in and compress letter spacing */
+  animation: introTextReveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
+}
+
+@keyframes introTextReveal {
+  0% { opacity: 0; letter-spacing: 0.4em; filter: blur(4px); }
+  30% { opacity: 1; filter: blur(0px); }
+  100% { opacity: 1; letter-spacing: 0.15em; }
+}
+
+.hero-chapter {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 15vh;
+  padding-bottom: 5vh;
+  overflow: hidden;
+  color: var(--ivory);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -10%; /* Larger area for slow zoom & parallax */
+  z-index: -3;
+  will-change: transform;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Continuous breathing zoom */
+  animation: breathZoom 25s linear infinite alternate;
+}
+
+@keyframes breathZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(to bottom, rgba(26,23,20,0.4) 0%, rgba(26,23,20,0.1) 40%, rgba(26,23,20,0.6) 100%);
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at center, transparent 30%, rgba(26,23,20,0.5) 100%);
+  pointer-events: none;
+}
+
+.particles-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  /* Added ligatures for maximum elegance */
+  font-variant-ligatures: common-ligatures;
+}
+
+.hero-title {
+  font-size: clamp(4rem, 12vw, 12rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  margin-bottom: -0.1em; /* Tighten gap to subtitle */
+}
+
+.hero-subtitle {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  text-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.hero-bottom {
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Minimalist Scroll Indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  cursor: pointer;
+  padding: var(--space-8);
+}
+
+.scroll-text {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  letter-spacing: 0.2em;
+  transition: opacity var(--duration-fast);
+}
+
+.scroll-indicator:hover .scroll-text {
+  opacity: 1;
+}
+
+.scroll-line-container {
+  width: 1px;
+  height: 60px;
+  background-color: rgba(250, 247, 242, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--gold);
+  transform: translateY(-100%);
+  animation: scrollDown 2s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+
+@keyframes scrollDown {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(0%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Chapter II: Manifesto */
+.manifesto-chapter {
+  background-color: var(--moss);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-section) 0;
+  position: relative;
+}
+
+.manifesto-line {
+  padding: var(--space-48) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.gold-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(197,165,114,0.3);
+  transform: scaleX(0);
+  transition: transform 1s var(--ease-smooth);
+}
+
+.gold-divider.visible {
+  transform: scaleX(1);
+}
+
+/* Chapter III: Philosophy */
+.philosophy-chapter {
+  background-color: var(--ivory);
+}
+
+.philosophy-image-wrap {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--img-radius-soft);
+  overflow: hidden;
+}
+
+.philosophy-image-wrap img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Chapter IV: Nature */
+.nature-chapter {
+  background-color: var(--cream);
+}
+
+.nature-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-48);
+  align-items: start;
+}
+
+@media (min-width: 992px) {
+  .nature-hero-grid {
+    grid-template-columns: 45% 55%;
+  }
+}
+
+.nature-img-col {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.nature-img-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ingredients-scroll {
+  display: flex;
+  gap: var(--space-24);
+  overflow-x: auto;
+  padding-bottom: var(--space-24);
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ingredients-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ingredient-card {
+  min-width: 300px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* Chapter V: Craft */
+.craft-chapter {
+  background-color: var(--ivory);
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+@media (min-width: 768px) {
+  .process-steps {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--space-24);
+  }
+}
+
+.process-step {
+  flex: 1;
+  position: relative;
+  border-top: 1px solid var(--sand);
+  padding-top: var(--space-16);
+}
+
+.process-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--img-radius-soft);
+  overflow: hidden;
+}
+
+.process-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--img-hover-duration) var(--ease-smooth);
+}
+
+.process-step:hover .process-img img {
+  transform: scale(1.05);
+}
+
+.step-number {
+  color: var(--stone);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-8);
+}
+
+/* craft-image removed completely to fix emptiness issue */
+
+/* Chapter VI: Collections */
+.collections-chapter {
+  background-color: var(--cream);
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-24);
+}
+
+@media (min-width: 768px) {
+  .collection-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .col-feature {
+    grid-column: span 8;
+    grid-row: span 2;
+  }
+  .col-side {
+    grid-column: span 4;
+  }
+}
+
+.collection-card {
+  position: relative;
+  border-radius: var(--img-radius-soft);
+  overflow: hidden;
+  display: block;
+}
+
+.collection-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--img-hover-duration) var(--ease-smooth);
+}
+
+.collection-card:hover img {
+  transform: scale(var(--img-hover-scale));
+}
+
+.collection-info {
+  position: absolute;
+  inset: 0;
+  padding: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(to top, rgba(26,23,20,0.8), transparent 50%);
+  color: var(--ivory);
+}
+
+/* Chapter VII: Objects */
+.objects-chapter {
+  background-color: var(--ivory);
+}
+
+/* Chapter VIII: Trust */
+.trust-chapter {
+  background-color: var(--ivory);
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  color: var(--forest);
+  margin-bottom: var(--space-8);
+}
+
+/* Chapter IX: Knowledge */
+.knowledge-chapter {
+  background-color: var(--parchment);
+}
+
+.journal-feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+@media (min-width: 768px) {
+  .journal-feature {
+    flex-direction: row;
+    align-items: center;
+  }
+  .journal-feature-img {
+    flex: 0 0 60%;
+  }
+}
+
+.journal-feature-img {
+  border-radius: var(--img-radius-soft);
+  overflow: hidden;
+}
+
+.journal-feature-img img {
+  transition: transform var(--img-hover-duration) var(--ease-smooth);
+}
+
+.journal-card:hover .journal-feature-img img {
+  transform: scale(var(--img-hover-scale));
+}
+
+/* Chapter X: Circle */
+.circle-chapter {
+  background-color: var(--cream);
+  text-align: center;
+  padding: var(--space-128) 0;
+}
+
+/* Chapter XI: Closing */
+.closing-chapter {
+  background-color: var(--forest);
+  color: var(--ivory);
+  padding: var(--space-96) 0;
+  text-align: center;
+}
+
+.newsletter-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(250,247,242,0.3);
+  padding: 1rem 0;
+  color: var(--ivory);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.25rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: border-color var(--duration-fast);
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+
+.newsletter-input::placeholder {
+  color: rgba(250,247,242,0.5);
+}
+
+.brand-statement {
+  background-color: var(--ivory);
+  color: var(--charcoal);
+  padding: var(--space-128) 0;
+  text-align: center;
+}
+
+/* Chapter XII: Foundation */
+.footer-chapter {
+  background-color: var(--deep);
+  color: var(--ivory);
+  padding: var(--space-96) 0 var(--space-48);
+}
+
+.footer-nav a {
+  color: rgba(250,247,242,0.7);
+  transition: color var(--duration-fast);
+}
+
+.footer-nav a:hover {
+  color: var(--ivory);
+}
+
+/* Navigation */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9000;
+  padding: var(--space-24) 0;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.site-nav.scrolled {
+  padding: var(--space-16) 0;
+  background-color: rgba(250,247,242,0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.site-nav.hidden {
+  transform: translateY(-100%);
+}
+
+.nav-links {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+    gap: var(--space-32);
+  }
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--deep);
+  color: var(--ivory);
+  z-index: 9900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: transform var(--duration-medium) var(--ease-smooth);
+}
+
+.mobile-nav-overlay.open {
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  text-align: center;
+}
+
+.mobile-nav-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+}

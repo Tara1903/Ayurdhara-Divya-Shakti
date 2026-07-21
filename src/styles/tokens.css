@@ -1,0 +1,83 @@
+/* Design Tokens */
+:root {
+  /* Colors */
+  --ivory: #FAF7F2;
+  --cream: #F0EBE3;
+  --parchment: #EDE8DD;
+  --forest: #2C3E2D;
+  --olive: #5C6B4F;
+  --earth: #6B5B4E;
+  --stone: #9B9590;
+  --charcoal: #2D2926;
+  --deep: #1A1714;
+  --gold: #C5A572;
+  --sage: #A3B18A;
+  --sand: #E8E0D5;
+  --moss: #3A4A3B;
+
+  /* Typography Scale */
+  --text-display: clamp(3rem, 6vw + 1rem, 6.5rem);
+  --text-hero: clamp(2.5rem, 5vw + 1rem, 5.5rem);
+  --text-title: clamp(2rem, 3.5vw + 0.5rem, 3.5rem);
+  --text-subtitle: clamp(1.35rem, 2vw + 0.35rem, 1.85rem);
+  --text-body: clamp(1.0625rem, 1.2vw, 1.125rem); /* 17px - 18px */
+  --text-caption: clamp(0.8rem, 0.9vw, 0.875rem);
+  --text-overline: 0.75rem;
+
+  /* Spacing Rhythm */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-64: 3rem;
+  --space-96: 4rem;
+  --space-128: 5rem;
+  --space-section: clamp(3rem, 6vw, 4rem);
+  --space-breath: clamp(3rem, 6vw, 4rem);
+
+  /* Elevation */
+  --elevation-0: none;
+  --elevation-1: 0 1px 3px rgba(45,41,38,0.04);
+  --elevation-2: 0 4px 16px rgba(45,41,38,0.06);
+  --elevation-3: 0 8px 32px rgba(45,41,38,0.08);
+
+  /* Shadows & Borders */
+  --shadow-subtle: 0 1px 2px rgba(45,41,38,0.03);
+  --shadow-soft: 0 4px 12px rgba(45,41,38,0.05);
+  --shadow-medium: 0 8px 24px rgba(45,41,38,0.07);
+  --shadow-deep: 0 16px 48px rgba(45,41,38,0.09);
+
+  --border-hairline: 1px solid rgba(45,41,38,0.06);
+  --border-subtle: 1px solid rgba(45,41,38,0.10);
+  --border-visible: 1px solid var(--sand);
+  --border-gold: 1px solid rgba(197,165,114,0.3);
+
+  /* Blur System */
+  --blur-none: 0;
+  --blur-subtle: 4px;
+  --blur-medium: 12px;
+  --blur-glass: 24px;
+  --blur-heavy: 40px;
+
+  /* Animation Curves */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-gentle: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-snap: cubic-bezier(0.87, 0, 0.13, 1);
+
+  --duration-micro: 180ms;
+  --duration-fast: 300ms;
+  --duration-medium: 600ms;
+  --duration-slow: 1000ms;
+  --duration-cinematic: 1400ms;
+  --stagger-step: 80ms;
+
+  /* Image Treatments */
+  --img-radius-soft: 24px;
+  --img-radius-card: 24px;
+  --img-hover-scale: 1.03;
+  --img-hover-duration: 800ms;
+}
