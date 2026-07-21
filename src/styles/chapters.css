@@ -592,7 +592,7 @@
 }
 
 @media (min-width: 768px) {
-  .nav-toggle, .mobile-cart-toggle {
+  .mobile-cart-toggle {
     display: none !important;
   }
 }
