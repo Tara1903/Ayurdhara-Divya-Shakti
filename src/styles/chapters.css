@@ -506,6 +506,16 @@
   transition: all var(--duration-fast) var(--ease-smooth);
 }
 
+.site-nav:not(.scrolled) .nav-brand.hide-on-top {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
+.nav-brand {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 .site-nav.scrolled {
   padding: var(--space-16) 0;
   background-color: rgba(250,247,242,0.8);
@@ -551,6 +561,22 @@
 
 .nav-link:hover::after {
   transform: scaleX(1);
+}
+
+.nav-toggle, .mobile-cart-toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--charcoal);
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .nav-toggle, .mobile-cart-toggle {
+    display: none !important;
+  }
 }
 
 /* Mobile Nav Overlay */

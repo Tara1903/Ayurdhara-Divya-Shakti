@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ShoppingBag, User } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { useAuthStore } from '@/store/authStore';
@@ -13,6 +14,9 @@ export default function Navbar() {
   const isInitialized = useAuthStore((state) => state.isInitialized);
   const initializeAuth = useAuthStore((state) => state.initialize);
   
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  
   // Hydration fix: only render cart count after component mounts
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -24,7 +28,7 @@ export default function Navbar() {
     <>
       <nav className="site-nav" id="site-nav">
         <div className="container flex justify-between items-center">
-          <Link href="/" className="nav-brand flex items-center magnetic" style={{ gap: '0.75rem', textDecoration: 'none' }}>
+          <Link href="/" className={`nav-brand flex items-center magnetic ${isHome ? 'hide-on-top' : ''}`} style={{ gap: '0.75rem', textDecoration: 'none' }}>
             <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.2" className="brand-icon text-charcoal">
               <path d="M12 22C12 22 4 15 4 8.5C4 4 7.5 2 12 2C16.5 2 20 4 20 8.5C20 15 12 22 12 22Z" strokeLinejoin="round" />
               <path d="M12 22V8" />
