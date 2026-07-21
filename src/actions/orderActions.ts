@@ -12,11 +12,21 @@ function generateOrderRef(): string {
 export async function processServerOrder(payload: CreateOrderPayload): Promise<{ order?: Order; error?: string }> {
   const supabase = await createClient();
 
-  // 1. Fetch current prices from database
+  // 1. Fetch user to verify Gold Membership status
+  let isGoldMember = false;
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user) {
+    const { data: profile } = await supabase.from('profiles').select('is_gold_member').eq('id', user.id).single();
+    if (profile?.is_gold_member) {
+      isGoldMember = true;
+    }
+  }
+
+  // 2. Fetch current prices from database
   const itemIds = payload.items.map(i => i.productId);
   const { data: dbProducts, error: dbError } = await supabase
     .from('products')
-    .select('slug, name, product_variants(size, price, original_price), product_images(url)')
+    .select('slug, name, product_variants(size, price, original_price, gold_member_price), product_images(url)')
     .in('slug', itemIds);
 
   if (dbError || !dbProducts) {
@@ -34,25 +44,41 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     const variant = product.product_variants.find(v => v.size === item.variant);
     if (!variant) return { error: `Variant ${item.variant} not found for ${product.name}` };
 
-    const unitPrice = Number(variant.price);
-    const originalPrice = Number(variant.original_price);
+    const unitMrp = Number(variant.original_price);
+    const unitRegularPrice = Number(variant.price);
+    const goldMemberPrice = variant.gold_member_price ? Number(variant.gold_member_price) : unitRegularPrice;
     
-    subtotal += unitPrice * item.quantity;
-    originalSubtotal += originalPrice * item.quantity;
+    let unitFinalPrice = unitRegularPrice;
+    let priceType = 'regular'; // or offer
+    if (unitRegularPrice < unitMrp) {
+      priceType = 'offer';
+    }
+
+    if (isGoldMember && variant.gold_member_price) {
+      unitFinalPrice = goldMemberPrice;
+      priceType = 'gold_member';
+    }
+    
+    subtotal += unitFinalPrice * item.quantity;
+    originalSubtotal += unitMrp * item.quantity;
 
     validatedItems.push({
       product_id: product.slug, // Storing slug as product_id reference for now until ID mapping
       product_name_snapshot: product.name,
       variant_snapshot: variant.size,
       quantity: item.quantity,
-      unit_price: unitPrice,
-      original_unit_price: originalPrice,
-      line_total: unitPrice * item.quantity,
-      image_snapshot: product.product_images?.[0]?.url || ''
+      unit_price: unitFinalPrice, // Legacy column
+      original_unit_price: unitMrp, // Legacy column
+      line_total: unitFinalPrice * item.quantity,
+      image_snapshot: product.product_images?.[0]?.url || '',
+      unit_mrp: unitMrp,
+      unit_regular_price: unitRegularPrice,
+      unit_final_price: unitFinalPrice,
+      price_type: priceType
     });
   }
 
-  // 2. Shipping & Discounts
+  // 3. Shipping & Discounts
   const itemDiscount = originalSubtotal - subtotal;
   const shippingCharge = subtotal >= 2000 ? 0 : 99; // Simple rule: free over 2000
   let couponDiscount = 0;
@@ -141,3 +167,52 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     }
   };
 }
+
+export async function markOrderAsPaid(orderId: string): Promise<{ success: boolean; error?: string }> {
+  const supabase = await createClient();
+
+  // 1. Mark order as paid
+  const { data: order, error } = await supabase
+    .from('orders')
+    .update({ payment_status: 'paid' })
+    .eq('id', orderId)
+    .select('customer_id')
+    .single();
+
+  if (error || !order) return { success: false, error: 'Failed to update order payment status' };
+
+  if (!order.customer_id) return { success: true }; // Guest order, no membership
+
+  // 2. Check if order contains gold membership eligible course
+  const { data: orderItems } = await supabase
+    .from('order_items')
+    .select('product_id')
+    .eq('order_id', orderId);
+
+  if (orderItems && orderItems.length > 0) {
+    const productIds = orderItems.map((i: any) => i.product_id);
+    const { data: eligibleProducts } = await supabase
+      .from('products')
+      .select('slug, name')
+      .in('slug', productIds)
+      .eq('gold_membership_eligible', true);
+
+    if (eligibleProducts && eligibleProducts.length > 0) {
+      // 3. Activate Gold Membership
+      const courseName = eligibleProducts[0].name;
+      await supabase
+        .from('profiles')
+        .update({
+          is_gold_member: true,
+          gold_membership_status: 'active',
+          gold_member_since: new Date().toISOString(),
+          gold_membership_source_order_id: orderId,
+          gold_membership_source_course: courseName
+        })
+        .eq('id', order.customer_id);
+    }
+  }
+
+  return { success: true };
+}
+

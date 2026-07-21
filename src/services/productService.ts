@@ -96,14 +96,19 @@ function mapDbProductToAppProduct(dbProduct: any): Product {
       // Find image for this variant
       const vImg = (dbProduct.product_images || []).find((img: any) => img.variant_id === v.id);
       return {
+        id: v.id,
         size: v.size,
         price: v.price,
         originalPrice: v.original_price,
+        goldMemberPrice: v.gold_member_price,
+        pricingStatus: v.pricing_status,
+        goldPricingEnabled: v.gold_pricing_enabled,
         image: vImg ? vImg.url : ''
       };
     }),
     price: dbProduct.product_variants?.[0]?.price || 0,
     originalPrice: dbProduct.product_variants?.[0]?.original_price || 0,
+    goldMemberPrice: dbProduct.product_variants?.[0]?.gold_member_price || undefined,
     discount: calculateDiscount(dbProduct.product_variants?.[0]?.original_price, dbProduct.product_variants?.[0]?.price),
     rating: dbProduct.rating || 0,
     reviewCount: dbProduct.review_count || 0,
@@ -115,7 +120,10 @@ function mapDbProductToAppProduct(dbProduct: any): Product {
     certifications: dbProduct.certifications || [],
     faqs: dbProduct.faqs || [],
     relatedProductIds: dbProduct.related_product_ids || [],
-    routineProductIds: dbProduct.routine_product_ids || []
+    routineProductIds: dbProduct.routine_product_ids || [],
+    durationText: dbProduct.duration_text || undefined,
+    totalQuantityMl: dbProduct.total_quantity_ml || undefined,
+    goldMembershipEligible: dbProduct.gold_membership_eligible || false
   };
 }
 

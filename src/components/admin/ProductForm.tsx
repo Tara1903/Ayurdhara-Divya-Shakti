@@ -26,6 +26,9 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
     price: initialData?.price || '',
     is_active: initialData?.is_active ?? true,
     primary_image_url: initialData?.primary_image_url || '',
+    gold_membership_eligible: initialData?.gold_membership_eligible ?? false,
+    total_quantity_ml: initialData?.total_quantity_ml || '',
+    duration_text: initialData?.duration_text || '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -59,6 +62,9 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
         price: parseFloat(formData.price.toString()) || 0,
         is_active: formData.is_active,
         primary_image_url: formData.primary_image_url,
+        gold_membership_eligible: formData.gold_membership_eligible,
+        total_quantity_ml: formData.total_quantity_ml ? parseInt(formData.total_quantity_ml.toString()) : null,
+        duration_text: formData.duration_text || null,
       };
 
       let result;
@@ -163,22 +169,67 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
             </div>
           </div>
 
-          {/* Pricing */}
+          {/* Pricing & Eligibility */}
           <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
-            <h2 className="text-lg font-medium text-gray-900 border-b border-gray-100 pb-2">Pricing</h2>
+            <h2 className="text-lg font-medium text-gray-900 border-b border-gray-100 pb-2">Pricing & Eligibility</h2>
             
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Price ($)</label>
-              <input 
-                type="number" 
-                name="price"
-                step="0.01"
-                min="0"
-                required
-                value={formData.price}
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Price (₹)</label>
+                <input 
+                  type="number" 
+                  name="price"
+                  step="0.01"
+                  min="0"
+                  required
+                  value={formData.price}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center mt-4">
+              <input
+                id="gold_membership_eligible"
+                type="checkbox"
+                name="gold_membership_eligible"
+                checked={formData.gold_membership_eligible}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded"
               />
+              <label htmlFor="gold_membership_eligible" className="ml-2 block text-sm text-gray-900 font-medium">
+                Unlocks Gold Membership on Purchase (Courses only)
+              </label>
+            </div>
+          </div>
+
+          {/* Details */}
+          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
+            <h2 className="text-lg font-medium text-gray-900 border-b border-gray-100 pb-2">Specifications</h2>
+            
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Total Quantity (ml)</label>
+                <input 
+                  type="number" 
+                  name="total_quantity_ml"
+                  min="0"
+                  value={formData.total_quantity_ml}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Duration Text (e.g. 1 Month)</label>
+                <input 
+                  type="text" 
+                  name="duration_text"
+                  value={formData.duration_text}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
+                />
+              </div>
             </div>
           </div>
         </div>

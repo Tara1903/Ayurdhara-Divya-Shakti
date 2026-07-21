@@ -9,6 +9,9 @@ export interface User {
   fullName: string;
   mobile: string;
   createdAt: string;
+  isGoldMember?: boolean;
+  goldMembershipStatus?: string;
+  goldMemberSince?: string;
 }
 
 export interface Session {
@@ -57,7 +60,10 @@ export const authService = {
           email: session.user.email || '',
           fullName: profile?.full_name || '',
           mobile: profile?.mobile || '',
-          createdAt: session.user.created_at
+          createdAt: session.user.created_at,
+          isGoldMember: profile?.is_gold_member || false,
+          goldMembershipStatus: profile?.gold_membership_status || 'inactive',
+          goldMemberSince: profile?.gold_member_since || undefined
         }
       };
     }

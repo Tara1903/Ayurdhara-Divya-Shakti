@@ -23,10 +23,14 @@ export const FREE_SHIPPING_THRESHOLD = 2000; // ₹2,000
 export function calculatePricing(
   items: CartItem[],
   couponDiscount: number,
-  shippingCharge: number
+  shippingCharge: number,
+  isGoldMember: boolean = false
 ): PricingSummary {
   const subtotal = items.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => {
+      const effectivePrice = (isGoldMember && item.goldMemberPrice) ? item.goldMemberPrice : item.price;
+      return total + effectivePrice * item.quantity;
+    },
     0
   );
   const originalTotal = items.reduce(

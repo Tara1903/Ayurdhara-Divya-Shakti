@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Star, Shield, Leaf, Heart, ChevronDown } from "lucide-react";
+import { ChevronRight, Star, Shield, Leaf, Heart, ChevronDown, Lock } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
+import { useAuthStore } from "@/store/authStore";
 import { Product } from "@/data/productData";
 
 export default function PDPClient({ product }: { product: Product }) {
@@ -16,6 +17,8 @@ export default function PDPClient({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   
   const { hasItem, addItem, removeItem } = useWishlistStore();
+  const { user } = useAuthStore();
+  const isGoldMember = user?.isGoldMember || false;
   const inWishlist = hasItem(product.slug);
 
   const toggleWishlist = () => {
@@ -36,6 +39,7 @@ export default function PDPClient({ product }: { product: Product }) {
   const currentVariant = product.variants && product.variants.length > 0 ? product.variants[activeVariantIdx] : null;
   const currentPrice = currentVariant ? currentVariant.price : product.price;
   const currentOriginalPrice = currentVariant ? currentVariant.originalPrice : product.originalPrice;
+  const currentGoldMemberPrice = currentVariant ? currentVariant.goldMemberPrice : product.goldMemberPrice;
   const currentDiscount = currentOriginalPrice ? Math.round(((currentOriginalPrice - currentPrice) / currentOriginalPrice) * 100) : product.discount;
 
   const handleVariantChange = (idx: number) => {
@@ -104,12 +108,32 @@ export default function PDPClient({ product }: { product: Product }) {
 
           <p className="pdp-benefit-line">{product.benefit}</p>
 
-          <div className="pdp-pricing">
+          <div className="pdp-pricing" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             <span className="pdp-price">₹{currentPrice}</span>
             <span className="pdp-mrp">₹{currentOriginalPrice}</span>
             <span className="pdp-discount" style={{background: '#FACC15', color: '#1A1A1A', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 600}}>Save {currentDiscount}%</span>
           </div>
-          <p className="pdp-tax-info">Inclusive of all taxes</p>
+
+          {currentGoldMemberPrice && (
+            <div style={{ marginTop: '1rem', padding: '0.75rem 1rem', background: isGoldMember ? '#FAF7F2' : '#F9F9F9', borderRadius: '6px', border: isGoldMember ? '1px solid #D4AF37' : '1px dashed #CCC', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                {!isGoldMember && <Lock size={16} color="#888" />}
+                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: isGoldMember ? '#B8860B' : '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Gold Member Price</span>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: isGoldMember ? '#B8860B' : '#888' }}>
+                  ₹{currentGoldMemberPrice}
+                </span>
+              </div>
+            </div>
+          )}
+          {!isGoldMember && currentGoldMemberPrice && (
+            <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
+              <Link href="/collections" style={{ color: 'var(--olive)', textDecoration: 'underline' }}>Explore Gold Wellness Courses</Link> to unlock this price.
+            </p>
+          )}
+
+          <p className="pdp-tax-info" style={{ marginTop: '0.5rem' }}>Inclusive of all taxes</p>
 
           {/* Variant Selector */}
           {product.variants && product.variants.length > 0 && (
@@ -160,13 +184,13 @@ export default function PDPClient({ product }: { product: Product }) {
               className="btn btn-primary btn-large" 
               style={{flex: 1}}
               onClick={() => {
-                const { addItem } = useCartStore.getState();
-                addItem({
+                useCartStore.getState().addItem({
                   productId: product.slug,
                   name: product.name,
                   image: currentVariant && currentVariant.image ? currentVariant.image : product.images[0],
                   price: currentPrice,
                   originalPrice: currentOriginalPrice,
+                  goldMemberPrice: currentGoldMemberPrice,
                   size: currentVariant ? currentVariant.size : 'Standard Size',
                   quantity: qty
                 });

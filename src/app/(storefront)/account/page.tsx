@@ -3,6 +3,7 @@
 import { useAuthStore } from '@/store/authStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Shield, Sparkles } from 'lucide-react';
 
 import type { Order } from '@/types/order';
 
@@ -75,6 +76,43 @@ export default function AccountOverview() {
                 }}
               >
                 Explore Products
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* Gold Membership Status Card */}
+        <div className="account-card" style={{ background: user?.isGoldMember ? '#FAF7F2' : '#FFF', border: user?.isGoldMember ? '1px solid #D4AF37' : '1px solid #E5E7EB' }}>
+          <div className="account-card-header">
+            <h3 className="account-card-title" style={{ color: user?.isGoldMember ? '#B8860B' : 'var(--charcoal)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              {user?.isGoldMember ? <Sparkles size={18} /> : <Shield size={18} />}
+              {user?.isGoldMember ? 'Gold Member' : 'Unlock Gold Benefits'}
+            </h3>
+          </div>
+          {user?.isGoldMember ? (
+            <div>
+              <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem' }}>
+                Thank you for being a part of our premium wellness community. You have exclusive access to Gold Member Pricing across all our products.
+              </p>
+              <ul style={{ fontSize: '0.85rem', color: 'var(--charcoal)', paddingLeft: '1rem', marginBottom: '1rem', listStyleType: 'disc' }}>
+                <li style={{ marginBottom: '0.25rem' }}>Special pricing on individual Ayurvedic formulations</li>
+                <li style={{ marginBottom: '0.25rem' }}>Priority support and consultation access</li>
+                <li style={{ marginBottom: '0.25rem' }}>Early access to new product launches</li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--stone)', marginBottom: '1rem' }}>
+                Upgrade your experience. Purchase any qualifying Ayurvedic Wellness Course to automatically unlock lifetime Gold Membership benefits.
+              </p>
+              <Link 
+                href="/collections" 
+                style={{
+                  display: 'inline-block', padding: '0.625rem 1rem', background: '#D4AF37', border: 'none',
+                  color: '#FFF', textDecoration: 'none', borderRadius: '6px', fontSize: '0.85rem', fontWeight: 600
+                }}
+              >
+                Explore Courses
               </Link>
             </div>
           )}

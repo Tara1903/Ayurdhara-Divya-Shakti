@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Heart } from "lucide-react";
+import { Heart, Lock } from "lucide-react";
 import { useWishlistStore } from "@/store/wishlistStore";
+import { useAuthStore } from "@/store/authStore";
 
 interface ProductCardProps {
   product: {
@@ -10,6 +13,8 @@ interface ProductCardProps {
     category: string;
     price: number;
     originalPrice: number;
+    goldMemberPrice?: number;
+    goldMembershipEligible?: boolean;
     discount: number;
     badge?: string;
     image: string;
@@ -21,7 +26,9 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { hasItem, addItem, removeItem } = useWishlistStore();
+  const { user } = useAuthStore();
   const inWishlist = hasItem(product.slug); // using slug as ID for simplicity here
+  const isGoldMember = user?.isGoldMember || false;
 
   const toggleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -83,8 +90,20 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="col-card-original-price">₹{product.originalPrice}</span>
           <span className="col-card-discount">Save {product.discount}%</span>
         </div>
+
+        {product.goldMemberPrice && (
+          <div style={{ marginTop: '0.5rem', padding: '0.5rem', background: isGoldMember ? '#FAF7F2' : '#F9F9F9', borderRadius: '4px', border: isGoldMember ? '1px solid #D4AF37' : '1px dashed #CCC', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+              {!isGoldMember && <Lock size={12} color="#888" />}
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: isGoldMember ? '#B8860B' : '#666', textTransform: 'uppercase' }}>Gold Member</span>
+            </div>
+            <span style={{ fontSize: '0.875rem', fontWeight: 700, color: isGoldMember ? '#B8860B' : '#888' }}>
+              ₹{product.goldMemberPrice}
+            </span>
+          </div>
+        )}
         
-        <button className="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        <button className="btn btn-primary add-to-cart-btn" style={{ marginTop: '0.75rem' }}>Add to Cart</button>
       </div>
     </div>
   );

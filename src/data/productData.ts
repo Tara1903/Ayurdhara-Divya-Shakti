@@ -1,7 +1,11 @@
 export interface ProductVariant {
+  id?: string;
   size: string;
   price: number;
   originalPrice: number;
+  goldMemberPrice?: number;
+  pricingStatus?: 'official' | 'demo';
+  goldPricingEnabled?: boolean;
   image: string;
 }
 
@@ -20,6 +24,7 @@ export interface Product {
   variants: ProductVariant[];
   price: number;
   originalPrice: number;
+  goldMemberPrice?: number;
   discount: number;
   rating: number;
   reviewCount: number;
@@ -32,6 +37,9 @@ export interface Product {
   faqs: { question: string; answer: string }[];
   relatedProductIds: string[];
   routineProductIds: string[];
+  durationText?: string;
+  totalQuantityMl?: string;
+  goldMembershipEligible?: boolean;
 }
 
 export const products: Product[] = [

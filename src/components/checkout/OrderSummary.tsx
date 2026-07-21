@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
 import { useCheckoutStore } from '@/store/checkoutStore';
+import { useAuthStore } from '@/store/authStore';
 import { calculatePricing, formatINR } from '@/services/pricingService';
 import { validateCoupon } from '@/services/couponService';
 
@@ -17,6 +18,8 @@ export default function OrderSummary() {
     applyCoupon,
     removeCoupon,
   } = useCheckoutStore();
+  const { user } = useAuthStore();
+  const isGoldMember = user?.isGoldMember || false;
 
   const [couponInput, setCouponInput] = useState('');
   const [couponLoading, setCouponLoading] = useState(false);
@@ -28,7 +31,7 @@ export default function OrderSummary() {
     if (appliedCouponCode) setCouponInput(appliedCouponCode);
   }, [appliedCouponCode]);
 
-  const pricing = calculatePricing(items, couponDiscount, shippingCharge);
+  const pricing = calculatePricing(items, couponDiscount, shippingCharge, isGoldMember);
 
   const handleApplyCoupon = async () => {
     if (!couponInput.trim()) return;
@@ -101,8 +104,15 @@ export default function OrderSummary() {
                   {formatINR(item.originalPrice * item.quantity)}
                 </span>
               </div>
-              <span className="order-item-price">
-                {formatINR(item.price * item.quantity)}
+              <span className="order-item-price" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.2rem' }}>
+                {isGoldMember && item.goldMemberPrice && item.goldMemberPrice < item.price ? (
+                  <>
+                    <span style={{ fontSize: '0.65rem', color: '#B8860B', textTransform: 'uppercase', fontWeight: 700 }}>Gold Price</span>
+                    <span>{formatINR(item.goldMemberPrice * item.quantity)}</span>
+                  </>
+                ) : (
+                  <span>{formatINR(item.price * item.quantity)}</span>
+                )}
               </span>
             </div>
           ))}

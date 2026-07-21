@@ -2,11 +2,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
+import { useAuthStore } from '@/store/authStore';
 
 export default function CartDrawer() {
   const { isCartOpen, closeCart, items, getCartSubtotal, removeItem, updateQuantity } = useCartStore();
+  const { user } = useAuthStore();
+  const isGoldMember = user?.isGoldMember || false;
 
-  const subtotal = getCartSubtotal();
+  const subtotal = getCartSubtotal(isGoldMember);
   const FREE_SHIPPING_THRESHOLD = 2000;
   const progress = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
   const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
@@ -93,7 +96,16 @@ export default function CartDrawer() {
                         <span style={{ fontSize: '0.9rem', width: '20px', textAlign: 'center' }}>{item.quantity}</span>
                         <button onClick={() => updateQuantity(item.id, item.quantity + 1)} style={{ padding: '0.25rem 0.5rem', background: 'transparent', border: 'none', cursor: 'pointer' }}>+</button>
                       </div>
-                      <div style={{ fontWeight: 600, color: 'var(--charcoal)' }}>₹{item.price * item.quantity}</div>
+                      <div style={{ fontWeight: 600, color: 'var(--charcoal)', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        {isGoldMember && item.goldMemberPrice && item.goldMemberPrice < item.price ? (
+                          <>
+                            <span style={{ fontSize: '0.7rem', color: '#B8860B', textTransform: 'uppercase', fontWeight: 700 }}>Gold Price</span>
+                            <span>₹{item.goldMemberPrice * item.quantity}</span>
+                          </>
+                        ) : (
+                          <span>₹{item.price * item.quantity}</span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

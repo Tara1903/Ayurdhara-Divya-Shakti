@@ -8,6 +8,8 @@ export interface CartItem {
   image: string;
   price: number;
   originalPrice: number;
+  goldMemberPrice?: number;
+  pricingStatus?: 'official' | 'demo';
   size: string;        // e.g. "10 ml"
   quantity: number;
 }
@@ -29,7 +31,7 @@ interface CartState {
 
   // Computed Values (Getters)
   getCartCount: () => number;
-  getCartSubtotal: () => number;
+  getCartSubtotal: (isGoldMember?: boolean) => number;
   getCartOriginalTotal: () => number;
 }
 
@@ -85,8 +87,11 @@ export const useCartStore = create<CartState>()(
         return get().items.reduce((total, item) => total + item.quantity, 0);
       },
 
-      getCartSubtotal: () => {
-        return get().items.reduce((total, item) => total + (item.price * item.quantity), 0);
+      getCartSubtotal: (isGoldMember?: boolean) => {
+        return get().items.reduce((total, item) => {
+          const effectivePrice = (isGoldMember && item.goldMemberPrice) ? item.goldMemberPrice : item.price;
+          return total + (effectivePrice * item.quantity);
+        }, 0);
       },
 
       getCartOriginalTotal: () => {
