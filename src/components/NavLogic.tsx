@@ -5,19 +5,6 @@ export default function NavLogic() {
   useEffect(() => {
     const nav = document.getElementById('site-nav');
     
-    // Splash screen logic
-    const intro = document.getElementById('intro-sequence');
-    if (intro) {
-      if (!sessionStorage.getItem('introPlayed')) {
-        setTimeout(() => {
-          intro.classList.add('hidden');
-          sessionStorage.setItem('introPlayed', 'true');
-        }, 2800);
-      } else {
-        intro.style.display = 'none';
-      }
-    }
-
     if (!nav) return;
 
     let lastScrollY = window.scrollY;

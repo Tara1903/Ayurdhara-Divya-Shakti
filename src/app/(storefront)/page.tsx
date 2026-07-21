@@ -30,6 +30,21 @@ export default function Page() {
       <div id="intro-sequence">
         <h1 class="intro-brand text-display italic">Ayurdhara Divya Shakti</h1>
       </div>
+      <script>
+        (function() {
+          var intro = document.getElementById('intro-sequence');
+          if (intro) {
+            if (!sessionStorage.getItem('introPlayed')) {
+              setTimeout(function() {
+                intro.classList.add('hidden');
+                sessionStorage.setItem('introPlayed', 'true');
+              }, 2800);
+            } else {
+              intro.style.display = 'none';
+            }
+          }
+        })();
+      </script>
 
       <header class="hero-chapter" id="hero">
         <div class="hero-bg" id="hero-bg">
