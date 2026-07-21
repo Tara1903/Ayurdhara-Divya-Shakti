@@ -112,9 +112,9 @@ export default function Navbar() {
         <div className="mobile-nav-links" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center', width: '100%', maxWidth: '300px' }}>
           
           <Link href="/" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Home</Link>
-          <Link href="/collections" onClick={closeMenu} className="mobile-nav-link text-gold magnetic" style={{ textDecoration: 'none' }}>Collections</Link>
+          <Link href="/wellness-packs" onClick={closeMenu} className="mobile-nav-link text-gold magnetic" style={{ textDecoration: 'none' }}>Wellness Packs</Link>
+          <Link href="/collections" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Collections</Link>
           <Link href="/#philosophy" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Philosophy</Link>
-          <Link href="/#ingredients" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Ingredients</Link>
           
           <div style={{ width: '100%', height: '1px', background: 'rgba(250, 247, 242, 0.15)', margin: '1rem 0' }}></div>
           

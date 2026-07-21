@@ -1,0 +1,124 @@
+.wellness-packs-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.wellness-packs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .wellness-packs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .wellness-packs-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.wellness-pack-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  text-decoration: none;
+  background-color: var(--deep);
+  color: var(--ivory);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wellness-pack-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.wpc-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.wpc-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.wellness-pack-card:hover .wpc-bg img {
+  transform: scale(1.05);
+}
+
+.wpc-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(16, 24, 21, 0.95) 0%, rgba(16, 24, 21, 0.4) 50%, rgba(16, 24, 21, 0.1) 100%);
+}
+
+.wpc-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+}
+
+.wpc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ivory);
+}
+
+.wpc-badge {
+  background-color: var(--gold);
+  color: var(--deep);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wpc-text-content {
+  margin-top: auto;
+}
+
+.wpc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+  color: var(--ivory);
+}
+
+.wpc-subtitle {
+  font-size: 0.85rem;
+  color: rgba(250, 247, 242, 0.8);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

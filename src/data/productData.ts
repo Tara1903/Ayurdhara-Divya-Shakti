@@ -2328,6 +2328,90 @@ export const products: Product[] = [
     "goldMembershipEligible": true,
     "durationText": "Up to 9-10 Months",
     "totalQuantityMl": "740 ml"
+  },
+  {
+    "id": "hair-trial-combo",
+    "slug": "hair-trial-combo",
+    "name": "Hair Trial Combo",
+    "category": "Gift Packs",
+    "shortDescription": "Discover the foundation of Ayurvedic hair care.",
+    "fullDescription": "A curated introduction to our premium hair wellness rituals.",
+    "story": "Begin your journey to stronger, healthier hair.",
+    "benefit": "Nourishes scalp and strengthens roots",
+    "benefits": [
+      { "icon": "Sparkles", "text": "100% Natural Formulation" }
+    ],
+    "ingredients": [
+      { "name": "Bhringraj & Amla", "botanical": "Ayurvedic Base", "role": "Nourishes deeply." }
+    ],
+    "images": [ "/images/categories/hair-combo.png" ],
+    "variants": [
+      {
+        "size": "Starter Set",
+        "price": 999,
+        "originalPrice": 1499,
+        "image": "/images/categories/hair-combo.png",
+        "goldMemberPrice": 799,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
+      }
+    ],
+    "price": 999,
+    "originalPrice": 1499,
+    "discount": 33,
+    "rating": 4.9,
+    "reviewCount": 42,
+    "healthGoals": [ "Hair Wellness" ],
+    "idealFor": [ "Testing the regimen" ],
+    "usageInstructions": { "serving": "As needed", "timing": "Weekly", "instructions": "Massage into scalp." },
+    "specifications": { "Form": "Oil", "Country of Origin": "India" },
+    "certifications": [ "100% Natural" ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": [],
+    "goldMemberPrice": 799
+  },
+  {
+    "id": "hair-gold-wellness-combo",
+    "slug": "hair-gold-wellness-combo",
+    "name": "Hair Gold Wellness Combo",
+    "category": "Gift Packs",
+    "shortDescription": "The ultimate Ayurvedic hair restoration course.",
+    "fullDescription": "A complete, long-term regimen for transformative hair health.",
+    "story": "Commit to a future of vibrant, resilient hair.",
+    "benefit": "Comprehensive scalp and root restoration",
+    "benefits": [
+      { "icon": "Shield", "text": "Clinically proven herbs" }
+    ],
+    "ingredients": [
+      { "name": "Brahmi & Shikakai", "botanical": "Ayurvedic Base", "role": "Promotes growth." }
+    ],
+    "images": [ "/images/categories/hair-gold.png" ],
+    "variants": [
+      {
+        "size": "Complete Course",
+        "price": 3499,
+        "originalPrice": 4999,
+        "image": "/images/categories/hair-gold.png",
+        "goldMemberPrice": 2499,
+        "pricingStatus": "official",
+        "goldPricingEnabled": true
+      }
+    ],
+    "price": 3499,
+    "originalPrice": 4999,
+    "discount": 30,
+    "rating": 5.0,
+    "reviewCount": 118,
+    "healthGoals": [ "Hair Wellness" ],
+    "idealFor": [ "Long term restoration" ],
+    "usageInstructions": { "serving": "As needed", "timing": "Weekly", "instructions": "Massage into scalp." },
+    "specifications": { "Form": "Oil", "Country of Origin": "India" },
+    "certifications": [ "100% Natural" ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": [],
+    "goldMemberPrice": 2499
   }
 ];
 
