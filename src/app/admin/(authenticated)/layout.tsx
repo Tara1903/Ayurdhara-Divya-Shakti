@@ -2,6 +2,8 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminTopbar from '@/components/admin/AdminTopbar';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Ayurdhara Divya Shakti - Admin Control Center',
   description: 'Operating System and CMS for Ayurdhara Divya Shakti',
