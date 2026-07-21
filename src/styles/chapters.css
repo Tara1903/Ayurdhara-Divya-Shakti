@@ -502,7 +502,7 @@
   left: 0;
   width: 100%;
   z-index: 9000;
-  padding: var(--space-24) 0;
+  padding: var(--space-16) 0;
   transition: all var(--duration-fast) var(--ease-smooth);
 }
 
@@ -514,6 +514,24 @@
 
 .nav-brand {
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.brand-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .site-nav {
+    padding: var(--space-24) 0;
+  }
+  .brand-text {
+    font-size: 1.35rem;
+  }
 }
 
 .site-nav.scrolled {

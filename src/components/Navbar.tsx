@@ -35,7 +35,7 @@ export default function Navbar() {
               <path d="M12 15C10 12 8 10.5 8 10.5" strokeLinecap="round" />
               <path d="M12 15C14 12 16 10.5 16 10.5" strokeLinecap="round" />
             </svg>
-            <span className="text-charcoal" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.35rem', fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+            <span className="text-charcoal brand-text">
               Ayurdhara Divya Shakti
             </span>
           </Link>
