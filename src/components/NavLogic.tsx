@@ -4,6 +4,15 @@ import { useEffect } from 'react';
 export default function NavLogic() {
   useEffect(() => {
     const nav = document.getElementById('site-nav');
+    
+    // Splash screen logic
+    const intro = document.getElementById('intro-sequence');
+    if (intro) {
+      setTimeout(() => {
+        intro.classList.add('hidden');
+      }, 2800);
+    }
+
     if (!nav) return;
 
     let lastScrollY = window.scrollY;

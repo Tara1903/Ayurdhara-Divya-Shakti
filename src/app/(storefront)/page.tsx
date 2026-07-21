@@ -27,7 +27,8 @@ export default function Page() {
       </div>
 
       <!-- Chapter I: Arrival -->
-      
+      <div id="intro-sequence">
+        <h1 class="intro-brand text-display italic">Ayurdhara Divya Shakti</h1>
       </div>
 
       <header class="hero-chapter" id="hero">
