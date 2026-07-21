@@ -25,11 +25,11 @@ export default function CollectionsPage() {
         <a href="/">Home</a>
         <span class="breadcrumb-sep">→</span>
         <a href="/collections">Collections</a>
-        <span class="breadcrumb-sep">→</span>
-        <span>Immunity</span>
+        <span class="breadcrumb-sep" id="breadcrumb-sep-cat">→</span>
+        <span id="breadcrumb-cat">Immunity</span>
       </div>
-      <h1 class="collection-hero-title">Immunity Collection</h1>
-      <p class="collection-hero-subtitle">Natural formulations crafted to strengthen daily wellness, rooted in 5,000 years of Ayurvedic tradition.</p>
+      <h1 class="collection-hero-title" id="hero-title">Immunity Collection</h1>
+      <p class="collection-hero-subtitle" id="hero-subtitle">Natural formulations crafted to strengthen daily wellness, rooted in 5,000 years of Ayurvedic tradition.</p>
     </div>
   </div>
 

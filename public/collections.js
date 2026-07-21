@@ -172,13 +172,44 @@ function initCollections() {
 
     // --- 4. Event Listeners for Filters ---
     
+    function updateHero(categoryName) {
+        const titleEl = document.getElementById('hero-title');
+        const breadcrumbCat = document.getElementById('breadcrumb-cat');
+        const heroSubtitle = document.getElementById('hero-subtitle');
+        if (!titleEl || !breadcrumbCat) return;
+
+        if (categoryName === 'all' || !categoryName) {
+            titleEl.textContent = 'All Collections';
+            breadcrumbCat.textContent = 'All';
+            if (heroSubtitle) heroSubtitle.style.display = 'block';
+        } else {
+            // Capitalize and format name if it's from our new wellness packs, else use standard format
+            const formattedName = categoryName
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+            
+            // If the category name contains space (like our wellness packs), use it directly
+            const finalName = categoryName.includes(' ') ? categoryName : formattedName;
+
+            titleEl.textContent = finalName.endsWith('Collection') ? finalName : finalName + ' Collection';
+            breadcrumbCat.textContent = finalName.toUpperCase();
+            if (heroSubtitle) heroSubtitle.style.display = 'none'; // Optional: hide standard subtitle for specific categories
+        }
+    }
+
     // Category Pills
     categoryPills.forEach(pill => {
         pill.addEventListener('click', (e) => {
             categoryPills.forEach(p => p.classList.remove('active'));
             e.currentTarget.classList.add('active');
             
-            currentCategory = e.currentTarget.getAttribute('data-category') || 'all';
+            const cat = e.currentTarget.getAttribute('data-category') || 'all';
+            currentCategory = cat;
+            
+            // For pills, we try to grab the friendly name from the pill itself if it has text, else fallback
+            const pillText = e.currentTarget.textContent.trim();
+            updateHero(cat === 'all' ? 'all' : pillText);
             
             if (grid) {
                 grid.classList.add('fade-transition');
@@ -429,6 +460,12 @@ function initCollections() {
         }
         currentCategory = categoryParam;
         needsFilter = true;
+        
+        updateHero(categoryParam);
+    } else {
+        // No category param, so we are on default "All" or "Immunity" if that was the default
+        // Let's reset to 'all' for correctness when no param is passed
+        updateHero('all');
     }
 
     if (needsFilter) {
