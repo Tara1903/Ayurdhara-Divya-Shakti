@@ -110,16 +110,14 @@ export default function Navbar() {
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 no-underline">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#E88B23]">
-                <path d="M12 22C12 22 4 15 4 8.5C4 4 7.5 2 12 2C16.5 2 20 4 20 8.5C20 15 12 22 12 22Z" strokeLinejoin="round" />
-                <path d="M12 22V8" />
-                <path d="M12 15C10 12 8 10.5 8 10.5" strokeLinecap="round" />
-                <path d="M12 15C14 12 16 10.5 16 10.5" strokeLinecap="round" />
-              </svg>
-              <span className="text-2xl font-serif font-bold text-[#2D5A27] tracking-tight">
-                Ayurdhara
-              </span>
+            <Link href="/" className="flex items-center no-underline relative h-10 w-32 md:h-12 md:w-40">
+              <Image 
+                src="/images/logo.png" 
+                alt="Ayurdhara Divya Shakti" 
+                fill
+                className="object-contain object-left"
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation Links (Now moved to CategoryNavbar, leaving only static primary links here) */}
