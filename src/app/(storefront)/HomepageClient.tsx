@@ -133,17 +133,17 @@ function Section2WrittenContent() {
 // ----------------------------------------------------------------------
 function Section3OilWellness({ products }: { products: Product[] }) {
   const tabs = [
-    { id: 'nabhi', label: 'Nabhi Oil Blends' },
-    { id: 'kids', label: 'Kids Nabhi Oil Care' },
-    { id: 'men', label: 'Men Nabhi Oil Care' },
-    { id: 'women', label: 'Women Nabhi Oil Care' },
-    { id: 'senior', label: 'Senior Nabhi Oil Care' },
-    { id: 'feet', label: 'Feet Wellness Oil' },
-    { id: 'hair', label: 'Hair Wellness Oil' },
-    { id: 'trial', label: 'Trial Wellness Oil Packs' },
-    { id: 'gold', label: 'Gold Wellness Oil Packs' },
-    { id: 'premium', label: 'Premium Wellness Oil Packs' },
-    { id: 'family', label: 'Family Wellness Oil Packs' },
+    { id: 'nabhi', label: 'Nabhi Oil Blends', image: '/images/category_nabhi_1784743910260.jpg' },
+    { id: 'kids', label: 'Kids Nabhi Oil Care', image: '/images/products/nabhi-kids-smart-15ml.jpg' },
+    { id: 'men', label: 'Men Nabhi Oil Care', image: '/images/products/nabhi-men-15ml.jpg' },
+    { id: 'women', label: 'Women Nabhi Oil Care', image: '/images/products/nabhi-women-15ml.jpg' },
+    { id: 'senior', label: 'Senior Nabhi Oil Care', image: '/images/products/nabhi-senior-15ml.jpg' },
+    { id: 'feet', label: 'Feet Wellness Oil', image: '/images/category_feet_1784743921281.jpg' },
+    { id: 'hair', label: 'Hair Wellness Oil', image: '/images/category_hair_1784743931871.jpg' },
+    { id: 'trial', label: 'Trial Wellness Oil Packs', image: '/images/products/nabhi-kids-smart-10ml.jpg' },
+    { id: 'gold', label: 'Gold Wellness Oil Packs', image: '/images/category_packs_1784743942477.jpg' },
+    { id: 'premium', label: 'Premium Wellness Oil Packs', image: '/images/category_packs_1784743942477.jpg' },
+    { id: 'family', label: 'Family Wellness Oil Packs', image: '/images/category_packs_1784743942477.jpg' },
   ];
   
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -179,18 +179,23 @@ function Section3OilWellness({ products }: { products: Product[] }) {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-4 mb-10 gap-3 scrollbar-hide justify-start lg:justify-center px-4">
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-6 md:gap-12 scrollbar-hide justify-start lg:justify-center px-4 max-w-6xl mx-auto">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`whitespace-nowrap px-6 py-3 rounded-full text-sm font-bold transition-all border-2 ${
-                activeTab === tab.id 
-                  ? 'bg-[#4B7B3B] text-white border-[#4B7B3B] shadow-md' 
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-[#4B7B3B] hover:text-[#4B7B3B]'
-              }`}
+              className="group flex flex-col items-center text-center w-24 md:w-28 flex-shrink-0"
             >
-              {tab.label}
+              <div className={`w-20 h-20 md:w-24 md:h-24 relative rounded-full overflow-hidden mb-4 bg-gray-100 shadow-sm border-4 transition-all duration-300 group-hover:shadow-lg ${
+                activeTab === tab.id ? 'border-[#E88B23]' : 'border-white group-hover:border-[#E88B23]/50'
+              }`}>
+                <Image src={tab.image || '/images/category_nabhi_1784743910260.jpg'} alt={tab.label} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              </div>
+              <h3 className={`text-xs md:text-sm font-bold uppercase tracking-wider transition-colors leading-tight ${
+                activeTab === tab.id ? 'text-[#4B7B3B]' : 'text-gray-600 group-hover:text-[#4B7B3B]'
+              }`}>
+                {tab.label}
+              </h3>
             </button>
           ))}
         </div>
@@ -246,14 +251,14 @@ function Section4WrittenContent() {
 // ----------------------------------------------------------------------
 function Section5ShopByGoal({ products }: { products: Product[] }) {
   const tabs = [
-    { id: 'daily', label: 'Daily Wellness' },
-    { id: 'hair', label: 'Hair Wellness' },
-    { id: 'skin', label: 'Skin Wellness' },
-    { id: 'women', label: "Women's Wellness" },
-    { id: 'men', label: "Men's Wellness" },
-    { id: 'kids', label: 'Kids Care' },
-    { id: 'senior', label: 'Senior Care' },
-    { id: 'family', label: 'Family Wellness' },
+    { id: 'daily', label: 'Daily Wellness', image: '/images/products/nabhi-kids-smart-15ml.jpg' },
+    { id: 'hair', label: 'Hair Wellness', image: '/images/category_hair_1784743931871.jpg' },
+    { id: 'skin', label: 'Skin Wellness', image: '/images/category_nabhi_1784743910260.jpg' },
+    { id: 'women', label: "Women's Wellness", image: '/images/products/nabhi-women-15ml.jpg' },
+    { id: 'men', label: "Men's Wellness", image: '/images/products/nabhi-men-15ml.jpg' },
+    { id: 'kids', label: 'Kids Care', image: '/images/products/nabhi-kids-smart-15ml.jpg' },
+    { id: 'senior', label: 'Senior Care', image: '/images/products/nabhi-senior-15ml.jpg' },
+    { id: 'family', label: 'Family Wellness', image: '/images/category_packs_1784743942477.jpg' },
   ];
   
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -287,18 +292,23 @@ function Section5ShopByGoal({ products }: { products: Product[] }) {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-4 mb-10 gap-3 scrollbar-hide justify-start lg:justify-center px-4">
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-6 md:gap-12 scrollbar-hide justify-start lg:justify-center px-4 max-w-6xl mx-auto">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`whitespace-nowrap px-6 py-3 rounded-xl text-sm font-bold transition-all ${
-                activeTab === tab.id 
-                  ? 'bg-[#E88B23] text-white shadow-md' 
-                  : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
-              }`}
+              className="group flex flex-col items-center text-center w-24 md:w-28 flex-shrink-0"
             >
-              {tab.label}
+              <div className={`w-20 h-20 md:w-24 md:h-24 relative rounded-full overflow-hidden mb-4 bg-gray-100 shadow-sm border-4 transition-all duration-300 group-hover:shadow-lg ${
+                activeTab === tab.id ? 'border-[#E88B23]' : 'border-white group-hover:border-[#E88B23]/50'
+              }`}>
+                <Image src={tab.image} alt={tab.label} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              </div>
+              <h3 className={`text-xs md:text-sm font-bold uppercase tracking-wider transition-colors leading-tight ${
+                activeTab === tab.id ? 'text-[#4B7B3B]' : 'text-gray-600 group-hover:text-[#4B7B3B]'
+              }`}>
+                {tab.label}
+              </h3>
             </button>
           ))}
         </div>
@@ -349,12 +359,12 @@ function Section6WrittenContent() {
 // ----------------------------------------------------------------------
 function Section7ShopByForm({ products }: { products: Product[] }) {
   const tabs = [
-    { id: 'oil', label: 'Wellness Oil' },
-    { id: 'powder', label: 'Powder' },
-    { id: 'capsule', label: 'Capsule' },
-    { id: 'tea', label: 'Tea' },
-    { id: 'seeds', label: 'Seeds' },
-    { id: 'herb', label: 'Raw Herb' },
+    { id: 'oil', label: 'Wellness Oil', image: '/images/category_nabhi_1784743910260.jpg' },
+    { id: 'powder', label: 'Powder', image: '/images/products/powder-1.jpg' },
+    { id: 'capsule', label: 'Capsule', image: '/images/products/capsule-1.jpg' },
+    { id: 'tea', label: 'Tea', image: '/images/products/tea-1.jpg' },
+    { id: 'seeds', label: 'Seeds', image: '/images/products/food-1.jpg' },
+    { id: 'herb', label: 'Raw Herb', image: '/images/products/herb-1.jpg' },
   ];
   
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -383,23 +393,28 @@ function Section7ShopByForm({ products }: { products: Product[] }) {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-2">Shop By Form</h2>
             <p className="text-gray-500">Find products in the format you love most.</p>
           </div>
+        </div>
           
-          {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2 justify-center md:justify-end max-w-lg">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all border ${
-                  activeTab === tab.id 
-                    ? 'bg-[#1A1A1A] text-white border-[#1A1A1A]' 
-                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'
-                }`}
-              >
+        {/* Category Tabs */}
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-6 md:gap-12 scrollbar-hide justify-start lg:justify-center px-4 max-w-6xl mx-auto">
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className="group flex flex-col items-center text-center w-24 md:w-28 flex-shrink-0"
+            >
+              <div className={`w-20 h-20 md:w-24 md:h-24 relative rounded-full overflow-hidden mb-4 bg-gray-100 shadow-sm border-4 transition-all duration-300 group-hover:shadow-lg ${
+                activeTab === tab.id ? 'border-[#E88B23]' : 'border-white group-hover:border-[#E88B23]/50'
+              }`}>
+                <Image src={tab.image.includes('product') ? '/images/category_hair_1784743931871.jpg' : tab.image} alt={tab.label} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              </div>
+              <h3 className={`text-xs md:text-sm font-bold uppercase tracking-wider transition-colors leading-tight ${
+                activeTab === tab.id ? 'text-[#4B7B3B]' : 'text-gray-600 group-hover:text-[#4B7B3B]'
+              }`}>
                 {tab.label}
-              </button>
-            ))}
-          </div>
+              </h3>
+            </button>
+          ))}
         </div>
 
         {/* Product Grid */}
@@ -455,11 +470,11 @@ function Section8WrittenContent() {
 // ----------------------------------------------------------------------
 function Section9ShopByOffers({ products }: { products: Product[] }) {
   const tabs = [
-    { id: 'trial', label: 'Trial Starter' },
-    { id: 'gold', label: 'Gold Offers' },
-    { id: 'premium', label: 'Premium Offers' },
-    { id: 'family', label: 'Family Offers' },
-    { id: 'combo', label: 'Combo Deals' },
+    { id: 'trial', label: 'Trial Starter', image: '/images/products/nabhi-kids-smart-10ml.jpg' },
+    { id: 'gold', label: 'Gold Offers', image: '/images/category_packs_1784743942477.jpg' },
+    { id: 'premium', label: 'Premium Offers', image: '/images/category_packs_1784743942477.jpg' },
+    { id: 'family', label: 'Family Offers', image: '/images/category_packs_1784743942477.jpg' },
+    { id: 'combo', label: 'Combo Deals', image: '/images/category_packs_1784743942477.jpg' },
   ];
   
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -488,18 +503,23 @@ function Section9ShopByOffers({ products }: { products: Product[] }) {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-4 mb-10 gap-3 scrollbar-hide justify-start lg:justify-center px-4">
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-6 md:gap-12 scrollbar-hide justify-start lg:justify-center px-4 max-w-6xl mx-auto">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`whitespace-nowrap px-6 py-3 rounded-lg text-sm font-bold transition-all border-b-4 ${
-                activeTab === tab.id 
-                  ? 'bg-white text-[#E88B23] border-[#E88B23] shadow-sm' 
-                  : 'bg-transparent text-gray-500 border-transparent hover:text-gray-800 hover:bg-white/50'
-              }`}
+              className="group flex flex-col items-center text-center w-24 md:w-28 flex-shrink-0"
             >
-              {tab.label}
+              <div className={`w-20 h-20 md:w-24 md:h-24 relative rounded-full overflow-hidden mb-4 bg-gray-100 shadow-sm border-4 transition-all duration-300 group-hover:shadow-lg ${
+                activeTab === tab.id ? 'border-[#E88B23]' : 'border-white group-hover:border-[#E88B23]/50'
+              }`}>
+                <Image src={tab.image || '/images/category_packs_1784743942477.jpg'} alt={tab.label} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              </div>
+              <h3 className={`text-xs md:text-sm font-bold uppercase tracking-wider transition-colors leading-tight ${
+                activeTab === tab.id ? 'text-[#4B7B3B]' : 'text-gray-600 group-hover:text-[#4B7B3B]'
+              }`}>
+                {tab.label}
+              </h3>
             </button>
           ))}
         </div>
