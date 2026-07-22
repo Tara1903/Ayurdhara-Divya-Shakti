@@ -25,6 +25,7 @@ export default function HomepageClient({ products }: HomepageClientProps) {
       <Section8WrittenContent />
       <Section9ShopByOffers products={products} />
       <Section10WrittenContent />
+      <Section10bDailyWellnessRoutine />
       <Section11CustomerReviews />
       <Section12BrandStory />
     </div>
@@ -565,6 +566,62 @@ function Section10WrittenContent() {
 }
 
 // ----------------------------------------------------------------------
+// SECTION 10B — DAILY WELLNESS ROUTINE
+// ----------------------------------------------------------------------
+function Section10bDailyWellnessRoutine() {
+  return (
+    <section className="py-24 bg-[#FAF7F2] border-y border-[#E0EBDC]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <span className="text-[#E88B23] text-sm font-bold uppercase tracking-widest mb-3 block">Simple & Effective</span>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#2D5A27] mb-6">
+            Daily Wellness Routine
+          </h2>
+          <p className="text-lg md:text-xl text-[#4B7B3B] font-medium">
+            Only 5 Minutes Daily. Experience profound holistic benefits with this simple nighttime ritual.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto relative">
+          
+          {/* Connector Line (Desktop) */}
+          <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-[2px] bg-[#E88B23]/30 border-t border-dashed border-[#E88B23]"></div>
+
+          {/* Step 1 */}
+          <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-sm border border-gray-100 flex flex-col items-center text-center relative z-10 hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 rounded-full bg-[#E0EBDC] text-[#2D5A27] flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-sm border border-[#4B7B3B]/20">
+              1
+            </div>
+            <h3 className="text-2xl font-serif font-bold text-[#1A1A1A] mb-4">Massage</h3>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Massage <strong className="text-[#2D5A27]">Feet Wellness Oil</strong> on both feet for 3–5 minutes to ground your energy and relax the nervous system.
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-sm border border-gray-100 flex flex-col items-center text-center relative z-10 hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 rounded-full bg-[#E0EBDC] text-[#2D5A27] flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-sm border border-[#4B7B3B]/20">
+              2
+            </div>
+            <h3 className="text-2xl font-serif font-bold text-[#1A1A1A] mb-4">Apply</h3>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Apply 2–5 drops of your <strong className="text-[#2D5A27]">Nabhi Oil Blend</strong> on the navel right before bedtime to nourish deeply from the center.
+            </p>
+          </div>
+
+        </div>
+        
+        <div className="mt-16 text-center">
+          <Link href="/collections" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white uppercase tracking-wider bg-[#2D5A27] hover:bg-[#1f401b] transition-all rounded-lg shadow-md hover:shadow-lg">
+            Shop The Routine
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------------------------------------------------------
 // SECTION 11 — CUSTOMER REVIEWS
 // ----------------------------------------------------------------------
 function Section11CustomerReviews() {
@@ -593,7 +650,7 @@ function Section11CustomerReviews() {
               author: "Verified Customer"
             }
           ].map((review, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative hover:shadow-md transition-shadow">
               <Quote className="absolute top-6 right-6 text-gray-100 w-12 h-12" />
               <div className="flex gap-1 text-[#E88B23] mb-4">
                 {[1,2,3,4,5].map(star => <Star key={star} size={16} fill="currentColor" />)}
