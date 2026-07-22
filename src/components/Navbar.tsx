@@ -6,7 +6,9 @@ import { ShoppingBag, User, Search, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { useAuthStore } from '@/store/authStore';
 import Image from 'next/image';
-
+import CategoryNavbar from './CategoryNavbar';
+import { navigationData, wellnessGuideLinks, accountLinks } from '@/data/categoryData';
+import { ChevronDown } from 'lucide-react';
 interface SearchResult {
   slug: string;
   name: string;
@@ -34,6 +36,11 @@ export default function Navbar() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>(null);
+
+  const toggleMobileCategory = (slug: string) => {
+    setExpandedMobileCategory(prev => prev === slug ? null : slug);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -115,12 +122,11 @@ export default function Navbar() {
               </span>
             </Link>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Navigation Links (Now moved to CategoryNavbar, leaving only static primary links here) */}
             <div className="hidden md:flex items-center gap-8">
-              <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop</Link>
-              <Link href="/collections?category=nabhi" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Nabhi Oils</Link>
-              <Link href="/collections?category=packs" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Wellness Packs</Link>
-              <Link href="/hair-wellness" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Hair Wellness</Link>
+              <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</Link>
+              <Link href="/wellness-combos" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">Combos</Link>
+              <Link href="/wellness-guide/how-to-use" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Guide</Link>
             </div>
 
             {/* Right Side: Search, Account, Cart */}
@@ -194,6 +200,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+        <CategoryNavbar />
       </nav>
 
       {/* Mobile Nav Overlay */}
@@ -219,19 +226,71 @@ export default function Navbar() {
             />
           </form>
 
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 pb-6">
             <Link href="/" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">Home</Link>
-            <Link href="/collections" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">All Products</Link>
-            <Link href="/collections?category=nabhi" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">Nabhi Oil Blends</Link>
-            <Link href="/wellness-packs" onClick={closeMenu} className="py-4 text-xl font-bold text-[#E88B23] border-b border-gray-50">Wellness Packs</Link>
-            <Link href="/hair-wellness" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">Hair Wellness</Link>
+            
+            {navigationData.map((category) => (
+              <div key={category.slug} className="border-b border-gray-50">
+                <button 
+                  onClick={() => toggleMobileCategory(category.slug)}
+                  className="w-full py-4 flex items-center justify-between text-xl font-bold text-gray-800"
+                >
+                  {category.name}
+                  <ChevronDown 
+                    size={20} 
+                    className={`transition-transform duration-200 text-gray-400 ${expandedMobileCategory === category.slug ? 'rotate-180' : ''}`} 
+                  />
+                </button>
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ${expandedMobileCategory === category.slug ? 'max-h-[1000px] opacity-100 pb-4' : 'max-h-0 opacity-0'}`}
+                >
+                  <div className="flex flex-col gap-3 pl-4 border-l-2 border-[#E88B23] ml-2">
+                    <Link 
+                      href={`/${category.slug}`} 
+                      onClick={closeMenu} 
+                      className="text-base font-bold text-[#4B7B3B] py-1"
+                    >
+                      Shop All {category.name} →
+                    </Link>
+                    {category.subcategories.map((sub) => (
+                      <Link 
+                        key={sub.slug} 
+                        href={`/${category.slug}/${sub.slug}`} 
+                        onClick={closeMenu} 
+                        className="text-base font-semibold text-gray-600 py-1"
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+            
+            <div className="mt-4 pt-4">
+              <span className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 block">Wellness Guide</span>
+              {wellnessGuideLinks.map(link => (
+                <Link key={link.slug} href={link.slug} onClick={closeMenu} className="py-2 text-lg font-semibold text-gray-700 block">
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
           
-          <div className="mt-8 flex flex-col gap-4">
-            <Link href={user ? '/account' : '/login'} onClick={closeMenu} className="flex items-center gap-3 py-3 px-4 bg-gray-50 rounded-xl text-gray-800 font-bold text-lg">
-              <User size={24} className="text-[#4B7B3B]" />
-              <span>{user ? 'My Account' : 'Login / Register'}</span>
-            </Link>
+          <div className="mt-auto pt-6 border-t border-gray-100 flex flex-col gap-2">
+             <span className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 block">My Account</span>
+             {user ? (
+               accountLinks.filter(l => l.name !== 'Login').map(link => (
+                 <Link key={link.slug} href={link.slug} onClick={closeMenu} className="py-2 text-lg font-semibold text-gray-700 flex items-center gap-3">
+                   {link.name}
+                 </Link>
+               ))
+             ) : (
+               <Link href="/login" onClick={closeMenu} className="flex items-center gap-3 py-3 px-4 bg-gray-50 rounded-xl text-gray-800 font-bold text-lg">
+                 <User size={24} className="text-[#4B7B3B]" />
+                 <span>Login / Register</span>
+               </Link>
+             )}
           </div>
         </div>
       </div>
