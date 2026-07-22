@@ -51,50 +51,47 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#111111] font-sans">
-      <div className="w-full max-w-md p-8 bg-[#1A1A1A] rounded-lg shadow-2xl border border-[#333]">
+    <div className="min-h-screen flex items-center justify-center bg-[#FAF7F2] font-sans">
+      <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl border border-[#E0EBDC]">
         <div className="text-center mb-8">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#10B981" strokeWidth="1" className="mx-auto mb-4">
-            <path d="M12 22C12 22 4 15 4 8.5C4 4 7.5 2 12 2C16.5 2 20 4 20 8.5C20 15 12 22 12 22Z" strokeLinejoin="round" />
-            <path d="M12 22V8" stroke="#10B981" />
-          </svg>
-          <h1 className="text-2xl font-serif text-white tracking-wide uppercase">Admin Login</h1>
-          <p className="text-sm text-gray-400 mt-2">Authorized Access Only</p>
+          <img src="/images/logo.png" alt="Ayurdhara Divya Shakti" className="w-24 h-24 object-contain mx-auto mb-4" />
+          <h1 className="text-2xl font-serif text-[#2D5A27] font-bold tracking-wide uppercase">Admin Login</h1>
+          <p className="text-sm text-gray-500 mt-2 font-medium">Authorized Access Only</p>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-md text-red-400 text-sm">
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
             {error}
           </div>
         )}
 
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Email</label>
+            <label className="block text-sm font-bold text-[#2D5A27] mb-2 uppercase tracking-wider">Email</label>
             <input 
               type="email" 
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-[#222] border border-[#333] rounded-md text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
-              placeholder="admin@example.com"
+              className="w-full px-4 py-3 bg-[#FAF7F2] border border-[#E0EBDC] rounded-lg text-[#1A1A1A] focus:outline-none focus:border-[#4B7B3B] focus:ring-1 focus:ring-[#4B7B3B] transition-colors"
+              placeholder="admin@ayurdhara.com"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">Password</label>
+            <label className="block text-sm font-bold text-[#2D5A27] mb-2 uppercase tracking-wider">Password</label>
             <input 
               type="password" 
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 bg-[#222] border border-[#333] rounded-md text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+              className="w-full px-4 py-3 bg-[#FAF7F2] border border-[#E0EBDC] rounded-lg text-[#1A1A1A] focus:outline-none focus:border-[#4B7B3B] focus:ring-1 focus:ring-[#4B7B3B] transition-colors"
               placeholder="••••••••"
             />
           </div>
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+            className="w-full py-4 px-4 bg-[#2D5A27] hover:bg-[#1f401b] text-white rounded-lg font-bold uppercase tracking-wider transition-colors shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed mt-4"
           >
             {loading ? 'Authenticating...' : 'Sign In'}
           </button>

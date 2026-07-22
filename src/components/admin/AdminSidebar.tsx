@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, 
@@ -127,15 +128,12 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className="w-64 h-screen bg-[#111111] border-r border-[#222] text-[#E5E5E5] flex flex-col fixed left-0 top-0 overflow-y-auto">
+    <aside className="w-64 h-screen bg-[#1A1A1A] border-r border-[#222] text-[#E5E5E5] flex flex-col fixed left-0 top-0 overflow-y-auto">
       {/* Brand */}
-      <div className="p-6 sticky top-0 bg-[#111111]/95 backdrop-blur z-10 border-b border-[#222]">
+      <div className="p-6 sticky top-0 bg-[#1A1A1A]/95 backdrop-blur z-10 border-b border-[#333]">
         <Link href="/admin" className="flex items-center gap-3">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#10B981" strokeWidth="1.5">
-            <path d="M12 22C12 22 4 15 4 8.5C4 4 7.5 2 12 2C16.5 2 20 4 20 8.5C20 15 12 22 12 22Z" strokeLinejoin="round" />
-            <path d="M12 22V8" stroke="#10B981" />
-          </svg>
-          <span className="font-serif text-lg tracking-wider text-white uppercase">Divya Admin</span>
+          <Image src="/images/logo.png" alt="Ayurdhara Divya Shakti" width={32} height={32} className="object-contain" />
+          <span className="font-serif text-lg tracking-wider text-white uppercase font-bold">Admin</span>
         </Link>
       </div>
 
@@ -156,8 +154,8 @@ export default function AdminSidebar() {
                     href={item.href}
                     className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
                       isActive 
-                        ? 'bg-[#10B981]/10 text-[#10B981]' 
-                        : 'text-gray-400 hover:text-white hover:bg-[#222]'
+                        ? 'bg-[#2D5A27]/20 text-[#E88B23]' 
+                        : 'text-gray-400 hover:text-white hover:bg-[#2D5A27]/10'
                     }`}
                   >
                     <Icon size={16} />
@@ -171,10 +169,10 @@ export default function AdminSidebar() {
       </nav>
 
       {/* Footer (Logout) */}
-      <div className="p-4 border-t border-[#222] sticky bottom-0 bg-[#111111]">
+      <div className="p-4 border-t border-[#333] sticky bottom-0 bg-[#1A1A1A]">
         <button 
           onClick={handleLogout}
-          className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-md text-sm text-gray-400 hover:text-red-400 hover:bg-red-400/10 transition-colors"
+          className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-md text-sm text-gray-400 hover:text-[#E88B23] hover:bg-[#E88B23]/10 transition-colors"
         >
           <LogOut size={16} />
           <span>Sign Out</span>

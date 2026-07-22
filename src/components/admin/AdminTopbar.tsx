@@ -13,21 +13,21 @@ export default function AdminTopbar() {
           <input 
             type="text" 
             placeholder="Search products, orders, customers (Cmd+K)" 
-            className="pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm w-96 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors"
+            className="pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm w-96 focus:outline-none focus:ring-2 focus:ring-[#2D5A27] focus:bg-white transition-colors"
           />
         </div>
       </div>
 
       <div className="flex items-center gap-6">
-        <button className="relative text-gray-500 hover:text-gray-700 transition-colors">
+        <button className="relative text-gray-500 hover:text-[#2D5A27] transition-colors">
           <Bell size={20} />
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold border-2 border-white">
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#E88B23] rounded-full flex items-center justify-center text-[10px] text-white font-bold border-2 border-white">
             3
           </span>
         </button>
         
         <div className="flex items-center gap-3 pl-6 border-l border-gray-200">
-          <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+          <div className="w-8 h-8 rounded-full bg-[#E0EBDC] flex items-center justify-center text-[#2D5A27] font-bold text-sm">
             AD
           </div>
           <div className="flex flex-col">
