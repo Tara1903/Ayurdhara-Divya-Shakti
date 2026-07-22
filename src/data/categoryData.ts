@@ -81,6 +81,17 @@ export const navigationData: Category[] = [
     ]
   },
   {
+    name: "Pure Spices",
+    slug: "pure-spices",
+    description: "Authentic, unadulterated spices for wellness and culinary perfection.",
+    subcategories: [
+      { name: "Whole Spices", slug: "whole-spices" },
+      { name: "Powdered Spices", slug: "powdered-spices" },
+      { name: "Spice Blends", slug: "spice-blends" },
+      { name: "Ayurvedic Spices", slug: "ayurvedic-spices" },
+    ]
+  },
+  {
     name: "Wellness Combos",
     slug: "wellness-combos",
     description: "Curated wellness combos and gift packs for comprehensive care.",
