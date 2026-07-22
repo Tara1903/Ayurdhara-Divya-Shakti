@@ -88,6 +88,30 @@ export default function Page() {
         </div>
       </section>
 
+      <!-- [NEW] Daily Wellness Routine -->
+      <section class="section-spacing bg-ivory text-center" id="wellness-routine">
+        <div class="container visible">
+          <span class="text-overline text-gold mb-6 tracking-widest uppercase">Daily Wellness Routine</span>
+          <h2 class="text-title text-forest mb-12">Only 5 Minutes Daily.</h2>
+          
+          <div class="flex flex-col md:flex-row items-center justify-center gap-12 max-w-4xl mx-auto">
+            <div class="routine-step p-8 bg-sand rounded-2xl shadow-soft flex-1">
+              <span class="text-gold font-display text-4xl block mb-4">Step 1</span>
+              <h3 class="text-xl text-forest mb-4">Padabhyanga (Feet)</h3>
+              <p class="text-body text-stone">Massage <strong>Feet Wellness Oil</strong> on both feet for 3–5 minutes to ground your energy and soothe the mind.</p>
+            </div>
+            
+            <div class="hidden md:block w-12 border-t border-dashed border-gold/50"></div>
+            
+            <div class="routine-step p-8 bg-sand rounded-2xl shadow-soft flex-1">
+              <span class="text-gold font-display text-4xl block mb-4">Step 2</span>
+              <h3 class="text-xl text-forest mb-4">Nabhi Chikitsa (Navel)</h3>
+              <p class="text-body text-stone">Apply 2–5 drops of <strong>Nabhi Oil Blend</strong> on the navel before bedtime for deep, holistic nourishment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- [NEW] E-Commerce Integration: Featured Products -->
       <section class="section-spacing bg-sand" id="featured-products">
         <div class="container">

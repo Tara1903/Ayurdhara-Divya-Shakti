@@ -46,2375 +46,2522 @@ export const products: Product[] = [
   {
     "id": "kids-smart-blend",
     "slug": "kids-smart-blend",
-    "name": "Kids Smart Blend",
-    "category": "Nabhi Oil Blend",
-    "shortDescription": "Supports Focus, Memory & Learning",
-    "fullDescription": "Ayurdhara Divya Shakti Kids Smart Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Kids Smart Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Supports Focus, Memory & Learning",
+    "name": "Kids Smart Oil Blend",
+    "category": "Kids Care",
+    "shortDescription": "Premium Kids Care daily wellness support.",
+    "fullDescription": "The Kids Smart Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-kids-smart-10ml.jpg",
       "/images/products/nabhi-kids-smart-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-kids-smart-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-smart-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-kids-smart-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-smart-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-kids-smart-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-smart-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 219,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Kids",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "kids-gentle-blend",
     "slug": "kids-gentle-blend",
-    "name": "Kids Gentle Blend",
-    "category": "Nabhi Oil Blend",
-    "shortDescription": "Gentle Care, Calms & Soothes",
-    "fullDescription": "Ayurdhara Divya Shakti Kids Gentle Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Kids Gentle Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Gentle Care, Calms & Soothes",
+    "name": "Kids Gentle Oil Blend",
+    "category": "Kids Care",
+    "shortDescription": "Premium Kids Care daily wellness support.",
+    "fullDescription": "The Kids Gentle Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-kids-gentle-10ml.jpg",
       "/images/products/nabhi-kids-gentle-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-kids-gentle-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-gentle-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-kids-gentle-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-gentle-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-kids-gentle-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-gentle-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 143,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Kids",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "kids-daily-blend",
     "slug": "kids-daily-blend",
-    "name": "Kids Daily Blend",
-    "category": "Nabhi Oil Blend",
-    "shortDescription": "Daily Wellness, Stronger Immunity",
-    "fullDescription": "Ayurdhara Divya Shakti Kids Daily Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Kids Daily Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Daily Wellness, Stronger Immunity",
+    "name": "Kids Daily Oil Blend",
+    "category": "Kids Care",
+    "shortDescription": "Premium Kids Care daily wellness support.",
+    "fullDescription": "The Kids Daily Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-kids-daily-10ml.jpg",
       "/images/products/nabhi-kids-daily-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-kids-daily-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-daily-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-kids-daily-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-daily-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-kids-daily-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-daily-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 128,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Kids",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "kids-pure-blend",
     "slug": "kids-pure-blend",
-    "name": "Kids Pure Blend",
-    "category": "Nabhi Oil Blend",
-    "shortDescription": "Pure & Natural, Safe for Kids",
-    "fullDescription": "Ayurdhara Divya Shakti Kids Pure Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Kids Pure Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Pure & Natural, Safe for Kids",
+    "name": "Kids Pure Oil Blend",
+    "category": "Kids Care",
+    "shortDescription": "Premium Kids Care daily wellness support.",
+    "fullDescription": "The Kids Pure Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-kids-pure-10ml.jpg",
       "/images/products/nabhi-kids-pure-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-kids-pure-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-pure-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-kids-pure-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-pure-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-kids-pure-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-kids-pure-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 244,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Kids",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "men-strength-blend",
     "slug": "men-strength-blend",
-    "name": "Men Strength Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Builds Strength, Stamina & Energy",
-    "fullDescription": "Ayurdhara Divya Shakti Men Strength Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Men Strength Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Builds Strength, Stamina & Energy",
+    "name": "Men Strength Oil Blend",
+    "category": "Men Care",
+    "shortDescription": "Premium Men Care daily wellness support.",
+    "fullDescription": "The Men Strength Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-men-strength-10ml.jpg",
       "/images/products/nabhi-men-strength-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-men-strength-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-strength-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-men-strength-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-strength-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-men-strength-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-strength-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 87,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Men",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "men-vital-blend",
     "slug": "men-vital-blend",
-    "name": "Men Vital Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Boosts Vitality, Power & Confidence",
-    "fullDescription": "Ayurdhara Divya Shakti Men Vital Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Men Vital Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Boosts Vitality, Power & Confidence",
+    "name": "Men Vital Oil Blend",
+    "category": "Men Care",
+    "shortDescription": "Premium Men Care daily wellness support.",
+    "fullDescription": "The Men Vital Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-men-vital-10ml.jpg",
       "/images/products/nabhi-men-vital-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-men-vital-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-vital-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-men-vital-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-vital-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-men-vital-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-vital-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 172,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Men",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "men-balance-blend",
     "slug": "men-balance-blend",
-    "name": "Men Balance Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Balances Body, Mind & Emotions",
-    "fullDescription": "Ayurdhara Divya Shakti Men Balance Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Men Balance Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Balances Body, Mind & Emotions",
+    "name": "Men Balance Oil Blend",
+    "category": "Men Care",
+    "shortDescription": "Premium Men Care daily wellness support.",
+    "fullDescription": "The Men Balance Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-men-balance-10ml.jpg",
       "/images/products/nabhi-men-balance-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-men-balance-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-balance-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-men-balance-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-balance-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-men-balance-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-balance-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 244,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Men",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "men-pure-blend",
     "slug": "men-pure-blend",
-    "name": "Men Pure Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Pure & Natural, Daily Wellness",
-    "fullDescription": "Ayurdhara Divya Shakti Men Pure Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Men Pure Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Pure & Natural, Daily Wellness",
+    "name": "Men Pure Oil Blend",
+    "category": "Men Care",
+    "shortDescription": "Premium Men Care daily wellness support.",
+    "fullDescription": "The Men Pure Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-men-pure-10ml.jpg",
       "/images/products/nabhi-men-pure-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-men-pure-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-pure-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-men-pure-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-pure-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-men-pure-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-men-pure-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 138,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Men",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "women-harmony-blend",
     "slug": "women-harmony-blend",
-    "name": "Women Harmony Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Hormonal Balance, Inner Harmony",
-    "fullDescription": "Ayurdhara Divya Shakti Women Harmony Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Women Harmony Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Hormonal Balance, Inner Harmony",
+    "name": "Women Harmony Oil Blend",
+    "category": "Women Wellness",
+    "shortDescription": "Premium Women Wellness daily wellness support.",
+    "fullDescription": "The Women Harmony Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-women-harmony-10ml.jpg",
       "/images/products/nabhi-women-harmony-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-women-harmony-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-harmony-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-women-harmony-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-harmony-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-women-harmony-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-harmony-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 86,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Women",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "women-care-blend",
     "slug": "women-care-blend",
-    "name": "Women Care Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Daily Care, Comfort & Relief",
-    "fullDescription": "Ayurdhara Divya Shakti Women Care Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Women Care Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Daily Care, Comfort & Relief",
+    "name": "Women Care Oil Blend",
+    "category": "Women Wellness",
+    "shortDescription": "Premium Women Wellness daily wellness support.",
+    "fullDescription": "The Women Care Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-women-care-10ml.jpg",
       "/images/products/nabhi-women-care-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-women-care-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-care-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-women-care-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-care-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-women-care-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-care-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 64,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Women",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "women-glow-blend",
     "slug": "women-glow-blend",
-    "name": "Women Glow Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Natural Glow, Radiant Skin",
-    "fullDescription": "Ayurdhara Divya Shakti Women Glow Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Women Glow Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Natural Glow, Radiant Skin",
+    "name": "Women Glow Oil Blend",
+    "category": "Women Wellness",
+    "shortDescription": "Premium Women Wellness daily wellness support.",
+    "fullDescription": "The Women Glow Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-women-glow-10ml.jpg",
       "/images/products/nabhi-women-glow-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-women-glow-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-glow-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-women-glow-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-glow-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-women-glow-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-glow-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 178,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Women",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "women-pure-blend",
     "slug": "women-pure-blend",
-    "name": "Women Pure Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Pure & Natural, Complete Wellness",
-    "fullDescription": "Ayurdhara Divya Shakti Women Pure Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Women Pure Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Pure & Natural, Complete Wellness",
+    "name": "Women Pure Oil Blend",
+    "category": "Women Wellness",
+    "shortDescription": "Premium Women Wellness daily wellness support.",
+    "fullDescription": "The Women Pure Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-women-pure-10ml.jpg",
       "/images/products/nabhi-women-pure-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-women-pure-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-pure-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-women-pure-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-pure-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-women-pure-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-women-pure-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 58,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Women",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "senior-comfort-blend",
     "slug": "senior-comfort-blend",
-    "name": "Senior Comfort Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Relieves Discomfort, Joint Ease",
-    "fullDescription": "Ayurdhara Divya Shakti Senior Comfort Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Senior Comfort Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Relieves Discomfort, Joint Ease",
+    "name": "Senior Comfort Oil Blend",
+    "category": "Senior Care",
+    "shortDescription": "Premium Senior Care daily wellness support.",
+    "fullDescription": "The Senior Comfort Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-senior-comfort-10ml.jpg",
       "/images/products/nabhi-senior-comfort-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-senior-comfort-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-comfort-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-senior-comfort-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-comfort-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-senior-comfort-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-comfort-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 117,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Senior",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "senior-vital-blend",
     "slug": "senior-vital-blend",
-    "name": "Senior Vital Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Improves Vitality, Energy",
-    "fullDescription": "Ayurdhara Divya Shakti Senior Vital Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Senior Vital Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Improves Vitality, Energy",
+    "name": "Senior Vital Oil Blend",
+    "category": "Senior Care",
+    "shortDescription": "Premium Senior Care daily wellness support.",
+    "fullDescription": "The Senior Vital Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-senior-vital-10ml.jpg",
       "/images/products/nabhi-senior-vital-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-senior-vital-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-vital-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-senior-vital-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-vital-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-senior-vital-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-vital-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 117,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Senior",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "senior-balance-blend",
     "slug": "senior-balance-blend",
-    "name": "Senior Balance Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Restores Balance, Calm & Relax",
-    "fullDescription": "Ayurdhara Divya Shakti Senior Balance Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Senior Balance Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Restores Balance, Calm & Relax",
+    "name": "Senior Balance Oil Blend",
+    "category": "Senior Care",
+    "shortDescription": "Premium Senior Care daily wellness support.",
+    "fullDescription": "The Senior Balance Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-senior-balance-10ml.jpg",
       "/images/products/nabhi-senior-balance-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-senior-balance-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-balance-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-senior-balance-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-balance-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-senior-balance-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-balance-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 107,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Senior",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
       }
     ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
   },
   {
     "id": "senior-pure-blend",
     "slug": "senior-pure-blend",
-    "name": "Senior Pure Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Pure & Natural, Daily Wellness",
-    "fullDescription": "Ayurdhara Divya Shakti Senior Pure Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Senior Pure Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Pure & Natural, Daily Wellness",
+    "name": "Senior Pure Oil Blend",
+    "category": "Senior Care",
+    "shortDescription": "Premium Senior Care daily wellness support.",
+    "fullDescription": "The Senior Pure Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
     "benefits": [
       {
         "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Holistic Balance"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Holistic wellness"
       }
     ],
     "images": [
-      "/images/products/nabhi-senior-pure-10ml.jpg",
       "/images/products/nabhi-senior-pure-15ml.jpg"
     ],
     "variants": [
       {
-        "size": "10 ml",
+        "size": "Trial 10 ml",
         "price": 199,
         "originalPrice": 299,
-        "image": "/images/products/nabhi-senior-pure-10ml.jpg",
-        "goldMemberPrice": 149,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-pure-10ml.jpg"
       },
       {
-        "size": "15 ml",
+        "size": "Gold 15 ml",
         "price": 349,
         "originalPrice": 499,
-        "image": "/images/products/nabhi-senior-pure-15ml.jpg",
-        "goldMemberPrice": 249,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-pure-15ml.jpg"
       },
       {
-        "size": "60 ml",
+        "size": "Premium 60 ml",
         "price": 899,
         "originalPrice": 1199,
-        "image": "/images/products/nabhi-senior-pure-15ml.jpg",
-        "goldMemberPrice": 699,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "image": "/images/products/nabhi-senior-pure-15ml.jpg"
       }
     ],
     "price": 199,
     "originalPrice": 299,
-    "discount": 40,
+    "discount": 33,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 230,
+    "badge": "Bestseller",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Wellness",
+      "Nourishment",
+      "Balance"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Senior",
+      "Daily Use"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "2-5 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Navel (Nabhi)",
+      "Purity": "100% Natural"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Cruelty-Free",
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 149
-  },
-  {
-    "id": "kids-soft-steps-blend",
-    "slug": "kids-soft-steps-blend",
-    "name": "Kids Soft Steps Blend",
-    "category": "Nabhi Oil Blend",
-    "shortDescription": "Nourishes, Soothes & Supports Growth",
-    "fullDescription": "Ayurdhara Divya Shakti Kids Soft Steps Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Kids Soft Steps Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Nourishes, Soothes & Supports Growth",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "question": "How often should I use this?",
+        "answer": "For best results, use daily before bedtime."
       },
       {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "question": "Is it safe for sensitive skin?",
+        "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
+      }
+    ],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [
+      "feet-wellness-oil"
+    ],
+    "goldMembershipEligible": true
+  },
+  {
+    "id": "feet-wellness-oil",
+    "slug": "feet-wellness-oil",
+    "name": "Feet Wellness Oil",
+    "category": "Feet Care",
+    "shortDescription": "Deep relaxation and foot nourishment.",
+    "fullDescription": "Our Feet Wellness Oil is formulated to provide deep relaxation and nourishment for tired feet. A daily foot massage (Padabhyanga) is a cornerstone of Ayurvedic self-care, promoting better sleep and holistic balance.",
+    "story": "Padabhyanga has been practiced for thousands of years to center the mind and soothe the body. We source the finest grounding herbs and cooling oils for this premium blend.",
+    "benefit": "Deeply relaxes, softens feet, and supports restful sleep.",
+    "benefits": [
+      {
+        "icon": "Moon",
+        "text": "Promotes Restful Sleep"
+      },
+      {
+        "icon": "Heart",
+        "text": "Soothes Tired Feet"
+      },
+      {
+        "icon": "Droplets",
+        "text": "Intense Hydration"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Deep penetration"
+      },
+      {
+        "name": "Lavender Essential Oil",
+        "botanical": "Lavandula",
+        "role": "Relaxation"
+      },
+      {
+        "name": "Brahmi",
+        "botanical": "Bacopa monnieri",
+        "role": "Calming"
       }
     ],
     "images": [
-      "/images/products/feet-kids-soft-steps-30ml.jpg",
-      "/images/products/feet-kids-soft-steps-150ml.jpg"
+      "/images/products/feet-women-150ml.jpg"
     ],
     "variants": [
       {
-        "size": "30 ml",
-        "price": 499,
-        "originalPrice": 699,
-        "image": "/images/products/feet-kids-soft-steps-30ml.jpg",
-        "goldMemberPrice": 399,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "size": "Trial 20 ml",
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/feet-women-30ml.jpg"
       },
       {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-kids-soft-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "size": "Gold 50 ml",
+        "price": 699,
+        "originalPrice": 999,
+        "image": "/images/products/feet-women-150ml.jpg"
       },
       {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-kids-soft-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "size": "Premium 200 ml",
+        "price": 1999,
+        "originalPrice": 2999,
+        "image": "/images/products/feet-women-150ml.jpg"
       }
     ],
-    "price": 499,
-    "originalPrice": 699,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 4.9,
+    "reviewCount": 342,
+    "badge": "Essential",
     "healthGoals": [
-      "Overall Wellness"
+      "Relaxation",
+      "Better Sleep",
+      "Foot Care"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Everyone",
+      "Daily Routine"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "Few drops per foot",
+      "timing": "Before bedtime",
+      "instructions": "Massage onto both feet for 3-5 minutes, focusing on the soles and pressure points."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Feet"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Ayurvedic"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "Can I use this during the day?",
+        "answer": "While you can use it anytime, it is highly recommended before bedtime for maximum relaxation."
       }
     ],
-    "relatedProductIds": [],
+    "relatedProductIds": [
+      "kids-smart-blend",
+      "women-harmony-blend",
+      "men-strength-blend"
+    ],
     "routineProductIds": [],
-    "goldMemberPrice": 399
+    "goldMembershipEligible": true
   },
   {
-    "id": "men-active-steps-blend",
-    "slug": "men-active-steps-blend",
-    "name": "Men Active Steps Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Relieves Fatigue, Refreshes",
-    "fullDescription": "Ayurdhara Divya Shakti Men Active Steps Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Men Active Steps Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Relieves Fatigue, Refreshes",
+    "id": "hair-wellness-oil",
+    "slug": "hair-wellness-oil",
+    "name": "Hair Wellness Oil",
+    "category": "Hair Care",
+    "shortDescription": "Premium nourishment for strong, healthy-looking hair.",
+    "fullDescription": "Experience the ultimate scalp and hair care with our Hair Wellness Oil. A luxurious blend of premium base oils and traditional Ayurvedic herbs designed to deeply condition and soften your hair.",
+    "story": "Crafted from ancient recipes, this blend combines Bhringraj and Amla with rich base oils to provide unparalleled nourishment for your crown.",
+    "benefit": "Nourishes scalp, conditions hair, and enhances natural shine.",
     "benefits": [
       {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "icon": "Star",
+        "text": "Enhanced Shine"
       },
       {
         "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "text": "Deep Conditioning"
+      },
+      {
+        "icon": "Leaf",
+        "text": "Scalp Nourishment"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Bhringraj",
+        "botanical": "Eclipta prostrata",
+        "role": "Hair vitality"
+      },
+      {
+        "name": "Amla",
+        "botanical": "Phyllanthus emblica",
+        "role": "Rich in Vitamin C"
+      },
+      {
+        "name": "Coconut Oil",
+        "botanical": "Cocos nucifera",
+        "role": "Moisture"
       }
     ],
     "images": [
-      "/images/products/feet-men-active-steps-30ml.jpg",
-      "/images/products/feet-men-active-steps-150ml.jpg"
+      "/images/products/feet-women-150ml.jpg"
     ],
     "variants": [
       {
-        "size": "30 ml",
+        "size": "50 ml",
         "price": 499,
-        "originalPrice": 699,
-        "image": "/images/products/feet-men-active-steps-30ml.jpg",
-        "goldMemberPrice": 399,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "originalPrice": 799,
+        "image": "/images/products/feet-women-30ml.jpg"
       },
       {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-men-active-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "size": "100 ml",
+        "price": 899,
+        "originalPrice": 1399,
+        "image": "/images/products/feet-women-150ml.jpg"
       },
       {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-men-active-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "size": "200 ml",
+        "price": 1599,
+        "originalPrice": 2499,
+        "image": "/images/products/feet-women-150ml.jpg"
       }
     ],
     "price": 499,
-    "originalPrice": 699,
-    "discount": 33,
+    "originalPrice": 799,
+    "discount": 37,
     "rating": 4.8,
-    "reviewCount": 124,
+    "reviewCount": 215,
+    "badge": "New",
     "healthGoals": [
-      "Overall Wellness"
+      "Hair Health",
+      "Scalp Care"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "All Hair Types"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "As needed based on hair length",
+      "timing": "1-2 times a week",
+      "instructions": "Massage gently into the scalp and hair length. Leave on for at least an hour or overnight before washing."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil",
+      "Application": "Hair & Scalp"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Ayurvedic"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "Is this sticky?",
+        "answer": "It is a rich, traditional oil blend. We recommend using a gentle cleanser to wash it out."
       }
     ],
-    "relatedProductIds": [],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
     "routineProductIds": [],
-    "goldMemberPrice": 399
+    "goldMembershipEligible": true
   },
   {
-    "id": "women-comfort-steps-blend",
-    "slug": "women-comfort-steps-blend",
-    "name": "Women Comfort Steps Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Relieves Stress, Reduces Swelling",
-    "fullDescription": "Ayurdhara Divya Shakti Women Comfort Steps Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Women Comfort Steps Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Relieves Stress, Reduces Swelling",
+    "id": "trial-starter-pack",
+    "slug": "trial-starter-pack",
+    "name": "Trial Starter Pack",
+    "category": "Wellness Packs",
+    "shortDescription": "The perfect introduction to your daily wellness routine.",
+    "fullDescription": "The Trial Starter Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+    "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+    "benefit": "Comprehensive wellness and self-care made easy.",
     "benefits": [
       {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "icon": "Gift",
+        "text": "Curated Selection"
       },
       {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "icon": "Heart",
+        "text": "Holistic Health"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
-      }
-    ],
-    "images": [
-      "/images/products/feet-women-comfort-steps-30ml.jpg",
-      "/images/products/feet-women-comfort-steps-150ml.jpg"
-    ],
-    "variants": [
-      {
-        "size": "30 ml",
-        "price": 499,
-        "originalPrice": 699,
-        "image": "/images/products/feet-women-comfort-steps-30ml.jpg",
-        "goldMemberPrice": 399,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
-      },
-      {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-women-comfort-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
-      },
-      {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-women-comfort-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
-      }
-    ],
-    "price": 499,
-    "originalPrice": 699,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
-    "healthGoals": [
-      "Overall Wellness"
-    ],
-    "idealFor": [
-      "Daily use for optimal wellness"
-    ],
-    "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
-    },
-    "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
-    },
-    "certifications": [
-      "Ayurvedic Formulation",
-      "100% Natural",
-      "Made in India"
-    ],
-    "faqs": [
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 399
-  },
-  {
-    "id": "senior-relax-steps-blend",
-    "slug": "senior-relax-steps-blend",
-    "name": "Senior Relax Steps Blend",
-    "category": "Premium Combo",
-    "shortDescription": "Relaxes Muscles, Restful Sleep",
-    "fullDescription": "Ayurdhara Divya Shakti Senior Relax Steps Blend is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Senior Relax Steps Blend to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Relaxes Muscles, Restful Sleep",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
-      },
-      {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
-      }
-    ],
-    "ingredients": [
-      {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
-      }
-    ],
-    "images": [
-      "/images/products/feet-senior-relax-steps-30ml.jpg",
-      "/images/products/feet-senior-relax-steps-150ml.jpg"
-    ],
-    "variants": [
-      {
-        "size": "30 ml",
-        "price": 499,
-        "originalPrice": 699,
-        "image": "/images/products/feet-senior-relax-steps-30ml.jpg",
-        "goldMemberPrice": 399,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
-      },
-      {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-senior-relax-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
-      },
-      {
-        "size": "500 ml",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": "/images/products/feet-senior-relax-steps-150ml.jpg",
-        "goldMemberPrice": 2999,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
-      }
-    ],
-    "price": 499,
-    "originalPrice": 699,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
-    "healthGoals": [
-      "Overall Wellness"
-    ],
-    "idealFor": [
-      "Daily use for optimal wellness"
-    ],
-    "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
-    },
-    "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
-    },
-    "certifications": [
-      "Ayurvedic Formulation",
-      "100% Natural",
-      "Made in India"
-    ],
-    "faqs": [
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMemberPrice": 399
-  },
-  {
-    "id": "individual-trial-combo",
-    "slug": "individual-trial-combo",
-    "name": "Individual Trial Combo",
-    "category": "Premium Combo",
-    "shortDescription": "10ml Nabhi + 30ml Feet",
-    "fullDescription": "Ayurdhara Divya Shakti Individual Trial Combo is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Individual Trial Combo to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "10ml Nabhi + 30ml Feet",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
-      },
-      {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
-      }
-    ],
-    "ingredients": [
-      {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Multiple Pure Oils",
+        "botanical": "Various",
+        "role": "Complete Wellness"
       }
     ],
     "images": [
       "/images/products/combo-individual-trial.jpg"
     ],
-    "variants": [],
-    "price": 499,
-    "originalPrice": 999,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
+    "variants": [
+      {
+        "size": "Pack of 2",
+        "price": 349,
+        "originalPrice": 499,
+        "image": "/images/products/combo-individual-trial.jpg"
+      }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 109,
+    "badge": "Combo",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Routine",
+      "Holistic Wellness"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Everyone"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "As directed on individual bottles",
+      "timing": "Daily Routine",
+      "instructions": "Please refer to the individual bottles for specific usage instructions."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil Kit",
+      "Contents": "1 Nabhi Oil Blend (10 ml), 1 Feet Wellness Oil (20 ml)"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "Can I customize the blends in this pack?",
+        "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
       }
     ],
-    "relatedProductIds": [],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
     "routineProductIds": [],
-    "goldMembershipEligible": false
+    "durationText": "Up to 10 Days",
+    "goldMembershipEligible": true
   },
   {
-    "id": "family-trial-pack",
-    "slug": "family-trial-pack",
-    "name": "Family Trial Pack",
-    "category": "Premium Combo",
-    "shortDescription": "Complete family wellness",
-    "fullDescription": "Ayurdhara Divya Shakti Family Trial Pack is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Family Trial Pack to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "Complete family wellness",
+    "id": "gold-wellness-pack",
+    "slug": "gold-wellness-pack",
+    "name": "Gold Oil Wellness Pack",
+    "category": "Wellness Packs",
+    "shortDescription": "A month of holistic balance and relaxation.",
+    "fullDescription": "The Gold Oil Wellness Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+    "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+    "benefit": "Comprehensive wellness and self-care made easy.",
     "benefits": [
       {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "icon": "Gift",
+        "text": "Curated Selection"
       },
       {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "icon": "Heart",
+        "text": "Holistic Health"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
-      }
-    ],
-    "images": [
-      "/images/products/combo-family-trial.jpg"
-    ],
-    "variants": [],
-    "price": 999,
-    "originalPrice": 1999,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
-    "healthGoals": [
-      "Overall Wellness"
-    ],
-    "idealFor": [
-      "Daily use for optimal wellness"
-    ],
-    "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
-    },
-    "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
-    },
-    "certifications": [
-      "Ayurvedic Formulation",
-      "100% Natural",
-      "Made in India"
-    ],
-    "faqs": [
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMembershipEligible": false
-  },
-  {
-    "id": "individual-gold-wellness-pack",
-    "slug": "individual-gold-wellness-pack",
-    "name": "Individual Gold Wellness Pack",
-    "category": "Premium Combo",
-    "shortDescription": "4 x 15ml Nabhi + 150ml Feet",
-    "fullDescription": "Ayurdhara Divya Shakti Individual Gold Wellness Pack is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Individual Gold Wellness Pack to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "4 x 15ml Nabhi + 150ml Feet",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
-      },
-      {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
-      }
-    ],
-    "ingredients": [
-      {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Multiple Pure Oils",
+        "botanical": "Various",
+        "role": "Complete Wellness"
       }
     ],
     "images": [
       "/images/products/combo-individual-gold.jpg"
     ],
-    "variants": [],
-    "price": 1899,
-    "originalPrice": 3999,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
+    "variants": [
+      {
+        "size": "Pack of 2",
+        "price": 699,
+        "originalPrice": 999,
+        "image": "/images/products/combo-individual-gold.jpg"
+      }
+    ],
+    "price": 699,
+    "originalPrice": 999,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 58,
+    "badge": "Combo",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Routine",
+      "Holistic Wellness"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Everyone"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "As directed on individual bottles",
+      "timing": "Daily Routine",
+      "instructions": "Please refer to the individual bottles for specific usage instructions."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil Kit",
+      "Contents": "1 Nabhi Oil Blend (15 ml), 1 Feet Wellness Oil (50 ml)"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "Can I customize the blends in this pack?",
+        "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
       }
     ],
-    "relatedProductIds": [],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
     "routineProductIds": [],
-    "goldMembershipEligible": true,
-    "durationText": "Up to 90 Days",
-    "totalQuantityMl": "210 ml"
-  },
-  {
-    "id": "family-gold-wellness-pack",
-    "slug": "family-gold-wellness-pack",
-    "name": "Family Gold Wellness Pack",
-    "category": "Premium Combo",
-    "shortDescription": "240ml Nabhi + 600ml Feet",
-    "fullDescription": "Ayurdhara Divya Shakti Family Gold Wellness Pack is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Family Gold Wellness Pack to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "240ml Nabhi + 600ml Feet",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
-      },
-      {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
-      }
-    ],
-    "ingredients": [
-      {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
-      }
-    ],
-    "images": [
-      "/images/products/combo-family-gold.jpg"
-    ],
-    "variants": [],
-    "price": 4999,
-    "originalPrice": 9999,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
-    "healthGoals": [
-      "Overall Wellness"
-    ],
-    "idealFor": [
-      "Daily use for optimal wellness"
-    ],
-    "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
-    },
-    "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
-    },
-    "certifications": [
-      "Ayurvedic Formulation",
-      "100% Natural",
-      "Made in India"
-    ],
-    "faqs": [
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "goldMembershipEligible": true,
-    "durationText": "Up to 90 Days",
-    "totalQuantityMl": "840 ml"
+    "durationText": "Up to 30 Days",
+    "goldMembershipEligible": true
   },
   {
     "id": "premium-wellness-pack",
     "slug": "premium-wellness-pack",
-    "name": "Premium Wellness Pack",
-    "category": "Premium Combo",
-    "shortDescription": "4 x 50ml Nabhi + 500ml Feet",
-    "fullDescription": "Ayurdhara Divya Shakti Premium Wellness Pack is a 100% natural, cold-pressed formulation designed specifically for your daily routine.",
-    "story": "Wellness is a journey. We created the Premium Wellness Pack to ensure that you have access to premium Ayurvedic care. It's an investment in your daily vitality.",
-    "benefit": "4 x 50ml Nabhi + 500ml Feet",
+    "name": "Premium Oil Wellness Pack",
+    "category": "Wellness Packs",
+    "shortDescription": "The ultimate luxury wellness experience for months to come.",
+    "fullDescription": "The Premium Oil Wellness Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+    "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+    "benefit": "Comprehensive wellness and self-care made easy.",
     "benefits": [
       {
-        "icon": "Sparkles",
-        "text": "100% Natural Formulation"
+        "icon": "Gift",
+        "text": "Curated Selection"
       },
       {
-        "icon": "Shield",
-        "text": "Safe for Daily Use"
+        "icon": "Heart",
+        "text": "Holistic Health"
       }
     ],
     "ingredients": [
       {
-        "name": "Premium Cold-Pressed Base Oil",
-        "botanical": "Ayurvedic Base",
-        "role": "Nourishes deeply and acts as a carrier for the therapeutic herbs."
+        "name": "Multiple Pure Oils",
+        "botanical": "Various",
+        "role": "Complete Wellness"
       }
     ],
     "images": [
       "/images/products/combo-individual-premium.jpg"
     ],
-    "variants": [],
-    "price": 4499,
-    "originalPrice": 9999,
-    "discount": 33,
-    "rating": 4.8,
-    "reviewCount": 124,
+    "variants": [
+      {
+        "size": "Pack of 5",
+        "price": 2499,
+        "originalPrice": 4999,
+        "image": "/images/products/combo-individual-premium.jpg"
+      }
+    ],
+    "price": 2499,
+    "originalPrice": 4999,
+    "discount": 50,
+    "rating": 5,
+    "reviewCount": 58,
+    "badge": "Combo",
     "healthGoals": [
-      "Overall Wellness"
+      "Daily Routine",
+      "Holistic Wellness"
     ],
     "idealFor": [
-      "Daily use for optimal wellness"
+      "Everyone"
     ],
     "usageInstructions": {
-      "serving": "2-3 drops / Varies by product",
-      "timing": "Nightly, before bedtime",
-      "instructions": "Apply 2-3 drops into the navel or massage onto the soles of the feet before bed."
+      "serving": "As directed on individual bottles",
+      "timing": "Daily Routine",
+      "instructions": "Please refer to the individual bottles for specific usage instructions."
     },
     "specifications": {
-      "Net Quantity": "Varies by variant",
-      "Form": "Cold-pressed Oil",
-      "Diet Preference": "Vegetarian, Vegan",
-      "Shelf Life": "24 Months",
-      "Country of Origin": "India"
+      "Form": "Oil Kit",
+      "Contents": "4 Special Oil Blend Variants (15 ml each), 1 Premium Feet Wellness Oil (200 ml)"
     },
     "certifications": [
-      "Ayurvedic Formulation",
       "100% Natural",
-      "Made in India"
+      "Ayurvedic Formulation"
     ],
     "faqs": [
       {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, our blends are formulated with 100% natural, cold-pressed oils and are completely safe for daily use."
+        "question": "Can I customize the blends in this pack?",
+        "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
       }
     ],
-    "relatedProductIds": [],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
     "routineProductIds": [],
-    "goldMembershipEligible": true,
-    "durationText": "Up to 9-10 Months",
-    "totalQuantityMl": "740 ml"
+    "durationText": "Up to 4 Months",
+    "goldMembershipEligible": true
+  },
+  {
+    "id": "family-gold-pack",
+    "slug": "family-gold-pack",
+    "name": "Family Gold Oil Wellness Pack",
+    "category": "Wellness Packs",
+    "shortDescription": "Holistic care for the entire family.",
+    "fullDescription": "The Family Gold Oil Wellness Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+    "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+    "benefit": "Comprehensive wellness and self-care made easy.",
+    "benefits": [
+      {
+        "icon": "Gift",
+        "text": "Curated Selection"
+      },
+      {
+        "icon": "Heart",
+        "text": "Holistic Health"
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Multiple Pure Oils",
+        "botanical": "Various",
+        "role": "Complete Wellness"
+      }
+    ],
+    "images": [
+      "/images/products/combo-family-gold.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack of 5",
+        "price": 2499,
+        "originalPrice": 4999,
+        "image": "/images/products/combo-family-gold.jpg"
+      }
+    ],
+    "price": 2499,
+    "originalPrice": 4999,
+    "discount": 50,
+    "rating": 5,
+    "reviewCount": 54,
+    "badge": "Combo",
+    "healthGoals": [
+      "Daily Routine",
+      "Holistic Wellness"
+    ],
+    "idealFor": [
+      "Everyone"
+    ],
+    "usageInstructions": {
+      "serving": "As directed on individual bottles",
+      "timing": "Daily Routine",
+      "instructions": "Please refer to the individual bottles for specific usage instructions."
+    },
+    "specifications": {
+      "Form": "Oil Kit",
+      "Contents": "Kids Care (15ml), Men Care (15ml), Women Wellness (15ml), Senior Care (15ml), Feet Wellness Oil (200 ml)"
+    },
+    "certifications": [
+      "100% Natural",
+      "Ayurvedic Formulation"
+    ],
+    "faqs": [
+      {
+        "question": "Can I customize the blends in this pack?",
+        "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+      }
+    ],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [],
+    "durationText": "Up to 30 Days",
+    "goldMembershipEligible": true
+  },
+  {
+    "id": "family-premium-pack",
+    "slug": "family-premium-pack",
+    "name": "Family Premium Oil Wellness Pack",
+    "category": "Wellness Packs",
+    "shortDescription": "Complete comprehensive care for the whole family.",
+    "fullDescription": "The Family Premium Oil Wellness Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+    "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+    "benefit": "Comprehensive wellness and self-care made easy.",
+    "benefits": [
+      {
+        "icon": "Gift",
+        "text": "Curated Selection"
+      },
+      {
+        "icon": "Heart",
+        "text": "Holistic Health"
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Multiple Pure Oils",
+        "botanical": "Various",
+        "role": "Complete Wellness"
+      }
+    ],
+    "images": [
+      "/images/products/combo-family-trial.jpg"
+    ],
+    "variants": [
+      {
+        "size": "3 Person Family",
+        "price": 5999,
+        "originalPrice": 10000,
+        "image": "/images/products/combo-family-trial.jpg"
+      },
+      {
+        "size": "4 Person Family",
+        "price": 7199,
+        "originalPrice": 12000,
+        "image": "/images/products/combo-family-trial.jpg"
+      }
+    ],
+    "price": 5999,
+    "originalPrice": 10000,
+    "discount": 40,
+    "rating": 5,
+    "reviewCount": 42,
+    "badge": "Combo",
+    "healthGoals": [
+      "Daily Routine",
+      "Holistic Wellness"
+    ],
+    "idealFor": [
+      "Everyone"
+    ],
+    "usageInstructions": {
+      "serving": "As directed on individual bottles",
+      "timing": "Daily Routine",
+      "instructions": "Please refer to the individual bottles for specific usage instructions."
+    },
+    "specifications": {
+      "Form": "Oil Kit",
+      "Contents": "All 16 Oil Blend Variants (15 ml each), Premium Feet Wellness Oil (200 ml)"
+    },
+    "certifications": [
+      "100% Natural",
+      "Ayurvedic Formulation"
+    ],
+    "faqs": [
+      {
+        "question": "Can I customize the blends in this pack?",
+        "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+      }
+    ],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
+    "routineProductIds": [],
+    "durationText": "Up to 4 Months",
+    "goldMembershipEligible": true
   },
   {
     "id": "hair-trial-combo",
     "slug": "hair-trial-combo",
     "name": "Hair Trial Combo",
-    "category": "Gift Packs",
-    "shortDescription": "Discover the foundation of Ayurvedic hair care.",
-    "fullDescription": "A curated introduction to our premium hair wellness rituals.",
-    "story": "Begin your journey to stronger, healthier hair.",
-    "benefit": "Nourishes scalp and strengthens roots",
+    "category": "Wellness Packs",
+    "shortDescription": "Discover vibrant hair and holistic wellness.",
+    "fullDescription": "The Hair Trial Combo provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+    "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+    "benefit": "Comprehensive wellness and self-care made easy.",
     "benefits": [
-      { "icon": "Sparkles", "text": "100% Natural Formulation" }
-    ],
-    "ingredients": [
-      { "name": "Bhringraj & Amla", "botanical": "Ayurvedic Base", "role": "Nourishes deeply." }
-    ],
-    "images": [ "/images/categories/hair-combo.png" ],
-    "variants": [
       {
-        "size": "Starter Set",
-        "price": 999,
-        "originalPrice": 1499,
-        "image": "/images/categories/hair-combo.png",
-        "goldMemberPrice": 799,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "icon": "Gift",
+        "text": "Curated Selection"
+      },
+      {
+        "icon": "Heart",
+        "text": "Holistic Health"
       }
     ],
-    "price": 999,
-    "originalPrice": 1499,
-    "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 42,
-    "healthGoals": [ "Hair Wellness" ],
-    "idealFor": [ "Testing the regimen" ],
-    "usageInstructions": { "serving": "As needed", "timing": "Weekly", "instructions": "Massage into scalp." },
-    "specifications": { "Form": "Oil", "Country of Origin": "India" },
-    "certifications": [ "100% Natural" ],
-    "faqs": [],
-    "relatedProductIds": [],
+    "ingredients": [
+      {
+        "name": "Multiple Pure Oils",
+        "botanical": "Various",
+        "role": "Complete Wellness"
+      }
+    ],
+    "images": [
+      "/images/products/combo-individual-trial.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack of 2",
+        "price": 699,
+        "originalPrice": 1099,
+        "image": "/images/products/combo-individual-trial.jpg"
+      }
+    ],
+    "price": 699,
+    "originalPrice": 1099,
+    "discount": 36,
+    "rating": 5,
+    "reviewCount": 58,
+    "badge": "Combo",
+    "healthGoals": [
+      "Daily Routine",
+      "Holistic Wellness"
+    ],
+    "idealFor": [
+      "Everyone"
+    ],
+    "usageInstructions": {
+      "serving": "As directed on individual bottles",
+      "timing": "Daily Routine",
+      "instructions": "Please refer to the individual bottles for specific usage instructions."
+    },
+    "specifications": {
+      "Form": "Oil Kit",
+      "Contents": "Hair Wellness Oil (50 ml), Nabhi Oil Blend (10 ml)"
+    },
+    "certifications": [
+      "100% Natural",
+      "Ayurvedic Formulation"
+    ],
+    "faqs": [
+      {
+        "question": "Can I customize the blends in this pack?",
+        "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+      }
+    ],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
     "routineProductIds": [],
-    "goldMemberPrice": 799
+    "goldMembershipEligible": true
   },
   {
-    "id": "hair-gold-wellness-combo",
-    "slug": "hair-gold-wellness-combo",
-    "name": "Hair Gold Wellness Combo",
-    "category": "Gift Packs",
-    "shortDescription": "The ultimate Ayurvedic hair restoration course.",
-    "fullDescription": "A complete, long-term regimen for transformative hair health.",
-    "story": "Commit to a future of vibrant, resilient hair.",
-    "benefit": "Comprehensive scalp and root restoration",
+    "id": "hair-gold-combo",
+    "slug": "hair-gold-combo",
+    "name": "Hair Gold Combo",
+    "category": "Wellness Packs",
+    "shortDescription": "Comprehensive care for your hair, navel, and feet.",
+    "fullDescription": "The Hair Gold Combo provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+    "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+    "benefit": "Comprehensive wellness and self-care made easy.",
     "benefits": [
-      { "icon": "Shield", "text": "Clinically proven herbs" }
-    ],
-    "ingredients": [
-      { "name": "Brahmi & Shikakai", "botanical": "Ayurvedic Base", "role": "Promotes growth." }
-    ],
-    "images": [ "/images/categories/hair-gold.png" ],
-    "variants": [
       {
-        "size": "Complete Course",
-        "price": 3499,
-        "originalPrice": 4999,
-        "image": "/images/categories/hair-gold.png",
-        "goldMemberPrice": 2499,
-        "pricingStatus": "official",
-        "goldPricingEnabled": true
+        "icon": "Gift",
+        "text": "Curated Selection"
+      },
+      {
+        "icon": "Heart",
+        "text": "Holistic Health"
       }
     ],
-    "price": 3499,
-    "originalPrice": 4999,
-    "discount": 30,
-    "rating": 5.0,
-    "reviewCount": 118,
-    "healthGoals": [ "Hair Wellness" ],
-    "idealFor": [ "Long term restoration" ],
-    "usageInstructions": { "serving": "As needed", "timing": "Weekly", "instructions": "Massage into scalp." },
-    "specifications": { "Form": "Oil", "Country of Origin": "India" },
-    "certifications": [ "100% Natural" ],
-    "faqs": [],
-    "relatedProductIds": [],
+    "ingredients": [
+      {
+        "name": "Multiple Pure Oils",
+        "botanical": "Various",
+        "role": "Complete Wellness"
+      }
+    ],
+    "images": [
+      "/images/products/combo-individual-gold.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack of 3",
+        "price": 1499,
+        "originalPrice": 2499,
+        "image": "/images/products/combo-individual-gold.jpg"
+      }
+    ],
+    "price": 1499,
+    "originalPrice": 2499,
+    "discount": 40,
+    "rating": 5,
+    "reviewCount": 43,
+    "badge": "Combo",
+    "healthGoals": [
+      "Daily Routine",
+      "Holistic Wellness"
+    ],
+    "idealFor": [
+      "Everyone"
+    ],
+    "usageInstructions": {
+      "serving": "As directed on individual bottles",
+      "timing": "Daily Routine",
+      "instructions": "Please refer to the individual bottles for specific usage instructions."
+    },
+    "specifications": {
+      "Form": "Oil Kit",
+      "Contents": "Hair Wellness Oil (100 ml), Nabhi Oil Blend (15 ml), Feet Wellness Oil (50 ml)"
+    },
+    "certifications": [
+      "100% Natural",
+      "Ayurvedic Formulation"
+    ],
+    "faqs": [
+      {
+        "question": "Can I customize the blends in this pack?",
+        "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+      }
+    ],
+    "relatedProductIds": [
+      "feet-wellness-oil"
+    ],
     "routineProductIds": [],
-    "goldMemberPrice": 2499
+    "goldMembershipEligible": true
   }
 ];
-
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find(p => p.slug === slug);
 }

@@ -5,6 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ShoppingBag, User, Search, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { useAuthStore } from '@/store/authStore';
+import { products } from '@/data/productData';
+import Image from 'next/image';
 
 export default function Navbar() {
   const cartCount = useCartStore((state) => state.getCartCount());
@@ -21,6 +23,16 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  // Compute search results
+  const searchResults = searchQuery.trim() === '' 
+    ? [] 
+    : products.filter(p => 
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.shortDescription.toLowerCase().includes(searchQuery.toLowerCase())
+      ).slice(0, 6); // show top 6 results
 
   useEffect(() => {
     setMounted(true);
@@ -61,7 +73,7 @@ export default function Navbar() {
             </Link>
 
             {/* Search Bar - White background, black outline */}
-            <form onSubmit={handleSearch} className="nav-search" style={{ position: 'relative', display: 'flex', alignItems: 'center', maxWidth: '280px', width: '100%' }}>
+            <form onSubmit={handleSearch} className="nav-search" style={{ position: 'relative', display: 'flex', alignItems: 'center', maxWidth: '320px', width: '100%', zIndex: 100 }}>
               <Search size={18} style={{ position: 'absolute', left: '12px', color: 'var(--charcoal)', opacity: 0.7 }} />
               <input 
                 type="search" 
@@ -80,9 +92,89 @@ export default function Navbar() {
                   outline: 'none',
                   transition: 'border-color 0.3s ease'
                 }}
-                onFocus={(e) => e.target.style.borderColor = 'black'}
-                onBlur={(e) => e.target.style.borderColor = 'black'}
+                onFocus={(e) => { e.target.style.borderColor = 'black'; setIsSearchFocused(true); }}
+                onBlur={(e) => { 
+                  e.target.style.borderColor = 'black'; 
+                  // delay hiding so clicks on dropdown can register
+                  setTimeout(() => setIsSearchFocused(false), 200); 
+                }}
               />
+              
+              {/* Search Suggestions Dropdown */}
+              {isSearchFocused && searchQuery.trim() !== '' && (
+                <div style={{
+                  position: 'absolute',
+                  top: '110%',
+                  left: 0,
+                  width: '100%',
+                  minWidth: '280px',
+                  background: 'white',
+                  border: '1px solid #E5E7EB',
+                  borderRadius: '12px',
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                  overflow: 'hidden',
+                  zIndex: 9999
+                }}>
+                  {searchResults.length > 0 ? (
+                    <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                      <li style={{ padding: '0.75rem 1rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--stone)', backgroundColor: '#F9FAFB', borderBottom: '1px solid #E5E7EB', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Products
+                      </li>
+                      {searchResults.map((product) => (
+                        <li key={product.slug} style={{ borderBottom: '1px solid #F3F4F6' }}>
+                          <Link 
+                            href={`/products/${product.slug}`} 
+                            style={{ 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              gap: '1rem', 
+                              padding: '0.75rem 1rem', 
+                              textDecoration: 'none', 
+                              color: 'var(--charcoal)',
+                              transition: 'background-color 0.2s ease'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                          >
+                            <div style={{ width: '40px', height: '40px', position: 'relative', borderRadius: '4px', overflow: 'hidden', backgroundColor: '#F3F4F6', flexShrink: 0 }}>
+                              <Image src={product.images[0]} alt={product.name} fill style={{ objectFit: 'cover' }} sizes="40px" />
+                            </div>
+                            <div style={{ flex: 1, overflow: 'hidden' }}>
+                              <div style={{ fontWeight: 600, fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{product.name}</div>
+                              <div style={{ fontSize: '0.75rem', color: 'var(--stone)' }}>{product.category}</div>
+                            </div>
+                            <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>
+                              ₹{product.price}
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                      <li>
+                        <button 
+                          onClick={handleSearch} 
+                          style={{ 
+                            width: '100%', 
+                            padding: '0.75rem 1rem', 
+                            background: 'transparent', 
+                            border: 'none', 
+                            color: 'var(--olive)', 
+                            fontWeight: 600, 
+                            fontSize: '0.85rem', 
+                            cursor: 'pointer',
+                            textAlign: 'center'
+                          }}
+                        >
+                          View all results for "{searchQuery}"
+                        </button>
+                      </li>
+                    </ul>
+                  ) : (
+                    <div style={{ padding: '1.5rem 1rem', textAlign: 'center', color: 'var(--stone)', fontSize: '0.9rem' }}>
+                      No products found for "{searchQuery}"
+                    </div>
+                  )}
+                </div>
+              )}
             </form>
 
           </div>
@@ -112,6 +204,7 @@ export default function Navbar() {
         <div className="mobile-nav-links" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center', width: '100%', maxWidth: '300px' }}>
           
           <Link href="/" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Home</Link>
+          <Link href="/hair-wellness" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Hair Wellness</Link>
           <Link href="/wellness-packs" onClick={closeMenu} className="mobile-nav-link text-gold magnetic" style={{ textDecoration: 'none' }}>Wellness Packs</Link>
           <Link href="/collections" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Collections</Link>
           <Link href="/#philosophy" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Philosophy</Link>

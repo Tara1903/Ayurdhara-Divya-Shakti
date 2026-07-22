@@ -199,7 +199,26 @@ export default function PDPClient({ product }: { product: Product }) {
               Add to Cart
             </button>
           </div>
-          <Link href="/cart" className="btn-large buy-now-btn" style={{display: 'block', textAlign: 'center', width: '100%', textDecoration: 'none', color: 'var(--charcoal)'}}>View Cart / Buy It Now</Link>
+          
+          <div style={{display: 'flex', gap: '1rem', marginBottom: '1.5rem'}}>
+            <Link href="/cart" className="btn-large buy-now-btn" style={{flex: 1, textAlign: 'center', textDecoration: 'none', color: 'var(--charcoal)'}}>Buy It Now</Link>
+            <a href={`https://wa.me/919876543210?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}`} target="_blank" rel="noopener noreferrer" className="btn-large" style={{flex: 1, textAlign: 'center', textDecoration: 'none', background: '#25D366', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '4px'}}>
+              Order on WhatsApp
+            </a>
+          </div>
+
+          <div style={{textAlign: 'center', marginBottom: '2rem'}}>
+            <button onClick={() => {
+              if (navigator.share) {
+                navigator.share({
+                  title: product.name,
+                  url: window.location.href
+                });
+              }
+            }} style={{background: 'transparent', border: 'none', color: 'var(--charcoal)', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.9rem'}}>
+              Share this product
+            </button>
+          </div>
           
           <div className="pdp-trust-badges">
             <div className="trust-badge"><Shield size={20} /> 100% Secure Payments</div>
@@ -262,7 +281,19 @@ export default function PDPClient({ product }: { product: Product }) {
             <h4>Instructions</h4>
             <p>{product.usageInstructions.instructions}</p>
           </div>
+          <div className="usage-step">
+            <h4>Who Can Use</h4>
+            <p>{product.idealFor ? product.idealFor.join(', ') : 'Everyone'}</p>
+          </div>
         </div>
+      </section>
+
+      {/* 7. Storage Instructions */}
+      <section className="pdp-section pdp-storage" style={{background: '#FAF7F2', padding: '3rem', borderRadius: 'var(--radius-lg)', marginTop: '4rem'}}>
+        <h2 style={{textAlign: 'center', marginBottom: '1.5rem'}}>Storage Instructions</h2>
+        <p style={{textAlign: 'center', maxWidth: '600px', margin: '0 auto', color: 'var(--text-muted)'}}>
+          Store in a cool, dry place away from direct sunlight. Keep the bottle tightly closed when not in use. Ensure no water gets into the oil to maintain its purity and effectiveness.
+        </p>
       </section>
 
       {/* 8. Specifications & 12. FAQ */}
