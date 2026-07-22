@@ -1,5 +1,10 @@
-import ComingSoonAdminPage from '@/components/admin/ComingSoonAdminPage';
+import { createClient } from '@/lib/supabase/server';
+import { CategoriesClient } from './CategoriesClient';
 
-export default function Page() {
-  return <ComingSoonAdminPage title='Categories' description='Manage Categories settings and data.' />;
+export const revalidate = 0;
+
+export default async function CategoriesPage() {
+  const supabase = await createClient();
+  const { data: categories } = await supabase.from('categories').select('*').order('display_order', { ascending: true });
+  return <CategoriesClient categories={categories || []} />;
 }

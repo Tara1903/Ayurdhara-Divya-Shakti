@@ -1,26 +1,27 @@
-/* Design Tokens */
+/* Design Tokens - Organic India Inspired */
 :root {
   /* Colors */
-  --ivory: #FAF7F2;
-  --cream: #F0EBE3;
-  --parchment: #EDE8DD;
-  --forest: #2C3E2D;
-  --olive: #5C6B4F;
-  --earth: #6B5B4E;
-  --stone: #9B9590;
-  --charcoal: #2D2926;
-  --deep: #1A1714;
-  --gold: #C5A572;
-  --sage: #A3B18A;
-  --sand: #E8E0D5;
-  --moss: #3A4A3B;
+  --ivory: #F9F9F9;
+  --cream: #F2F5F0;
+  --parchment: #FFFFFF;
+  --forest: #2D5A27; /* Deep earthy green */
+  --olive: #4B7B3B; /* Primary brand green */
+  --earth: #628C23; /* Lighter secondary green */
+  --stone: #666666; /* Subdued text */
+  --charcoal: #333333; /* Main text */
+  --deep: #1A1A1A; /* Headings */
+  --gold: #E88B23; /* Orange accent / CTAs */
+  --sage: #E0EBDC; /* Very light green bg */
+  --sand: #F0EDE5; /* Alternative light bg */
+  --moss: #386A32; /* Hover state for green */
+  --danger: #D9381E; /* Sale tags / errors */
 
   /* Typography Scale */
-  --text-display: clamp(3rem, 6vw + 1rem, 6.5rem);
-  --text-hero: clamp(2.5rem, 5vw + 1rem, 5.5rem);
-  --text-title: clamp(2rem, 3.5vw + 0.5rem, 3.5rem);
-  --text-subtitle: clamp(1.35rem, 2vw + 0.35rem, 1.85rem);
-  --text-body: clamp(1.0625rem, 1.2vw, 1.125rem); /* 17px - 18px */
+  --text-display: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  --text-hero: clamp(2rem, 4vw + 1rem, 3.5rem);
+  --text-title: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+  --text-subtitle: clamp(1.25rem, 1.5vw + 0.35rem, 1.5rem);
+  --text-body: clamp(1rem, 1.1vw, 1.125rem);
   --text-caption: clamp(0.8rem, 0.9vw, 0.875rem);
   --text-overline: 0.75rem;
 

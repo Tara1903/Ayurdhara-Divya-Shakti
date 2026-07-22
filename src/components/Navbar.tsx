@@ -1,12 +1,21 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { ShoppingBag, User, Search, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { useAuthStore } from '@/store/authStore';
-import { products } from '@/data/productData';
 import Image from 'next/image';
+
+interface SearchResult {
+  slug: string;
+  name: string;
+  category: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  badge?: string;
+}
 
 export default function Navbar() {
   const cartCount = useCartStore((state) => state.getCartCount());
@@ -18,31 +27,51 @@ export default function Navbar() {
   
   const pathname = usePathname();
   const router = useRouter();
-  const isHome = pathname === '/';
   
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-
-  // Compute search results
-  const searchResults = searchQuery.trim() === '' 
-    ? [] 
-    : products.filter(p => 
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.shortDescription.toLowerCase().includes(searchQuery.toLowerCase())
-      ).slice(0, 6); // show top 6 results
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     if (!isInitialized) initializeAuth();
   }, [isInitialized, initializeAuth]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Debounced search against /api/search
+  const fetchSearchResults = useCallback(async (q: string) => {
+    if (q.trim().length < 2) {
+      setSearchResults([]);
+      return;
+    }
+    setIsSearching(true);
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q.trim())}`);
+      const data = await res.json();
+      setSearchResults(data.results || []);
+    } catch {
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    const timer = setTimeout(() => fetchSearchResults(searchQuery), 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery, fetchSearchResults]);
+
+  const handleSearch = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/collections?q=${encodeURIComponent(searchQuery)}`);
+      setIsSearchFocused(false);
     }
   };
 
@@ -51,195 +80,161 @@ export default function Navbar() {
     document.body.style.overflow = '';
   };
 
+  const showDropdown = isSearchFocused && searchQuery.trim().length >= 2;
+
   return (
     <>
-      <nav className="site-nav" id="site-nav">
-        <div className="container flex justify-between items-center" style={{ height: '100%' }}>
-          
-          {/* Left Side: Logo & Search Bar */}
-          <div className="nav-brand-container" style={{ display: 'flex', alignItems: 'center', flex: 1, gap: '2rem' }}>
+      {/* Top Announcement Bar */}
+      <div className="bg-[#2D5A27] text-white text-xs md:text-sm text-center py-2 px-4 font-sans font-medium tracking-wide">
+        Free Shipping on all orders above ₹999 | 100% Certified Organic
+      </div>
+      
+      {/* Main Navbar */}
+      <nav className="bg-white border-b border-gray-100 sticky top-0 z-[1000] shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-20 flex justify-between items-center">
             
-            {/* Logo - Hidden on mobile */}
-            <Link href="/" className="nav-brand flex items-center magnetic" style={{ gap: '0.75rem', textDecoration: 'none' }}>
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.2" className="brand-icon text-charcoal">
+            {/* Mobile Menu Toggle */}
+            <button 
+              onClick={() => { setIsMobileMenuOpen(true); document.body.style.overflow = 'hidden'; }} 
+              className="md:hidden text-gray-800 hover:text-[#4B7B3B] p-2 -ml-2"
+            >
+              <Menu size={24} strokeWidth={2} />
+            </button>
+
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 no-underline">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#E88B23]">
                 <path d="M12 22C12 22 4 15 4 8.5C4 4 7.5 2 12 2C16.5 2 20 4 20 8.5C20 15 12 22 12 22Z" strokeLinejoin="round" />
                 <path d="M12 22V8" />
                 <path d="M12 15C10 12 8 10.5 8 10.5" strokeLinecap="round" />
                 <path d="M12 15C14 12 16 10.5 16 10.5" strokeLinecap="round" />
               </svg>
-              <span className="text-charcoal brand-text" style={{ fontSize: '1.25rem', fontFamily: 'var(--font-serif)', letterSpacing: '0.05em' }}>
-                Ayurdhara Divya Shakti
+              <span className="text-2xl font-serif font-bold text-[#2D5A27] tracking-tight">
+                Ayurdhara
               </span>
             </Link>
 
-            {/* Search Bar - White background, black outline */}
-            <form onSubmit={handleSearch} className="nav-search" style={{ position: 'relative', display: 'flex', alignItems: 'center', maxWidth: '320px', width: '100%', zIndex: 100 }}>
-              <Search size={18} style={{ position: 'absolute', left: '12px', color: 'var(--charcoal)', opacity: 0.7 }} />
-              <input 
-                type="search" 
-                name="q" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search products..." 
-                style={{ 
-                  width: '100%',
-                  padding: '0.6rem 1rem 0.6rem 2.5rem', 
-                  background: 'white',
-                  border: '1px solid black',
-                  borderRadius: '30px',
-                  color: 'var(--charcoal)',
-                  fontSize: '0.95rem',
-                  outline: 'none',
-                  transition: 'border-color 0.3s ease'
-                }}
-                onFocus={(e) => { e.target.style.borderColor = 'black'; setIsSearchFocused(true); }}
-                onBlur={(e) => { 
-                  e.target.style.borderColor = 'black'; 
-                  // delay hiding so clicks on dropdown can register
-                  setTimeout(() => setIsSearchFocused(false), 200); 
-                }}
-              />
+            {/* Desktop Navigation Links */}
+            <div className="hidden md:flex items-center gap-8">
+              <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop</Link>
+              <Link href="/collections?category=nabhi" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Nabhi Oils</Link>
+              <Link href="/collections?category=packs" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Wellness Packs</Link>
+              <Link href="/hair-wellness" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Hair Wellness</Link>
+            </div>
+
+            {/* Right Side: Search, Account, Cart */}
+            <div className="flex items-center gap-4 md:gap-6">
               
-              {/* Search Suggestions Dropdown */}
-              {isSearchFocused && searchQuery.trim() !== '' && (
-                <div style={{
-                  position: 'absolute',
-                  top: '110%',
-                  left: 0,
-                  width: '100%',
-                  minWidth: '280px',
-                  background: 'white',
-                  border: '1px solid #E5E7EB',
-                  borderRadius: '12px',
-                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
-                  overflow: 'hidden',
-                  zIndex: 9999
-                }}>
-                  {searchResults.length > 0 ? (
-                    <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                      <li style={{ padding: '0.75rem 1rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--stone)', backgroundColor: '#F9FAFB', borderBottom: '1px solid #E5E7EB', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        Products
-                      </li>
-                      {searchResults.map((product) => (
-                        <li key={product.slug} style={{ borderBottom: '1px solid #F3F4F6' }}>
-                          <Link 
-                            href={`/products/${product.slug}`} 
-                            style={{ 
-                              display: 'flex', 
-                              alignItems: 'center', 
-                              gap: '1rem', 
-                              padding: '0.75rem 1rem', 
-                              textDecoration: 'none', 
-                              color: 'var(--charcoal)',
-                              transition: 'background-color 0.2s ease'
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
-                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                          >
-                            <div style={{ width: '40px', height: '40px', position: 'relative', borderRadius: '4px', overflow: 'hidden', backgroundColor: '#F3F4F6', flexShrink: 0 }}>
-                              <Image src={product.images[0]} alt={product.name} fill style={{ objectFit: 'cover' }} sizes="40px" />
-                            </div>
-                            <div style={{ flex: 1, overflow: 'hidden' }}>
-                              <div style={{ fontWeight: 600, fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{product.name}</div>
-                              <div style={{ fontSize: '0.75rem', color: 'var(--stone)' }}>{product.category}</div>
-                            </div>
-                            <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>
-                              ₹{product.price}
-                            </div>
-                          </Link>
+              {/* Desktop Search Bar */}
+              <form onSubmit={handleSearch} className="hidden md:flex relative items-center w-[300px]">
+                <Search size={18} className="absolute left-3 text-gray-400" />
+                <input 
+                  type="search" 
+                  name="q" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search for organic products..." 
+                  autoComplete="off"
+                  className="w-full py-2.5 pl-10 pr-4 bg-[#f9f9f9] border border-gray-200 rounded-full text-sm text-gray-800 font-medium focus:outline-none focus:border-[#4B7B3B] focus:ring-1 focus:ring-[#4B7B3B] transition-all"
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                />
+                
+                {/* Search Suggestions Dropdown */}
+                {showDropdown && (
+                  <div className="absolute top-[110%] right-0 w-[350px] bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-[9999]">
+                    {isSearching ? (
+                      <div className="p-4 text-center text-sm text-gray-500 font-medium">Searching...</div>
+                    ) : searchResults.length > 0 ? (
+                      <ul className="m-0 p-0 list-none">
+                        {searchResults.slice(0, 4).map((result) => (
+                          <li key={result.slug} className="border-b border-gray-50">
+                            <Link 
+                              href={`/products/${result.slug}`} 
+                              className="flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors"
+                            >
+                              <div className="w-12 h-12 relative rounded border border-gray-100 overflow-hidden bg-gray-50 flex-shrink-0">
+                                {result.image && (
+                                  <Image src={result.image} alt={result.name} fill className="object-cover" sizes="48px" />
+                                )}
+                              </div>
+                              <div className="flex-1 overflow-hidden">
+                                <div className="text-sm font-bold text-gray-800 truncate">{result.name}</div>
+                                <div className="text-sm font-semibold text-[#E88B23]">₹{result.price}</div>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                        <li>
+                          <button onClick={() => handleSearch()} className="w-full p-3 bg-gray-50 text-[#4B7B3B] text-sm font-bold hover:bg-gray-100 transition-colors">
+                            View all results →
+                          </button>
                         </li>
-                      ))}
-                      <li>
-                        <button 
-                          onClick={handleSearch} 
-                          style={{ 
-                            width: '100%', 
-                            padding: '0.75rem 1rem', 
-                            background: 'transparent', 
-                            border: 'none', 
-                            color: 'var(--olive)', 
-                            fontWeight: 600, 
-                            fontSize: '0.85rem', 
-                            cursor: 'pointer',
-                            textAlign: 'center'
-                          }}
-                        >
-                          View all results for "{searchQuery}"
-                        </button>
-                      </li>
-                    </ul>
-                  ) : (
-                    <div style={{ padding: '1.5rem 1rem', textAlign: 'center', color: 'var(--stone)', fontSize: '0.9rem' }}>
-                      No products found for "{searchQuery}"
-                    </div>
-                  )}
-                </div>
-              )}
-            </form>
+                      </ul>
+                    ) : (
+                      <div className="p-4 text-center text-sm text-gray-500 font-medium">No products found for &quot;{searchQuery}&quot;</div>
+                    )}
+                  </div>
+                )}
+              </form>
 
-          </div>
-
-          {/* Right Side: Cart & Hamburger Menu */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <button onClick={toggleCart} className="magnetic" style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal)', position: 'relative' }}>
-              <ShoppingBag size={24} strokeWidth={1.5} />
-              {mounted && cartCount > 0 && (
-                <span style={{ position: 'absolute', top: '0', right: '0', background: 'var(--deep)', color: 'var(--ivory)', fontSize: '0.7rem', fontWeight: 'bold', width: '18px', height: '18px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {cartCount}
-                </span>
-              )}
-            </button>
-            <button onClick={() => { setIsMobileMenuOpen(true); document.body.style.overflow = 'hidden'; }} className="nav-toggle magnetic" style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--charcoal)' }}>
-              <Menu size={28} strokeWidth={1.2} />
-            </button>
+              <Link href={user ? '/account' : '/login'} className="hidden md:flex text-gray-700 hover:text-[#4B7B3B] transition-colors">
+                <User size={24} strokeWidth={1.5} />
+              </Link>
+              
+              <button onClick={toggleCart} className="relative p-1 text-gray-700 hover:text-[#E88B23] transition-colors focus:outline-none">
+                <ShoppingBag size={24} strokeWidth={1.5} />
+                {mounted && cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#E88B23] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Universal Nav Overlay (Desktop & Mobile) */}
-      <div className={`mobile-nav-overlay ${isMobileMenuOpen ? 'open' : ''}`} style={{ position: 'fixed', inset: 0, backgroundColor: 'var(--deep)', zIndex: 9900, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: isMobileMenuOpen ? 1 : 0, pointerEvents: isMobileMenuOpen ? 'auto' : 'none', transition: 'opacity 0.4s ease' }}>
-        <button onClick={closeMenu} className="nav-close" style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'transparent', border: 'none', color: 'var(--ivory)', cursor: 'pointer', padding: '0.5rem' }}>
-          <X size={36} strokeWidth={1} />
-        </button>
-        <div className="mobile-nav-links" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center', width: '100%', maxWidth: '300px' }}>
-          
-          <Link href="/" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Home</Link>
-          <Link href="/hair-wellness" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Hair Wellness</Link>
-          <Link href="/wellness-packs" onClick={closeMenu} className="mobile-nav-link text-gold magnetic" style={{ textDecoration: 'none' }}>Wellness Packs</Link>
-          <Link href="/collections" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Collections</Link>
-          <Link href="/#philosophy" onClick={closeMenu} className="mobile-nav-link text-ivory magnetic" style={{ textDecoration: 'none' }}>Philosophy</Link>
-          
-          <div style={{ width: '100%', height: '1px', background: 'rgba(250, 247, 242, 0.15)', margin: '1rem 0' }}></div>
-          
-          <Link href={user ? '/account' : '/login'} onClick={closeMenu} className="magnetic" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--ivory)', textDecoration: 'none', fontSize: '1.25rem', fontFamily: 'var(--font-sans)' }}>
-            <User size={22} />
-            <span>{user ? 'My Account' : 'Login / Register'}</span>
-          </Link>
-          
-          <button onClick={() => { toggleCart(); closeMenu(); }} className="magnetic" style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--ivory)', fontSize: '1.25rem', fontFamily: 'var(--font-sans)', padding: 0 }}>
-            <ShoppingBag size={22} />
-            <span>Cart {mounted && cartCount > 0 ? `(${cartCount})` : ''}</span>
+      {/* Mobile Nav Overlay */}
+      <div 
+        className={`fixed inset-0 bg-white z-[9900] flex flex-col transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        <div className="flex justify-between items-center p-4 border-b border-gray-100">
+          <span className="text-xl font-serif font-bold text-[#2D5A27]">Menu</span>
+          <button onClick={closeMenu} className="p-2 text-gray-600 hover:text-[#D9381E] bg-gray-50 rounded-full">
+            <X size={24} strokeWidth={2} />
           </button>
+        </div>
+        
+        <div className="p-4 flex flex-col flex-1 overflow-y-auto">
+          <form onSubmit={(e) => { handleSearch(e); closeMenu(); }} className="relative mb-6">
+            <Search size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input 
+              type="search" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search products..." 
+              className="w-full py-3 pl-10 pr-4 bg-gray-100 rounded-xl text-base font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#4B7B3B]"
+            />
+          </form>
+
+          <div className="flex flex-col gap-1">
+            <Link href="/" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">Home</Link>
+            <Link href="/collections" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">All Products</Link>
+            <Link href="/collections?category=nabhi" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">Nabhi Oil Blends</Link>
+            <Link href="/wellness-packs" onClick={closeMenu} className="py-4 text-xl font-bold text-[#E88B23] border-b border-gray-50">Wellness Packs</Link>
+            <Link href="/hair-wellness" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">Hair Wellness</Link>
+          </div>
           
+          <div className="mt-8 flex flex-col gap-4">
+            <Link href={user ? '/account' : '/login'} onClick={closeMenu} className="flex items-center gap-3 py-3 px-4 bg-gray-50 rounded-xl text-gray-800 font-bold text-lg">
+              <User size={24} className="text-[#4B7B3B]" />
+              <span>{user ? 'My Account' : 'Login / Register'}</span>
+            </Link>
+          </div>
         </div>
       </div>
-
-      {/* Inline styles for scroll behavior and mobile layout */}
-      <style dangerouslySetInnerHTML={{__html: `
-        .mobile-nav-link {
-          font-family: var(--font-serif);
-          font-size: 2.5rem;
-          color: var(--ivory);
-        }
-        .text-gold {
-          color: var(--gold);
-        }
-        @media (max-width: 768px) {
-          .nav-brand {
-            display: none !important;
-          }
-        }
-      `}} />
     </>
   );
 }

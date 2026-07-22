@@ -1,5 +1,10 @@
-import ComingSoonAdminPage from '@/components/admin/ComingSoonAdminPage';
+import { createClient } from '@/lib/supabase/server';
+import { IngredientsClient } from './IngredientsClient';
 
-export default function Page() {
-  return <ComingSoonAdminPage title='Ingredients' description='Manage Ingredients settings and data.' />;
+export const revalidate = 0;
+
+export default async function IngredientsPage() {
+  const supabase = await createClient();
+  const { data: ingredients } = await supabase.from('ingredients').select('*').order('name', { ascending: true });
+  return <IngredientsClient ingredients={ingredients || []} />;
 }

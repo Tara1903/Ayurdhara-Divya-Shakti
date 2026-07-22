@@ -10,3 +10,8 @@
 @import '../styles/pdp.css';
 @import '../styles/checkout.css';
 @import '../styles/account.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+

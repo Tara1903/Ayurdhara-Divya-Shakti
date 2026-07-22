@@ -3,39 +3,41 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Star, Shield, Leaf, Heart, ChevronDown, Lock } from "lucide-react";
+import { ChevronRight, Star, Shield, Leaf, Heart, ChevronDown, Lock, Check } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { useAuthStore } from "@/store/authStore";
 import { Product } from "@/data/productData";
+import ProductCard from "@/components/ProductCard";
 
 export default function PDPClient({ product }: { product: Product }) {
   const [activeImage, setActiveImage] = useState(0);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0); // First open by default
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
   const [qty, setQty] = useState(1);
+  const [added, setAdded] = useState(false);
   
-  const { hasItem, addItem, removeItem } = useWishlistStore();
+  const { hasItem, addItem: addWishlist, removeItem: removeWishlist } = useWishlistStore();
   const { user } = useAuthStore();
   const isGoldMember = user?.isGoldMember || false;
   const inWishlist = hasItem(product.slug);
 
   const toggleWishlist = () => {
     if (inWishlist) {
-      removeItem(product.slug);
+      removeWishlist(product.slug);
     } else {
-      addItem({
+      addWishlist({
         id: product.slug,
         name: product.name,
-        price: product.price,
+        price: currentPrice,
         image: product.images[0],
         slug: product.slug
       });
     }
   };
 
-  // Derive current price, original price, discount, and image from selected variant (if any)
+  // Derive prices from variant or fallback
   const currentVariant = product.variants && product.variants.length > 0 ? product.variants[activeVariantIdx] : null;
   const currentPrice = currentVariant ? currentVariant.price : product.price;
   const currentOriginalPrice = currentVariant ? currentVariant.originalPrice : product.originalPrice;
@@ -53,9 +55,22 @@ export default function PDPClient({ product }: { product: Product }) {
     }
   };
 
+  const handleAddToCart = () => {
+    useCartStore.getState().addItem({
+      productId: product.slug,
+      name: product.name,
+      image: currentVariant && currentVariant.image ? currentVariant.image : product.images[0],
+      price: currentPrice,
+      originalPrice: currentOriginalPrice,
+      quantity: qty,
+      size: currentVariant ? currentVariant.size : 'Standard'
+    });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky bar only on mobile after scrolling past 600px
       if (window.innerWidth < 768 && window.scrollY > 600) {
         setShowStickyBar(true);
       } else {
@@ -68,265 +83,232 @@ export default function PDPClient({ product }: { product: Product }) {
   }, []);
 
   return (
-    <div className="pdp-container">
-      {/* 1. Breadcrumbs */}
-      <div className="pdp-breadcrumbs">
-        <Link href="/">Home</Link> &gt; <Link href="/collections">Shop</Link> &gt; <span className="current">{product.name}</span>
+    <div className="bg-[#f9f9f9] text-gray-900 pb-12">
+      {/* Breadcrumbs */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <nav className="flex items-center text-xs font-bold text-gray-500 uppercase tracking-widest">
+            <Link href="/" className="hover:text-[#4B7B3B] transition-colors">Home</Link>
+            <ChevronRight size={14} className="mx-2 text-gray-400" />
+            <Link href="/collections" className="hover:text-[#4B7B3B] transition-colors">Shop</Link>
+            <ChevronRight size={14} className="mx-2 text-gray-400" />
+            <span className="text-[#4B7B3B] truncate">{product.name}</span>
+          </nav>
+        </div>
       </div>
 
-      {/* 2. Hero Section (Split Layout) */}
-      <section className="pdp-hero">
-        <div className="pdp-gallery">
-          {/* Main Image */}
-          <div className="pdp-main-image-container">
-            <Image src={product.images[activeImage]} alt={product.name} fill style={{ objectFit: 'contain' }} priority />
-          </div>
-          {/* Thumbnails */}
-          <div className="pdp-thumbnails">
-            {product.images.map((img, i) => (
-              <div 
-                key={i} 
-                className={`thumbnail ${i === activeImage ? 'active' : ''}`}
-                onClick={() => setActiveImage(i)}
-              >
-                <Image src={img} alt={`${product.name} view ${i}`} fill style={{ objectFit: 'cover' }} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="pdp-info-panel">
-          {product.badge && <span className="product-badge">{product.badge}</span>}
-          <h1 className="pdp-title">{product.name}</h1>
-          <p className="pdp-category">{product.category}</p>
+      {/* Main Product Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           
-          <div className="pdp-rating">
-            <Star size={16} fill="#FACC15" color="#FACC15" />
-            <span>{product.rating}</span>
-            <span className="text-muted">({product.reviewCount} Reviews)</span>
-          </div>
-
-          <p className="pdp-benefit-line">{product.benefit}</p>
-
-          <div className="pdp-pricing" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-            <span className="pdp-price">₹{currentPrice}</span>
-            <span className="pdp-mrp">₹{currentOriginalPrice}</span>
-            <span className="pdp-discount" style={{background: '#FACC15', color: '#1A1A1A', padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 600}}>Save {currentDiscount}%</span>
-          </div>
-
-          {currentGoldMemberPrice && (
-            <div style={{ marginTop: '1rem', padding: '0.75rem 1rem', background: isGoldMember ? '#FAF7F2' : '#F9F9F9', borderRadius: '6px', border: isGoldMember ? '1px solid #D4AF37' : '1px dashed #CCC', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                {!isGoldMember && <Lock size={16} color="#888" />}
-                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: isGoldMember ? '#B8860B' : '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Gold Member Price</span>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: isGoldMember ? '#B8860B' : '#888' }}>
-                  ₹{currentGoldMemberPrice}
+          {/* Gallery */}
+          <div className="flex flex-col gap-4">
+            <div className="relative aspect-square bg-[#f9f9f9] rounded-xl overflow-hidden border border-gray-100 flex items-center justify-center">
+              <Image 
+                src={product.images[activeImage] || '/images/placeholder.jpg'} 
+                alt={product.name} 
+                fill 
+                className="object-contain p-4 mix-blend-multiply" 
+                priority 
+              />
+              {product.badge && (
+                <span className="absolute top-4 left-4 z-10 bg-[#2D5A27] text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded shadow-sm">
+                  {product.badge}
                 </span>
-              </div>
+              )}
             </div>
-          )}
-          {!isGoldMember && currentGoldMemberPrice && (
-            <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
-              <Link href="/collections" style={{ color: 'var(--olive)', textDecoration: 'underline' }}>Explore Gold Wellness Courses</Link> to unlock this price.
-            </p>
-          )}
-
-          <p className="pdp-tax-info" style={{ marginTop: '0.5rem' }}>Inclusive of all taxes</p>
-
-          {/* Variant Selector */}
-          {product.variants && product.variants.length > 0 && (
-            <div className="variant-selector" style={{marginTop: '1.5rem', marginBottom: '1.5rem'}}>
-              <h4 style={{fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--charcoal)', marginBottom: '0.5rem'}}>Select Size</h4>
-              <div className="variant-pills" style={{display: 'flex', gap: '0.75rem', flexWrap: 'wrap'}}>
-                {product.variants.map((v, i) => (
+            
+            {product.images.length > 1 && (
+              <div className="grid grid-cols-5 gap-3">
+                {product.images.map((img, i) => (
                   <button 
-                    key={i}
-                    className={`variant-pill ${i === activeVariantIdx ? 'active' : ''}`}
-                    onClick={() => handleVariantChange(i)}
-                    style={{
-                      padding: '0.5rem 1rem',
-                      border: i === activeVariantIdx ? '2px solid var(--charcoal)' : '1px solid #E5E7EB',
-                      background: i === activeVariantIdx ? 'var(--charcoal)' : 'white',
-                      color: i === activeVariantIdx ? 'white' : 'var(--charcoal)',
-                      borderRadius: '50px',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                      fontWeight: 500
-                    }}
+                    key={i} 
+                    className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${i === activeImage ? 'border-[#4B7B3B] ring-2 ring-[#4B7B3B]/20' : 'border-gray-200 hover:border-[#4B7B3B]/50 bg-[#f9f9f9]'}`}
+                    onClick={() => setActiveImage(i)}
                   >
-                    {v.size}
+                    <Image src={img} alt={`View ${i + 1}`} fill className="object-cover mix-blend-multiply" />
                   </button>
                 ))}
               </div>
+            )}
+          </div>
+
+          {/* Product Info */}
+          <div className="flex flex-col pt-2">
+            <Link href={`/collections?category=${product.category.toLowerCase()}`} className="text-[#4B7B3B] text-xs font-bold uppercase tracking-widest mb-3 hover:underline">
+              {product.category}
+            </Link>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 leading-tight font-sans">{product.name}</h1>
+            
+            {product.rating > 0 && (
+              <div className="flex items-center gap-2 mb-6 cursor-pointer group" onClick={() => document.getElementById('reviews')?.scrollIntoView({behavior: 'smooth'})}>
+                <div className="flex text-[#E88B23]">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={18} fill={i < Math.floor(product.rating) ? "currentColor" : "none"} color="currentColor" />
+                  ))}
+                </div>
+                <span className="text-sm font-bold text-gray-700">{product.rating}</span>
+                <span className="text-sm font-medium text-gray-500 group-hover:text-[#E88B23] transition-colors underline">({product.reviewCount} Reviews)</span>
+              </div>
+            )}
+
+            <p className="text-base text-gray-600 mb-8 leading-relaxed">{product.shortDescription || product.benefit}</p>
+
+            {/* Pricing */}
+            <div className="bg-[#f9f9f9] p-6 rounded-xl border border-gray-100 mb-8">
+              <div className="flex items-end gap-3 mb-2">
+                <span className="text-4xl font-bold text-gray-900">₹{currentPrice}</span>
+                {currentOriginalPrice > currentPrice && (
+                  <>
+                    <span className="text-xl text-gray-400 line-through mb-1">₹{currentOriginalPrice}</span>
+                    <span className="bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider px-2 py-1 rounded mb-1.5 border border-red-200">
+                      Save {currentDiscount}%
+                    </span>
+                  </>
+                )}
+              </div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Inclusive of all taxes</p>
+
+              {/* Gold Member Price Block */}
+              {currentGoldMemberPrice && (
+                <div className={`mt-4 p-3 rounded-lg flex items-center justify-between border ${isGoldMember ? 'bg-[#E88B23]/10 border-[#E88B23]/30' : 'bg-white border-gray-200'}`}>
+                  <div className="flex items-center gap-2">
+                    {!isGoldMember && <Lock size={14} className="text-gray-400" />}
+                    <span className={`text-xs font-bold uppercase tracking-wider ${isGoldMember ? 'text-[#E88B23]' : 'text-gray-600'}`}>
+                      Gold Price
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className={`text-lg font-bold ${isGoldMember ? 'text-[#E88B23]' : 'text-gray-900'}`}>
+                      ₹{currentGoldMemberPrice}
+                    </span>
+                    {!isGoldMember && (
+                      <Link href="/register" className="text-[10px] font-bold text-white bg-[#1A1A1A] px-2 py-1 rounded uppercase tracking-widest hover:bg-[#E88B23] transition-colors">
+                        Unlock
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
 
-          <div className="pdp-actions-row" style={{display: 'flex', gap: '1rem', marginBottom: '1rem'}}>
-            <div className="quantity-selector" style={{display: 'flex', alignItems: 'center', border: '1px solid #E5E7EB', borderRadius: 'var(--radius)'}}>
-              <button className="qty-btn" style={{padding: '0 1rem', height: '48px', background: 'transparent', border: 'none', cursor: 'pointer'}} onClick={() => setQty(Math.max(1, qty - 1))}>-</button>
-              <input type="number" className="qty-input" value={qty} readOnly style={{width: '40px', textAlign: 'center', border: 'none', background: 'transparent'}} />
-              <button className="qty-btn" style={{padding: '0 1rem', height: '48px', background: 'transparent', border: 'none', cursor: 'pointer'}} onClick={() => setQty(Math.min(10, qty + 1))}>+</button>
+            {/* Variant Selector */}
+            {product.variants && product.variants.length > 0 && (
+              <div className="mb-8">
+                <h4 className="text-sm font-bold uppercase tracking-widest text-gray-900 mb-3">Select Size</h4>
+                <div className="flex flex-wrap gap-3">
+                  {product.variants.map((v, i) => (
+                    <button 
+                      key={i}
+                      onClick={() => handleVariantChange(i)}
+                      className={`px-5 py-2.5 border-2 rounded-lg text-sm font-bold transition-all
+                        ${i === activeVariantIdx 
+                          ? 'border-[#4B7B3B] bg-[#4B7B3B]/5 text-[#4B7B3B]' 
+                          : 'border-gray-200 bg-white text-gray-600 hover:border-[#4B7B3B]/50 hover:text-[#4B7B3B]'}`}
+                    >
+                      {v.size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Add to Cart Actions */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <div className="flex items-center border-2 border-gray-200 rounded-lg h-14 w-32 shrink-0 bg-white">
+                <button 
+                  className="flex-1 h-full flex items-center justify-center text-xl font-bold text-gray-600 hover:text-[#4B7B3B] transition-colors"
+                  onClick={() => setQty(Math.max(1, qty - 1))}
+                >−</button>
+                <input 
+                  type="number" 
+                  className="w-12 text-center font-bold text-lg text-gray-900 bg-transparent border-none focus:outline-none focus:ring-0 p-0" 
+                  value={qty} 
+                  readOnly 
+                />
+                <button 
+                  className="flex-1 h-full flex items-center justify-center text-xl font-bold text-gray-600 hover:text-[#4B7B3B] transition-colors"
+                  onClick={() => setQty(Math.min(10, qty + 1))}
+                >+</button>
+              </div>
+              
+              <button 
+                onClick={handleAddToCart}
+                className={`flex-1 h-14 flex items-center justify-center text-base font-bold uppercase tracking-widest rounded-lg transition-all shadow-md ${
+                  added 
+                    ? 'bg-[#4B7B3B] text-white shadow-[#4B7B3B]/30' 
+                    : 'bg-[#E88B23] text-white hover:bg-[#D67A18] shadow-[#E88B23]/30 hover:shadow-lg hover:-translate-y-0.5'
+                }`}
+              >
+                {added ? <><Check size={20} className="mr-2"/> Added</> : 'Add to Cart'}
+              </button>
+
+              <button 
+                onClick={toggleWishlist}
+                className={`w-14 h-14 flex items-center justify-center border-2 rounded-lg transition-all shrink-0 ${inWishlist ? 'border-[#E88B23] bg-[#E88B23]/5' : 'border-gray-200 bg-white hover:border-gray-300'}`}
+                aria-label="Wishlist"
+              >
+                <Heart size={24} fill={inWishlist ? "#E88B23" : "none"} className={inWishlist ? "text-[#E88B23]" : "text-gray-400"} />
+              </button>
             </div>
-            <button 
-              onClick={toggleWishlist}
-              style={{
-                width: '48px', height: '48px', borderRadius: 'var(--radius)', border: '1px solid var(--sand)',
-                background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-                flexShrink: 0
-              }}
-              aria-label="Toggle Wishlist"
-            >
-              <Heart size={20} fill={inWishlist ? "var(--olive)" : "none"} color={inWishlist ? "var(--olive)" : "var(--charcoal)"} />
-            </button>
-            <button 
-              className="btn btn-primary btn-large" 
-              style={{flex: 1}}
-              onClick={() => {
-                useCartStore.getState().addItem({
-                  productId: product.slug,
-                  name: product.name,
-                  image: currentVariant && currentVariant.image ? currentVariant.image : product.images[0],
-                  price: currentPrice,
-                  originalPrice: currentOriginalPrice,
-                  goldMemberPrice: currentGoldMemberPrice,
-                  size: currentVariant ? currentVariant.size : 'Standard Size',
-                  quantity: qty
-                });
-              }}
-            >
-              Add to Cart
-            </button>
-          </div>
-          
-          <div style={{display: 'flex', gap: '1rem', marginBottom: '1.5rem'}}>
-            <Link href="/cart" className="btn-large buy-now-btn" style={{flex: 1, textAlign: 'center', textDecoration: 'none', color: 'var(--charcoal)'}}>Buy It Now</Link>
-            <a href={`https://wa.me/919876543210?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}`} target="_blank" rel="noopener noreferrer" className="btn-large" style={{flex: 1, textAlign: 'center', textDecoration: 'none', background: '#25D366', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '4px'}}>
-              Order on WhatsApp
-            </a>
-          </div>
 
-          <div style={{textAlign: 'center', marginBottom: '2rem'}}>
-            <button onClick={() => {
-              if (navigator.share) {
-                navigator.share({
-                  title: product.name,
-                  url: window.location.href
-                });
-              }
-            }} style={{background: 'transparent', border: 'none', color: 'var(--charcoal)', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.9rem'}}>
-              Share this product
-            </button>
-          </div>
-          
-          <div className="pdp-trust-badges">
-            <div className="trust-badge"><Shield size={20} /> 100% Secure Payments</div>
-            <div className="trust-badge"><Leaf size={20} /> Pure Ayurvedic</div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Key Benefits */}
-      <section className="pdp-section pdp-benefits-section">
-        <h2>Why You'll Love It</h2>
-        <div className="benefits-grid">
-          {product.benefits.map((b, i) => (
-            <div key={i} className="benefit-card">
-              <Heart className="benefit-icon" size={32} />
-              <p>{b.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-      
-      {/* 4. Product Story */}
-      <section className="pdp-story">
-        <div className="story-content">
-          <h2>The Story Behind {product.name}</h2>
-          <p>{product.story}</p>
-        </div>
-      </section>
-
-      {/* 5. Ingredients */}
-      <section className="pdp-section pdp-ingredients">
-        <h2>Key Ingredients</h2>
-        <div className="ingredients-grid">
-          {product.ingredients.map((ing, i) => (
-            <div key={i} className="ingredient-card">
-              {ing.image && <div className="ing-img-container"><Image src={ing.image} alt={ing.name} fill style={{objectFit: 'cover'}} /></div>}
-              <div className="ingredient-info">
-                <h3>{ing.name}</h3>
-                <p className="botanical-name">{ing.botanical}</p>
-                <p>{ing.role}</p>
+            {/* Trust Badges */}
+            <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-100">
+              <div className="flex items-center gap-3">
+                <Shield className="text-[#4B7B3B] shrink-0" size={24} />
+                <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">100% Secure Payments</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Leaf className="text-[#4B7B3B] shrink-0" size={24} />
+                <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">Pure Ayurvedic Formula</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#4B7B3B] shrink-0" strokeWidth="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">Fast Shipping</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#4B7B3B] shrink-0" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">Lab Tested Quality</span>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* 6. How to Use */}
-      <section className="pdp-section pdp-usage">
-        <h2>How to Use</h2>
-        <div className="usage-grid">
-          <div className="usage-step">
-            <h4>Recommended Serving</h4>
-            <p>{product.usageInstructions.serving}</p>
-          </div>
-          <div className="usage-step">
-            <h4>When to Take</h4>
-            <p>{product.usageInstructions.timing}</p>
-          </div>
-          <div className="usage-step">
-            <h4>Instructions</h4>
-            <p>{product.usageInstructions.instructions}</p>
-          </div>
-          <div className="usage-step">
-            <h4>Who Can Use</h4>
-            <p>{product.idealFor ? product.idealFor.join(', ') : 'Everyone'}</p>
           </div>
         </div>
       </section>
 
-      {/* 7. Storage Instructions */}
-      <section className="pdp-section pdp-storage" style={{background: '#FAF7F2', padding: '3rem', borderRadius: 'var(--radius-lg)', marginTop: '4rem'}}>
-        <h2 style={{textAlign: 'center', marginBottom: '1.5rem'}}>Storage Instructions</h2>
-        <p style={{textAlign: 'center', maxWidth: '600px', margin: '0 auto', color: 'var(--text-muted)'}}>
-          Store in a cool, dry place away from direct sunlight. Keep the bottle tightly closed when not in use. Ensure no water gets into the oil to maintain its purity and effectiveness.
-        </p>
-      </section>
-
-      {/* 8. Specifications & 12. FAQ */}
-      <section className="pdp-section pdp-details">
-        <div className="pdp-specs">
-          <h2>Product Information</h2>
-          <table className="specs-table">
-            <tbody>
-              {Object.entries(product.specifications).map(([key, val]) => (
-                <tr key={key}>
-                  <th>{key}</th>
-                  <td>{val}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        
-        <div className="pdp-faqs" style={{marginTop: '4rem'}}>
-          <h2>Frequently Asked Questions</h2>
-          <div className="accordion">
-            {product.faqs.map((faq, i) => (
-              <div 
-                key={i} 
-                className={`accordion-item ${openFaq === i ? 'open' : ''}`}
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-              >
-                <div className="accordion-header">
-                  <h4>{faq.question}</h4>
-                  <ChevronDown className="accordion-icon" size={20} />
+      {/* Why You'll Love It (Benefits) */}
+      <section className="bg-white py-16 md:py-24 border-y border-gray-100 mt-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 font-sans">Why You'll Love It</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {product.benefits.map((b, i) => (
+              <div key={i} className="bg-[#f9f9f9] p-8 rounded-2xl text-center border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 text-[#4B7B3B] shadow-sm">
+                  <Leaf size={28} />
                 </div>
-                <div className="accordion-content">
-                  <p>{faq.answer}</p>
+                <p className="font-bold text-lg text-gray-800">{b.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Ingredients */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 font-sans">Key Ingredients</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {product.ingredients.map((ing, i) => (
+              <div key={i} className="bg-white border border-gray-100 rounded-2xl overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                {ing.image && (
+                  <div className="relative h-56 bg-gray-50 overflow-hidden">
+                    <Image src={ing.image} alt={ing.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  </div>
+                )}
+                <div className="p-6 text-center">
+                  <h3 className="font-bold text-xl mb-1 text-gray-900">{ing.name}</h3>
+                  <p className="text-sm text-[#4B7B3B] italic font-semibold mb-4">{ing.botanical}</p>
+                  <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">{ing.role}</p>
                 </div>
               </div>
             ))}
@@ -334,52 +316,98 @@ export default function PDPClient({ product }: { product: Product }) {
         </div>
       </section>
 
-      {/* 11. Customer Reviews */}
-      <section className="pdp-section pdp-reviews">
-        <h2>Customer Reviews</h2>
-        <div className="reviews-summary" style={{textAlign: 'center'}}>
-          <div className="rating-big" style={{fontSize: '4rem', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
-            <span>{product.rating}</span>
-            <Star fill="#FACC15" color="#FACC15" size={48} />
+      {/* How To Use & Details (Split) */}
+      <section className="bg-[#2D5A27] py-16 md:py-24 text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+            
+            {/* How to Use */}
+            <div>
+              <h2 className="text-3xl font-bold mb-10 font-sans">How To Use</h2>
+              <div className="space-y-8">
+                <div className="flex gap-6">
+                  <div className="w-12 h-12 rounded-full bg-white text-[#2D5A27] flex items-center justify-center font-bold text-xl shrink-0 shadow-lg">1</div>
+                  <div>
+                    <h4 className="font-bold text-xl mb-2 text-[#E88B23]">Recommended Serving</h4>
+                    <p className="text-base text-gray-200 font-medium leading-relaxed">{product.usageInstructions.serving}</p>
+                  </div>
+                </div>
+                <div className="flex gap-6">
+                  <div className="w-12 h-12 rounded-full bg-white text-[#2D5A27] flex items-center justify-center font-bold text-xl shrink-0 shadow-lg">2</div>
+                  <div>
+                    <h4 className="font-bold text-xl mb-2 text-[#E88B23]">When to Take</h4>
+                    <p className="text-base text-gray-200 font-medium leading-relaxed">{product.usageInstructions.timing}</p>
+                  </div>
+                </div>
+                <div className="flex gap-6">
+                  <div className="w-12 h-12 rounded-full bg-white text-[#2D5A27] flex items-center justify-center font-bold text-xl shrink-0 shadow-lg">3</div>
+                  <div>
+                    <h4 className="font-bold text-xl mb-2 text-[#E88B23]">Instructions</h4>
+                    <p className="text-base text-gray-200 font-medium leading-relaxed">{product.usageInstructions.instructions}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQs */}
+            <div>
+              <h2 className="text-3xl font-bold mb-10 font-sans">Frequently Asked Questions</h2>
+              <div className="space-y-4">
+                {product.faqs.map((faq, i) => (
+                  <div key={i} className="bg-white/10 rounded-xl overflow-hidden backdrop-blur-sm border border-white/20">
+                    <button 
+                      className="w-full flex justify-between items-center p-5 text-left font-bold text-lg focus:outline-none"
+                      onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    >
+                      {faq.question}
+                      <ChevronDown size={24} className={`transform transition-transform shrink-0 ${openFaq === i ? 'rotate-180 text-[#E88B23]' : 'text-white/70'}`} />
+                    </button>
+                    {openFaq === i && (
+                      <div className="px-5 pb-5 text-base text-gray-200 border-t border-white/10 pt-4 leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
-          <p style={{fontSize: '1.2rem', color: 'var(--text-muted)'}}>Based on {product.reviewCount} verified reviews</p>
         </div>
       </section>
 
-      {/* 13. Recommendations */}
-      {product.relatedProductIds && product.relatedProductIds.length > 0 && (
-        <section className="pdp-section recommendations-section">
-          <h2>Complete Your Routine</h2>
-          <div className="collection-grid" style={{marginTop: '2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem'}}>
-            {product.relatedProductIds.map((slug, idx) => {
-              // Note: Ideally pass the full related products from Server Component instead of having Client Component fetch them.
-              // For now, we render simple linked cards.
-              return (
-                <div key={idx} className="product-card col-product-card" style={{border: '1px solid var(--border-color)', borderRadius: 'var(--radius-lg)', overflow: 'hidden'}}>
-                  <Link href={`/products/${slug}`} style={{textDecoration: 'none', color: 'inherit'}}>
-                    <div style={{height: 250, background: 'var(--surface-light)', position: 'relative'}}>
-                      <Image src={`/images/products/${slug}-15ml.jpg`} alt={slug} fill style={{objectFit: 'cover'}} />
-                    </div>
-                    <div style={{padding: '1.5rem', textAlign: 'center'}}>
-                      <h3 style={{fontSize: '1.2rem', marginBottom: '0.5rem', textTransform: 'capitalize'}}>{slug.replace(/-/g, ' ')}</h3>
-                      <button className="btn btn-primary" style={{width: '100%', marginTop: '1rem'}}>View Details</button>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
+      {/* Specifications */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+          <h2 className="text-3xl font-bold mb-10 text-center text-gray-900 font-sans">Product Information</h2>
+          <div className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+            <table className="w-full text-left text-sm md:text-base">
+              <tbody className="divide-y divide-gray-200">
+                {Object.entries(product.specifications).map(([key, val]) => (
+                  <tr key={key} className="hover:bg-gray-50 transition-colors">
+                    <th className="p-5 font-bold text-gray-900 w-1/3 bg-gray-50/50 uppercase tracking-wider text-xs md:text-sm">{key}</th>
+                    <td className="p-5 text-gray-600 font-medium">{val}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Mobile Sticky Add to Cart */}
-      <div className={`mobile-sticky-bar ${showStickyBar ? 'visible' : ''}`}>
-        <div className="mobile-sticky-content">
-          <div>
-            <div style={{fontSize: '0.85rem', color: 'var(--text-muted)'}}>{product.name}</div>
-            <div className="mobile-sticky-price">₹{product.price}</div>
+      <div className={`fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-10px_20px_rgba(0,0,0,0.05)] z-[100] transform transition-transform duration-300 md:hidden ${showStickyBar ? 'translate-y-0' : 'translate-y-full'}`}>
+        <div className="flex items-center justify-between gap-4 max-w-lg mx-auto">
+          <div className="truncate flex-1">
+            <p className="text-xs text-gray-500 truncate font-bold uppercase tracking-wider">{product.name}</p>
+            <p className="font-bold text-xl text-gray-900">₹{currentPrice}</p>
           </div>
-          <button className="btn btn-primary">Add to Cart</button>
+          <button 
+            onClick={handleAddToCart}
+            className={`h-12 px-6 font-bold uppercase tracking-wider rounded-lg shrink-0 transition-colors shadow-sm ${added ? 'bg-[#4B7B3B] text-white' : 'bg-[#E88B23] hover:bg-[#D67A18] text-white'}`}
+          >
+            {added ? 'Added' : 'Add to Cart'}
+          </button>
         </div>
       </div>
     </div>

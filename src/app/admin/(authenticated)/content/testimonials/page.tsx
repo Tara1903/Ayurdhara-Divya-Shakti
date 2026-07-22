@@ -1,5 +1,10 @@
-import ComingSoonAdminPage from '@/components/admin/ComingSoonAdminPage';
+import { createClient } from '@/lib/supabase/server';
+import { TestimonialsClient } from './TestimonialsClient';
 
-export default function Page() {
-  return <ComingSoonAdminPage title='Testimonials' description='Manage Testimonials settings and data.' />;
+export const revalidate = 0;
+
+export default async function TestimonialsPage() {
+  const supabase = await createClient();
+  const { data: testimonials } = await supabase.from('testimonials').select('*').order('created_at', { ascending: false });
+  return <TestimonialsClient testimonials={testimonials || []} />;
 }
