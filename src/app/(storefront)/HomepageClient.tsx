@@ -83,6 +83,7 @@ function Section1CategoryIcons() {
     { name: 'Herbal Capsules', image: '/images/products/capsule-1.jpg', link: '/herbal-capsules' },
     { name: 'Herbal Tea', image: '/images/products/tea-1.jpg', link: '/herbal-tea' },
     { name: 'Natural Foods', image: '/images/products/food-1.jpg', link: '/natural-foods' },
+    { name: 'Pure Spices', image: '/images/products/powder-1.jpg', link: '/pure-spices' },
     { name: 'Wellness Packs', image: '/images/category_packs_1784743942477.jpg', link: '/wellness-combos' },
   ];
 
