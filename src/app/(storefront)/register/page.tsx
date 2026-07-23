@@ -9,7 +9,7 @@ import { useAuthStore } from '@/store/authStore';
 function RegisterForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirect') || '/account';
+  const redirect = searchParams.get('redirect') || '/';
   const setSession = useAuthStore((state) => state.setSession);
 
   const [fullName, setFullName] = useState('');
