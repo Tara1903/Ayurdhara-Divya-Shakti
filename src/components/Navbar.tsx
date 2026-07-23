@@ -99,18 +99,18 @@ export default function Navbar() {
       {/* Main Navbar */}
       <nav className="bg-white border-b border-gray-100 sticky top-0 z-[1000] shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="h-20 flex justify-between items-center">
+          <div className="h-16 md:h-20 flex justify-between items-center gap-3 md:gap-6">
             
             {/* Mobile Menu Toggle */}
             <button 
               onClick={() => { setIsMobileMenuOpen(true); document.body.style.overflow = 'hidden'; }} 
-              className="md:hidden text-gray-800 hover:text-[#4B7B3B] p-2 -ml-2"
+              className="md:hidden text-gray-800 hover:text-[#4B7B3B] p-1 flex-shrink-0"
             >
               <Menu size={24} strokeWidth={2} />
             </button>
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center no-underline relative h-10 w-32 md:h-12 md:w-40">
+            {/* Logo (Hidden on Mobile) */}
+            <Link href="/" className="hidden md:flex items-center no-underline relative h-10 w-32 md:h-12 md:w-40 flex-shrink-0">
               <Image 
                 src="/images/logo.png" 
                 alt="Ayurdhara Divya Shakti" 
@@ -120,34 +120,25 @@ export default function Navbar() {
               />
             </Link>
 
-            {/* Desktop Navigation Links (Now moved to CategoryNavbar, leaving only static primary links here) */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</Link>
-              <Link href="/wellness-combos" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">Combos</Link>
-              <Link href="/wellness-guide/how-to-use" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Guide</Link>
-            </div>
-
-            {/* Right Side: Search, Account, Cart */}
-            <div className="flex items-center gap-4 md:gap-6">
-              
-              {/* Desktop Search Bar */}
-              <form onSubmit={handleSearch} className="hidden md:flex relative items-center w-[300px]">
+            {/* Centered Search Bar (Visible on Mobile & Desktop) */}
+            <div className="flex-1 flex justify-center max-w-2xl mx-auto">
+              <form onSubmit={handleSearch} className="relative flex items-center w-full">
                 <Search size={18} className="absolute left-3 text-gray-400" />
                 <input 
                   type="search" 
                   name="q" 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search for organic products..." 
+                  placeholder="Search products..." 
                   autoComplete="off"
-                  className="w-full py-2.5 pl-10 pr-4 bg-[#f9f9f9] border border-gray-200 rounded-full text-sm text-gray-800 font-medium focus:outline-none focus:border-[#4B7B3B] focus:ring-1 focus:ring-[#4B7B3B] transition-all"
+                  className="w-full py-2 pl-10 pr-4 bg-[#f9f9f9] border border-gray-200 rounded-full text-sm text-gray-800 font-medium focus:outline-none focus:border-[#4B7B3B] focus:ring-1 focus:ring-[#4B7B3B] transition-all"
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
                 />
                 
                 {/* Search Suggestions Dropdown */}
                 {showDropdown && (
-                  <div className="absolute top-[110%] right-0 w-[350px] bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-[9999]">
+                  <div className="absolute top-[110%] left-0 right-0 md:w-[450px] md:left-1/2 md:-translate-x-1/2 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-[9999]">
                     {isSearching ? (
                       <div className="p-4 text-center text-sm text-gray-500 font-medium">Searching...</div>
                     ) : searchResults.length > 0 ? (
@@ -182,6 +173,15 @@ export default function Navbar() {
                   </div>
                 )}
               </form>
+            </div>
+
+            {/* Right Side: Links, Account, Cart */}
+            <div className="flex items-center gap-3 md:gap-5 flex-shrink-0">
+              <div className="hidden lg:flex items-center gap-6 mr-2">
+                <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</Link>
+                <Link href="/wellness-combos" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">Combos</Link>
+                <Link href="/wellness-guide/how-to-use" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Guide</Link>
+              </div>
 
               <Link href={user ? '/account' : '/login'} className="hidden md:flex text-gray-700 hover:text-[#4B7B3B] transition-colors">
                 <User size={24} strokeWidth={1.5} />
@@ -213,17 +213,6 @@ export default function Navbar() {
         </div>
         
         <div className="p-4 flex flex-col flex-1 overflow-y-auto">
-          <form onSubmit={(e) => { handleSearch(e); closeMenu(); }} className="relative mb-6">
-            <Search size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input 
-              type="search" 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..." 
-              className="w-full py-3 pl-10 pr-4 bg-gray-100 rounded-xl text-base font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#4B7B3B]"
-            />
-          </form>
-
           <div className="flex flex-col gap-1 pb-6">
             <Link href="/" onClick={closeMenu} className="py-4 text-xl font-bold text-gray-800 border-b border-gray-50">Home</Link>
             
