@@ -134,6 +134,11 @@ export const getActiveProducts = unstable_cache(
       return staticProducts;
     }
 
+    // Fallback if Supabase is connected but hasn't been seeded with data yet
+    if (!data || data.length === 0) {
+      return staticProducts;
+    }
+
     return (data || []).map(mapDbProductToAppProduct);
   },
   ['all-products'],
@@ -182,7 +187,7 @@ export const getAllActiveProductSlugs = unstable_cache(
       .select('slug')
       .eq('is_active', true);
 
-    if (error || !data) {
+    if (error || !data || data.length === 0) {
       return staticProducts.map(p => p.slug);
     }
     return data.map((p: any) => p.slug);
@@ -210,7 +215,7 @@ export const getProductsByCategory = unstable_cache(
       .eq('is_active', true)
       .eq('categories.slug', categorySlug);
 
-    if (error) {
+    if (error || !data || data.length === 0) {
       return staticProducts.filter(p => {
         return p.category.toLowerCase().replace(/ /g, '-') === categorySlug 
           || p.slug.includes(categorySlug);
@@ -246,7 +251,7 @@ export async function searchProductsFromDB(
     .or(`name.ilike.%${term}%,short_description.ilike.%${term}%`)
     .limit(limit);
 
-  if (error || !data) {
+  if (error || !data || data.length === 0) {
     const lowerTerm = term.toLowerCase();
     return staticProducts.filter(p => 
       p.name.toLowerCase().includes(lowerTerm) || 
@@ -284,7 +289,7 @@ export async function getRecommendedProducts(
     .not('slug', 'in', `(${excludeSlugs.map(s => `"${s}"`).join(',')})`)
     .limit(limit);
 
-  if (error || !data) {
+  if (error || !data || data.length === 0) {
     return staticProducts
       .filter(p => categoryNames.includes(p.category) && !excludeSlugs.includes(p.slug))
       .slice(0, limit);
