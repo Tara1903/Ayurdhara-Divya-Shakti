@@ -2,7 +2,25 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 --------------------------------------------------------
--- 1. USERS & PROFILES
+-- 1. APP METADATA (System Initialization State)
+--------------------------------------------------------
+CREATE TABLE app_metadata (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  app_version TEXT NOT NULL DEFAULT '1.0.0',
+  database_initialized BOOLEAN NOT NULL DEFAULT false,
+  seed_version TEXT,
+  last_seeded_at TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Insert a default row so we always have exactly one metadata record to query
+INSERT INTO app_metadata (id, app_version, database_initialized)
+VALUES ('00000000-0000-0000-0000-000000000000', '1.0.0', false)
+ON CONFLICT DO NOTHING;
+
+--------------------------------------------------------
+-- 2. USERS & PROFILES
 --------------------------------------------------------
 CREATE TABLE profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,

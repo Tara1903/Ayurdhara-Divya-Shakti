@@ -254,6 +254,14 @@ export default function Navbar() {
               </div>
             ))}
             
+            <Link 
+              href="/business-opportunity" 
+              onClick={closeMenu} 
+              className="w-full py-4 flex items-center justify-between text-xl font-bold text-[#E88B23] border-b border-gray-50"
+            >
+              Business Opportunity
+            </Link>
+
             <div className="mt-4 pt-4">
               <span className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 block">Wellness Guide</span>
               {wellnessGuideLinks.map(link => (

@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import { products } from '../data/productData';
 
-// Load environment variables from .env.local
+// Load environment variables
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
 
@@ -17,7 +17,15 @@ if (!supabaseUrl || !supabaseKey || supabaseUrl === 'https://placeholder.supabas
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function seedDatabase() {
+  const startTime = Date.now();
   console.log('🌱 Starting Supabase database seed...');
+
+  const report = {
+    inserted: 0,
+    updated: 0,
+    skipped: 0,
+    errors: 0
+  };
 
   try {
     // 1. Seed Categories
@@ -35,70 +43,120 @@ async function seedDatabase() {
       .select();
 
     if (categoryError) throw categoryError;
-    console.log(`✅ Seeded ${insertedCategories?.length || 0} categories.`);
+    console.log(`✅ Upserted ${insertedCategories?.length || 0} categories.`);
 
-    // Helper map to quickly get category_id
     const categoryMap = new Map(insertedCategories?.map(c => [c.name, c.id]));
 
     // 2. Seed Products
     console.log('Seeding Products...');
     for (const product of products) {
-      const categoryId = categoryMap.get(product.category);
+      try {
+        const categoryId = categoryMap.get(product.category);
 
-      const productPayload = {
-        slug: product.slug,
-        name: product.name,
-        category_id: categoryId,
-        short_description: product.shortDescription,
-        full_description: product.fullDescription,
-        story: product.story,
-        primary_benefit: product.benefit,
-        rating: product.rating,
-        review_count: product.reviewCount,
-        badge: product.badge,
-        ideal_for: product.idealFor,
-        usage_instructions: product.usageInstructions,
-        is_active: true
-      };
-
-      const { data: insertedProduct, error: productError } = await supabase
-        .from('products')
-        .upsert(productPayload, { onConflict: 'slug' })
-        .select()
-        .single();
-
-      if (productError) {
-        console.error(`❌ Failed to seed product: ${product.name}`, productError);
-        continue;
-      }
-
-      console.log(`✅ Seeded product: ${product.name}`);
-
-      // Seed Variants
-      if (product.variants && insertedProduct) {
-        const variantsToInsert = product.variants.map(v => ({
-          product_id: insertedProduct.id,
-          size: v.size,
-          price: v.price,
-          original_price: v.originalPrice,
-          gold_member_price: v.goldMemberPrice,
+        const productPayload = {
+          slug: product.slug,
+          name: product.name,
+          category_id: categoryId,
+          short_description: product.shortDescription,
+          full_description: product.fullDescription,
+          story: product.story,
+          primary_benefit: product.benefit,
+          rating: product.rating,
+          review_count: product.reviewCount,
+          badge: product.badge,
+          ideal_for: product.idealFor,
+          usage_instructions: product.usageInstructions,
           is_active: true
-        }));
+        };
 
-        const { error: variantError } = await supabase
-          .from('product_variants')
-          .insert(variantsToInsert);
-          
-        if (variantError && variantError.code !== '23505') { // ignore duplicate keys if re-running
-           console.error(`   ⚠️ Failed to seed variants for ${product.name}:`, variantError);
+        const { data: existingProduct } = await supabase
+          .from('products')
+          .select('id')
+          .eq('slug', product.slug)
+          .single();
+
+        const { data: upsertedProduct, error: productError } = await supabase
+          .from('products')
+          .upsert(productPayload, { onConflict: 'slug' })
+          .select()
+          .single();
+
+        if (productError) {
+          console.error(`❌ Failed to seed product: ${product.name}`, productError);
+          report.errors++;
+          continue;
         }
+
+        if (existingProduct) {
+          report.updated++;
+        } else {
+          report.inserted++;
+        }
+
+        // Seed Variants
+        if (product.variants && upsertedProduct) {
+          // Delete existing variants for fresh insert to ensure idempotency
+          await supabase
+            .from('product_variants')
+            .delete()
+            .eq('product_id', upsertedProduct.id);
+
+          const variantsToInsert = product.variants.map(v => ({
+            product_id: upsertedProduct.id,
+            size: v.size,
+            price: v.price,
+            original_price: v.originalPrice,
+            gold_member_price: v.goldMemberPrice,
+            is_active: true
+          }));
+
+          const { error: variantError } = await supabase
+            .from('product_variants')
+            .insert(variantsToInsert);
+            
+          if (variantError) {
+             console.error(`   ⚠️ Failed to seed variants for ${product.name}:`, variantError);
+             report.errors++;
+          }
+        }
+      } catch (err) {
+        console.error(`❌ Unexpected error processing ${product.name}:`, err);
+        report.errors++;
       }
     }
 
-    console.log('🎉 Seeding completed successfully!');
+    // 3. Update app_metadata
+    console.log('Updating app_metadata...');
+    const { error: metadataError } = await supabase
+      .from('app_metadata')
+      .update({
+        database_initialized: true,
+        seed_version: '1.0.0',
+        last_seeded_at: new Date().toISOString()
+      })
+      .eq('id', '00000000-0000-0000-0000-000000000000');
+
+    if (metadataError) {
+       console.error('⚠️ Could not update app_metadata:', metadataError);
+    } else {
+       console.log('✅ app_metadata updated successfully.');
+    }
+
+    const duration = ((Date.now() - startTime) / 1000).toFixed(1);
+
+    console.log('\n==============================');
+    console.log('         SEED REPORT          ');
+    console.log('==============================');
+    console.log(`Inserted : ${report.inserted}`);
+    console.log(`Updated  : ${report.updated}`);
+    console.log(`Skipped  : ${report.skipped}`);
+    console.log(`Errors   : ${report.errors}`);
+    console.log(`\nCompleted in ${duration}s`);
+    console.log('==============================\n');
     
   } catch (err) {
-    console.error('❌ Seeding failed:', err);
+    console.error('❌ Seeding failed with critical error:', err);
+    process.exit(1);
   }
 }
 

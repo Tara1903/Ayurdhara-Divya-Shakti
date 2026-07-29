@@ -89,6 +89,17 @@ export default function CategoryNavbar() {
               </li>
             );
           })}
+          {/* Business Opportunity Link */}
+          <li className="h-full flex items-center group relative ml-auto pl-4 border-l border-gray-100">
+             <Link 
+               href="/business-opportunity"
+               className={`flex items-center gap-1 text-sm font-bold uppercase tracking-wider transition-colors h-full ${
+                 pathname === '/business-opportunity' ? 'text-[#E88B23]' : 'text-[#E88B23] hover:text-[#D9381E]'
+               }`}
+             >
+               Business Opportunity
+             </Link>
+          </li>
         </ul>
       </div>
     </div>
