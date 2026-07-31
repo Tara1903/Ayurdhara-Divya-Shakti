@@ -137,37 +137,39 @@ export default function CampaignHeroSlider() {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* ================================================================
-          MASTER ENVIRONMENT (Static & Consistent)
+          MASTER ENVIRONMENT (Completely Locked Camera)
           ================================================================ */}
-      {/* Paper texture overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03] z-[1]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
+        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}
       />
-
-      {/* Lighting / Halo */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full opacity-[0.1]" style={{ background: 'radial-gradient(circle, #E88B23 0%, transparent 65%)' }} />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-[0.05]" style={{ background: 'radial-gradient(circle, #4B7B3B 0%, transparent 70%)' }} />
       </div>
 
       {/* ================================================================
-          SLIDER CONTENT (Transitions smoothly)
+          SLIDER CONTENT (Staggered Cinematic Timeline)
+          Easing: cubic-bezier(.22,.61,.36,1)
           ================================================================ */}
       <div className="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8 h-full flex flex-col justify-center min-h-[min(90vh,800px)] pt-12 pb-24">
         
         {slides.map((slide, index) => {
           const isActive = index === currentSlide;
+          
+          // Custom transition style for the Apple-like luxury feel
+          const transitionStyle = { transitionTimingFunction: 'cubic-bezier(.22,.61,.36,1)' };
+          
           return (
             <div 
               key={slide.id}
-              className={`absolute inset-0 flex flex-col lg:flex-row items-center justify-between px-6 lg:px-8 py-12 lg:py-0 transition-opacity duration-700 ease-in-out ${isActive ? 'opacity-100 pointer-events-auto z-20' : 'opacity-0 pointer-events-none z-0'}`}
+              className={`absolute inset-0 flex flex-col lg:flex-row items-center justify-between px-6 lg:px-8 py-12 lg:py-0 transition-opacity duration-1000 ${isActive ? 'opacity-100 pointer-events-auto z-20' : 'opacity-0 pointer-events-none z-0'}`}
+              style={transitionStyle}
             >
               
               {/* LEFT SIDE CONTENT */}
               <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left mt-10 lg:mt-0">
+                
                 {/* Mobile Logo */}
                 <div className="flex lg:hidden justify-center mb-6">
                   <div className="relative w-[65%] max-w-[280px] aspect-[765/589]" style={{ mixBlendMode: 'multiply' }}>
@@ -175,30 +177,28 @@ export default function CampaignHeroSlider() {
                   </div>
                 </div>
 
-                {/* Eyebrow & Trust Chips */}
+                {/* Trust Chips (650ms delay) */}
                 <div 
-                  className={`flex items-center justify-center lg:justify-start gap-3 mb-6 transition-all duration-700 delay-100 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  className={`flex items-center justify-center lg:justify-start gap-3 mb-6 transition-all duration-[600ms] ${isActive ? 'opacity-100 translate-y-0 delay-[650ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
+                  style={transitionStyle}
                 >
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: slide.accentColor }}>
-                    Premium Collection
-                  </span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: slide.accentColor }}>Premium Collection</span>
                   <span className="text-xs text-[#E88B23]">✦</span>
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8C9B86]">
-                    100% Organic
-                  </span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8C9B86]">100% Organic</span>
                 </div>
 
-                {/* Headline */}
+                {/* Headline (450ms delay) */}
                 <h1 
-                  className={`font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-[#2D5A27] transition-all duration-700 delay-200 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                  style={{ whiteSpace: 'pre-line' }}
+                  className={`font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-[#2D5A27] transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[450ms]' : 'opacity-0 translate-y-8 delay-[0ms]'}`}
+                  style={{ whiteSpace: 'pre-line', ...transitionStyle }}
                 >
                   {slide.headline}
                 </h1>
 
-                {/* Offer / Info Pill */}
+                {/* Description / Products Pill (550ms delay) */}
                 <div 
-                  className={`inline-flex items-center justify-center lg:justify-start gap-2 mb-6 transition-all duration-700 delay-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  className={`inline-flex items-center justify-center lg:justify-start gap-2 mb-6 transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[550ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
+                  style={transitionStyle}
                 >
                   <div className="bg-[#FAF9F6] border border-[#E5E0D8] px-4 py-2 rounded-full shadow-sm">
                     <p className="text-sm text-gray-700 font-medium font-sans">
@@ -208,14 +208,13 @@ export default function CampaignHeroSlider() {
                   </div>
                 </div>
 
-                {/* Buttons */}
+                {/* CTA Buttons (700ms delay) */}
                 <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start transition-all duration-700 delay-400 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  className={`flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[700ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
+                  style={transitionStyle}
                 >
                   <Link href="/collections" className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-white overflow-hidden rounded-md w-full sm:w-auto shadow-xl hover:shadow-2xl transition-all duration-300" style={{ backgroundColor: slide.accentColor }}>
-                    <span className="relative z-10 flex items-center gap-2">
-                      Explore Collection <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
+                    <span className="relative z-10 flex items-center gap-2">Explore Collection <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></span>
                   </Link>
                   <Link href="/wellness-guide/daily-wellness-routine" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-[#2D5A27] bg-transparent border border-[#2D5A27] rounded-md w-full sm:w-auto hover:bg-[#2D5A27] hover:text-white transition-colors duration-300">
                     Find Your Ritual
@@ -226,37 +225,30 @@ export default function CampaignHeroSlider() {
               {/* RIGHT SIDE COMPOSITION & FLOATING CARD */}
               <div className="w-full lg:w-[55%] relative h-[400px] lg:h-full flex items-center justify-center lg:justify-end mt-12 lg:mt-0">
                 
-                {/* Product Composition (Blended into background) */}
+                {/* Product Composition (New products slide upward 20px at 300ms, Old fade at 150ms) */}
                 <div 
-                  className={`absolute inset-0 right-0 w-full lg:w-[120%] h-full mix-blend-multiply transition-all duration-1000 ease-out ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                  className={`absolute inset-0 right-0 w-full lg:w-[120%] h-full mix-blend-multiply transition-all duration-[1000ms] ${isActive ? 'opacity-100 translate-y-0 delay-[300ms]' : 'opacity-0 translate-y-5 delay-[150ms]'}`}
                   style={{
                     WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
                     maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
+                    ...transitionStyle
                   }}
                 >
-                  <Image
-                    src={slide.imagePath}
-                    alt={slide.headline.replace('\n', ' ')}
-                    fill
-                    className="object-cover object-center lg:object-right"
-                    priority={index === 0}
-                  />
+                  <Image src={slide.imagePath} alt={slide.headline.replace('\n', ' ')} fill className="object-cover object-center lg:object-right" priority={index === 0} />
                 </div>
 
-                {/* Circular Trust Badge */}
+                {/* Circular Trust Badge (900ms delay) */}
                 <div 
-                  className={`absolute top-[10%] lg:top-[15%] right-[5%] w-24 h-24 lg:w-32 lg:h-32 rounded-full border-2 border-white shadow-2xl flex items-center justify-center text-center p-2 z-30 transition-all duration-700 delay-500 ${isActive ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-12 scale-50'}`}
-                  style={{ backgroundColor: slide.accentColor }}
+                  className={`absolute top-[10%] lg:top-[15%] right-[5%] w-24 h-24 lg:w-32 lg:h-32 rounded-full border-2 border-white shadow-2xl flex items-center justify-center text-center p-2 z-30 transition-all duration-[700ms] ${isActive ? 'opacity-100 rotate-0 scale-100 delay-[900ms]' : 'opacity-0 -rotate-12 scale-90 delay-[0ms]'}`}
+                  style={{ backgroundColor: slide.accentColor, ...transitionStyle }}
                 >
-                  <p className="text-[10px] lg:text-xs font-bold text-white uppercase tracking-widest leading-tight whitespace-pre-line">
-                    {slide.trustBadge}
-                  </p>
+                  <p className="text-[10px] lg:text-xs font-bold text-white uppercase tracking-widest leading-tight whitespace-pre-line">{slide.trustBadge}</p>
                 </div>
 
-                {/* Premium Glassmorphic Floating Card */}
+                {/* Premium Glassmorphic Floating Card (800ms delay, Slides in from right, exits right) */}
                 <div 
-                  className={`absolute bottom-[5%] lg:bottom-[15%] right-0 lg:right-[-20px] w-[280px] lg:w-[320px] rounded-2xl border border-white/40 p-6 shadow-[0_30px_60px_rgba(0,0,0,0.1)] backdrop-blur-md z-30 transition-all duration-700 delay-300 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
-                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}
+                  className={`absolute bottom-[5%] lg:bottom-[15%] right-0 lg:right-[-20px] w-[280px] lg:w-[320px] rounded-2xl border border-white/40 p-6 shadow-[0_30px_60px_rgba(0,0,0,0.1)] backdrop-blur-md z-30 transition-all duration-[800ms] ${isActive ? 'opacity-100 translate-x-0 delay-[800ms]' : 'opacity-0 translate-x-[40px] delay-[0ms]'}`}
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', ...transitionStyle }}
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <ShieldCheck size={20} style={{ color: slide.accentColor }} />
@@ -277,22 +269,14 @@ export default function CampaignHeroSlider() {
           );
         })}
         
-        {/* MANUAL NAVIGATION (Next/Prev Arrows - Desktop only) */}
-        <div className="hidden lg:flex absolute left-4 xl:left-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button 
-            onClick={handlePrev}
-            className="w-12 h-12 rounded-full bg-white/50 border border-[#E5E0D8] backdrop-blur-sm flex items-center justify-center text-[#2D5A27] hover:bg-white hover:shadow-lg transition-all"
-            aria-label="Previous Slide"
-          >
+        {/* MANUAL NAVIGATION (Desktop only) */}
+        <div className="hidden lg:flex absolute left-4 xl:left-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <button onClick={handlePrev} className="w-12 h-12 rounded-full bg-white/50 border border-[#E5E0D8] backdrop-blur-sm flex items-center justify-center text-[#2D5A27] hover:bg-white hover:shadow-lg transition-all" aria-label="Previous Slide">
             <ChevronLeft size={24} />
           </button>
         </div>
-        <div className="hidden lg:flex absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button 
-            onClick={handleNext}
-            className="w-12 h-12 rounded-full bg-white/50 border border-[#E5E0D8] backdrop-blur-sm flex items-center justify-center text-[#2D5A27] hover:bg-white hover:shadow-lg transition-all"
-            aria-label="Next Slide"
-          >
+        <div className="hidden lg:flex absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <button onClick={handleNext} className="w-12 h-12 rounded-full bg-white/50 border border-[#E5E0D8] backdrop-blur-sm flex items-center justify-center text-[#2D5A27] hover:bg-white hover:shadow-lg transition-all" aria-label="Next Slide">
             <ChevronRight size={24} />
           </button>
         </div>
@@ -300,7 +284,7 @@ export default function CampaignHeroSlider() {
       </div>
 
       {/* ================================================================
-          BOTTOM FEATURE PANEL & PAGINATION
+          BOTTOM FEATURE PANEL & PAGINATION (Completely Fixed)
           ================================================================ */}
       <div className="absolute bottom-0 left-0 right-0 z-30">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8 py-4 lg:py-6 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-[#E5E0D8]/40 backdrop-blur-sm bg-white/30">
@@ -308,16 +292,8 @@ export default function CampaignHeroSlider() {
           {/* Pagination Dots */}
           <div className="flex items-center gap-3 order-2 md:order-1">
             {slides.map((slide, index) => (
-              <button
-                key={slide.id}
-                onClick={() => goToSlide(index)}
-                className="group relative flex items-center justify-center w-8 h-8"
-                aria-label={`Go to slide ${index + 1}`}
-              >
-                <div 
-                  className={`absolute w-full h-[2px] transition-all duration-300 ${index === currentSlide ? 'bg-[#2D5A27]' : 'bg-[#2D5A27]/20 group-hover:bg-[#2D5A27]/50'}`}
-                  style={index === currentSlide ? { backgroundColor: activeSlide.accentColor } : {}}
-                />
+              <button key={slide.id} onClick={() => goToSlide(index)} className="group relative flex items-center justify-center w-8 h-8" aria-label={`Go to slide ${index + 1}`}>
+                <div className={`absolute w-full h-[2px] transition-all duration-300 ${index === currentSlide ? 'bg-[#2D5A27]' : 'bg-[#2D5A27]/20 group-hover:bg-[#2D5A27]/50'}`} style={index === currentSlide ? { backgroundColor: activeSlide.accentColor } : {}} />
               </button>
             ))}
           </div>
