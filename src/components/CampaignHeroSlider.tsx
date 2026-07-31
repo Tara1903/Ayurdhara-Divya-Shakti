@@ -168,7 +168,7 @@ export default function CampaignHeroSlider() {
             >
               
               {/* LEFT SIDE CONTENT */}
-              <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left mt-10 lg:mt-0">
+              <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left mt-10 lg:mt-0 pb-32 lg:pb-20 z-20">
                 
                 {/* Mobile Logo */}
                 <div className="flex lg:hidden justify-center mb-6">
