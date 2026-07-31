@@ -17,11 +17,15 @@ export const navigationData: Category[] = [
     slug: "oil-wellness-care",
     description: "Traditional Ayurvedic oil blends for deep nourishment and holistic healing.",
     subcategories: [
-      { name: "Nabhi Oil Blends", slug: "nabhi-oil-blends" },
-      { name: "Feet Wellness Oil", slug: "feet-wellness-oil" },
+      { name: "Kids Care Oil Blend", slug: "kids-care" },
+      { name: "Men Wellness Oil Blend", slug: "men-wellness" },
+      { name: "Women Wellness Oil Blend", slug: "women-wellness" },
+      { name: "Senior Care Oil Blend", slug: "senior-care" },
+      { name: "Feet Massage Oil", slug: "feet-massage-oil" },
       { name: "Hair Wellness Oil", slug: "hair-wellness-oil" },
-      { name: "Wellness Packs", slug: "wellness-packs" },
-      { name: "Family Wellness Packs", slug: "family-wellness-packs" },
+      { name: "Individual Wellness Packs", slug: "individual-wellness-packs" },
+      { name: "Family Trial Wellness Packs", slug: "family-trial-wellness-packs" },
+      { name: "Family Gold Wellness Packs", slug: "family-gold-wellness-packs" },
     ]
   },
   {
