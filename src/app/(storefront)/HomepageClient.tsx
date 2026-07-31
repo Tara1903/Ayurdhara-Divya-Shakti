@@ -68,7 +68,20 @@ function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center min-h-[calc(100vh-80px)] py-12 lg:pt-12 lg:pb-24 gap-8 lg:gap-0">
 
           {/* LEFT SIDE — 45% Content */}
-          <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 pt-4 lg:pt-0">
+          <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left order-1 pt-4 lg:pt-0">
+
+            {/* MOBILE ONLY LOGO */}
+            <div className="flex lg:hidden justify-center mb-5 mt-6 animate-fade-in" style={{ animationDuration: '500ms' }}>
+              <div className="relative w-[65%] max-w-[280px] aspect-[765/589]" style={{ mixBlendMode: 'multiply' }}>
+                <Image
+                  src="/images/ayurdhara_logo_hero.jpg"
+                  alt="Ayurdhara Divya Shakti Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
 
             {/* Eyebrow */}
             <div className="hero-fade-in-up flex items-center justify-center lg:justify-start gap-3 mb-6">
@@ -132,7 +145,7 @@ function HeroSection() {
             </p>
 
             {/* Trust Icons — 4 in a row (ABOVE buttons per reference) */}
-            <div className="hero-fade-in-up-delay-3 grid grid-cols-4 gap-3 max-w-sm mx-auto lg:mx-0 mb-8">
+            <div className="hero-fade-in-up-delay-3 grid grid-cols-4 gap-3 max-w-sm mx-auto lg:mx-0 mb-8 lg:mb-8">
               {[
                 { icon: TrustNaturalIcon, label: '100%\nNatural' },
                 { icon: TrustAyurvedicIcon, label: 'Ayurvedic\nFormula' },
@@ -159,8 +172,8 @@ function HeroSection() {
               ))}
             </div>
 
-            {/* CTA Buttons (BELOW trust icons per reference) */}
-            <div className="hero-fade-in-up-delay-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            {/* CTA Buttons (Desktop Only, hidden on mobile to appear below product) */}
+            <div className="hidden lg:flex hero-fade-in-up-delay-4 flex-col sm:flex-row gap-4 justify-start">
               <Link
                 href="/collections"
                 className="hero-btn-primary inline-flex items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl shadow-lg"
@@ -189,7 +202,7 @@ function HeroSection() {
           </div>
 
           {/* RIGHT SIDE — 55% Product Composition */}
-          <div className="w-full lg:w-[55%] flex items-center justify-center order-1 lg:order-2 relative">
+          <div className="w-full lg:w-[55%] flex flex-col items-center justify-center order-2 relative">
 
             {/* Large circular golden glow behind products */}
             <div
@@ -234,6 +247,34 @@ function HeroSection() {
                 <br />
                 Customers
               </span>
+            </div>
+            
+            {/* CTA Buttons (Mobile Only, appears below product) */}
+            <div className="flex lg:hidden hero-fade-in-up flex-col w-full gap-4 mt-8 justify-center px-4">
+              <Link
+                href="/collections"
+                className="hero-btn-primary w-full inline-flex items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl shadow-lg"
+                style={{
+                  backgroundColor: 'var(--forest)',
+                  color: '#FFFFFF',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Shop Now
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </Link>
+              <Link
+                href="/collections"
+                className="hero-btn-secondary w-full inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl border-2"
+                style={{
+                  backgroundColor: 'transparent',
+                  color: 'var(--forest)',
+                  borderColor: 'var(--forest)',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Explore Collection
+              </Link>
             </div>
           </div>
         </div>
