@@ -1,13 +1,15 @@
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { Plus, Search, Filter, Edit, Trash2, Image as ImageIcon } from 'lucide-react';
+import { getActiveProducts } from '@/lib/dal/products';
 
 export const revalidate = 0;
 
 export default async function ProductsListPage() {
   const supabase = await createClient();
   
-  const { data: products } = await supabase
+  // Attempt to fetch from DB
+  const { data: dbProducts, error } = await supabase
     .from('products')
     .select(`
       id,
@@ -18,6 +20,21 @@ export default async function ProductsListPage() {
       categories(name)
     `)
     .order('created_at', { ascending: false });
+    
+  let products = dbProducts;
+  
+  // If DB fails or returns null (e.g., placeholder config), fallback to DAL which manages the static fallback
+  if (error || !dbProducts || dbProducts.length === 0) {
+    const dalProducts = await getActiveProducts();
+    products = dalProducts.map(p => ({
+      id: p.id,
+      name: p.name,
+      slug: p.slug,
+      is_active: true,
+      primary_image_url: p.images[0] || null,
+      categories: { name: p.category }
+    }));
+  }
 
   return (
     <div className="space-y-6">
