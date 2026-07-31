@@ -3,8 +3,9 @@ import CategoryPageClient from './CategoryPageClient';
 import { getCategoryBySlug } from '@/data/categoryData';
 import { getActiveProducts } from '@/lib/dal/products';
 
-export async function generateMetadata({ params }: { params: { category: string } }) {
-  const category = getCategoryBySlug(params.category);
+export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
+  const resolvedParams = await params;
+  const category = getCategoryBySlug(resolvedParams.category);
   if (!category) return { title: 'Category Not Found' };
   
   return {
@@ -13,8 +14,9 @@ export async function generateMetadata({ params }: { params: { category: string 
   };
 }
 
-export default async function CategoryPage({ params }: { params: { category: string } }) {
-  const category = getCategoryBySlug(params.category);
+export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
+  const resolvedParams = await params;
+  const category = getCategoryBySlug(resolvedParams.category);
   if (!category) {
     notFound();
   }
@@ -29,16 +31,16 @@ export default async function CategoryPage({ params }: { params: { category: str
     const catNameLower = category.name.toLowerCase();
     
     // Special handling since db categories might not strictly match the new navigation yet
-    if (params.category === 'oil-wellness-care') return prodCatLower.includes('oil') || prodCatLower.includes('nabhi') || prodCatLower.includes('feet');
-    if (params.category === 'wellness-combos') return prodCatLower.includes('pack') || prodCatLower.includes('combo');
-    if (params.category === 'hair-wellness-oil') return prodCatLower.includes('hair');
+    if (resolvedParams.category === 'oil-wellness-care') return prodCatLower.includes('oil') || prodCatLower.includes('nabhi') || prodCatLower.includes('feet');
+    if (resolvedParams.category === 'wellness-combos') return prodCatLower.includes('pack') || prodCatLower.includes('combo');
+    if (resolvedParams.category === 'hair-wellness-oil') return prodCatLower.includes('hair');
 
     return prodCatLower.includes(catNameLower) || catNameLower.includes(prodCatLower);
   });
 
   return (
     <CategoryPageClient 
-      categorySlug={params.category} 
+      categorySlug={resolvedParams.category} 
       initialProducts={matchingProducts} 
     />
   );
