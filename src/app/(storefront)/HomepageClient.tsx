@@ -65,7 +65,7 @@ function HeroSection() {
           DESKTOP HERO LAYOUT — 45/55 Split
           ================================================================ */}
       <div className="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center min-h-[calc(100vh-80px)] py-12 lg:py-0 gap-8 lg:gap-0">
+        <div className="flex flex-col lg:flex-row items-center min-h-[calc(100vh-80px)] py-12 lg:pt-12 lg:pb-24 gap-8 lg:gap-0">
 
           {/* LEFT SIDE — 45% Content */}
           <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 pt-4 lg:pt-0">
@@ -242,7 +242,7 @@ function HeroSection() {
       {/* ================================================================
           BOTTOM INFORMATION BAR — 4 Columns
           ================================================================ */}
-      <div className="relative z-10 pb-8 lg:pb-12 -mt-4 lg:-mt-8">
+      <div className="relative z-10 pb-8 lg:pb-12 mt-8 lg:mt-4">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
           <div
             className="hero-fade-in-up-delay-5 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 p-4 lg:p-5 rounded-2xl"
