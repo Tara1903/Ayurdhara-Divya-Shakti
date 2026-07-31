@@ -1,0 +1,111 @@
+{
+  "id": "senior-balance-blend",
+  "slug": "senior-balance-blend",
+  "name": "Senior Balance Oil Blend",
+  "category": "Senior Care",
+  "shortDescription": "Premium Senior Care daily wellness support.",
+  "fullDescription": "The Senior Balance Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care.",
+  "story": "Rooted in ancient Ayurvedic texts, our navel therapy (Nabhi Chikitsa) blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+  "benefit": "Supports daily vitality, balance, and holistic wellness.",
+  "benefits": [
+    {
+      "icon": "Sparkles",
+      "text": "Deep Nourishment"
+    },
+    {
+      "icon": "Leaf",
+      "text": "100% Pure & Natural"
+    },
+    {
+      "icon": "Shield",
+      "text": "Holistic Balance"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Cold-pressed Sesame Oil",
+      "botanical": "Sesamum indicum",
+      "role": "Nourishing base"
+    },
+    {
+      "name": "Pure Almond Oil",
+      "botanical": "Prunus amygdalus",
+      "role": "Rich in vitamins"
+    },
+    {
+      "name": "Traditional Ayurvedic Herbs",
+      "botanical": "Various",
+      "role": "Holistic wellness"
+    }
+  ],
+  "images": [
+    "/images/products/nabhi-senior-balance-15ml.jpg"
+  ],
+  "variants": [
+    {
+      "size": "Trial 10 ml",
+      "price": 199,
+      "originalPrice": 299,
+      "image": "/images/products/nabhi-senior-balance-10ml.jpg"
+    },
+    {
+      "size": "Gold 15 ml",
+      "price": 349,
+      "originalPrice": 499,
+      "image": "/images/products/nabhi-senior-balance-15ml.jpg"
+    },
+    {
+      "size": "Premium 60 ml",
+      "price": 899,
+      "originalPrice": 1199,
+      "image": "/images/products/nabhi-senior-balance-15ml.jpg"
+    }
+  ],
+  "price": 199,
+  "originalPrice": 299,
+  "discount": 33,
+  "rating": 4.8,
+  "reviewCount": 107,
+  "badge": "Bestseller",
+  "healthGoals": [
+    "Daily Wellness",
+    "Nourishment",
+    "Balance"
+  ],
+  "idealFor": [
+    "Senior",
+    "Daily Use"
+  ],
+  "usageInstructions": {
+    "serving": "2-5 drops",
+    "timing": "Before bedtime",
+    "instructions": "Apply 2-5 drops on the navel and massage gently in a circular motion. Leave overnight for best results."
+  },
+  "specifications": {
+    "Form": "Oil",
+    "Application": "Navel (Nabhi)",
+    "Purity": "100% Natural"
+  },
+  "certifications": [
+    "100% Natural",
+    "Cruelty-Free",
+    "Ayurvedic Formulation"
+  ],
+  "faqs": [
+    {
+      "question": "How often should I use this?",
+      "answer": "For best results, use daily before bedtime."
+    },
+    {
+      "question": "Is it safe for sensitive skin?",
+      "answer": "Yes, our oils are 100% natural and gentle. However, we recommend a patch test first."
+    }
+  ],
+  "relatedProductIds": [
+    "feet-wellness-oil"
+  ],
+  "routineProductIds": [
+    "feet-wellness-oil"
+  ],
+  "goldMembershipEligible": true
+}

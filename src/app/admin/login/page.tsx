@@ -17,6 +17,13 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError(null);
 
+    // Master Admin fallback authentication
+    if (email.trim().toLowerCase() === 'admin@ayurdhara.com' && password === 'Ayurdhara@2026') {
+      document.cookie = 'admin_token=active_master_admin; path=/; max-age=86400; SameSite=Lax';
+      router.push('/admin');
+      return;
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -40,11 +47,12 @@ export default function AdminLoginPage() {
         throw new Error('Unauthorized. You do not have admin access.');
       }
 
+      document.cookie = 'admin_token=active_master_admin; path=/; max-age=86400; SameSite=Lax';
       // Success, redirect to dashboard
       router.push('/admin');
       
     } catch (err: any) {
-      setError(err.message || 'Failed to login');
+      setError(err.message || 'Failed to login. Please check email and password.');
     } finally {
       setLoading(false);
     }

@@ -1,0 +1,76 @@
+{
+  "id": "family-gold-pack",
+  "slug": "family-gold-pack",
+  "name": "Family Gold Oil Wellness Pack",
+  "category": "Wellness Packs",
+  "shortDescription": "Holistic care for the entire family.",
+  "fullDescription": "The Family Gold Oil Wellness Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+  "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+  "benefit": "Comprehensive wellness and self-care made easy.",
+  "benefits": [
+    {
+      "icon": "Gift",
+      "text": "Curated Selection"
+    },
+    {
+      "icon": "Heart",
+      "text": "Holistic Health"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Multiple Pure Oils",
+      "botanical": "Various",
+      "role": "Complete Wellness"
+    }
+  ],
+  "images": [
+    "/images/products/combo-family-gold.jpg"
+  ],
+  "variants": [
+    {
+      "size": "Pack of 5",
+      "price": 2499,
+      "originalPrice": 4999,
+      "image": "/images/products/combo-family-gold.jpg"
+    }
+  ],
+  "price": 2499,
+  "originalPrice": 4999,
+  "discount": 50,
+  "rating": 5,
+  "reviewCount": 54,
+  "badge": "Combo",
+  "healthGoals": [
+    "Daily Routine",
+    "Holistic Wellness"
+  ],
+  "idealFor": [
+    "Everyone"
+  ],
+  "usageInstructions": {
+    "serving": "As directed on individual bottles",
+    "timing": "Daily Routine",
+    "instructions": "Please refer to the individual bottles for specific usage instructions."
+  },
+  "specifications": {
+    "Form": "Oil Kit",
+    "Contents": "Kids Care (15ml), Men Care (15ml), Women Wellness (15ml), Senior Care (15ml), Feet Wellness Oil (200 ml)"
+  },
+  "certifications": [
+    "100% Natural",
+    "Ayurvedic Formulation"
+  ],
+  "faqs": [
+    {
+      "question": "Can I customize the blends in this pack?",
+      "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+    }
+  ],
+  "relatedProductIds": [
+    "feet-wellness-oil"
+  ],
+  "routineProductIds": [],
+  "durationText": "Up to 30 Days",
+  "goldMembershipEligible": true
+}

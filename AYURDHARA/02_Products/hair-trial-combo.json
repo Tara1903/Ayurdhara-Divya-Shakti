@@ -1,0 +1,75 @@
+{
+  "id": "hair-trial-combo",
+  "slug": "hair-trial-combo",
+  "name": "Hair Trial Combo",
+  "category": "Wellness Packs",
+  "shortDescription": "Discover vibrant hair and holistic wellness.",
+  "fullDescription": "The Hair Trial Combo provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+  "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+  "benefit": "Comprehensive wellness and self-care made easy.",
+  "benefits": [
+    {
+      "icon": "Gift",
+      "text": "Curated Selection"
+    },
+    {
+      "icon": "Heart",
+      "text": "Holistic Health"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Multiple Pure Oils",
+      "botanical": "Various",
+      "role": "Complete Wellness"
+    }
+  ],
+  "images": [
+    "/images/products/combo-individual-trial.jpg"
+  ],
+  "variants": [
+    {
+      "size": "Pack of 2",
+      "price": 699,
+      "originalPrice": 1099,
+      "image": "/images/products/combo-individual-trial.jpg"
+    }
+  ],
+  "price": 699,
+  "originalPrice": 1099,
+  "discount": 36,
+  "rating": 5,
+  "reviewCount": 58,
+  "badge": "Combo",
+  "healthGoals": [
+    "Daily Routine",
+    "Holistic Wellness"
+  ],
+  "idealFor": [
+    "Everyone"
+  ],
+  "usageInstructions": {
+    "serving": "As directed on individual bottles",
+    "timing": "Daily Routine",
+    "instructions": "Please refer to the individual bottles for specific usage instructions."
+  },
+  "specifications": {
+    "Form": "Oil Kit",
+    "Contents": "Hair Wellness Oil (50 ml), Nabhi Oil Blend (10 ml)"
+  },
+  "certifications": [
+    "100% Natural",
+    "Ayurvedic Formulation"
+  ],
+  "faqs": [
+    {
+      "question": "Can I customize the blends in this pack?",
+      "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+    }
+  ],
+  "relatedProductIds": [
+    "feet-wellness-oil"
+  ],
+  "routineProductIds": [],
+  "goldMembershipEligible": true
+}

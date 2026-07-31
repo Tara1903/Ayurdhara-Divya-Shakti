@@ -1,0 +1,76 @@
+{
+  "id": "gold-wellness-pack",
+  "slug": "gold-wellness-pack",
+  "name": "Gold Oil Wellness Pack",
+  "category": "Wellness Packs",
+  "shortDescription": "A month of holistic balance and relaxation.",
+  "fullDescription": "The Gold Oil Wellness Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+  "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+  "benefit": "Comprehensive wellness and self-care made easy.",
+  "benefits": [
+    {
+      "icon": "Gift",
+      "text": "Curated Selection"
+    },
+    {
+      "icon": "Heart",
+      "text": "Holistic Health"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Multiple Pure Oils",
+      "botanical": "Various",
+      "role": "Complete Wellness"
+    }
+  ],
+  "images": [
+    "/images/products/combo-individual-gold.jpg"
+  ],
+  "variants": [
+    {
+      "size": "Pack of 2",
+      "price": 699,
+      "originalPrice": 999,
+      "image": "/images/products/combo-individual-gold.jpg"
+    }
+  ],
+  "price": 699,
+  "originalPrice": 999,
+  "discount": 30,
+  "rating": 5,
+  "reviewCount": 58,
+  "badge": "Combo",
+  "healthGoals": [
+    "Daily Routine",
+    "Holistic Wellness"
+  ],
+  "idealFor": [
+    "Everyone"
+  ],
+  "usageInstructions": {
+    "serving": "As directed on individual bottles",
+    "timing": "Daily Routine",
+    "instructions": "Please refer to the individual bottles for specific usage instructions."
+  },
+  "specifications": {
+    "Form": "Oil Kit",
+    "Contents": "1 Nabhi Oil Blend (15 ml), 1 Feet Wellness Oil (50 ml)"
+  },
+  "certifications": [
+    "100% Natural",
+    "Ayurvedic Formulation"
+  ],
+  "faqs": [
+    {
+      "question": "Can I customize the blends in this pack?",
+      "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+    }
+  ],
+  "relatedProductIds": [
+    "feet-wellness-oil"
+  ],
+  "routineProductIds": [],
+  "durationText": "Up to 30 Days",
+  "goldMembershipEligible": true
+}

@@ -62,8 +62,15 @@ export async function proxy(request: NextRequest) {
   // refreshing the auth token
   const { data: { user } } = await supabase.auth.getUser();
 
+  // Check for Master Admin Token cookie
+  const masterAdminToken = request.cookies.get('admin_token')?.value;
+
   // If we are accessing an admin route (except login)
   if (request.nextUrl.pathname.startsWith('/admin') && !request.nextUrl.pathname.startsWith('/admin/login')) {
+    if (masterAdminToken === 'active_master_admin') {
+      return supabaseResponse;
+    }
+
     // If no user, redirect to login
     if (!user) {
       const url = request.nextUrl.clone();
@@ -87,7 +94,12 @@ export async function proxy(request: NextRequest) {
   }
 
   // If user is admin and tries to access /admin/login, redirect to /admin
-  if (request.nextUrl.pathname === '/admin/login' && user) {
+  if (request.nextUrl.pathname === '/admin/login' && (masterAdminToken === 'active_master_admin' || user)) {
+    if (masterAdminToken === 'active_master_admin') {
+      const url = request.nextUrl.clone();
+      url.pathname = '/admin';
+      return NextResponse.redirect(url);
+    }
     const { data: profile } = await supabase
       .from('profiles')
       .select('role')

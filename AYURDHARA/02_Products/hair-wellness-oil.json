@@ -1,0 +1,101 @@
+{
+  "id": "hair-wellness-oil",
+  "slug": "hair-wellness-oil",
+  "name": "Hair Wellness Oil",
+  "category": "Hair Care",
+  "shortDescription": "Premium nourishment for strong, healthy-looking hair.",
+  "fullDescription": "Experience the ultimate scalp and hair care with our Hair Wellness Oil. A luxurious blend of premium base oils and traditional Ayurvedic herbs designed to deeply condition and soften your hair.",
+  "story": "Crafted from ancient recipes, this blend combines Bhringraj and Amla with rich base oils to provide unparalleled nourishment for your crown.",
+  "benefit": "Nourishes scalp, conditions hair, and enhances natural shine.",
+  "benefits": [
+    {
+      "icon": "Star",
+      "text": "Enhanced Shine"
+    },
+    {
+      "icon": "Shield",
+      "text": "Deep Conditioning"
+    },
+    {
+      "icon": "Leaf",
+      "text": "Scalp Nourishment"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Bhringraj",
+      "botanical": "Eclipta prostrata",
+      "role": "Hair vitality"
+    },
+    {
+      "name": "Amla",
+      "botanical": "Phyllanthus emblica",
+      "role": "Rich in Vitamin C"
+    },
+    {
+      "name": "Coconut Oil",
+      "botanical": "Cocos nucifera",
+      "role": "Moisture"
+    }
+  ],
+  "images": [
+    "/images/products/feet-women-150ml.jpg"
+  ],
+  "variants": [
+    {
+      "size": "50 ml",
+      "price": 499,
+      "originalPrice": 799,
+      "image": "/images/products/feet-women-30ml.jpg"
+    },
+    {
+      "size": "100 ml",
+      "price": 899,
+      "originalPrice": 1399,
+      "image": "/images/products/feet-women-150ml.jpg"
+    },
+    {
+      "size": "200 ml",
+      "price": 1599,
+      "originalPrice": 2499,
+      "image": "/images/products/feet-women-150ml.jpg"
+    }
+  ],
+  "price": 499,
+  "originalPrice": 799,
+  "discount": 37,
+  "rating": 4.8,
+  "reviewCount": 215,
+  "badge": "New",
+  "healthGoals": [
+    "Hair Health",
+    "Scalp Care"
+  ],
+  "idealFor": [
+    "All Hair Types"
+  ],
+  "usageInstructions": {
+    "serving": "As needed based on hair length",
+    "timing": "1-2 times a week",
+    "instructions": "Massage gently into the scalp and hair length. Leave on for at least an hour or overnight before washing."
+  },
+  "specifications": {
+    "Form": "Oil",
+    "Application": "Hair & Scalp"
+  },
+  "certifications": [
+    "100% Natural",
+    "Ayurvedic"
+  ],
+  "faqs": [
+    {
+      "question": "Is this sticky?",
+      "answer": "It is a rich, traditional oil blend. We recommend using a gentle cleanser to wash it out."
+    }
+  ],
+  "relatedProductIds": [
+    "feet-wellness-oil"
+  ],
+  "routineProductIds": [],
+  "goldMembershipEligible": true
+}

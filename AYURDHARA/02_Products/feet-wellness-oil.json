@@ -1,0 +1,105 @@
+{
+  "id": "feet-wellness-oil",
+  "slug": "feet-wellness-oil",
+  "name": "Feet Wellness Oil",
+  "category": "Feet Care",
+  "shortDescription": "Deep relaxation and foot nourishment.",
+  "fullDescription": "Our Feet Wellness Oil is formulated to provide deep relaxation and nourishment for tired feet. A daily foot massage (Padabhyanga) is a cornerstone of Ayurvedic self-care, promoting better sleep and holistic balance.",
+  "story": "Padabhyanga has been practiced for thousands of years to center the mind and soothe the body. We source the finest grounding herbs and cooling oils for this premium blend.",
+  "benefit": "Deeply relaxes, softens feet, and supports restful sleep.",
+  "benefits": [
+    {
+      "icon": "Moon",
+      "text": "Promotes Restful Sleep"
+    },
+    {
+      "icon": "Heart",
+      "text": "Soothes Tired Feet"
+    },
+    {
+      "icon": "Droplets",
+      "text": "Intense Hydration"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Cold-pressed Sesame Oil",
+      "botanical": "Sesamum indicum",
+      "role": "Deep penetration"
+    },
+    {
+      "name": "Lavender Essential Oil",
+      "botanical": "Lavandula",
+      "role": "Relaxation"
+    },
+    {
+      "name": "Brahmi",
+      "botanical": "Bacopa monnieri",
+      "role": "Calming"
+    }
+  ],
+  "images": [
+    "/images/products/feet-women-150ml.jpg"
+  ],
+  "variants": [
+    {
+      "size": "Trial 20 ml",
+      "price": 349,
+      "originalPrice": 499,
+      "image": "/images/products/feet-women-30ml.jpg"
+    },
+    {
+      "size": "Gold 50 ml",
+      "price": 699,
+      "originalPrice": 999,
+      "image": "/images/products/feet-women-150ml.jpg"
+    },
+    {
+      "size": "Premium 200 ml",
+      "price": 1999,
+      "originalPrice": 2999,
+      "image": "/images/products/feet-women-150ml.jpg"
+    }
+  ],
+  "price": 349,
+  "originalPrice": 499,
+  "discount": 30,
+  "rating": 4.9,
+  "reviewCount": 342,
+  "badge": "Essential",
+  "healthGoals": [
+    "Relaxation",
+    "Better Sleep",
+    "Foot Care"
+  ],
+  "idealFor": [
+    "Everyone",
+    "Daily Routine"
+  ],
+  "usageInstructions": {
+    "serving": "Few drops per foot",
+    "timing": "Before bedtime",
+    "instructions": "Massage onto both feet for 3-5 minutes, focusing on the soles and pressure points."
+  },
+  "specifications": {
+    "Form": "Oil",
+    "Application": "Feet"
+  },
+  "certifications": [
+    "100% Natural",
+    "Ayurvedic"
+  ],
+  "faqs": [
+    {
+      "question": "Can I use this during the day?",
+      "answer": "While you can use it anytime, it is highly recommended before bedtime for maximum relaxation."
+    }
+  ],
+  "relatedProductIds": [
+    "kids-smart-blend",
+    "women-harmony-blend",
+    "men-strength-blend"
+  ],
+  "routineProductIds": [],
+  "goldMembershipEligible": true
+}

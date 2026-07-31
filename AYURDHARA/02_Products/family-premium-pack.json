@@ -1,0 +1,82 @@
+{
+  "id": "family-premium-pack",
+  "slug": "family-premium-pack",
+  "name": "Family Premium Oil Wellness Pack",
+  "category": "Wellness Packs",
+  "shortDescription": "Complete comprehensive care for the whole family.",
+  "fullDescription": "The Family Premium Oil Wellness Pack provides an exceptional array of premium Ayurvedic oils curated for your lifestyle. Incorporating these into your daily routine supports holistic well-being.",
+  "story": "Curated by our expert Ayurvedic practitioners, this pack offers the perfect synergy of traditional formulations.",
+  "benefit": "Comprehensive wellness and self-care made easy.",
+  "benefits": [
+    {
+      "icon": "Gift",
+      "text": "Curated Selection"
+    },
+    {
+      "icon": "Heart",
+      "text": "Holistic Health"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Multiple Pure Oils",
+      "botanical": "Various",
+      "role": "Complete Wellness"
+    }
+  ],
+  "images": [
+    "/images/products/combo-family-trial.jpg"
+  ],
+  "variants": [
+    {
+      "size": "3 Person Family",
+      "price": 5999,
+      "originalPrice": 10000,
+      "image": "/images/products/combo-family-trial.jpg"
+    },
+    {
+      "size": "4 Person Family",
+      "price": 7199,
+      "originalPrice": 12000,
+      "image": "/images/products/combo-family-trial.jpg"
+    }
+  ],
+  "price": 5999,
+  "originalPrice": 10000,
+  "discount": 40,
+  "rating": 5,
+  "reviewCount": 42,
+  "badge": "Combo",
+  "healthGoals": [
+    "Daily Routine",
+    "Holistic Wellness"
+  ],
+  "idealFor": [
+    "Everyone"
+  ],
+  "usageInstructions": {
+    "serving": "As directed on individual bottles",
+    "timing": "Daily Routine",
+    "instructions": "Please refer to the individual bottles for specific usage instructions."
+  },
+  "specifications": {
+    "Form": "Oil Kit",
+    "Contents": "All 16 Oil Blend Variants (15 ml each), Premium Feet Wellness Oil (200 ml)"
+  },
+  "certifications": [
+    "100% Natural",
+    "Ayurvedic Formulation"
+  ],
+  "faqs": [
+    {
+      "question": "Can I customize the blends in this pack?",
+      "answer": "Currently, our packs are pre-curated to offer the best synergistic benefits."
+    }
+  ],
+  "relatedProductIds": [
+    "feet-wellness-oil"
+  ],
+  "routineProductIds": [],
+  "durationText": "Up to 4 Months",
+  "goldMembershipEligible": true
+}
