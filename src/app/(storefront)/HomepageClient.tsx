@@ -33,42 +33,317 @@ export default function HomepageClient({ products }: HomepageClientProps) {
 }
 
 // ----------------------------------------------------------------------
-// HERO SECTION
+// HERO SECTION — World-Class Premium Luxury Wellness Experience
 // ----------------------------------------------------------------------
 function HeroSection() {
   return (
-    <section className="relative w-full h-[70vh] md:h-[85vh] min-h-[600px] bg-[#E0EBDC]">
-      <Image 
-        src="/images/promo_banner_main_1784743880111.jpg" 
-        alt="Ayurvedic Wellness Promotional Banner" 
-        fill
-        className="object-cover object-center"
-        priority
+    <section
+      id="hero"
+      className="relative w-full overflow-hidden"
+      style={{
+        background: 'var(--hero-bg)',
+        minHeight: '100vh',
+      }}
+    >
+      {/* Subtle paper texture overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/20 flex items-center">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl bg-white/10 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-2xl border border-white/20">
-            <span className="text-[#E88B23] text-sm md:text-base font-bold uppercase tracking-[0.2em] mb-4 block">
-              Awaken Your Natural Vitality
-            </span>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-white leading-tight">
-              Pure Ayurvedic Wisdom for Modern Living
+
+      {/* Soft botanical background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-[0.06]" style={{ background: 'radial-gradient(circle, #C5A572 0%, transparent 70%)' }} />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full opacity-[0.04]" style={{ background: 'radial-gradient(circle, #4B7B3B 0%, transparent 70%)' }} />
+      </div>
+
+      {/* ================================================================
+          DESKTOP HERO LAYOUT — 45/55 Split
+          ================================================================ */}
+      <div className="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center min-h-[calc(100vh-80px)] py-12 lg:py-0 gap-8 lg:gap-0">
+
+          {/* LEFT SIDE — 45% Content */}
+          <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 pt-4 lg:pt-0">
+
+            {/* Eyebrow */}
+            <div className="hero-fade-in-up flex items-center justify-center lg:justify-start gap-3 mb-8">
+              <span
+                className="text-xs font-semibold uppercase tracking-[0.2em]"
+                style={{ color: 'var(--luxury-gold)', fontVariant: 'small-caps' }}
+              >
+                Nature Inspired
+              </span>
+              <span
+                className="w-1 h-1 rounded-full"
+                style={{ backgroundColor: 'var(--luxury-gold)' }}
+              />
+              <span
+                className="text-xs font-semibold uppercase tracking-[0.2em]"
+                style={{ color: 'var(--luxury-gold)', fontVariant: 'small-caps' }}
+              >
+                Daily Wellness
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h1
+              className="hero-fade-in-up-delay-1 font-serif font-bold leading-[1.1] mb-8"
+              style={{
+                fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)',
+                color: 'var(--hero-text-primary)',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Ancient Wisdom.
+              <br />
+              <span style={{ color: 'var(--forest)' }}>Everyday Wellness.</span>
             </h1>
-            <p className="text-base md:text-xl mb-8 text-white/90 font-medium leading-relaxed max-w-xl">
-              Experience the profound healing of authentic Nabhi Chikitsa and wild-harvested botanicals. Thoughtfully formulated to restore balance, nourish deeply, and bring you closer to nature.
+
+            {/* Description */}
+            <p
+              className="hero-fade-in-up-delay-2 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
+              style={{
+                fontSize: 'clamp(1rem, 1.2vw, 1.125rem)',
+                color: 'var(--hero-text-secondary)',
+                lineHeight: '1.8',
+              }}
+            >
+              Experience thoughtfully crafted Ayurvedic wellness products inspired
+              by timeless traditions and designed for modern everyday self-care.
+              Pure ingredients. Authentic formulations. Daily rituals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/collections" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white uppercase tracking-wider bg-[#4B7B3B] hover:bg-[#3a5d2d] transition-all rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1">
-                Shop All Wellness
+
+            {/* CTA Buttons */}
+            <div className="hero-fade-in-up-delay-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <Link
+                href="/collections"
+                className="hero-btn-primary inline-flex items-center justify-center px-10 py-4 text-base font-bold uppercase tracking-wider rounded-2xl shadow-lg"
+                style={{
+                  backgroundColor: 'var(--forest)',
+                  color: '#FFFFFF',
+                  letterSpacing: '0.08em',
+                }}
+              >
+                Shop Now
               </Link>
-              <Link href="/wellness-guide/how-to-use" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white uppercase tracking-wider bg-transparent border-2 border-white hover:bg-white hover:text-[#4B7B3B] transition-all rounded-lg">
-                Discover Our Approach
+              <Link
+                href="/collections"
+                className="hero-btn-secondary inline-flex items-center justify-center px-10 py-4 text-base font-bold uppercase tracking-wider rounded-2xl border-2"
+                style={{
+                  backgroundColor: 'var(--hero-bg)',
+                  color: 'var(--forest)',
+                  borderColor: 'var(--luxury-gold)',
+                  letterSpacing: '0.08em',
+                }}
+              >
+                Explore Collection
               </Link>
+            </div>
+
+            {/* Trust Icons — 4 in a row */}
+            <div className="hero-fade-in-up-delay-4 grid grid-cols-4 gap-4 max-w-md mx-auto lg:mx-0">
+              {[
+                { icon: TrustNaturalIcon, label: '100% Natural' },
+                { icon: TrustAyurvedicIcon, label: 'Ayurvedic Formula' },
+                { icon: TrustNoToxinsIcon, label: 'No Toxins' },
+                { icon: TrustCrueltyFreeIcon, label: 'Cruelty Free' },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-2">
+                  <div
+                    className="w-11 h-11 rounded-full flex items-center justify-center"
+                    style={{
+                      border: '1.5px solid var(--hero-border-gold)',
+                      backgroundColor: 'rgba(197, 165, 114, 0.05)',
+                    }}
+                  >
+                    <item.icon />
+                  </div>
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-wider text-center leading-tight"
+                    style={{ color: 'var(--hero-text-secondary)' }}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT SIDE — 55% Product Composition */}
+          <div className="w-full lg:w-[55%] flex items-center justify-center order-1 lg:order-2 relative">
+            <div className="hero-fade-in hero-product-float relative w-full max-w-[640px] aspect-[4/3]">
+              {/* Product hero image */}
+              <Image
+                src="/images/hero_botanical_1784053776794.png"
+                alt="Premium Ayurvedic Wellness Products by Ayurdhara Divya Shakti — Amber glass bottles with botanical herbs on travertine stone"
+                fill
+                className="object-contain"
+                priority
+                sizes="(max-width: 1024px) 100vw, 55vw"
+              />
+
+              {/* Floating trust badge */}
+              <div
+                className="hero-badge-pulse absolute bottom-4 right-4 lg:bottom-8 lg:right-0 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg"
+                style={{
+                  backgroundColor: 'var(--forest)',
+                  color: '#FFFFFF',
+                  border: '1.5px solid var(--luxury-gold)',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                ✦ Nature Inspired Wellness
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* ================================================================
+          BOTTOM INFORMATION BAR — 4 Columns
+          ================================================================ */}
+      <div className="relative z-10 pb-8 lg:pb-12">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
+          <div
+            className="hero-fade-in-up-delay-5 grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 lg:p-6 rounded-3xl"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.7)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              boxShadow: 'var(--hero-shadow-card)',
+              border: '1px solid rgba(197, 165, 114, 0.12)',
+            }}
+          >
+            {[
+              { icon: InfoQualityIcon, title: 'Premium Quality', desc: 'Handcrafted with care' },
+              { icon: InfoScienceIcon, title: 'Ayurvedic Science', desc: 'Traditional formulations' },
+              { icon: InfoSafeIcon, title: 'Safe for Daily Use', desc: 'Gentle & effective' },
+              { icon: InfoIndiaIcon, title: 'Made in India', desc: 'Proudly indigenous' },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="hero-info-card flex items-center gap-4 p-4 rounded-2xl cursor-default"
+                style={{
+                  border: '1px solid transparent',
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
+                  style={{
+                    backgroundColor: 'rgba(45, 90, 39, 0.06)',
+                    border: '1px solid rgba(45, 90, 39, 0.1)',
+                  }}
+                >
+                  <item.icon />
+                </div>
+                <div>
+                  <p
+                    className="text-sm font-bold"
+                    style={{ color: 'var(--hero-text-primary)' }}
+                  >
+                    {item.title}
+                  </p>
+                  <p
+                    className="text-xs"
+                    style={{ color: 'var(--hero-text-secondary)' }}
+                  >
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
+  );
+}
+
+// ======================================================================
+// TRUST ICONS — Outline Only, Same Stroke, Same Optical Weight
+// ======================================================================
+
+function TrustNaturalIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22c4-2 8-6 8-12C16 10 12 14 12 22z" />
+      <path d="M12 22c-4-2-8-6-8-12C8 10 12 14 12 22z" />
+      <path d="M12 8V2" />
+    </svg>
+  );
+}
+
+function TrustAyurvedicIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 20h10" />
+      <path d="M12 20v-4" />
+      <path d="M6 10c0-3.3 2.7-6 6-6s6 2.7 6 6c0 2-1 3.8-2.5 5H8.5C7 13.8 6 12 6 10z" />
+      <path d="M12 4v4" />
+      <path d="M9 8l3 2 3-2" />
+    </svg>
+  );
+}
+
+function TrustNoToxinsIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" />
+    </svg>
+  );
+}
+
+function TrustCrueltyFreeIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 000-7.8z" />
+    </svg>
+  );
+}
+
+// ======================================================================
+// INFO BAR ICONS — Outline Only, Matching Style
+// ======================================================================
+
+function InfoQualityIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z" />
+    </svg>
+  );
+}
+
+function InfoScienceIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 3h6v5l4 8H5l4-8V3z" />
+      <path d="M9 3h6" />
+      <path d="M5 16h14" />
+      <path d="M10 20h4" />
+      <path d="M12 16v4" />
+    </svg>
+  );
+}
+
+function InfoSafeIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  );
+}
+
+function InfoIndiaIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15 15 0 014 10 15 15 0 01-4 10 15 15 0 01-4-10A15 15 0 0112 2z" />
+    </svg>
   );
 }
 

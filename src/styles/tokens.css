@@ -16,6 +16,18 @@
   --moss: #386A32; /* Hover state for green */
   --danger: #D9381E; /* Sale tags / errors */
 
+  /* Hero Luxury Tokens */
+  --luxury-gold: #C5A572;
+  --hero-bg: #FAF7F2;
+  --hero-warm-beige: #F0EBE0;
+  --hero-text-primary: #1A2E14;
+  --hero-text-secondary: #4A5D42;
+  --hero-border-gold: rgba(197, 165, 114, 0.35);
+  --hero-shadow-product: 0 24px 64px rgba(45, 41, 38, 0.12);
+  --hero-shadow-card: 0 8px 32px rgba(45, 41, 38, 0.06);
+  --hero-shadow-btn-hover: 0 12px 40px rgba(197, 165, 114, 0.3);
+  --hero-glow-gold: 0 0 24px rgba(197, 165, 114, 0.15);
+
   /* Typography Scale */
   --text-display: clamp(2.5rem, 5vw + 1rem, 4.5rem);
   --text-hero: clamp(2rem, 4vw + 1rem, 3.5rem);
