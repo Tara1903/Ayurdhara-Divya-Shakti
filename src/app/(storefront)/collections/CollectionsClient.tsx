@@ -27,15 +27,10 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
 
   const categories = [
     { id: 'all', label: 'All Products' },
-    { id: 'Kids Care Oil Blend', label: '🌿 Kids Care Oil Blend' },
-    { id: 'Men Wellness Oil Blend', label: '🌿 Men Wellness Oil Blend' },
-    { id: 'Women Wellness Oil Blend', label: '🌿 Women Wellness Oil Blend' },
-    { id: 'Senior Care Oil Blend', label: '🌿 Senior Care Oil Blend' },
-    { id: 'Feet Massage Oil', label: '👣 Feet Massage Oil' },
-    { id: 'Hair Wellness Oil', label: '🌿 Hair Wellness Oil' },
-    { id: 'Individual Wellness Packs', label: '🌿 Individual Wellness Packs' },
-    { id: 'Family Trial Wellness Packs', label: '👨‍👩 Family Trial Wellness Packs' },
-    { id: 'Family Gold Wellness Packs', label: '👨‍👩 Family Gold Wellness Packs' }
+    { id: 'nabhi', label: 'Nabhi Oils' },
+    { id: 'hair', label: 'Hair Wellness' },
+    { id: 'feet', label: 'Feet Wellness' },
+    { id: 'packs', label: 'Value Packs' }
   ];
 
   const filteredProducts = useMemo(() => {
@@ -43,8 +38,7 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
     
     // Filter by Category
     if (selectedCategory !== 'all') {
-      const lowerSelected = selectedCategory.toLowerCase();
-      filtered = filtered.filter(p => p.category.toLowerCase() === lowerSelected || p.category.toLowerCase().includes(lowerSelected));
+      filtered = filtered.filter(p => p.category.toLowerCase().includes(selectedCategory.toLowerCase()) || (selectedCategory === 'packs' && p.category.toLowerCase().includes('pack')));
     }
 
     // Filter by Search Query
@@ -69,7 +63,7 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
         filtered.sort((a, b) => b.rating - a.rating);
         break;
       default:
-        // featured
+        // featured (no specific sort, rely on DB order)
         break;
     }
 
@@ -82,7 +76,7 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
       <div className="md:hidden flex justify-between items-center mb-4 px-4 pt-4">
         <button 
           onClick={() => setIsFilterOpen(true)}
-          className="flex items-center gap-2 border border-gray-300 bg-white px-4 py-2 rounded-lg text-sm font-bold text-gray-700 shadow-xs"
+          className="flex items-center gap-2 border border-gray-300 bg-white px-4 py-2 rounded-lg text-sm font-bold text-gray-700 shadow-sm"
         >
           <SlidersHorizontal size={16} /> Filters & Sort
         </button>
@@ -96,9 +90,9 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
           <button onClick={() => setIsFilterOpen(false)} className="p-2 bg-gray-100 rounded-full"><X size={24} /></button>
         </div>
 
-        <div className="mb-10 bg-white md:p-6 md:rounded-xl md:shadow-xs md:border md:border-gray-100">
+        <div className="mb-10 bg-white md:p-6 md:rounded-xl md:shadow-sm md:border md:border-gray-100">
           <h3 className="font-bold text-gray-900 mb-4 uppercase tracking-wider text-sm border-b border-gray-100 pb-3">Categories</h3>
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-3">
             {categories.map(cat => (
               <label key={cat.id} className="flex items-center gap-3 cursor-pointer group">
                 <input 
@@ -110,9 +104,9 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
                     setSelectedCategory(e.target.value);
                     setIsFilterOpen(false); // auto-close on mobile after selection
                   }}
-                  className="w-4 h-4 text-[#2D5A27] bg-gray-100 border-gray-300 focus:ring-[#2D5A27]"
+                  className="w-5 h-5 text-[#4B7B3B] bg-gray-100 border-gray-300 focus:ring-[#4B7B3B] focus:ring-2"
                 />
-                <span className={`text-xs font-semibold transition-colors ${selectedCategory === cat.id ? 'font-bold text-[#2D5A27]' : 'text-gray-600 group-hover:text-gray-900'}`}>
+                <span className={`text-base font-medium transition-colors ${selectedCategory === cat.id ? 'font-bold text-[#4B7B3B]' : 'text-gray-600 group-hover:text-gray-900'}`}>
                   {cat.label}
                 </span>
               </label>
@@ -120,7 +114,7 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
           </div>
         </div>
 
-        <div className="mb-8 bg-white md:p-6 md:rounded-xl md:shadow-xs md:border md:border-gray-100">
+        <div className="mb-8 bg-white md:p-6 md:rounded-xl md:shadow-sm md:border md:border-gray-100">
           <h3 className="font-bold text-gray-900 mb-4 uppercase tracking-wider text-sm border-b border-gray-100 pb-3">Sort By</h3>
           <select 
             value={sortBy} 
@@ -128,7 +122,7 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
               setSortBy(e.target.value);
               setIsFilterOpen(false);
             }}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-xs bg-white font-bold text-gray-700 outline-hidden focus:border-[#2D5A27] transition-colors"
+            className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-sm bg-white font-bold text-gray-700 outline-none focus:border-[#4B7B3B] focus:ring-0 transition-colors"
           >
             <option value="featured">Featured</option>
             <option value="price-low">Price: Low to High</option>
@@ -140,7 +134,7 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
 
       {/* Product Grid */}
       <main className="flex-1 md:pt-8 md:pr-8 px-4 md:px-0">
-        <div className="hidden md:flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-xs border border-gray-100">
+        <div className="hidden md:flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
           <h1 className="text-xl font-bold text-gray-900 font-sans">
             {searchQuery ? `Search Results for "${searchQuery}"` : (categories.find(c => c.id === selectedCategory)?.label || 'All Products')}
           </h1>
@@ -148,18 +142,18 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
         </div>
 
         {filteredProducts.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-xl shadow-xs border border-gray-100">
+          <div className="text-center py-20 bg-white rounded-xl shadow-sm border border-gray-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-3">No products found</h3>
             <p className="text-gray-500 mb-6">Try adjusting your filters or search query.</p>
             <button 
               onClick={() => { setSelectedCategory('all'); setSortBy('featured'); }}
-              className="px-6 py-3 bg-[#2D5A27] text-white font-bold rounded-lg hover:bg-[#23481f] transition-colors"
+              className="px-6 py-3 bg-[#4B7B3B] text-white font-bold rounded-lg hover:bg-[#2D5A27] transition-colors"
             >
-              Reset Filters
+              Clear Filters
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
