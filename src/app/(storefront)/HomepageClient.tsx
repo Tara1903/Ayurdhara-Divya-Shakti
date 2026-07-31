@@ -216,7 +216,16 @@ function HeroSection() {
               />
             </div>
 
-            <div className="hero-fade-in hero-product-float relative w-full max-w-[640px] aspect-[4/3]">
+            <div 
+              className="hero-fade-in hero-product-float relative w-full max-w-[700px] aspect-[4/3]"
+              style={{
+                // Blend the image background perfectly with the hero section background
+                mixBlendMode: 'multiply',
+                // Fade out the edges softly so nothing is abruptly cut off
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
+                maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
+              }}
+            >
               {/* Product hero image */}
               <Image
                 src="/images/hero_products_exact_cropped.jpg"
