@@ -6,6 +6,7 @@ import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import type { Product } from '@/data/productData';
 import { ArrowRight, Star, Quote } from 'lucide-react';
+import CampaignHeroSlider from '@/components/CampaignHeroSlider';
 
 interface HomepageClientProps {
   products: Product[];
@@ -14,7 +15,7 @@ interface HomepageClientProps {
 export default function HomepageClient({ products }: HomepageClientProps) {
   return (
     <div className="bg-[#f9f9f9]">
-      <HeroSection />
+      <CampaignHeroSlider />
       <Section1CategoryIcons />
       <Section2WrittenContent />
       <Section3OilWellness products={products} />
