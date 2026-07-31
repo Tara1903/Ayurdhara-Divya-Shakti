@@ -1,6 +1,8 @@
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminTopbar from '@/components/admin/AdminTopbar';
 import type { Metadata } from 'next';
+import { verifyAdminRole } from '@/lib/adminAuth';
+import { redirect } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,11 +11,16 @@ export const metadata: Metadata = {
   description: 'Operating System and CMS for Ayurdhara Divya Shakti',
 };
 
-export default function AdminAuthenticatedLayout({
+export default async function AdminAuthenticatedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { authorized } = await verifyAdminRole();
+  if (!authorized) {
+    redirect('/admin/login');
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       <AdminSidebar />
