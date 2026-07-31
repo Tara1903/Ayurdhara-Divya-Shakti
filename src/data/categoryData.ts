@@ -15,93 +15,72 @@ export const navigationData: Category[] = [
   {
     name: "Oil Wellness Care",
     slug: "oil-wellness-care",
-    description: "Traditional Ayurvedic oil blends for deep nourishment and holistic healing.",
+    description: "Traditional Ayurvedic oil blends for deep nourishment, vitality, and holistic healing.",
     subcategories: [
-      { name: "Nabhi Oil Blends", slug: "nabhi-oil-blends" },
-      { name: "Feet Wellness Oil", slug: "feet-wellness-oil" },
-      { name: "Hair Wellness Oil", slug: "hair-wellness-oil" },
-      { name: "Wellness Packs", slug: "wellness-packs" },
-      { name: "Family Wellness Packs", slug: "family-wellness-packs" },
+      { name: "Kids Care Oil Blend", slug: "kids-care-oil-blend", description: "Gentle Nabhi oil blends formulated for children." },
+      { name: "Men Wellness Oil Blend", slug: "men-wellness-oil-blend", description: "Vigor, stamina, and metabolic oil blends for men." },
+      { name: "Women Wellness Oil Blend", slug: "women-wellness-oil-blend", description: "Hormonal balance, radiance, and wellness blends for women." },
+      { name: "Senior Care Oil Blend", slug: "senior-care-oil-blend", description: "Vata soothing, joint mobility, and sleep oils for seniors." },
+      { name: "Feet Massage Oil", slug: "feet-massage-oil", description: "Traditional Padabhyanga foot massage oils for deep sleep and heat release." },
+      { name: "Hair Wellness Oil", slug: "hair-wellness-oil", description: "Kshirapak Vidhi scalp & hair oils for root fortification." },
+      { name: "Individual Wellness Packs", slug: "individual-wellness-packs", description: "1 to 8 Month complete personal wellness care kits." },
+      { name: "Family Trial Wellness Packs", slug: "family-trial-wellness-packs", description: "1 Month trial packs for 2 to 5 family members." },
+      { name: "Family Gold Wellness Packs", slug: "family-gold-wellness-packs", description: "4 Month Gold wellness regimens for 2 to 5 family members." },
     ]
   },
   {
-    name: "Raw Herbs",
-    slug: "raw-herbs",
-    description: "Pure, wild-harvested raw herbs sourced directly from nature.",
-    subcategories: [
-      { name: "Single Herbs", slug: "single-herbs" },
-      { name: "Premium Herbs", slug: "premium-herbs" },
-      { name: "Seasonal Herbs", slug: "seasonal-herbs" },
-      { name: "Herb Collection", slug: "herb-collection" },
-    ]
+    name: "Kids Care Oil Blend",
+    slug: "kids-care-oil-blend",
+    description: "Gentle, child-safe Ayurvedic Nabhi oils for focus, growth, calm, and daily defense.",
+    subcategories: []
   },
   {
-    name: "Herbal Powders",
-    slug: "herbal-powders",
-    description: "Finely ground herbal powders for daily nutrition and wellness.",
-    subcategories: [
-      { name: "Single Herb Powders", slug: "single-herb-powders" },
-      { name: "Wellness Powder Blends", slug: "wellness-powder-blends" },
-      { name: "Superfood Powders", slug: "superfood-powders" },
-      { name: "Daily Nutrition Powders", slug: "daily-nutrition-powders" },
-    ]
+    name: "Men Wellness Oil Blend",
+    slug: "men-wellness-oil-blend",
+    description: "Ayurvedic Nabhi formulations to support male vitality, stamina, and heart balance.",
+    subcategories: []
   },
   {
-    name: "Herbal Capsules",
-    slug: "herbal-capsules",
-    description: "Convenient and potent herbal capsules for targeted health goals.",
-    subcategories: [
-      { name: "Single Herb Capsules", slug: "single-herb-capsules" },
-      { name: "Wellness Capsules", slug: "wellness-capsules" },
-      { name: "Daily Care Capsules", slug: "daily-care-capsules" },
-      { name: "Premium Herbal Capsules", slug: "premium-herbal-capsules" },
-    ]
+    name: "Women Wellness Oil Blend",
+    slug: "women-wellness-oil-blend",
+    description: "Holistic oil blends for female hormonal balance, glow, and daily vitality.",
+    subcategories: []
   },
   {
-    name: "Herbal Tea & Drinks",
-    slug: "herbal-tea-drinks",
-    description: "Soothing herbal teas, traditional kadhas, and wellness drinks.",
-    subcategories: [
-      { name: "Herbal Tea", slug: "herbal-tea" },
-      { name: "Kadha", slug: "kadha" },
-      { name: "Wellness Drinks", slug: "wellness-drinks" },
-    ]
+    name: "Senior Care Oil Blend",
+    slug: "senior-care-oil-blend",
+    description: "Vata-pacifying Ayurvedic Nabhi oils for senior joint comfort and quiet sleep.",
+    subcategories: []
   },
   {
-    name: "Natural Foods",
-    slug: "natural-foods",
-    description: "Pure, unprocessed natural foods for a healthy lifestyle.",
-    subcategories: [
-      { name: "Cold Pressed Oils", slug: "cold-pressed-oils" },
-      { name: "Honey", slug: "honey" },
-      { name: "Ghee", slug: "ghee" },
-      { name: "Dry Fruits", slug: "dry-fruits" },
-      { name: "Seeds", slug: "seeds" },
-      { name: "Jaggery", slug: "jaggery" },
-    ]
+    name: "Feet Massage Oil",
+    slug: "feet-massage-oil",
+    description: "Padabhyanga foot massage oils to draw out body heat and induce deep restorative sleep.",
+    subcategories: []
   },
   {
-    name: "Pure Spices",
-    slug: "pure-spices",
-    description: "Authentic, unadulterated spices for wellness and culinary perfection.",
-    subcategories: [
-      { name: "Whole Spices", slug: "whole-spices" },
-      { name: "Powdered Spices", slug: "powdered-spices" },
-      { name: "Spice Blends", slug: "spice-blends" },
-      { name: "Ayurvedic Spices", slug: "ayurvedic-spices" },
-    ]
+    name: "Hair Wellness Oil",
+    slug: "hair-wellness-oil",
+    description: "Kshirapak 72-hour Ayurvedic hair oil for strong roots and dense hair.",
+    subcategories: []
   },
   {
-    name: "Wellness Combos",
-    slug: "wellness-combos",
-    description: "Curated wellness combos and gift packs for comprehensive care.",
-    subcategories: [
-      { name: "Trial Packs", slug: "trial-packs" },
-      { name: "Gold Wellness Packs", slug: "gold-wellness-packs" },
-      { name: "Premium Wellness Packs", slug: "premium-wellness-packs" },
-      { name: "Family Packs", slug: "family-packs" },
-      { name: "Gift Packs", slug: "gift-packs" },
-    ]
+    name: "Individual Wellness Packs",
+    slug: "individual-wellness-packs",
+    description: "Curated Nabhi & Feet oil packs offering 1, 4, or 8 Months of complete self-care.",
+    subcategories: []
+  },
+  {
+    name: "Family Trial Wellness Packs",
+    slug: "family-trial-wellness-packs",
+    description: "1 Month Ayurvedic trial packs customized for 2, 3, 4, or 5 family members.",
+    subcategories: []
+  },
+  {
+    name: "Family Gold Wellness Packs",
+    slug: "family-gold-wellness-packs",
+    description: "4 Month Gold Ayurvedic regimens for 2, 3, 4, or 5 family members.",
+    subcategories: []
   }
 ];
 
