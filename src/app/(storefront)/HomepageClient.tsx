@@ -206,7 +206,7 @@ function HeroSection() {
             <div className="hero-fade-in hero-product-float relative w-full max-w-[640px] aspect-[4/3]">
               {/* Product hero image */}
               <Image
-                src="/images/hero_botanical_1784053776794.png"
+                src="/images/hero_products_exact_cropped.jpg"
                 alt="Premium Ayurvedic Wellness Products by Ayurdhara Divya Shakti — Kids Growth Oil Blend, Men Strength Oil Blend, Women Harmony Oil Blend, Senior Comfort Oil Blend on travertine stone with botanical herbs"
                 fill
                 className="object-contain"
