@@ -26,17 +26,26 @@ const checkDatabaseInitialization = unstable_cache(
 
     const supabase = getStatelessClient();
     try {
+      // First try to check app_metadata
       const { data, error } = await supabase
         .from('app_metadata')
         .select('database_initialized')
         .single();
         
-      if (error || !data) {
-        logger.warn({ message: 'app_metadata table missing or unreadable. Using fallback.', context: 'DAL' });
-        return false;
+      if (!error && data && data.database_initialized === true) {
+        return true;
+      }
+      
+      // Fallback: If app_metadata doesn't exist, check if products exist
+      const { count, error: countError } = await supabase
+        .from('products')
+        .select('*', { count: 'exact', head: true });
+        
+      if (!countError && count && count > 0) {
+        return true;
       }
 
-      return data.database_initialized === true;
+      return false;
     } catch (err) {
       logger.error({ message: 'Error checking database initialization', context: 'DAL', data: err });
       return false;
