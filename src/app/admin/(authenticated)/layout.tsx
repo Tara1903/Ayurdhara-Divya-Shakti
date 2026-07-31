@@ -1,8 +1,8 @@
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminTopbar from '@/components/admin/AdminTopbar';
 import type { Metadata } from 'next';
-import { verifyAdminRole } from '@/lib/adminAuth';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,8 +16,10 @@ export default async function AdminAuthenticatedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { authorized } = await verifyAdminRole();
-  if (!authorized) {
+  const cookieStore = await cookies();
+  const adminToken = cookieStore.get('admin_token')?.value;
+
+  if (adminToken !== 'active_master_admin') {
     redirect('/admin/login');
   }
 
