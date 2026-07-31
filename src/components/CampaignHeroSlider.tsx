@@ -104,28 +104,28 @@ export default function CampaignHeroSlider() {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide((prev) => (prev + 1) % slides.length);
-    setTimeout(() => setIsTransitioning(false), 700);
+    setTimeout(() => setIsTransitioning(false), 1000);
   }, [isTransitioning]);
 
   const handlePrev = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    setTimeout(() => setIsTransitioning(false), 700);
+    setTimeout(() => setIsTransitioning(false), 1000);
   }, [isTransitioning]);
 
   const goToSlide = (index: number) => {
     if (isTransitioning || index === currentSlide) return;
     setIsTransitioning(true);
     setCurrentSlide(index);
-    setTimeout(() => setIsTransitioning(false), 700);
+    setTimeout(() => setIsTransitioning(false), 1000);
   };
 
   useEffect(() => {
     if (isHovered) return;
     const interval = setInterval(() => {
       handleNext();
-    }, 7000);
+    }, 5500); // 5.5 seconds for a slightly faster, highly dynamic feel
     return () => clearInterval(interval);
   }, [isHovered, handleNext]);
 
