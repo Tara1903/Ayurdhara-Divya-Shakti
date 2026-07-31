@@ -53,10 +53,12 @@ function HeroSection() {
         }}
       />
 
-      {/* Soft botanical background glow */}
+      {/* Soft botanical background glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-[0.06]" style={{ background: 'radial-gradient(circle, #C5A572 0%, transparent 70%)' }} />
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full opacity-[0.08]" style={{ background: 'radial-gradient(circle, #C5A572 0%, transparent 65%)' }} />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full opacity-[0.04]" style={{ background: 'radial-gradient(circle, #4B7B3B 0%, transparent 70%)' }} />
+        {/* Golden sunlight from top-right */}
+        <div className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full opacity-[0.06]" style={{ background: 'radial-gradient(circle, #E88B23 0%, transparent 60%)' }} />
       </div>
 
       {/* ================================================================
@@ -69,20 +71,22 @@ function HeroSection() {
           <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 pt-4 lg:pt-0">
 
             {/* Eyebrow */}
-            <div className="hero-fade-in-up flex items-center justify-center lg:justify-start gap-3 mb-8">
+            <div className="hero-fade-in-up flex items-center justify-center lg:justify-start gap-3 mb-6">
               <span
                 className="text-xs font-semibold uppercase tracking-[0.2em]"
-                style={{ color: 'var(--luxury-gold)', fontVariant: 'small-caps' }}
+                style={{ color: 'var(--forest)', fontVariant: 'small-caps' }}
               >
                 Nature Inspired
               </span>
               <span
-                className="w-1 h-1 rounded-full"
-                style={{ backgroundColor: 'var(--luxury-gold)' }}
-              />
+                className="text-xs"
+                style={{ color: 'var(--luxury-gold)' }}
+              >
+                •
+              </span>
               <span
                 className="text-xs font-semibold uppercase tracking-[0.2em]"
-                style={{ color: 'var(--luxury-gold)', fontVariant: 'small-caps' }}
+                style={{ color: 'var(--forest)', fontVariant: 'small-caps' }}
               >
                 Daily Wellness
               </span>
@@ -90,7 +94,7 @@ function HeroSection() {
 
             {/* Main Heading */}
             <h1
-              className="hero-fade-in-up-delay-1 font-serif font-bold leading-[1.1] mb-8"
+              className="hero-fade-in-up-delay-1 font-serif font-bold leading-[1.08] mb-6"
               style={{
                 fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)',
                 color: 'var(--hero-text-primary)',
@@ -99,61 +103,45 @@ function HeroSection() {
             >
               Ancient Wisdom.
               <br />
-              <span style={{ color: 'var(--forest)' }}>Everyday Wellness.</span>
+              Everyday Wellness.
             </h1>
+
+            {/* Gold Decorative Divider */}
+            <div className="hero-fade-in-up-delay-1 flex items-center justify-center lg:justify-start gap-3 mb-6">
+              <div className="w-16 h-[1.5px]" style={{ backgroundColor: 'var(--luxury-gold)' }} />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
+                <path d="M12 22c4-2 8-6 8-12C16 10 12 14 12 22z" />
+                <path d="M12 22c-4-2-8-6-8-12C8 10 12 14 12 22z" />
+              </svg>
+              <div className="w-16 h-[1.5px]" style={{ backgroundColor: 'var(--luxury-gold)' }} />
+            </div>
 
             {/* Description */}
             <p
-              className="hero-fade-in-up-delay-2 leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
+              className="hero-fade-in-up-delay-2 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0"
               style={{
-                fontSize: 'clamp(1rem, 1.2vw, 1.125rem)',
+                fontSize: 'clamp(0.95rem, 1.1vw, 1.0625rem)',
                 color: 'var(--hero-text-secondary)',
                 lineHeight: '1.8',
               }}
             >
-              Experience thoughtfully crafted Ayurvedic wellness products inspired
-              by timeless traditions and designed for modern everyday self-care.
-              Pure ingredients. Authentic formulations. Daily rituals.
+              Experience thoughtfully crafted Ayurvedic wellness products
+              inspired by timeless traditions and designed for modern
+              everyday self-care. Pure ingredients. Authentic formulations.
+              Daily rituals.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="hero-fade-in-up-delay-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-              <Link
-                href="/collections"
-                className="hero-btn-primary inline-flex items-center justify-center px-10 py-4 text-base font-bold uppercase tracking-wider rounded-2xl shadow-lg"
-                style={{
-                  backgroundColor: 'var(--forest)',
-                  color: '#FFFFFF',
-                  letterSpacing: '0.08em',
-                }}
-              >
-                Shop Now
-              </Link>
-              <Link
-                href="/collections"
-                className="hero-btn-secondary inline-flex items-center justify-center px-10 py-4 text-base font-bold uppercase tracking-wider rounded-2xl border-2"
-                style={{
-                  backgroundColor: 'var(--hero-bg)',
-                  color: 'var(--forest)',
-                  borderColor: 'var(--luxury-gold)',
-                  letterSpacing: '0.08em',
-                }}
-              >
-                Explore Collection
-              </Link>
-            </div>
-
-            {/* Trust Icons — 4 in a row */}
-            <div className="hero-fade-in-up-delay-4 grid grid-cols-4 gap-4 max-w-md mx-auto lg:mx-0">
+            {/* Trust Icons — 4 in a row (ABOVE buttons per reference) */}
+            <div className="hero-fade-in-up-delay-3 grid grid-cols-4 gap-3 max-w-sm mx-auto lg:mx-0 mb-8">
               {[
-                { icon: TrustNaturalIcon, label: '100% Natural' },
-                { icon: TrustAyurvedicIcon, label: 'Ayurvedic Formula' },
-                { icon: TrustNoToxinsIcon, label: 'No Toxins' },
-                { icon: TrustCrueltyFreeIcon, label: 'Cruelty Free' },
+                { icon: TrustNaturalIcon, label: '100%\nNatural' },
+                { icon: TrustAyurvedicIcon, label: 'Ayurvedic\nFormula' },
+                { icon: TrustNoToxinsIcon, label: 'No\nToxins' },
+                { icon: TrustCrueltyFreeIcon, label: 'Cruelty\nFree' },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center gap-2">
                   <div
-                    className="w-11 h-11 rounded-full flex items-center justify-center"
+                    className="w-12 h-12 rounded-full flex items-center justify-center"
                     style={{
                       border: '1.5px solid var(--hero-border-gold)',
                       backgroundColor: 'rgba(197, 165, 114, 0.05)',
@@ -162,7 +150,7 @@ function HeroSection() {
                     <item.icon />
                   </div>
                   <span
-                    className="text-[10px] font-semibold uppercase tracking-wider text-center leading-tight"
+                    className="text-[10px] font-bold uppercase tracking-wider text-center leading-tight whitespace-pre-line"
                     style={{ color: 'var(--hero-text-secondary)' }}
                   >
                     {item.label}
@@ -170,33 +158,82 @@ function HeroSection() {
                 </div>
               ))}
             </div>
+
+            {/* CTA Buttons (BELOW trust icons per reference) */}
+            <div className="hero-fade-in-up-delay-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link
+                href="/collections"
+                className="hero-btn-primary inline-flex items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl shadow-lg"
+                style={{
+                  backgroundColor: 'var(--forest)',
+                  color: '#FFFFFF',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Shop Now
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </Link>
+              <Link
+                href="/collections"
+                className="hero-btn-secondary inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl border-2"
+                style={{
+                  backgroundColor: 'transparent',
+                  color: 'var(--forest)',
+                  borderColor: 'var(--forest)',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Explore Collection
+              </Link>
+            </div>
           </div>
 
           {/* RIGHT SIDE — 55% Product Composition */}
           <div className="w-full lg:w-[55%] flex items-center justify-center order-1 lg:order-2 relative">
+
+            {/* Large circular golden glow behind products */}
+            <div
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            >
+              <div
+                className="w-[85%] aspect-square rounded-full"
+                style={{
+                  background: 'radial-gradient(circle, rgba(197, 165, 114, 0.12) 0%, rgba(197, 165, 114, 0.04) 50%, transparent 75%)',
+                }}
+              />
+            </div>
+
             <div className="hero-fade-in hero-product-float relative w-full max-w-[640px] aspect-[4/3]">
               {/* Product hero image */}
               <Image
                 src="/images/hero_botanical_1784053776794.png"
-                alt="Premium Ayurvedic Wellness Products by Ayurdhara Divya Shakti — Amber glass bottles with botanical herbs on travertine stone"
+                alt="Premium Ayurvedic Wellness Products by Ayurdhara Divya Shakti — Kids Growth Oil Blend, Men Strength Oil Blend, Women Harmony Oil Blend, Senior Comfort Oil Blend on travertine stone with botanical herbs"
                 fill
                 className="object-contain"
                 priority
                 sizes="(max-width: 1024px) 100vw, 55vw"
               />
+            </div>
 
-              {/* Floating trust badge */}
-              <div
-                className="hero-badge-pulse absolute bottom-4 right-4 lg:bottom-8 lg:right-0 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg"
-                style={{
-                  backgroundColor: 'var(--forest)',
-                  color: '#FFFFFF',
-                  border: '1.5px solid var(--luxury-gold)',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                ✦ Nature Inspired Wellness
-              </div>
+            {/* Floating Circular Trust Badge — Top Right */}
+            <div
+              className="hero-badge-pulse absolute top-8 right-0 lg:top-12 lg:-right-2 w-24 h-24 lg:w-28 lg:h-28 rounded-full flex flex-col items-center justify-center text-center shadow-xl z-20"
+              style={{
+                backgroundColor: 'var(--forest)',
+                border: '2.5px solid var(--luxury-gold)',
+              }}
+            >
+              <span className="text-[9px] lg:text-[10px] font-semibold uppercase tracking-wider text-white/80 leading-none">
+                Trusted by
+              </span>
+              <span className="text-lg lg:text-xl font-bold text-white leading-tight mt-0.5">
+                10,000+
+              </span>
+              <span className="text-[8px] lg:text-[9px] font-semibold uppercase tracking-wider text-white/80 leading-tight mt-0.5">
+                Happy
+                <br />
+                Customers
+              </span>
             </div>
           </div>
         </div>
@@ -205,49 +242,49 @@ function HeroSection() {
       {/* ================================================================
           BOTTOM INFORMATION BAR — 4 Columns
           ================================================================ */}
-      <div className="relative z-10 pb-8 lg:pb-12">
+      <div className="relative z-10 pb-8 lg:pb-12 -mt-4 lg:-mt-8">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-8">
           <div
-            className="hero-fade-in-up-delay-5 grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 lg:p-6 rounded-3xl"
+            className="hero-fade-in-up-delay-5 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 p-4 lg:p-5 rounded-2xl"
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.7)',
+              backgroundColor: 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
-              boxShadow: 'var(--hero-shadow-card)',
-              border: '1px solid rgba(197, 165, 114, 0.12)',
+              boxShadow: '0 4px 24px rgba(45, 41, 38, 0.06)',
+              border: '1px solid rgba(197, 165, 114, 0.15)',
             }}
           >
             {[
-              { icon: InfoQualityIcon, title: 'Premium Quality', desc: 'Handcrafted with care' },
-              { icon: InfoScienceIcon, title: 'Ayurvedic Science', desc: 'Traditional formulations' },
-              { icon: InfoSafeIcon, title: 'Safe for Daily Use', desc: 'Gentle & effective' },
-              { icon: InfoIndiaIcon, title: 'Made in India', desc: 'Proudly indigenous' },
+              { icon: InfoQualityIcon, title: 'Premium Quality', desc: 'Handpicked herbs. Pure & authentic ingredients.' },
+              { icon: InfoScienceIcon, title: 'Ayurvedic Science', desc: 'Backed by ancient wisdom & modern research.' },
+              { icon: InfoSafeIcon, title: 'Safe for Daily Use', desc: 'Gentle, effective & suitable for the whole family.' },
+              { icon: InfoIndiaIcon, title: 'Made in India', desc: 'Proudly made in India with love & care.' },
             ].map((item, i) => (
               <div
                 key={i}
-                className="hero-info-card flex items-center gap-4 p-4 rounded-2xl cursor-default"
+                className="hero-info-card flex items-start gap-3 p-3 lg:p-4 rounded-xl cursor-default"
                 style={{
                   border: '1px solid transparent',
                 }}
               >
                 <div
-                  className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
+                  className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center"
                   style={{
-                    backgroundColor: 'rgba(45, 90, 39, 0.06)',
-                    border: '1px solid rgba(45, 90, 39, 0.1)',
+                    backgroundColor: 'rgba(45, 90, 39, 0.08)',
+                    border: '1.5px solid rgba(45, 90, 39, 0.15)',
                   }}
                 >
                   <item.icon />
                 </div>
                 <div>
                   <p
-                    className="text-sm font-bold"
+                    className="text-xs lg:text-sm font-bold uppercase tracking-wider"
                     style={{ color: 'var(--hero-text-primary)' }}
                   >
                     {item.title}
                   </p>
                   <p
-                    className="text-xs"
+                    className="text-[11px] lg:text-xs mt-0.5 leading-snug"
                     style={{ color: 'var(--hero-text-secondary)' }}
                   >
                     {item.desc}
