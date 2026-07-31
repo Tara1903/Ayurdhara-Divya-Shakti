@@ -94,22 +94,25 @@ export async function proxy(request: NextRequest) {
   }
 
   // If user is admin and tries to access /admin/login, redirect to /admin
-  if (request.nextUrl.pathname === '/admin/login' && (masterAdminToken === 'active_master_admin' || user)) {
+  if (request.nextUrl.pathname === '/admin/login') {
     if (masterAdminToken === 'active_master_admin') {
       const url = request.nextUrl.clone();
       url.pathname = '/admin';
       return NextResponse.redirect(url);
     }
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', user.id)
-      .single();
-      
-    if (profile && profile.role !== 'customer') {
-      const url = request.nextUrl.clone();
-      url.pathname = '/admin';
-      return NextResponse.redirect(url);
+    
+    if (user) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single();
+        
+      if (profile && profile.role !== 'customer') {
+        const url = request.nextUrl.clone();
+        url.pathname = '/admin';
+        return NextResponse.redirect(url);
+      }
     }
   }
 
