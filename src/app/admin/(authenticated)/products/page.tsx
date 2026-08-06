@@ -33,7 +33,7 @@ export default async function ProductsListPage() {
       is_active: true,
       primary_image_url: p.images[0] || null,
       categories: { name: p.category }
-    }));
+    })) as any;
   }
 
   return (
