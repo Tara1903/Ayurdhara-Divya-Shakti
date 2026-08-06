@@ -237,7 +237,7 @@ export default function PrintCenterClient({ categories, products }: { categories
     let processedImage = activeImage!;
     if (uploadedFileType !== 'image/svg+xml') {
       try {
-        setSheetMessage(`Upscaling image to ${printQuality} DPI...`);
+        console.log(`Upscaling image to ${printQuality} DPI...`);
         processedImage = await upscaleImage(activeImage!, requiredWidthPx, requiredHeightPx);
       } catch (e) {
         console.error("Failed to upscale image", e);
@@ -247,7 +247,7 @@ export default function PrintCenterClient({ categories, products }: { categories
     for (let sheet = 0; sheet < totalSheets; sheet++) {
       if (sheet > 0) doc.addPage();
 
-      setSheetMessage(`Generating sheet ${sheet + 1} of ${totalSheets}...`);
+      console.log(`Generating sheet ${sheet + 1} of ${totalSheets}...`);
 
       for (let row = 0; row < layout.rows; row++) {
         for (let col = 0; col < layout.columns; col++) {
