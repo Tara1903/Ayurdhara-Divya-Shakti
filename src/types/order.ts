@@ -33,6 +33,8 @@ export interface OrderPricing {
   itemDiscount: number;      // originalTotal - subtotal
   couponCode?: string;
   couponDiscount: number;
+  partnerCode?: string;          
+  partnerDiscount: number;       
   shippingCharge: number;
   finalTotal: number;        // Authoritative — set by backend
 }
@@ -51,6 +53,8 @@ export interface Order {
   paymentStatus: PaymentStatus;
   orderStatus: OrderStatus;
   paymentAttempts: PaymentAttempt[];
+  partnerId?: string;               
+  referralReward?: number;          
   idempotencyKey: string;
   notes?: string;
   createdAt: string;
@@ -70,6 +74,7 @@ export interface CreateOrderPayload {
   shippingAddress: Address;
   paymentMethod: PaymentMethodType;
   couponCode?: string;
+  partnerCode?: string; 
   idempotencyKey: string;
   guestEmail?: string;
   guestMobile?: string;

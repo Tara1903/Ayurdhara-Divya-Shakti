@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
+import { revalidateStorefront } from '@/app/actions/revalidate';
 
 async function requireAdmin() {
   const s = await createClient();
@@ -17,5 +18,6 @@ export async function POST(req: NextRequest) {
   const supabase = createAdminClient();
   const { data, error } = await supabase.from('categories').insert(body).select().single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  await revalidateStorefront();
   return NextResponse.json(data);
 }

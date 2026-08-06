@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
+import { revalidateStorefront } from '@/app/actions/revalidate';
 
 async function requireAdmin() {
   const s = await createClient();
@@ -19,6 +20,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   // Categories doesn't have an updated_at column in our schema explicitly, so just update body
   const { data, error } = await supabase.from('categories').update(body).eq('id', id).select().single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  await revalidateStorefront();
   return NextResponse.json(data);
 }
 
@@ -29,5 +31,6 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
   const supabase = createAdminClient();
   const { error } = await supabase.from('categories').delete().eq('id', id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  await revalidateStorefront();
   return NextResponse.json({ success: true });
 }

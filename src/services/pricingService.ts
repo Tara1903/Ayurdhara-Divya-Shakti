@@ -10,6 +10,7 @@ export interface PricingSummary {
   originalTotal: number;     // Sum of (originalPrice × qty)
   itemDiscount: number;      // originalTotal - subtotal
   couponDiscount: number;
+  partnerDiscount: number;   // Additional 2% partner discount
   shippingCharge: number;
   finalTotal: number;        // Displayed total — NOT authoritative for payment
 }
@@ -24,7 +25,8 @@ export function calculatePricing(
   items: CartItem[],
   couponDiscount: number,
   shippingCharge: number,
-  isGoldMember: boolean = false
+  isGoldMember: boolean = false,
+  hasPartnerDiscount: boolean = false // 2% partner discount
 ): PricingSummary {
   const subtotal = items.reduce(
     (total, item) => {
@@ -38,13 +40,23 @@ export function calculatePricing(
     0
   );
   const itemDiscount = originalTotal - subtotal;
-  const finalTotal = Math.max(0, subtotal - couponDiscount + shippingCharge);
+  
+  // The 2% discount is calculated on the existing Offer Price (subtotal)
+  let partnerDiscount = 0;
+  if (hasPartnerDiscount) {
+    // 2% of the subtotal (after offer price, before coupon/shipping)
+    // We round to 2 decimal places to match the user request examples
+    partnerDiscount = Number((subtotal * 0.02).toFixed(2));
+  }
+  
+  const finalTotal = Math.max(0, Number((subtotal - couponDiscount - partnerDiscount + shippingCharge).toFixed(2)));
 
   return {
     subtotal,
     originalTotal,
     itemDiscount,
     couponDiscount,
+    partnerDiscount,
     shippingCharge,
     finalTotal,
   };
@@ -67,6 +79,6 @@ export function formatINR(amount: number): string {
     style: 'currency',
     currency: 'INR',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
   }).format(amount);
 }

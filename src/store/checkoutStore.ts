@@ -24,6 +24,8 @@ interface CheckoutStore extends CheckoutState {
   applyCoupon: (code: string, discount: number) => void;
   removeCoupon: () => void;
 
+  setPartnerCode: (code: string) => void;
+
   // Submission
   setSubmitting: (isSubmitting: boolean) => void;
   setSubmissionError: (error: string | null) => void;
@@ -55,6 +57,7 @@ const initialState: CheckoutState = {
   selectedPaymentMethod: null,
   appliedCouponCode: '',
   couponDiscount: 0,
+  partnerCode: '',
   shippingCharge: 99,
   isSubmitting: false,
   submissionError: null,
@@ -117,6 +120,10 @@ export const useCheckoutStore = create<CheckoutStore>((set, get) => ({
 
   removeCoupon: () => {
     set({ appliedCouponCode: '', couponDiscount: 0 });
+  },
+
+  setPartnerCode: (code) => {
+    set({ partnerCode: code });
   },
 
   setSubmitting: (isSubmitting) => {

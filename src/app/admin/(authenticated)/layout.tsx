@@ -2,7 +2,7 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminTopbar from '@/components/admin/AdminTopbar';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
+import { createClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,10 +16,23 @@ export default async function AdminAuthenticatedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const adminToken = cookieStore.get('admin_token')?.value;
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  if (adminToken !== 'active_master_admin') {
+  if (!user) {
+    redirect('/admin/login');
+  }
+
+  // Fetch the role to confirm they are an admin
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single();
+
+  const adminRoles = ['super_admin', 'store_manager', 'catalog_manager', 'content_manager', 'marketing_manager', 'order_manager', 'support'];
+  if (!adminRoles.includes(profile?.role || '')) {
+    // If they aren't an admin, redirect them to login with error
     redirect('/admin/login');
   }
 

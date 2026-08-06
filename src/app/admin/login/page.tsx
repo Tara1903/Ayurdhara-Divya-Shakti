@@ -18,40 +18,51 @@ export default function AdminLoginPage() {
     setError(null);
 
     const cleanEmail = email.trim().toLowerCase();
-    
-    // Master Admin authentication - accepts admin@brand.com, admin@ayurdhara.com, or any admin user
-    if (
-      cleanEmail === 'admin@brand.com' ||
-      cleanEmail === 'admin@ayurdhara.com' ||
-      cleanEmail.includes('admin') ||
-      password === 'Ayurdhara@2026' ||
-      password === 'admin'
-    ) {
-      document.cookie = 'admin_token=active_master_admin; path=/; max-age=86400; SameSite=Lax';
-      router.push('/admin');
-      return;
-    }
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email: cleanEmail,
         password,
       });
 
-      if (!error && data?.user) {
-        document.cookie = 'admin_token=active_master_admin; path=/; max-age=86400; SameSite=Lax';
-        router.push('/admin');
-        return;
+      if (authError || !data?.user) {
+        throw new Error(authError?.message || 'Authentication failed');
       }
 
-      // Fallback auto-grant for smooth testing
-      document.cookie = 'admin_token=active_master_admin; path=/; max-age=86400; SameSite=Lax';
+      // Auto-promote admin@ayurdhara.com if they don't have the admin role
+      if (cleanEmail === 'admin@ayurdhara.com') {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.user.id)
+          .single();
+
+        if (profile?.role !== 'super_admin') {
+          await supabase
+            .from('profiles')
+            .update({ role: 'super_admin' })
+            .eq('id', data.user.id);
+        }
+      } else {
+        // Verify role before letting them proceed
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.user.id)
+          .single();
+          
+        const adminRoles = ['super_admin', 'store_manager', 'catalog_manager', 'content_manager', 'marketing_manager', 'order_manager', 'support'];
+        if (!adminRoles.includes(profile?.role || '')) {
+           await supabase.auth.signOut();
+           throw new Error('Unauthorized: You do not have admin privileges.');
+        }
+      }
+
       router.push('/admin');
+      router.refresh();
       
     } catch (err: any) {
-      // Even if error, grant master access for admin portal
-      document.cookie = 'admin_token=active_master_admin; path=/; max-age=86400; SameSite=Lax';
-      router.push('/admin');
+      setError(err.message || 'Invalid credentials or unauthorized');
     } finally {
       setLoading(false);
     }

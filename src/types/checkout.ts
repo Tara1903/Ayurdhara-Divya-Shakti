@@ -49,6 +49,7 @@ export interface CheckoutState {
   // Applied coupon (from Phase 4 cart)
   appliedCouponCode: string;
   couponDiscount: number;
+  partnerCode: string;
 
   // Pricing (computed, not authoritative — backend will validate)
   shippingCharge: number;

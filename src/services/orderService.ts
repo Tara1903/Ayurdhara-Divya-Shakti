@@ -4,7 +4,7 @@
 
 import type { CreateOrderPayload, Order, OrderConfirmation } from '@/types/order';
 import type { PaymentMethodType } from '@/types/payment';
-import { processServerOrder } from '@/actions/orderActions';
+import { processServerOrder, getCustomerOrdersServer, getOrderByRefServer } from '@/actions/orderActions';
 
 /**
  * Generate a customer-friendly order reference.
@@ -48,15 +48,10 @@ export function generateIdempotencyKey(): string {
 export async function createPendingOrder(
   payload: CreateOrderPayload
 ): Promise<Order> {
-  // If Supabase is configured, use the secure backend action
   if (process.env.NEXT_PUBLIC_SUPABASE_URL) {
     const { order, error } = await processServerOrder(payload);
     if (error || !order) {
       throw new Error(error || 'Failed to create order');
-    }
-    // Cache it locally so fetchCustomerOrders fallback works temporarily
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem(`order_${order.orderRef}`, JSON.stringify(order));
     }
     return order;
   }
@@ -81,6 +76,8 @@ export async function createPendingOrder(
       itemDiscount: 0, // Set by backend
       couponCode: payload.couponCode,
       couponDiscount: 0, // Re-validated by backend
+      partnerCode: payload.partnerCode,
+      partnerDiscount: 0, // Set by backend
       shippingCharge: 0, // Calculated by backend
       finalTotal: 0,     // AUTHORITATIVE — set by backend only
     },
@@ -97,19 +94,10 @@ export async function createPendingOrder(
 }
 
 export async function fetchCustomerOrders(customerId: string): Promise<Order[]> {
-  // In a real app: fetch from API /orders?customerId=...
-  // Demo mock: we'll check localStorage/sessionStorage for any orders that have this customerId
   try {
-    const allKeys = Object.keys(sessionStorage).filter(k => k.startsWith('order_'));
-    const orders: Order[] = [];
-    for (const key of allKeys) {
-      const o = JSON.parse(sessionStorage.getItem(key) || '{}');
-      if (o.customerId === customerId) {
-        orders.push(o as Order);
-      }
-    }
-    return orders;
-  } catch {
+    return await getCustomerOrdersServer(customerId);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
     return [];
   }
 }
@@ -144,6 +132,7 @@ export async function confirmCodOrder(orderId: string): Promise<OrderConfirmatio
       subtotal: 0,
       itemDiscount: 0,
       couponDiscount: 0,
+      partnerDiscount: 0,
       shippingCharge: 0,
       finalTotal: 0,
     },
@@ -166,21 +155,14 @@ function getEstimatedDeliveryDate(daysFromNow: number): string {
   });
 }
 
-/**
- * Get an order by its public order reference (AYD-XXXX-XXXXXX).
- * DEMO MODE: Retrieves from sessionStorage.
- * PRODUCTION: GET /api/orders/{orderRef}
- */
 export async function getOrderByRef(orderRef: string): Promise<OrderConfirmation | null> {
   try {
-    const stored = sessionStorage.getItem(`order_${orderRef}`);
-    if (stored) {
-      return JSON.parse(stored) as OrderConfirmation;
-    }
-  } catch {
-    // sessionStorage not available (SSR)
+    const order = await getOrderByRefServer(orderRef);
+    return order as OrderConfirmation | null;
+  } catch (error) {
+    console.error('Error fetching order by ref:', error);
+    return null;
   }
-  return null;
 }
 
 export type { CreateOrderPayload, Order };

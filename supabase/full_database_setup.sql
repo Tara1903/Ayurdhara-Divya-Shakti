@@ -105,6 +105,7 @@ CREATE TABLE products (
   faqs JSONB,
   related_product_ids JSONB,
   routine_product_ids JSONB,
+  dosha_tags JSONB, -- Array of strings ('vata', 'pitta', 'kapha')
   is_active BOOLEAN DEFAULT true,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
@@ -169,6 +170,13 @@ CREATE TABLE orders (
   final_total NUMERIC(10,2) NOT NULL,
   shipping_address_snapshot JSONB NOT NULL,
   idempotency_key TEXT UNIQUE,
+  partner_code TEXT,
+  partner_type TEXT,
+  partner_discount NUMERIC(10,2) DEFAULT 0,
+  referral_reward_eligible_amount NUMERIC(10,2) DEFAULT 0,
+  referral_reward_calculated NUMERIC(10,2) DEFAULT 0,
+  referral_reward_status TEXT DEFAULT 'pending' CHECK (referral_reward_status IN ('pending', 'approved', 'paid', 'cancelled')),
+  abandoned_cart_emailed BOOLEAN DEFAULT false,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
@@ -223,6 +231,7 @@ CREATE TABLE reviews (
   rating INTEGER CHECK (rating >= 1 AND rating <= 5),
   title TEXT,
   content TEXT,
+  media_urls JSONB, -- Array of strings (image/video URLs)
   verified_purchase BOOLEAN DEFAULT false,
   status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
@@ -245,6 +254,7 @@ CREATE TRIGGER update_profiles_updated_at BEFORE UPDATE ON profiles FOR EACH ROW
 CREATE TRIGGER update_addresses_updated_at BEFORE UPDATE ON addresses FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
 CREATE TRIGGER update_products_updated_at BEFORE UPDATE ON products FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
 CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
+CREATE TRIGGER update_partners_updated_at BEFORE UPDATE ON partners FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
 
 -- Auto-create profile on auth.user creation
 CREATE OR REPLACE FUNCTION public.handle_new_user()
@@ -436,6 +446,20 @@ CREATE TABLE coupons (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
+CREATE TABLE partners (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  code TEXT UNIQUE NOT NULL,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('wellness_partner', 'retail_partner')),
+  status TEXT DEFAULT 'active' CHECK (status IN ('active', 'inactive')),
+  referral_reward_rate_trial NUMERIC(5,2) DEFAULT 10.00,
+  referral_reward_rate_gold NUMERIC(5,2) DEFAULT 12.00,
+  referral_reward_rate_premium NUMERIC(5,2) DEFAULT 15.00,
+  customer_discount_rate NUMERIC(5,2) DEFAULT 2.00,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
 --------------------------------------------------------
 -- 4. CMS: HOMEPAGE, FOOTER, NAVIGATION, STATIC PAGES
 --------------------------------------------------------
@@ -563,6 +587,7 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 ALTER TABLE collections ENABLE ROW LEVEL SECURITY;
 ALTER TABLE collection_products ENABLE ROW LEVEL SECURITY;
 ALTER TABLE offers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE partners ENABLE ROW LEVEL SECURITY;
 ALTER TABLE coupons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_content ENABLE ROW LEVEL SECURITY;
 ALTER TABLE pages ENABLE ROW LEVEL SECURITY;
@@ -619,6 +644,8 @@ USING (status = 'published' AND (publish_date IS NULL OR publish_date <= now()))
 CREATE POLICY "Admins full access on collections" ON collections FOR ALL USING (is_admin());
 CREATE POLICY "Admins full access on collection_products" ON collection_products FOR ALL USING (is_admin());
 CREATE POLICY "Admins full access on offers" ON offers FOR ALL USING (is_admin());
+CREATE POLICY "Public read access to active partners" ON partners FOR SELECT USING (status = 'active');
+CREATE POLICY "Admins full access on partners" ON partners FOR ALL USING (is_admin());
 CREATE POLICY "Admins full access on coupons" ON coupons FOR ALL USING (is_admin());
 CREATE POLICY "Admins full access on site_content" ON site_content FOR ALL USING (is_admin());
 CREATE POLICY "Admins full access on pages" ON pages FOR ALL USING (is_admin());

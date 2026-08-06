@@ -106,7 +106,7 @@ export function SeoClient({ settings }: { settings: Record<string, any> }) {
         <div className="max-w-xl p-4 bg-white rounded-lg border border-gray-100 shadow-sm">
           <div className="text-sm text-gray-700 mb-1 flex items-center gap-2">
             <span className="bg-gray-200 w-6 h-6 rounded-full inline-block"></span>
-            https://ayurdharadivyashakti.com
+            https://www.ayurdharadivyashakti.store
           </div>
           <div className="text-xl text-blue-800 hover:underline cursor-pointer truncate">
             {seo.global_meta_title || 'Store Title'}

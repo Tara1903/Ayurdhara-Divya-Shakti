@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { authService, User, Session } from '@/services/authService';
 
+import { useWishlistStore } from '@/store/wishlistStore';
+
 interface AuthState {
   user: User | null;
   session: Session | null;
@@ -29,6 +31,11 @@ export const useAuthStore = create<AuthState>((set) => ({
         isInitialized: true,
         isLoading: false,
       });
+      
+      // Fetch wishlist after initializing auth
+      if (session?.user) {
+        useWishlistStore.getState().fetchWishlist().catch(console.error);
+      }
     } catch (error) {
       console.error('Failed to initialize auth:', error);
       set({ isInitialized: true, isLoading: false, user: null, session: null });

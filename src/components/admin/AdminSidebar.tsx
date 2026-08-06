@@ -32,7 +32,8 @@ import {
   Settings,
   Shield,
   History,
-  LogOut
+  LogOut,
+  Printer
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
@@ -59,6 +60,7 @@ const NAV_SECTIONS = [
     title: 'SALES',
     items: [
       { label: 'Orders', href: '/admin/orders', icon: ShoppingCart },
+      { label: 'Cash Orders', href: '/admin/cash-orders', icon: Ticket }, // Phase 7
       { label: 'Payments', href: '/admin/payments', icon: CreditCard },
       { label: 'Shipments', href: '/admin/shipments', icon: Truck },
     ]
@@ -67,6 +69,7 @@ const NAV_SECTIONS = [
     title: 'CUSTOMERS',
     items: [
       { label: 'Customers', href: '/admin/customers', icon: Users },
+      { label: 'Retail Partners', href: '/admin/retail-partners', icon: Users }, // Phase 8
       { label: 'Reviews', href: '/admin/reviews', icon: MessageSquare },
     ]
   },
@@ -113,6 +116,7 @@ const NAV_SECTIONS = [
       { label: 'Admin Users', href: '/admin/admin-users', icon: Shield },
       { label: 'Permissions', href: '/admin/permissions', icon: Shield },
       { label: 'Audit Log', href: '/admin/audit-log', icon: History },
+      { label: 'Print Center', href: '/admin/print-center', icon: Printer },
     ]
   }
 ];
