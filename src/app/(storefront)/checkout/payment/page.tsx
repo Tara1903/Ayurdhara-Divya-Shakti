@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -22,7 +22,7 @@ function PaymentContent() {
   // Simulate realtime listener
   useEffect(() => {
     if (status === 'CONFIRMED') {
-      router.push(/order-confirmation?orderId=\);
+      router.push(`/order-confirmation?orderId=${orderId}`);
     }
   }, [status, router, orderId]);
 
@@ -49,7 +49,7 @@ function PaymentContent() {
         </div>
 
         <div className="mt-8 text-center bg-gray-50 rounded-lg py-3">
-          <p className={\	ext-lg font-bold \\}>
+          <p className={`text-lg font-bold ${timeLeft < 60 ? 'text-red-500' : 'text-gray-800'}`}>
             Waiting for payment... {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
           </p>
         </div>
