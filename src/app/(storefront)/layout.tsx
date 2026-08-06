@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import CartDrawer from "@/components/cart/CartDrawer";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
+import AppPromoPopup from "@/components/AppPromoPopup";
 
 export const metadata: Metadata = {
   title: "Ayurdhara Divya Shakti - Premium Ayurvedic Wellness",
@@ -32,6 +33,9 @@ export default function StorefrontLayout({
 
       {/* Global Footer */}
       <Footer />
+      
+      {/* App Promotional Popup */}
+      <AppPromoPopup />
     </>
   );
 }

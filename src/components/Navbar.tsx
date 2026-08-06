@@ -178,6 +178,7 @@ export default function Navbar() {
             {/* Right Side: Links, Account, Cart */}
             <div className="flex items-center gap-3 md:gap-5 flex-shrink-0">
               <div className="hidden lg:flex items-center gap-6 mr-2">
+                <Link href="/mobile-app" className="text-sm font-bold text-[#2D5A27] hover:text-[#4B7B3B] uppercase tracking-wider transition-colors flex items-center gap-1">📱 App</Link>
                 <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</Link>
                 <Link href="/wellness-combos" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">Combos</Link>
                 <Link href="/wellness-guide/how-to-use" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Guide</Link>
@@ -253,6 +254,14 @@ export default function Navbar() {
                 </div>
               </div>
             ))}
+            
+            <Link 
+              href="/mobile-app" 
+              onClick={closeMenu} 
+              className="w-full py-4 flex items-center justify-between text-xl font-bold text-[#2D5A27] border-b border-gray-50"
+            >
+              📱 Download App
+            </Link>
             
             <Link 
               href="/business-opportunity" 
