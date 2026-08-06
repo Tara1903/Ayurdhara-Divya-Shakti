@@ -210,12 +210,44 @@ export default function PrintCenterClient({ categories, products }: { categories
     link.click();
   };
 
+  const upscaleImage = async (dataUrl: string, targetWidthPx: number, targetHeightPx: number): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const img = new window.Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = targetWidthPx;
+        canvas.height = targetHeightPx;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return reject('No canvas context');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0, targetWidthPx, targetHeightPx);
+        resolve(canvas.toDataURL('image/png', 1.0));
+      };
+      img.onerror = reject;
+      img.src = dataUrl;
+    });
+  };
+
   const generateWithJsPDF = async () => {
     const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     let remainingToPrint = targetQuantity;
+    
+    let processedImage = activeImage!;
+    if (uploadedFileType !== 'image/svg+xml') {
+      try {
+        setSheetMessage(`Upscaling image to ${printQuality} DPI...`);
+        processedImage = await upscaleImage(activeImage!, requiredWidthPx, requiredHeightPx);
+      } catch (e) {
+        console.error("Failed to upscale image", e);
+      }
+    }
 
     for (let sheet = 0; sheet < totalSheets; sheet++) {
       if (sheet > 0) doc.addPage();
+
+      setSheetMessage(`Generating sheet ${sheet + 1} of ${totalSheets}...`);
 
       for (let row = 0; row < layout.rows; row++) {
         for (let col = 0; col < layout.columns; col++) {
@@ -243,8 +275,8 @@ export default function PrintCenterClient({ categories, products }: { categories
           } else {
             // Raster image
             doc.addImage(
-              activeImage!, 
-              uploadedFileType === 'image/png' ? 'PNG' : 'JPEG', 
+              processedImage, 
+              'PNG', 
               x, 
               y, 
               layout.cellSize.width, 
