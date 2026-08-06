@@ -1,4 +1,4 @@
-﻿import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function MobileAppPage() {
@@ -41,8 +41,14 @@ export default function MobileAppPage() {
             </div>
           </div>
           <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-1 lg:flex lg:items-center">
-            <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md bg-gray-100 h-[600px] flex items-center justify-center border-4 border-gray-800 rounded-[3rem]">
-               <span className="text-gray-400 font-medium text-lg">App Preview</span>
+            <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md bg-gray-100 h-[600px] flex items-center justify-center border-4 border-gray-800 rounded-[3rem] overflow-hidden">
+               <Image 
+                 src="/images/app-mockup.jpg" 
+                 alt="Ayurdhara Divya Shakti Android App Preview" 
+                 fill 
+                 className="object-cover" 
+                 priority 
+               />
             </div>
           </div>
         </div>
