@@ -250,7 +250,7 @@ export default function PrintCenterClient({ categories, products }: { categories
               layout.cellSize.width, 
               layout.cellSize.height,
               undefined,
-              'FAST',
+              'NONE',
               isRotated ? 90 : 0
             );
           }
