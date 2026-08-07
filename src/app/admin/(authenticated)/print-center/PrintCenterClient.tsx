@@ -9,13 +9,13 @@ import { calculatePrintLayout } from '@/utils/printLayoutEngine';
 import { Upload, Printer, ZoomIn, ZoomOut, Maximize, RefreshCcw, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 const PRESET_SIZES = [
-  { label: '10 ml (30 × 45 mm)', width: 30, height: 45 },
-  { label: '15 ml (35 × 52.5 mm)', width: 35, height: 52.5 },
-  { label: '20 ml (40 × 60 mm)', width: 40, height: 60 },
-  { label: '50 ml (50 × 75 mm)', width: 50, height: 75 },
-  { label: '60 ml (55 × 82.5 mm)', width: 55, height: 82.5 },
-  { label: '100 ml (65 × 97.5 mm)', width: 65, height: 97.5 },
-  { label: '200 ml (80 × 120 mm)', width: 80, height: 120 },
+  { label: '10 ml (24 x 36 mm)', width: 24, height: 36 },
+  { label: '15 ml (26 x 39 mm)', width: 26, height: 39 },
+  { label: '20 ml (28 x 42 mm)', width: 28, height: 42 },
+  { label: '30 ml (30 x 45 mm)', width: 30, height: 45 },
+  { label: '50 ml (40 x 60 mm)', width: 40, height: 60 },
+  { label: '100 ml (50 x 75 mm)', width: 50, height: 75 },
+  { label: '200 ml (60 x 90 mm)', width: 60, height: 90 },
 ];
 
 export default function PrintCenterClient({ categories, products }: { categories: any[], products: any[] }) {
@@ -206,7 +206,8 @@ export default function PrintCenterClient({ categories, products }: { categories
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'ayurdhara-sticker-sheet.pdf';
+    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14)}.pdf`;
+    link.download = filename;
     link.click();
   };
 
@@ -310,7 +311,8 @@ export default function PrintCenterClient({ categories, products }: { categories
       }
     }
 
-    doc.save('ayurdhara-sticker-sheet.pdf');
+    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14)}.pdf`;
+    doc.save(filename);
   };
 
   const generatePDF = async () => {
