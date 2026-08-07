@@ -49,6 +49,7 @@ export default function PrintCenterClient({ categories, products }: { categories
   const [addBleed, setAddBleed] = useState(false);
   const [addCropMarks, setAddCropMarks] = useState(false);
   const [printQuality, setPrintQuality] = useState<300 | 600 | 1200>(600);
+  const [enableUpscaling, setEnableUpscaling] = useState(true);
 
   // Derived active values
   const activeWidth = sizeMode === 'preset' ? PRESET_SIZES[selectedPreset].width : customWidth;
@@ -236,7 +237,7 @@ export default function PrintCenterClient({ categories, products }: { categories
     let remainingToPrint = targetQuantity;
     
     let processedImage = activeImage!;
-    if (uploadedFileType !== 'image/svg+xml') {
+    if (uploadedFileType !== 'image/svg+xml' && enableUpscaling) {
       try {
         console.log(`Upscaling image to ${printQuality} DPI...`);
         processedImage = await upscaleImage(activeImage!, requiredWidthPx, requiredHeightPx);
@@ -478,6 +479,19 @@ export default function PrintCenterClient({ categories, products }: { categories
               <option value={600}>High (600 DPI)</option>
               <option value={1200}>Ultra (1200 DPI)</option>
             </select>
+          </div>
+          
+          <div className="mb-4 flex items-center gap-2">
+            <input 
+              type="checkbox" 
+              id="enableUpscaling" 
+              checked={enableUpscaling} 
+              onChange={(e) => setEnableUpscaling(e.target.checked)}
+              className="w-4 h-4 text-[#2D5A27] rounded focus:ring-[#2D5A27]"
+            />
+            <label htmlFor="enableUpscaling" className="text-sm text-gray-700 font-medium cursor-pointer">
+              Enable HD Upscaling (Enhances low-res labels)
+            </label>
           </div>
           
           <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
