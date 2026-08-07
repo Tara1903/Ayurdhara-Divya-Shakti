@@ -206,7 +206,7 @@ export default function PrintCenterClient({ categories, products }: { categories
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14)}.pdf`;
+    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/-/g, '').replace(/:/g, '').replace('T', '').slice(0, 14)}.pdf`;
     link.download = filename;
     link.click();
   };
@@ -311,7 +311,7 @@ export default function PrintCenterClient({ categories, products }: { categories
       }
     }
 
-    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14)}.pdf`;
+    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/-/g, '').replace(/:/g, '').replace('T', '').slice(0, 14)}.pdf`;
     doc.save(filename);
   };
 
