@@ -212,19 +212,41 @@ export default function PrintCenterClient({ categories, products }: { categories
     link.click();
   };
 
-  const upscaleImage = async (dataUrl: string, targetWidthPx: number, targetHeightPx: number): Promise<string> => {
+  const processImageForPdf = async (dataUrl: string, targetWidthPx: number, targetHeightPx: number, isRotated: boolean, upscale: boolean): Promise<string> => {
     return new Promise((resolve, reject) => {
       const img = new window.Image();
       img.crossOrigin = "anonymous";
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        canvas.width = targetWidthPx;
-        canvas.height = targetHeightPx;
+        
+        const finalW = upscale ? (isRotated ? targetHeightPx : targetWidthPx) : (isRotated ? img.height : img.width);
+        const finalH = upscale ? (isRotated ? targetWidthPx : targetHeightPx) : (isRotated ? img.width : img.height);
+        
+        canvas.width = finalW;
+        canvas.height = finalH;
+        
         const ctx = canvas.getContext('2d');
         if (!ctx) return reject('No canvas context');
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(img, 0, 0, targetWidthPx, targetHeightPx);
+        
+        if (upscale) {
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+        } else {
+          ctx.imageSmoothingEnabled = false;
+        }
+        
+        if (isRotated) {
+          ctx.translate(finalW / 2, finalH / 2);
+          ctx.rotate((90 * Math.PI) / 180);
+          const drawW = upscale ? targetWidthPx : img.width;
+          const drawH = upscale ? targetHeightPx : img.height;
+          ctx.drawImage(img, -drawW / 2, -drawH / 2, drawW, drawH);
+        } else {
+          const drawW = upscale ? targetWidthPx : img.width;
+          const drawH = upscale ? targetHeightPx : img.height;
+          ctx.drawImage(img, 0, 0, drawW, drawH);
+        }
+        
         resolve(canvas.toDataURL('image/png', 1.0));
       };
       img.onerror = reject;
@@ -236,13 +258,15 @@ export default function PrintCenterClient({ categories, products }: { categories
     const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     let remainingToPrint = targetQuantity;
     
+    const isLayoutRotated = layout.layoutOrientation === 'Rotated';
     let processedImage = activeImage!;
-    if (uploadedFileType !== 'image/svg+xml' && enableUpscaling) {
+    
+    if (uploadedFileType !== 'image/svg+xml') {
       try {
-        console.log(`Upscaling image to ${printQuality} DPI...`);
-        processedImage = await upscaleImage(activeImage!, requiredWidthPx, requiredHeightPx);
+        console.log(`Processing image for PDF... Upscaling: ${enableUpscaling}, Rotated: ${isLayoutRotated}`);
+        processedImage = await processImageForPdf(activeImage!, requiredWidthPx, requiredHeightPx, isLayoutRotated, enableUpscaling);
       } catch (e) {
-        console.error("Failed to upscale image", e);
+        console.error("Failed to process image", e);
       }
     }
 
@@ -257,7 +281,6 @@ export default function PrintCenterClient({ categories, products }: { categories
 
           const x = layout.xMargin + (col * layout.cellSize.width);
           const y = layout.yMargin + (row * layout.cellSize.height);
-          const isRotated = layout.layoutOrientation === 'Rotated';
           
           if (uploadedFileType === 'image/svg+xml' && uploadedSvgString) {
             // Draw SVG vector data
@@ -285,7 +308,7 @@ export default function PrintCenterClient({ categories, products }: { categories
               layout.cellSize.height,
               undefined,
               'NONE',
-              isRotated ? 90 : 0
+              0
             );
           }
 
@@ -420,7 +443,7 @@ export default function PrintCenterClient({ categories, products }: { categories
           {sourceType === 'existing' && (
             <div className="space-y-3">
               <select 
-                className="w-full p-2 border border-gray-200 rounded-md text-sm"
+                className="w-full p-2 border border-gray-200 rounded-md text-sm bg-white text-black"
                 value={selectedCategoryId}
                 onChange={(e) => {
                   setSelectedCategoryId(e.target.value);
@@ -433,7 +456,7 @@ export default function PrintCenterClient({ categories, products }: { categories
               </select>
 
               <select 
-                className="w-full p-2 border border-gray-200 rounded-md text-sm"
+                className="w-full p-2 border border-gray-200 rounded-md text-sm bg-white text-black"
                 value={selectedProductId}
                 onChange={(e) => {
                   setSelectedProductId(e.target.value);
@@ -473,7 +496,7 @@ export default function PrintCenterClient({ categories, products }: { categories
             <select 
               value={printQuality} 
               onChange={(e) => setPrintQuality(Number(e.target.value) as any)}
-              className="w-full p-2 border border-gray-200 rounded-md text-sm"
+              className="w-full p-2 border border-gray-200 rounded-md text-sm bg-white text-black"
             >
               <option value={300}>Standard (300 DPI)</option>
               <option value={600}>High (600 DPI)</option>
@@ -549,7 +572,7 @@ export default function PrintCenterClient({ categories, products }: { categories
 
           {sizeMode === 'preset' ? (
             <select 
-              className="w-full p-2 border border-gray-200 rounded-md text-sm"
+              className="w-full p-2 border border-gray-200 rounded-md text-sm bg-white text-black"
               value={selectedPreset}
               onChange={(e) => setSelectedPreset(Number(e.target.value))}
             >
@@ -561,12 +584,12 @@ export default function PrintCenterClient({ categories, products }: { categories
             <div className="flex gap-4 items-center">
               <div>
                 <label className="block text-xs text-gray-500 mb-1">Width (mm)</label>
-                <input type="number" min="10" max="210" value={customWidth} onChange={e => setCustomWidth(Number(e.target.value))} className="w-full p-2 border border-gray-200 rounded-md text-sm" />
+                <input type="number" min="10" max="210" value={customWidth} onChange={e => setCustomWidth(Number(e.target.value))} className="w-full p-2 border border-gray-200 rounded-md text-sm bg-white text-black" />
               </div>
               <span className="text-gray-400 pt-5">×</span>
               <div>
                 <label className="block text-xs text-gray-500 mb-1">Height (mm)</label>
-                <input type="number" min="10" max="297" value={customHeight} onChange={e => setCustomHeight(Number(e.target.value))} className="w-full p-2 border border-gray-200 rounded-md text-sm" />
+                <input type="number" min="10" max="297" value={customHeight} onChange={e => setCustomHeight(Number(e.target.value))} className="w-full p-2 border border-gray-200 rounded-md text-sm bg-white text-black" />
               </div>
             </div>
           )}
@@ -594,7 +617,7 @@ export default function PrintCenterClient({ categories, products }: { categories
                 type="number" min="1" 
                 value={customQuantity} 
                 onChange={(e) => setCustomQuantity(Number(e.target.value))}
-                className="w-full p-2 border border-gray-200 rounded-md text-sm" 
+                className="w-full p-2 border border-gray-200 rounded-md text-sm bg-white text-black" 
               />
             )}
           </div>
