@@ -1901,10 +1901,10 @@ export const products: Product[] = [
     ],
     "variants": [
       {
-        "size": "1 Pack",
+        "size": "Standard",
         "originalPrice": 749,
         "price": 499,
-        "image": "/images/products/trial-wellness-pack-1-pack.jpg"
+        "image": "/images/products/trial-wellness-pack.jpg"
       }
     ],
     "price": 499,
@@ -1997,10 +1997,10 @@ export const products: Product[] = [
     ],
     "variants": [
       {
-        "size": "1 Pack",
+        "size": "Standard",
         "originalPrice": 2999,
         "price": 2199,
-        "image": "/images/products/gold-wellness-pack-1-pack.jpg"
+        "image": "/images/products/gold-wellness-pack.jpg"
       }
     ],
     "price": 2199,
@@ -2093,58 +2093,10 @@ export const products: Product[] = [
     ],
     "variants": [
       {
-        "size": "1 Pack",
+        "size": "Standard",
         "originalPrice": 5499,
         "price": 3999,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 1499,
-        "price": 899,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 2249,
-        "price": 1299,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 2999,
-        "price": 1699,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 3749,
-        "price": 2099,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 5499,
-        "price": 3999,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 8249,
-        "price": 5799,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 10999,
-        "price": 7499,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
-      },
-      {
-        "size": "1 Pack",
-        "originalPrice": 13749,
-        "price": 8999,
-        "image": "/images/products/premium-wellness-pack-1-pack.jpg"
+        "image": "/images/products/premium-wellness-pack.jpg"
       }
     ],
     "price": 3999,
