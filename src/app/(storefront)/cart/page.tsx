@@ -7,9 +7,10 @@ import { Shield, Check, Info, Minus, Plus, X, ShoppingBag } from 'lucide-react';
 import { products } from '@/data/productData';
 
 export default function CartPage() {
-  const { items, removeItem, updateQuantity, getCartSubtotal, getCartOriginalTotal } = useCartStore();
+  const { items, removeItem, updateQuantity, getCartSubtotal, getCartOriginalTotal, partnerCode, setPartnerCode } = useCartStore();
   const [promoCode, setPromoCode] = useState('');
   const [promoStatus, setPromoStatus] = useState<'idle' | 'applied' | 'invalid'>('idle');
+  const [partnerCodeInput, setPartnerCodeInput] = useState('');
 
   const subtotal = getCartSubtotal();
   const originalTotal = getCartOriginalTotal();
@@ -185,8 +186,51 @@ export default function CartPage() {
                 <span className="text-3xl font-bold text-gray-900">₹{finalTotal.toFixed(0)}</span>
               </div>
 
+              <div className="mb-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Have a Partner Code?</p>
+                {partnerCode ? (
+                  <div className="bg-[#4B7B3B]/10 border border-[#4B7B3B]/20 rounded-lg p-4 flex justify-between items-center mb-2">
+                    <div className="flex items-center gap-2">
+                      <Check size={18} className="text-[#4B7B3B]" />
+                      <span className="font-bold text-[#4B7B3B]">Partner Code: {partnerCode}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-bold text-[#E88B23] bg-[#E88B23]/10 px-2 py-0.5 rounded">2% OFF</span>
+                      <button 
+                        onClick={() => setPartnerCode(null)}
+                        className="text-gray-400 hover:text-red-500 transition-colors"
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex gap-2 mb-2">
+                    <input 
+                      type="text" 
+                      value={partnerCodeInput}
+                      onChange={(e) => setPartnerCodeInput(e.target.value)}
+                      placeholder="Enter Partner Code" 
+                      className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#4B7B3B] focus:ring-0 font-bold text-gray-700 uppercase"
+                    />
+                    <button 
+                      onClick={() => {
+                        if (partnerCodeInput.trim()) {
+                          setPartnerCode(partnerCodeInput.trim().toUpperCase());
+                          setPartnerCodeInput('');
+                        }
+                      }}
+                      disabled={!partnerCodeInput}
+                      className="px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-bold uppercase tracking-widest rounded-lg transition-colors disabled:bg-gray-300 disabled:text-gray-500"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                )}
+              </div>
+
               <div className="mb-8">
-                <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Have a wellness code?</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Have a wellness promo code?</p>
                 <div className="flex gap-2">
                   <input 
                     type="text" 

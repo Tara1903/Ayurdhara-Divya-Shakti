@@ -182,6 +182,7 @@ export default function Navbar() {
                 <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</Link>
                 <Link href="/wellness-combos" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">Combos</Link>
                 <Link href="/wellness-guide/how-to-use" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Guide</Link>
+                <Link href="/wellness-partner" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">BE OUR WELLNESS PARTNER</Link>
               </div>
 
               <Link href={user ? '/account' : '/login'} className="hidden md:flex text-gray-700 hover:text-[#4B7B3B] transition-colors">
@@ -269,6 +270,14 @@ export default function Navbar() {
               className="w-full py-4 flex items-center justify-between text-xl font-bold text-[#E88B23] border-b border-gray-50"
             >
               Business Opportunity
+            </Link>
+            
+            <Link 
+              href="/wellness-partner" 
+              onClick={closeMenu} 
+              className="w-full py-4 flex items-center justify-between text-xl font-bold text-[#E88B23] border-b border-gray-50 uppercase"
+            >
+              BE OUR WELLNESS PARTNER
             </Link>
 
             <div className="mt-4 pt-4">

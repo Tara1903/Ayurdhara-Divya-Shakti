@@ -17,12 +17,14 @@ export interface CartItem {
 interface CartState {
   items: CartItem[];
   isCartOpen: boolean;
+  partnerCode: string | null;
   
   // Actions
   addItem: (item: Omit<CartItem, 'id'>) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
+  setPartnerCode: (code: string | null) => void;
   
   // UI Actions
   openCart: () => void;
@@ -40,6 +42,7 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       isCartOpen: false,
+      partnerCode: null,
 
       addItem: (item) => {
         // Generate a unique ID based on product and variant size
@@ -76,8 +79,10 @@ export const useCartStore = create<CartState>()(
       },
 
       clearCart: () => {
-        set({ items: [] });
+        set({ items: [], partnerCode: null });
       },
+
+      setPartnerCode: (code) => set({ partnerCode: code }),
 
       openCart: () => set({ isCartOpen: true }),
       closeCart: () => set({ isCartOpen: false }),
@@ -88,10 +93,15 @@ export const useCartStore = create<CartState>()(
       },
 
       getCartSubtotal: (isGoldMember?: boolean) => {
-        return get().items.reduce((total, item) => {
+        let subtotal = get().items.reduce((total, item) => {
           const effectivePrice = (isGoldMember && item.goldMemberPrice) ? item.goldMemberPrice : item.price;
           return total + (effectivePrice * item.quantity);
         }, 0);
+        
+        if (get().partnerCode) {
+          subtotal = subtotal * 0.98;
+        }
+        return subtotal;
       },
 
       getCartOriginalTotal: () => {
@@ -100,7 +110,7 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'ayurdhara-cart', // name of the item in the storage (must be unique)
-      partialize: (state) => ({ items: state.items }), // Only persist items, not UI state like isCartOpen
+      partialize: (state) => ({ items: state.items, partnerCode: state.partnerCode }), // Persist items and partnerCode
     }
   )
 );

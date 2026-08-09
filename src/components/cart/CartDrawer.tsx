@@ -1,15 +1,19 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
 import { useAuthStore } from '@/store/authStore';
-import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, Tag, CheckCircle2 } from 'lucide-react';
 
 export default function CartDrawer() {
-  const { isCartOpen, closeCart, items, getCartSubtotal, removeItem, updateQuantity } = useCartStore();
+  const { isCartOpen, closeCart, items, getCartSubtotal, removeItem, updateQuantity, partnerCode, setPartnerCode } = useCartStore();
   const { user } = useAuthStore();
   const isGoldMember = user?.isGoldMember || false;
+  
+  const [partnerCodeInput, setPartnerCodeInput] = useState('');
+  const [isCodeApplied, setIsCodeApplied] = useState(false);
 
   const subtotal = getCartSubtotal(isGoldMember);
   const FREE_SHIPPING_THRESHOLD = 2000;
@@ -130,11 +134,58 @@ export default function CartDrawer() {
               ))}
             </div>
 
+            {/* Partner Code */}
+            <div className="px-6 py-4 bg-white border-t border-gray-100">
+              {partnerCode ? (
+                <div className="bg-[#4B7B3B]/10 border border-[#4B7B3B]/20 rounded-lg p-3 flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 size={16} className="text-[#4B7B3B]" />
+                    <span className="text-sm font-bold text-[#4B7B3B]">Partner Code Applied</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-bold text-[#E88B23] bg-[#E88B23]/10 px-2 py-0.5 rounded">2% OFF</span>
+                    <button 
+                      onClick={() => setPartnerCode(null)}
+                      className="text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <X size={14} />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <label className="text-sm font-bold text-gray-700 flex items-center gap-2 mb-2">
+                    <Tag size={14} /> Have a Partner Code?
+                  </label>
+                  <div className="flex gap-2">
+                    <input 
+                      type="text" 
+                      placeholder="Enter code" 
+                      value={partnerCodeInput}
+                      onChange={(e) => setPartnerCodeInput(e.target.value)}
+                      className="flex-1 p-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#4B7B3B]"
+                    />
+                    <button 
+                      onClick={() => {
+                        if (partnerCodeInput.trim()) {
+                          setPartnerCode(partnerCodeInput.trim().toUpperCase());
+                          setPartnerCodeInput('');
+                        }
+                      }}
+                      className="px-4 bg-gray-900 hover:bg-black text-white text-sm font-bold rounded-lg transition-colors"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Footer */}
             <div className="p-6 bg-white border-t border-gray-200 shadow-[0_-10px_20px_rgba(0,0,0,0.05)] z-10">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-gray-600 font-semibold">Subtotal</span>
-                <span className="text-2xl font-bold text-gray-900">₹{subtotal}</span>
+                <span className="text-2xl font-bold text-gray-900">₹{Math.round(subtotal)}</span>
               </div>
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-6 text-center">Taxes and shipping calculated at checkout</p>
               

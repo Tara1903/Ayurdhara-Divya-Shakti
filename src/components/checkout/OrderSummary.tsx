@@ -10,7 +10,7 @@ import { calculatePricing, formatINR } from '@/services/pricingService';
 import { validateCoupon } from '@/services/couponService';
 
 export default function OrderSummary() {
-  const { items } = useCartStore();
+  const { items, partnerCode, setPartnerCode } = useCartStore();
   const {
     shippingCharge,
     appliedCouponCode,
@@ -21,6 +21,7 @@ export default function OrderSummary() {
   const { user } = useAuthStore();
   const isGoldMember = user?.isGoldMember || false;
 
+  const [partnerCodeInput, setPartnerCodeInput] = useState('');
   const [couponInput, setCouponInput] = useState('');
   const [couponLoading, setCouponLoading] = useState(false);
   const [couponMessage, setCouponMessage] = useState('');
@@ -134,6 +135,53 @@ export default function OrderSummary() {
         >
           Edit cart
         </Link>
+
+        {/* Partner Code */}
+        <div className="summary-coupon" style={{ marginBottom: '1rem' }}>
+          {partnerCode ? (
+            <div className="summary-coupon-applied">
+              <span>🎉 Partner Code: {partnerCode} — 2% OFF</span>
+              <button
+                className="summary-coupon-remove"
+                onClick={() => setPartnerCode(null)}
+                aria-label="Remove partner code"
+              >
+                ×
+              </button>
+            </div>
+          ) : (
+            <div className="summary-coupon-row">
+              <label htmlFor="partner-input" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>
+                Partner code
+              </label>
+              <input
+                id="partner-input"
+                className="summary-coupon-input"
+                placeholder="PARTNER CODE"
+                value={partnerCodeInput}
+                onChange={(e) => setPartnerCodeInput(e.target.value.toUpperCase())}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && partnerCodeInput.trim()) {
+                    setPartnerCode(partnerCodeInput.trim());
+                    setPartnerCodeInput('');
+                  }
+                }}
+              />
+              <button
+                className="summary-coupon-btn"
+                onClick={() => {
+                  if (partnerCodeInput.trim()) {
+                    setPartnerCode(partnerCodeInput.trim());
+                    setPartnerCodeInput('');
+                  }
+                }}
+                disabled={!partnerCodeInput.trim()}
+              >
+                Apply
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Coupon */}
         <div className="summary-coupon">
