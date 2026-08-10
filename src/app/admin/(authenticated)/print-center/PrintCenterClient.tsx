@@ -127,6 +127,19 @@ export default function PrintCenterClient({ categories, products }: { categories
     }
   };
 
+  const getDynamicFilename = () => {
+    const timestamp = new Date().toISOString().replace(/-/g, '').replace(/:/g, '').replace('T', '').slice(0, 14);
+    let prefix = 'ayurdhara-stickers';
+    if (sourceType === 'existing' && selectedProductId) {
+      const pName = products.find(p => p.id === selectedProductId)?.name;
+      if (pName) prefix = pName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+    } else if (sourceType === 'upload') {
+      prefix = 'custom-upload';
+    }
+    const sizeStr = sizeMode === 'preset' ? PRESET_SIZES[selectedPreset].label.replace(/[^a-z0-9]/gi, '-') : `${customWidth}x${customHeight}mm`;
+    return `${prefix}-${sizeStr}-${timestamp}.pdf`.replace(/-+/g, '-');
+  };
+
   const generateWithPdfLib = async () => {
     const pdfDoc = await PDFDocument.create();
     const uploadedPdf = await PDFDocument.load(uploadedBuffer!);
@@ -207,7 +220,7 @@ export default function PrintCenterClient({ categories, products }: { categories
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/-/g, '').replace(/:/g, '').replace('T', '').slice(0, 14)}.pdf`;
+    const filename = getDynamicFilename();
     link.download = filename;
     link.click();
   };
@@ -306,8 +319,8 @@ export default function PrintCenterClient({ categories, products }: { categories
               y, 
               layout.cellSize.width, 
               layout.cellSize.height,
-              undefined,
-              'NONE',
+              'sticker_alias',
+              'FAST',
               0
             );
           }
@@ -335,7 +348,7 @@ export default function PrintCenterClient({ categories, products }: { categories
       }
     }
 
-    const filename = `ayurdhara-stickers-${new Date().toISOString().replace(/-/g, '').replace(/:/g, '').replace('T', '').slice(0, 14)}.pdf`;
+    const filename = getDynamicFilename();
     doc.save(filename);
   };
 
