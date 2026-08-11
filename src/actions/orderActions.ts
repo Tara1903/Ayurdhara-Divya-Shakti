@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server';
 import type { CreateOrderPayload, Order } from '@/types/order';
+import { createStarPayOrder } from '@/services/starpayService';
 
 function generateOrderRef(): string {
   const year = new Date().getFullYear();
@@ -187,9 +188,9 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       item_discount: itemDiscount,
       coupon_code: payload.couponCode,
       coupon_discount: couponDiscount,
-      partner_code: partnerAccountId ? payload.partnerCode : null, // Storing partner_id string in code
+      partner_code: partnerAccountId ? payload.partnerCode : null,
       partner_type: partnerType,
-      partner_account_id: partnerAccountId, // New FK column if added, otherwise logic relies on partner_code
+      partner_account_id: partnerAccountId,
       partner_discount: partnerDiscount,
       referral_reward_eligible_amount: referralRewardEligibleAmount,
       referral_reward_calculated: referralRewardCalculated,
@@ -259,6 +260,43 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     }
   }
 
+  // 6. For prepaid orders — create a StarPay payment order and get checkout URL
+  let starpayCheckoutUrl: string | null = null;
+  let starpayOrderId: string | null = null;
+  let starpayPaymentToken: string | null = null;
+
+  if (payload.paymentMethod !== 'cod') {
+    const starpayResult = await createStarPayOrder({
+      amount: finalTotal,
+      description: `Ayurdhara Order ${orderRef}`,
+      customerName: payload.shippingAddress.fullName,
+      customerEmail: payload.guestEmail,
+      customerPhone: payload.guestMobile,
+      metadata: {
+        ayurdharaOrderId: orderData.id,
+        ayurdharaOrderRef: orderRef,
+      },
+    });
+
+    if (starpayResult.success) {
+      starpayOrderId = starpayResult.data.orderId;
+      starpayPaymentToken = starpayResult.data.paymentToken;
+      starpayCheckoutUrl = starpayResult.data.checkoutUrl;
+
+      // Store StarPay order reference in the Ayurdhara order
+      await supabase
+        .from('orders')
+        .update({
+          starpay_order_id: starpayOrderId,
+          starpay_payment_token: starpayPaymentToken,
+        })
+        .eq('id', orderData.id);
+    } else {
+      console.error('[StarPay] Failed to create payment order:', starpayResult.error);
+      // Don't block order creation — fall back to manual payment flow
+    }
+  }
+
   // Format response to match frontend Order type
   return {
     order: {
@@ -267,6 +305,9 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       customerId: orderData.customer_id,
       guestEmail: orderData.guest_email,
       guestMobile: orderData.guest_mobile,
+      starpayCheckoutUrl,
+      starpayOrderId,
+      starpayPaymentToken,
       items: validatedItems.map(vi => ({
         productId: vi.product_id,
         productSlug: vi.product_slug,

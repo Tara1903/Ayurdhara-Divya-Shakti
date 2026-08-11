@@ -61,6 +61,10 @@ export interface Order {
   updatedAt: string;
   confirmedAt?: string;
   estimatedDelivery?: string;
+  // StarPay payment gateway fields
+  starpayCheckoutUrl?: string | null;
+  starpayOrderId?: string | null;
+  starpayPaymentToken?: string | null;
 }
 
 // For creating a new order — sent to backend

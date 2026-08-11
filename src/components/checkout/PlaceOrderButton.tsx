@@ -123,16 +123,22 @@ export default function PlaceOrderButton() {
         // Session storage unavailable — confirm page will show fallback
       }
 
-      // 4. For prepaid: create a payment session (does NOT trigger actual payment)
+      // 4. For prepaid: redirect to StarPay checkout page
       if (!isCod) {
-        const session = await paymentService.createPaymentSession(
-          order.orderRef,
-          pricing.finalTotal,
-          selectedPaymentMethod
-        );
-        // In production: redirect to gateway or open payment modal
-        // For now: treat as "payment pending" — store session info
+        if (order.starpayCheckoutUrl) {
+          // Redirect to StarPay payment page
+          // StarPay will redirect back to /order-confirmation/{orderRef} on completion
+          clearCart();
+          window.location.href = order.starpayCheckoutUrl;
+          return; // Don't continue below
+        }
+        // Fallback if StarPay is unavailable
         try {
+          const session = await paymentService.createPaymentSession(
+            order.orderRef,
+            pricing.finalTotal,
+            selectedPaymentMethod
+          );
           sessionStorage.setItem(
             `payment_session_${order.orderRef}`,
             JSON.stringify(session)
