@@ -9,6 +9,7 @@ import { useWishlistStore } from "@/store/wishlistStore";
 import { useAuthStore } from "@/store/authStore";
 import { Product } from "@/data/productData";
 import ProductCard from "@/components/ProductCard";
+import ProductReviews from "@/components/ProductReviews";
 
 export default function PDPClient({ product }: { product: Product }) {
   const [activeImage, setActiveImage] = useState(0);
@@ -394,6 +395,9 @@ export default function PDPClient({ product }: { product: Product }) {
           </div>
         </div>
       </section>
+
+      {/* Customer Reviews */}
+      <ProductReviews productId={product.id} />
 
       {/* Mobile Sticky Add to Cart */}
       <div className={`fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-10px_20px_rgba(0,0,0,0.05)] z-[100] transform transition-transform duration-300 md:hidden ${showStickyBar ? 'translate-y-0' : 'translate-y-full'}`}>

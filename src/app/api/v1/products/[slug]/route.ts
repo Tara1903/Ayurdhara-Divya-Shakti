@@ -3,10 +3,11 @@ import { getProductBySlugFromDB } from '@/lib/dal/products';
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const product = await getProductBySlugFromDB(params.slug);
+    const resolvedParams = await params;
+    const product = await getProductBySlugFromDB(resolvedParams.slug);
     
     if (!product) {
       return NextResponse.json(

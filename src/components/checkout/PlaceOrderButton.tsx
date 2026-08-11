@@ -27,8 +27,7 @@ export default function PlaceOrderButton() {
     resetCheckout,
   } = useCheckoutStore();
 
-  const { items, clearCart, getCartSubtotal } = useCartStore();
-
+  const { items, clearCart, getCartSubtotal, partnerCode } = useCartStore();
   const subtotal = getCartSubtotal();
   const pricing = calculatePricing(items, couponDiscount, shippingCharge);
 
@@ -78,6 +77,7 @@ export default function PlaceOrderButton() {
         idempotencyKey,
         guestMobile: contact.mobile,
         guestEmail: contact.email || undefined,
+        partnerCode: partnerCode || undefined,
       });
 
       // 2. Build a rich confirmation object to persist in session storage

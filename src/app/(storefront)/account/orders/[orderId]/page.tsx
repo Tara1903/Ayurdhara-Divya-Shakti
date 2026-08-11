@@ -9,6 +9,7 @@ import type { Order } from '@/types/order';
 import { formatINR } from '@/services/pricingService';
 import { useCartStore } from '@/store/cartStore';
 import { useRouter } from 'next/navigation';
+import OrderTimeline from '@/components/account/OrderTimeline';
 
 export default function OrderDetailsPage({ params }: { params: Promise<{ orderId: string }> }) {
   const { orderId } = use(params);
@@ -104,40 +105,11 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ orderId
       </div>
 
       {/* Order Timeline */}
-      {currentStep >= 0 && order.orderStatus !== 'cancelled' && (
-        <div className="account-card" style={{ marginBottom: '2rem' }}>
-          <h3 className="account-card-title" style={{ marginBottom: '1.5rem' }}>Tracking Status</h3>
-          <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', margin: '0 1rem' }}>
-            {/* Progress Line */}
-            <div style={{ position: 'absolute', top: '12px', left: 0, right: 0, height: '2px', background: 'var(--sand)', zIndex: 0 }} />
-            <div style={{ position: 'absolute', top: '12px', left: 0, width: `${(Math.max(0, currentStep) / 4) * 100}%`, height: '2px', background: 'var(--olive)', zIndex: 1, transition: 'width 0.5s ease' }} />
-            
-            {steps.map((step, idx) => {
-              const isCompleted = idx <= currentStep;
-              const isActive = idx === currentStep;
-              return (
-                <div key={step} style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', flex: 1 }}>
-                  <div style={{ 
-                    width: '24px', height: '24px', borderRadius: '50%', 
-                    background: isCompleted ? 'var(--olive)' : 'white', 
-                    border: `2px solid ${isCompleted ? 'var(--olive)' : 'var(--sand)'}`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center'
-                  }}>
-                    {isCompleted && (
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    )}
-                  </div>
-                  <span style={{ fontSize: '0.75rem', fontWeight: isActive ? 600 : 400, color: isCompleted ? 'var(--charcoal)' : 'var(--stone)', textAlign: 'center' }}>
-                    {step}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      <OrderTimeline 
+        status={order.orderStatus} 
+        createdAt={order.createdAt} 
+        estimatedDelivery={order.estimatedDelivery} 
+      />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
         

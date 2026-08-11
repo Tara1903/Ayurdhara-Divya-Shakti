@@ -114,49 +114,54 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     }
   }
 
-  // Phase 5: Partner System
+  // Phase 5/8/9: Unified Partner System
   let partnerDiscount = 0;
   let partnerType = null;
   let referralRewardCalculated = 0;
   let referralRewardEligibleAmount = 0;
+  let partnerAccountId = null;
 
   if (payload.partnerCode) {
+    // Lookup in the new partner_accounts table
     const { data: partner } = await supabase
-      .from('partners')
-      .select('*')
-      .eq('code', payload.partnerCode)
+      .from('partner_accounts')
+      .select('id, partner_type, status')
+      .eq('partner_id', payload.partnerCode)
       .eq('status', 'active')
       .single();
 
     if (partner) {
-      partnerType = partner.type;
-      // Customer gets 2% discount on subtotal (offer price)
-      partnerDiscount = Number((subtotal * (Number(partner.customer_discount_rate) / 100)).toFixed(2));
+      partnerAccountId = partner.id;
+      partnerType = partner.partner_type;
       
-      // Calculate referral reward per item based on product class (Trial/Gold/Premium)
-      // applied to its final price (after its share of the 2% discount).
-      for (const item of validatedItems) {
-        let rewardRate = 0;
-        const n = item.product_name_snapshot.toLowerCase();
+      // Get Commercial settings for this partner type
+      const { data: siteSettings } = await supabase
+        .from('site_content')
+        .select('content')
+        .eq('key', 'partner_commercial_settings')
+        .single();
         
-        // Identify product class based on naming conventions as per request
-        if (n.includes('trial') || n.includes('starter')) {
-          rewardRate = Number(partner.referral_reward_rate_trial);
-        } else if (n.includes('gold')) {
-          rewardRate = Number(partner.referral_reward_rate_gold);
-        } else if (n.includes('premium')) {
-          rewardRate = Number(partner.referral_reward_rate_premium);
-        } else {
-          // Default to gold rate if unspecified
-          rewardRate = Number(partner.referral_reward_rate_gold);
-        }
+      const commercials = siteSettings?.content?.[partnerType] || {};
 
-        // The item's total is the unit price * quantity
-        // The item's discounted total (minus its portion of 2% discount)
-        const itemDiscountedTotal = item.line_total * (1 - Number(partner.customer_discount_rate) / 100);
-        
-        referralRewardEligibleAmount += itemDiscountedTotal;
-        referralRewardCalculated += (itemDiscountedTotal * (rewardRate / 100));
+      if (partnerType === 'retailer' && commercials.customer_discount) {
+        partnerDiscount = Number((subtotal * (Number(commercials.customer_discount) / 100)).toFixed(2));
+      }
+      
+      // Calculate reward per item
+      if (commercials.rewards) {
+        for (const item of validatedItems) {
+          let rewardRate = commercials.rewards.individual || 0;
+          const n = item.product_name_snapshot.toLowerCase();
+          
+          if (n.includes('trial') || n.includes('starter')) rewardRate = commercials.rewards.trial || rewardRate;
+          else if (n.includes('gold')) rewardRate = commercials.rewards.gold || rewardRate;
+          else if (n.includes('premium')) rewardRate = commercials.rewards.premium || rewardRate;
+
+          const itemDiscountedTotal = item.line_total * (1 - (partnerDiscount > 0 ? (commercials.customer_discount / 100) : 0));
+          
+          referralRewardEligibleAmount += itemDiscountedTotal;
+          referralRewardCalculated += (itemDiscountedTotal * (rewardRate / 100));
+        }
       }
       
       referralRewardEligibleAmount = Number(referralRewardEligibleAmount.toFixed(2));
@@ -182,8 +187,9 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       item_discount: itemDiscount,
       coupon_code: payload.couponCode,
       coupon_discount: couponDiscount,
-      partner_code: partnerType ? payload.partnerCode : null,
+      partner_code: partnerAccountId ? payload.partnerCode : null, // Storing partner_id string in code
       partner_type: partnerType,
+      partner_account_id: partnerAccountId, // New FK column if added, otherwise logic relies on partner_code
       partner_discount: partnerDiscount,
       referral_reward_eligible_amount: referralRewardEligibleAmount,
       referral_reward_calculated: referralRewardCalculated,
@@ -301,41 +307,38 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
     .from('orders')
     .update({ payment_status: 'paid' })
     .eq('id', orderId)
-    .select('customer_id, order_ref, retail_partner_id, retail_commission')
+    .select('customer_id, order_ref, partner_code, partner_account_id, referral_reward_calculated, partner_type')
     .single();
 
   if (error || !order) return { success: false, error: 'Failed to update order payment status' };
 
-  // Phase 8: Credit retail partner commission
-  if (order.retail_partner_id && order.retail_commission && order.retail_commission > 0) {
-    // We add a transaction log
+  // Unified Partner Commission/Reward logic
+  // Use partner_account_id if available, fallback to lookup by partner_code
+  let partnerAccId = order.partner_account_id;
+  if (!partnerAccId && order.partner_code) {
+    const { data: p } = await supabase.from('partner_accounts').select('id').eq('partner_id', order.partner_code).single();
+    if (p) partnerAccId = p.id;
+  }
+
+  if (partnerAccId && order.referral_reward_calculated && order.referral_reward_calculated > 0) {
+    // Insert into new transactions table
     const { error: txError } = await supabase
-      .from('retail_partner_transactions')
+      .from('partner_transactions')
       .insert({
-        retail_partner_id: order.retail_partner_id,
-        order_id: order.order_ref,
-        type: 'commission',
-        amount: order.retail_commission,
-        status: 'completed'
+        partner_account_id: partnerAccId,
+        order_id: orderId,
+        type: order.partner_type === 'retailer' ? 'shop_sales_reward' : 'referral_reward',
+        amount: order.referral_reward_calculated,
+        status: 'pending' // Usually pending until return period is over.
       });
       
     if (!txError) {
-      // Increment wallet (could use RPC, fallback to simple select/update)
-      const { error: rpcError } = await supabase.rpc('increment_retail_wallet', { 
-        rp_id: order.retail_partner_id, 
-        add_amount: order.retail_commission 
-      });
-
-      if (rpcError) {
-        // Fallback if RPC doesn't exist
-        const { data: rp } = await supabase.from('retail_partners').select('wallet_balance, total_earned, total_sales').eq('id', order.retail_partner_id).single();
-        if (rp) {
-          await supabase.from('retail_partners').update({
-            wallet_balance: rp.wallet_balance + order.retail_commission,
-            total_earned: rp.total_earned + order.retail_commission,
-            // (Total sales can be updated separately or left out for now)
-          }).eq('id', order.retail_partner_id);
-        }
+      // Add to pending_balance in wallet
+      const { data: wData } = await supabase.from('partner_wallets').select('pending_balance').eq('partner_account_id', partnerAccId).single();
+      if (wData) {
+        await supabase.from('partner_wallets').update({
+          pending_balance: wData.pending_balance + order.referral_reward_calculated
+        }).eq('partner_account_id', partnerAccId);
       }
     }
   }
@@ -391,7 +394,7 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
   // 5. Update coupon usage if applicable
   const { data: orderDetails } = await supabase
     .from('orders')
-    .select('coupon_code, coupon_discount')
+    .select('coupon_code, coupon_discount, final_total')
     .eq('id', orderId)
     .single();
 
@@ -407,6 +410,37 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
         .from('coupons')
         .update({ used_count: coupon.used_count + 1 })
         .eq('code', orderDetails.coupon_code);
+    }
+  }
+
+  // 6. Award loyalty points to the customer
+  if (order.customer_id) {
+    const pointsToAward = Math.floor(orderDetails?.final_total / 10); // 1 point per 10 INR
+    
+    // Check if customer_rewards exists
+    const { data: rewardData } = await supabase
+      .from('customer_rewards')
+      .select('*')
+      .eq('user_id', order.customer_id)
+      .single();
+
+    if (rewardData) {
+      await supabase
+        .from('customer_rewards')
+        .update({
+          points_balance: rewardData.points_balance + pointsToAward,
+          lifetime_points: rewardData.lifetime_points + pointsToAward
+        })
+        .eq('user_id', order.customer_id);
+    } else {
+      await supabase
+        .from('customer_rewards')
+        .insert({
+          user_id: order.customer_id,
+          points_balance: pointsToAward,
+          lifetime_points: pointsToAward,
+          tier: 'Bronze'
+        });
     }
   }
 

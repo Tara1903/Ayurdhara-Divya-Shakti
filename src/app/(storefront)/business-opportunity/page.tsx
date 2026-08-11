@@ -8,10 +8,11 @@ import {
   User,
   ShoppingBag,
   Truck,
-  IndianRupee,
   ShieldCheck,
   QrCode,
   Wallet,
+  Share2,
+  IndianRupee,
   BarChart3,
   ArrowDown,
   Smartphone,
@@ -104,7 +105,7 @@ const partnerCards = [
     ],
     earning: ['3% Individual', '10% Trial', '12% Gold', '15% Premium'],
     cta: 'Join as Wellness Partner',
-    ctaHref: '#apply',
+    ctaHref: '/partner/wellness-signup',
     color: 'amber',
   },
   {
@@ -127,7 +128,7 @@ const partnerCards = [
     ],
     earning: ['Approved retail margin per product type'],
     cta: 'Join as Retail Shop Partner',
-    ctaHref: '#apply',
+    ctaHref: '/partner/retailer-signup',
     color: 'green',
   },
   {
@@ -150,7 +151,7 @@ const partnerCards = [
     ],
     earning: ['Admin-controlled distributor margin'],
     cta: 'Become a Distributor',
-    ctaHref: '#apply',
+    ctaHref: '/partner/distributor-signup',
     color: 'dark',
   },
 ];
@@ -252,10 +253,10 @@ export default function BusinessOpportunityPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="#apply" className="w-full sm:w-auto px-8 py-4 bg-[#E88B23] hover:bg-[#cc7a1f] text-white rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-[#E88B23]/30">
+            <Link href="/partner/wellness-signup" className="w-full sm:w-auto px-8 py-4 bg-[#E88B23] hover:bg-[#cc7a1f] text-white rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-[#E88B23]/30">
               🤝 Join as Wellness Partner
             </Link>
-            <Link href="#apply" className="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-bold text-lg transition-all backdrop-blur-sm">
+            <Link href="/partner/distributor-signup" className="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-bold text-lg transition-all backdrop-blur-sm">
               📦 Become a Distributor
             </Link>
           </div>
@@ -359,7 +360,41 @@ export default function BusinessOpportunityPage() {
         </div>
       </section>
 
-      {/* ── 3. BUSINESS FLOW DIAGRAM ── */}
+      {/* ── 3. HOW IT WORKS ── */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <SectionHeading
+            tag="The Process"
+            title="How It Works"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow relative">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#E88B23] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">01</div>
+              <Users size={48} className="mx-auto text-[#4B7B3B] mb-6 mt-4" strokeWidth={1.5} />
+              <h3 className="text-xl font-bold text-gray-800 mb-4">JOIN</h3>
+              <p className="text-gray-600">Become an approved Ayurdhara Divya Shakti Partner.</p>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow relative">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#E88B23] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">02</div>
+              <Share2 size={48} className="mx-auto text-[#4B7B3B] mb-6 mt-4" strokeWidth={1.5} />
+              <h3 className="text-xl font-bold text-gray-800 mb-4">SHARE</h3>
+              <p className="text-gray-600">Share genuine wellness products through your retail shop or partner link.</p>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow relative">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#E88B23] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg">03</div>
+              <Wallet size={48} className="mx-auto text-[#4B7B3B] mb-6 mt-4" strokeWidth={1.5} />
+              <h3 className="text-xl font-bold text-gray-800 mb-4">EARN</h3>
+              <p className="text-gray-600">Receive eligible rewards and margins from successful product purchases.</p>
+            </div>
+          </div>
+          <p className="text-center text-sm text-gray-500 italic">
+            "Rewards are linked to genuine product sales. Recruitment alone does not generate commission."
+          </p>
+        </div>
+      </section>
+
+      {/* ── 4. BUSINESS FLOW DIAGRAM ── */}
       <section className="py-16 bg-[#f8faf8]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeading
@@ -834,79 +869,91 @@ export default function BusinessOpportunityPage() {
             sub="Submit your application below. Admin review is required before activation. You will receive confirmation after approval."
           />
 
-          <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100">
-            <form className="space-y-6">
-              {/* Partner Type */}
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Partner Type *</label>
-                <select id="partnerType" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 focus:outline-none focus:border-[#2D5A27] bg-[#f8faf8]">
-                  <option value="">Select Partner Type</option>
-                  <option>Wellness Referral Partner</option>
-                  <option>Retail Shop Partner</option>
-                  <option>Distributor Partner</option>
-                </select>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            {/* Wellness Partner Card */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-[#2D5A27] bg-opacity-10 rounded-full flex items-center justify-center mb-4 text-[#2D5A27] text-2xl">
+                🤝
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {formFields.map((field) => (
-                  <div key={field.id} className={field.half ? '' : 'md:col-span-2'}>
-                    <label htmlFor={field.id} className="block text-sm font-bold text-gray-700 mb-2">
-                      {field.label}
-                    </label>
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 focus:outline-none focus:border-[#2D5A27] bg-[#f8faf8] placeholder-gray-400"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* GST */}
-              <div>
-                <label htmlFor="gst" className="block text-sm font-bold text-gray-700 mb-2">
-                  GST Details (if applicable)
-                </label>
-                <input id="gst" type="text" placeholder="GST Number" className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 focus:outline-none focus:border-[#2D5A27] bg-[#f8faf8] placeholder-gray-400" />
-              </div>
-
-              {/* Terms */}
-              <div className="flex items-start gap-3">
-                <input id="terms" type="checkbox" className="mt-1 w-4 h-4 accent-[#2D5A27] flex-shrink-0" />
-                <label htmlFor="terms" className="text-sm text-gray-600 leading-relaxed">
-                  I agree to the{' '}
-                  <Link href="/terms" className="text-[#2D5A27] font-bold underline underline-offset-2">
-                    Terms & Conditions
-                  </Link>{' '}
-                  and understand that earnings are based on actual eligible product sales and the company's approved commercial structure. Earnings are not guaranteed.
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-4 bg-[#2D5A27] hover:bg-[#1A3816] text-white font-bold text-lg rounded-xl transition-colors shadow-lg"
-              >
-                Submit Application
-              </button>
-
-              <p className="text-xs text-gray-500 text-center leading-relaxed">
-                Admin approval is required before activation. You will be notified after review.
+              <h3 className="text-xl font-medium text-gray-900 mb-2">Wellness Partner</h3>
+              <p className="text-sm text-gray-500 mb-6 flex-grow">
+                Recommend products using your unique QR and earn commissions on eligible sales. No stock needed.
               </p>
-            </form>
+              <ul className="text-xs text-gray-500 mb-6 space-y-2 text-left w-full">
+                <li className="flex items-center gap-2"><span>✓</span> <b>₹0</b> Opening Purchase</li>
+                <li className="flex items-center gap-2"><span>✓</span> Referral QR & Link</li>
+                <li className="flex items-center gap-2"><span>✓</span> Digital Wellness Kit</li>
+              </ul>
+              <Link href="/partner/wellness-signup" className="w-full bg-white text-[#2D5A27] border border-[#2D5A27] py-2 rounded font-bold hover:bg-gray-50 block transition-colors">
+                Join as Wellness Partner
+              </Link>
+            </div>
+
+            {/* Retail Shop Partner Card */}
+            <div className="bg-white rounded-xl shadow-md border-2 border-[#E88B23] p-6 flex flex-col items-center text-center relative overflow-hidden transform scale-105 z-10">
+              <div className="absolute top-0 right-0 bg-[#E88B23] text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+              <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 text-blue-600 text-2xl">
+                🛍️
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Retail Shop Partner</h3>
+              <p className="text-sm text-gray-600 mb-6 flex-grow">
+                Stock premium wellness products in your physical store and access wholesale pricing.
+              </p>
+              <ul className="text-xs text-gray-600 mb-6 space-y-2 text-left w-full font-medium">
+                <li className="flex items-center gap-2"><span className="text-[#E88B23]">✓</span> <b>₹10,000</b> Opening Purchase</li>
+                <li className="flex items-center gap-2"><span className="text-[#E88B23]">✓</span> Wholesale Pricing</li>
+                <li className="flex items-center gap-2"><span className="text-[#E88B23]">✓</span> Customer Shop QR</li>
+              </ul>
+              <Link href="/partner/retailer-signup" className="w-full bg-[#E88B23] text-white py-2 rounded font-bold hover:bg-[#cc7a1f] block transition-colors">
+                Join as Retail Partner
+              </Link>
+            </div>
+
+            {/* Distributor Card */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mb-4 text-purple-600 text-2xl">
+                📦
+              </div>
+              <h3 className="text-xl font-medium text-gray-900 mb-2">Distributor</h3>
+              <p className="text-sm text-gray-500 mb-6 flex-grow">
+                Build and manage a retailer network in your approved area with bulk distribution discounts.
+              </p>
+              <ul className="text-xs text-gray-500 mb-6 space-y-2 text-left w-full">
+                <li className="flex items-center gap-2"><span>✓</span> <b>₹50,000</b> Opening Purchase</li>
+                <li className="flex items-center gap-2"><span>✓</span> Bulk Orders</li>
+                <li className="flex items-center gap-2"><span>✓</span> Area Management</li>
+              </ul>
+              <Link href="/partner/distributor-signup" className="w-full bg-gray-900 text-white py-2 rounded font-bold hover:bg-black block transition-colors">
+                Become a Distributor
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 12. TRANSPARENCY DISCLAIMER ── */}
+      {/* ── 13. PROGRAM RULES & DISCLAIMER ── */}
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <div className="flex items-start gap-4 p-6 bg-[#f8faf8] rounded-2xl border border-gray-200">
+          <div className="flex items-start gap-4 p-6 bg-[#f8faf8] rounded-2xl border border-gray-200 mb-6">
             <ShieldCheck size={22} className="text-[#4B7B3B] flex-shrink-0 mt-0.5" />
             <p className="text-sm text-gray-600 leading-relaxed">
               <strong className="text-[#2D5A27]">Transparency Disclaimer:</strong>{' '}
               Partner earnings are based on actual eligible product sales and the company's approved commercial structure. Earnings are not guaranteed and may vary based on sales, order status, cancellations, refunds and applicable business policies. This is a legitimate product-selling and referral-based wellness partner program — not an MLM, investment scheme, or guaranteed income scheme.
             </p>
+          </div>
+          
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-6">Program Rules</h3>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Referral rewards apply only to eligible successful product sales.</li>
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Recruitment alone does not generate commission.</li>
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Cancelled/refunded orders are not eligible.</li>
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Duplicate/self-referrals may be rejected.</li>
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Referral attribution must be through the official referral link/code.</li>
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Reward eligibility is subject to the official program terms.</li>
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Applicable taxes/TDS and legal requirements may apply.</li>
+              <li className="flex gap-3"><span className="text-[#E88B23]">•</span> Partner status does not guarantee sales or income.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -927,20 +974,20 @@ export default function BusinessOpportunityPage() {
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-5 mb-10">
-            <Link href="#apply" className="w-full md:w-auto px-8 py-4 bg-white text-[#2D5A27] rounded-full font-bold text-base transition-all hover:bg-gray-50 shadow-xl hover:scale-105 transform">
+            <Link href="/partner/retailer-signup" className="w-full md:w-auto px-8 py-4 bg-white text-[#2D5A27] rounded-full font-bold text-base transition-all hover:bg-gray-50 shadow-xl hover:scale-105 transform">
               🛍️ Join as Retail Shop Partner
             </Link>
-            <Link href="#apply" className="w-full md:w-auto px-8 py-4 bg-[#E88B23] hover:bg-[#cc7a1f] text-white rounded-full font-bold text-base transition-all shadow-xl hover:scale-105 transform">
+            <Link href="/partner/distributor-signup" className="w-full md:w-auto px-8 py-4 bg-[#E88B23] hover:bg-[#cc7a1f] text-white rounded-full font-bold text-base transition-all shadow-xl hover:scale-105 transform">
               📦 Become a Distributor
             </Link>
-            <Link href="#apply" className="w-full md:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-bold text-base transition-all backdrop-blur-sm hover:scale-105 transform">
+            <Link href="/partner/wellness-signup" className="w-full md:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-bold text-base transition-all backdrop-blur-sm hover:scale-105 transform">
               🤝 Join as Wellness Partner
             </Link>
           </div>
 
           <div className="border-t border-white/20 pt-8">
             <p className="text-white/60 text-sm mb-4">Already a Partner?</p>
-            <Link href="/account" className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full font-semibold text-sm transition-all">
+            <Link href="/partner/login" className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full font-semibold text-sm transition-all">
               Login to Partner Dashboard <ChevronRight size={16} />
             </Link>
           </div>

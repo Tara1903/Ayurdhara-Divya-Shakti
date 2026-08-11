@@ -69,7 +69,7 @@ const NAV_SECTIONS = [
     title: 'CUSTOMERS',
     items: [
       { label: 'Customers', href: '/admin/customers', icon: Users },
-      { label: 'Retail Partners', href: '/admin/retail-partners', icon: Users }, // Phase 8
+      { label: 'B2B Partners', href: '/admin/partners', icon: Users },
       { label: 'Reviews', href: '/admin/reviews', icon: MessageSquare },
     ]
   },
