@@ -16,6 +16,7 @@ const PRESET_SIZES = [
   { label: '50 ml (40 x 60 mm)', width: 40, height: 60 },
   { label: '100 ml (50 x 75 mm)', width: 50, height: 75 },
   { label: '200 ml (60 x 90 mm)', width: 60, height: 90 },
+  { label: 'Large Label (100 x 94 mm)', width: 100, height: 94 },
 ];
 
 export default function PrintCenterClient({ categories, products }: { categories: any[], products: any[] }) {
