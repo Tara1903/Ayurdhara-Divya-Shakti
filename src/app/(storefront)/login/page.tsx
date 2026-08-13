@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { authService } from '@/services/authService';
 import { useAuthStore } from '@/store/authStore';
+import toast from 'react-hot-toast';
 
 function LoginForm() {
   const router = useRouter();
@@ -27,9 +28,16 @@ function LoginForm() {
     setLoading(false);
     
     if (authError) {
-      setError(authError);
+      let errorMessage = 'Invalid login credentials.';
+      if (typeof authError === 'string') {
+        errorMessage = authError === '{}' ? 'Invalid email or password.' : authError;
+      } else if (authError && typeof authError === 'object') {
+        errorMessage = (authError as any).message || JSON.stringify(authError);
+      }
+      setError(errorMessage);
     } else if (session) {
       setSession(session);
+      toast.success('Login successful!');
       router.push(redirect);
     }
   };
@@ -49,7 +57,7 @@ function LoginForm() {
         <p className="text-gray-600 text-sm md:text-base">Sign in to access your wellness account.</p>
       </div>
 
-      {error && <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm font-medium mb-6 border border-red-100">{error}</div>}
+      {error && <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm font-medium mb-6 border border-red-100">{typeof error === 'string' ? error : JSON.stringify(error)}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>

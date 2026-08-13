@@ -10,15 +10,47 @@ export default function ProfilePage() {
   
   const [fullName, setFullName] = useState('');
   const [mobile, setMobile] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
 
   useEffect(() => {
     if (user) {
       setFullName(user.fullName);
       setMobile(user.mobile);
+      setAvatarUrl(user.avatarUrl || '');
     }
   }, [user]);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('bucket', 'profiles'); // Make sure there is a 'profiles' bucket in Supabase
+      formData.append('files', file);
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (data.urls && data.urls.length > 0) {
+        setAvatarUrl(data.urls[0]);
+      } else {
+        alert('Failed to upload image');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred during upload.');
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +60,8 @@ export default function ProfilePage() {
 
     const { user: updatedUser, error } = await authService.updateProfile(user.id, {
       fullName,
-      mobile
+      mobile,
+      avatarUrl
     });
 
     if (updatedUser) {
@@ -53,6 +86,26 @@ export default function ProfilePage() {
         )}
         
         <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          
+          {/* Profile Picture */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '0.5rem' }}>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', background: 'var(--parchment)', border: '2px solid var(--sand)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : fullName ? (
+                <span style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--forest)' }}>{fullName.charAt(0).toUpperCase()}</span>
+              ) : (
+                <span style={{ fontSize: '2rem', color: 'var(--stone)' }}>?</span>
+              )}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <label style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--charcoal)', cursor: 'pointer', background: 'var(--ivory)', padding: '0.6rem 1.2rem', borderRadius: '6px', border: '1px solid var(--sand)', display: 'inline-block', width: 'fit-content', transition: 'all 0.2s' }}>
+                {uploading ? 'Uploading...' : 'Change Picture'}
+                <input type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImageUpload} disabled={uploading} />
+              </label>
+              <span style={{ fontSize: '0.75rem', color: 'var(--stone)' }}>JPG, PNG or GIF. Max size 2MB.</span>
+            </div>
+          </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             <label style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--charcoal)' }}>Email</label>
             <input 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/lib/supabase/client';
 import { products as staticProducts, type Product, type ProductVariant } from '@/data/productData';
 

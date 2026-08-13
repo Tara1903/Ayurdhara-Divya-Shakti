@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import toast from 'react-hot-toast';
 
 export interface CartItem {
   id: string;          // e.g. "kids-smart-blend-10ml" (slug + variant size)
@@ -61,12 +62,14 @@ export const useCartStore = create<CartState>()(
             return { items: [...state.items, { ...item, id: uniqueId }], isCartOpen: true };
           }
         });
+        toast.success(`${item.name} added to cart`);
       },
 
       removeItem: (id) => {
         set((state) => ({
           items: state.items.filter(item => item.id !== id)
         }));
+        toast.success('Item removed from cart');
       },
 
       updateQuantity: (id, quantity) => {

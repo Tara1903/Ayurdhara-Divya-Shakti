@@ -3,23 +3,28 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useAuthStore } from '@/store/authStore';
+import { authService } from '@/services/authService';
+import toast from 'react-hot-toast';
 
 export default function RetailerSignupPage() {
   const router = useRouter();
+  const user = useAuthStore((state) => state.user);
   
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(user ? 2 : 1);
   const [mobile, setMobile] = useState('');
   const [otp, setOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const [email, setEmail] = useState(user?.email || '');
   
   // Step 2: Business Details
   const [businessName, setBusinessName] = useState('');
-  const [ownerName, setOwnerName] = useState('');
+  const [ownerName, setOwnerName] = useState((user as any)?.user_metadata?.full_name || '');
   const [businessType, setBusinessType] = useState('retail_store');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [stateName, setStateName] = useState('');
   const [pin, setPin] = useState('');
-  const [email, setEmail] = useState('');
 
   // Step 3: Verification
   const [pan, setPan] = useState('');
@@ -42,14 +47,43 @@ export default function RetailerSignupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const handleSendOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return setError("Please enter your email address");
+    setLoading(true);
+    const { error: otpError } = await authService.sendEmailOtp(email);
+    setLoading(false);
+    
+    if (otpError) {
+      setError(otpError);
+    } else {
+      setOtpSent(true);
+      setError(null);
+      toast.success('OTP sent to your email!');
+    }
+  };
+
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!otp) return setError("Please enter OTP");
+    setLoading(true);
+    const { session, error: verifyError } = await authService.verifyEmailOtp(email, otp);
+    setLoading(false);
+    
+    if (verifyError) {
+      setError(verifyError);
+    } else if (session) {
+      useAuthStore.getState().setSession(session);
+      setOwnerName((session.user as any)?.user_metadata?.full_name || '');
+      setStep(2);
+      setError(null);
+      toast.success('Email verified successfully!');
+    }
+  };
+
   const nextStep = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (step === 1 && otp !== '1234') {
-      // simulate otp send then verify. If length > 0 we assume verify for demo
-      if (!otp) return alert("OTP sent! Enter 1234 to verify");
-      if (otp !== '1234') return setError("Invalid OTP");
-    }
     setStep(s => s + 1);
   };
 
@@ -104,20 +138,36 @@ export default function RetailerSignupPage() {
           </div>
         </div>
 
-        {error && <div className="p-3 mb-4 text-sm text-red-600 bg-red-50 rounded-md">{error}</div>}
+        {error && <div className="p-3 mb-4 text-sm text-red-600 bg-red-50 rounded-md">{typeof error === 'string' ? (error === '{}' ? 'An error occurred. Please try again.' : error) : JSON.stringify(error)}</div>}
 
         <form onSubmit={step === 5 ? handleSubmit : nextStep} className="space-y-4">
           
           {step === 1 && (
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-                <input type="tel" value={mobile} onChange={e => setMobile(e.target.value)} required className="w-full p-2 border border-gray-300 rounded bg-white text-gray-900" placeholder="10-digit mobile" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Enter OTP</label>
-                <input type="text" value={otp} onChange={e => setOtp(e.target.value)} className="w-full p-2 border border-gray-300 rounded bg-white text-gray-900" placeholder="Will be sent to mobile (Use 1234)" />
-              </div>
+              {!otpSent ? (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full p-2 border border-gray-300 rounded bg-white text-gray-900" placeholder="you@example.com" />
+                  </div>
+                  <button type="button" onClick={handleSendOtp} disabled={loading} className="w-full bg-charcoal text-white py-2 rounded font-medium hover:bg-opacity-90 disabled:opacity-70 flex justify-center items-center">
+                    {loading ? <div className="btn-spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> : 'Send OTP'}
+                  </button>
+                  <div className="text-center text-sm mt-4">
+                    Already have a website account? <Link href="/partner/login?redirect=/partner/retailer-signup" className="text-olive underline">Login here</Link> to join faster.
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Enter OTP</label>
+                    <input type="text" value={otp} onChange={e => setOtp(e.target.value)} required className="w-full p-2 border border-gray-300 rounded bg-white text-gray-900" placeholder="Enter the 6-digit code sent to your email" />
+                  </div>
+                  <button type="button" onClick={handleVerifyOtp} disabled={loading} className="w-full bg-charcoal text-white py-2 rounded font-medium hover:bg-opacity-90 disabled:opacity-70 flex justify-center items-center">
+                    {loading ? <div className="btn-spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> : 'Verify OTP'}
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
@@ -141,8 +191,12 @@ export default function RetailerSignupPage() {
                 </select>
               </div>
               <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                <input type="tel" value={mobile || ((user as any)?.phone || '')} onChange={e => setMobile(e.target.value)} required className="w-full p-2 border border-gray-300 rounded bg-white text-gray-900" readOnly={!!user || !!mobile} />
+              </div>
+              <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full p-2 border border-gray-300 rounded bg-white text-gray-900" />
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full p-2 border border-gray-300 rounded bg-white text-gray-900" readOnly={!!user && !!email} />
               </div>
               <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Full Shop Address</label>
@@ -224,16 +278,16 @@ export default function RetailerSignupPage() {
             </div>
           )}
 
-          <div className="pt-4 flex gap-4">
-            {step > 1 && (
+          {step > 1 && (
+            <div className="pt-4 flex gap-4">
               <button type="button" onClick={() => setStep(s => s - 1)} className="px-6 py-2 border border-gray-300 rounded text-gray-700 font-medium hover:bg-gray-50">
                 Back
               </button>
-            )}
-            <button type="submit" className="flex-1 bg-charcoal text-white py-2 rounded font-medium hover:bg-opacity-90 flex justify-center items-center" disabled={loading}>
-              {loading ? <div className="btn-spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> : (step === 5 ? 'Proceed to Opening Purchase' : 'Next Step')}
-            </button>
-          </div>
+              <button type="submit" className="flex-1 bg-charcoal text-white py-2 rounded font-medium hover:bg-opacity-90 flex justify-center items-center" disabled={loading}>
+                {loading ? <div className="btn-spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> : (step === 5 ? 'Proceed to Opening Purchase' : 'Next Step')}
+              </button>
+            </div>
+          )}
           
         </form>
       </div>

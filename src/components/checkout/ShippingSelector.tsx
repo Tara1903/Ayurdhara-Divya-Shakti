@@ -19,7 +19,7 @@ export default function ShippingSelector() {
     if (methods.length > 0 && !selectedShippingMethod) {
       setShippingMethod(methods[0].id, methods[0].charge);
     }
-  }, []);
+  }, [methods, selectedShippingMethod, setShippingMethod]);
 
   const handleSelect = (methodId: ShippingMethodType, charge: number) => {
     setShippingMethod(methodId, charge);

@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { authService } from '@/services/authService';
 import { useAuthStore } from '@/store/authStore';
+import { updateUserMobileInProfile } from '@/app/actions/authActions';
 
 function RegisterForm() {
   const router = useRouter();
@@ -18,14 +19,15 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
-    if (password.length < 8) {
-      setError('Password must be at least 8 characters long.');
+    if (password.length < 10) {
+      setError('Password must be at least 10 characters long.');
       setLoading(false);
       return;
     }
@@ -38,18 +40,58 @@ function RegisterForm() {
     });
     
     if (authError) {
-      setError(authError);
+      // Ensure we always extract a readable string message, even if authError is an object
+      let errorMessage = 'An error occurred during registration. Please try again.';
+      if (typeof authError === 'string') {
+        errorMessage = authError === '{}' ? 'This email or mobile number may already be in use.' : authError;
+      } else if (authError && typeof authError === 'object') {
+        errorMessage = (authError as any).message || JSON.stringify(authError);
+      }
+      setError(errorMessage);
       setLoading(false);
     } else if (user) {
-      // Auto sign-in sets the session in the mock backend
+      // Safely update the profile mobile number bypassing RLS
+      await updateUserMobileInProfile(user.id, mobile);
+      
       const sessionData = await authService.getSession();
       if (sessionData) {
         setSession(sessionData);
+        setLoading(false);
+        router.push(redirect);
+      } else {
+        // Registration successful but email confirmation required
+        setLoading(false);
+        setError(null);
+        setIsSuccess(true);
       }
-      setLoading(false);
-      router.push(redirect);
     }
   };
+
+  if (isSuccess) {
+    return (
+      <div className="text-center py-10 px-4 flex flex-col items-center justify-center">
+        <div className="mb-6 w-16 h-16 bg-[#FAF7F2] border border-[#E0EBDC] rounded-full flex items-center justify-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2D5A27" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" />
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+          </svg>
+        </div>
+        <h2 className="text-2xl font-serif font-bold text-[#1A1A1A] mb-3">Check your email</h2>
+        <p className="text-gray-600 mb-8 max-w-sm mx-auto text-sm leading-relaxed">
+          We just sent a verification link to <strong className="text-gray-900">{email}</strong>.
+        </p>
+        <Link 
+          href={`/login?redirect=${encodeURIComponent(redirect)}`}
+          className="inline-flex items-center justify-center bg-[#1A1A1A] hover:bg-[#333] text-white px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-colors"
+        >
+          Go to login
+          <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -66,7 +108,7 @@ function RegisterForm() {
         <p className="text-gray-600 text-sm md:text-base">Join us to track orders and save your wellness rituals.</p>
       </div>
 
-      {error && <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm font-medium mb-6 border border-red-100">{error}</div>}
+      {error && <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm font-medium mb-6 border border-red-100">{typeof error === 'string' ? error : JSON.stringify(error)}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
@@ -115,11 +157,11 @@ function RegisterForm() {
             type="password" 
             id="password" 
             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#4B7B3B] focus:ring-1 focus:ring-[#4B7B3B] transition-all" 
-            placeholder="Minimum 8 characters" 
+            placeholder="Minimum 10 characters" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required 
-            minLength={8}
+            minLength={10}
           />
         </div>
 

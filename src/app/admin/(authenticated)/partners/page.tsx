@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
+import { fetchPartnersAdmin, updatePartnerStatusAdmin } from './actions';
 
 export default function AdminPartnersPage() {
   const [partners, setPartners] = useState<any[]>([]);
@@ -13,19 +13,13 @@ export default function AdminPartnersPage() {
 
   const fetchPartners = async () => {
     setLoading(true);
-    const supabase = createClient();
-    const { data, error } = await supabase
-      .from('partner_accounts')
-      .select('*, partner_wallets(*)')
-      .order('created_at', { ascending: false });
-      
+    const data = await fetchPartnersAdmin();
     if (data) setPartners(data);
     setLoading(false);
   };
 
   const updateStatus = async (id: string, newStatus: string) => {
-    const supabase = createClient();
-    await supabase.from('partner_accounts').update({ status: newStatus }).eq('id', id);
+    await updatePartnerStatusAdmin(id, newStatus);
     fetchPartners();
   };
 

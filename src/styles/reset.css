@@ -63,6 +63,16 @@ button {
   border-width: 0;
 }
 
+/* Fix Browser Autofill styles overriding text color in dark mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: var(--charcoal, #333) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

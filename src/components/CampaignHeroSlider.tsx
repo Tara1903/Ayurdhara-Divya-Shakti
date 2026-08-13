@@ -143,10 +143,7 @@ export default function CampaignHeroSlider() {
         className="absolute inset-0 pointer-events-none opacity-[0.03] z-[1]"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}
       />
-      <div className="absolute inset-0 pointer-events-none z-[1]">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full opacity-[0.1]" style={{ background: 'radial-gradient(circle, #E88B23 0%, transparent 65%)' }} />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-[0.05]" style={{ background: 'radial-gradient(circle, #4B7B3B 0%, transparent 70%)' }} />
-      </div>
+
 
       {/* ================================================================
           SLIDER CONTENT (Staggered Cinematic Timeline)
@@ -163,23 +160,16 @@ export default function CampaignHeroSlider() {
           return (
             <div 
               key={slide.id}
-              className={`absolute inset-0 flex flex-col lg:flex-row items-center justify-between px-6 lg:px-8 py-12 lg:py-0 transition-opacity duration-1000 ${isActive ? 'opacity-100 pointer-events-auto z-20' : 'opacity-0 pointer-events-none z-0'}`}
+              className={`absolute inset-0 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between px-6 lg:px-8 pt-6 lg:py-0 transition-opacity duration-1000 overflow-y-auto lg:overflow-visible ${isActive ? 'opacity-100 pointer-events-auto z-20' : 'opacity-0 pointer-events-none z-0'}`}
               style={transitionStyle}
             >
               
-              {/* LEFT SIDE CONTENT */}
-              <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left mt-10 lg:mt-0 pb-32 lg:pb-20 z-20">
-                
-                {/* Mobile Logo */}
-                <div className="flex lg:hidden justify-center mb-6">
-                  <div className="relative w-[65%] max-w-[280px] aspect-[765/589]" style={{ mixBlendMode: 'multiply' }}>
-                    <Image src="/images/ayurdhara_logo_hero.jpg" alt="Ayurdhara Divya Shakti Logo" fill className="object-contain" priority />
-                  </div>
-                </div>
+              {/* LEFT SIDE CONTENT — Text on top for mobile */}
+              <div className="w-full lg:w-[45%] flex flex-col justify-center text-left mt-0 pb-4 lg:pb-20 z-20">
 
                 {/* Trust Chips (650ms delay) */}
                 <div 
-                  className={`flex items-center justify-center lg:justify-start gap-3 mb-6 transition-all duration-[600ms] ${isActive ? 'opacity-100 translate-y-0 delay-[650ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
+                  className={`flex items-center justify-start gap-3 mb-6 transition-all duration-[600ms] ${isActive ? 'opacity-100 translate-y-0 delay-[650ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
                   style={transitionStyle}
                 >
                   <span className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: slide.accentColor }}>Premium Collection</span>
@@ -189,7 +179,7 @@ export default function CampaignHeroSlider() {
 
                 {/* Headline (450ms delay) */}
                 <h1 
-                  className={`font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 text-[#2D5A27] transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[450ms]' : 'opacity-0 translate-y-8 delay-[0ms]'}`}
+                  className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-4 lg:mb-6 text-[#2D5A27] transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[450ms]' : 'opacity-0 translate-y-8 delay-[0ms]'}`}
                   style={{ whiteSpace: 'pre-line', ...transitionStyle }}
                 >
                   {slide.headline}
@@ -197,11 +187,11 @@ export default function CampaignHeroSlider() {
 
                 {/* Description / Products Pill (550ms delay) */}
                 <div 
-                  className={`inline-flex items-center justify-center lg:justify-start gap-2 mb-6 transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[550ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
+                  className={`inline-flex items-center justify-start gap-2 mb-4 lg:mb-6 transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[550ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
                   style={transitionStyle}
                 >
-                  <div className="bg-[#FAF9F6] border border-[#E5E0D8] px-4 py-2 rounded-full shadow-sm">
-                    <p className="text-sm text-gray-700 font-medium font-sans">
+                  <div className="bg-[#FAF9F6] border border-[#E5E0D8] px-3 sm:px-4 py-2 rounded-full shadow-sm">
+                    <p className="text-xs sm:text-sm text-gray-700 font-medium font-sans">
                       <span className="font-bold mr-1" style={{ color: slide.accentColor }}>FEATURING:</span>
                       {slide.productsText}
                     </p>
@@ -210,54 +200,50 @@ export default function CampaignHeroSlider() {
 
                 {/* CTA Buttons (700ms delay) */}
                 <div 
-                  className={`flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[700ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
+                  className={`flex flex-row items-start gap-3 sm:gap-4 justify-start transition-all duration-[700ms] ${isActive ? 'opacity-100 translate-y-0 delay-[700ms]' : 'opacity-0 translate-y-4 delay-[0ms]'}`}
                   style={transitionStyle}
                 >
-                  <Link href="/collections" className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-white overflow-hidden rounded-md w-full sm:w-auto shadow-xl hover:shadow-2xl transition-all duration-300" style={{ backgroundColor: slide.accentColor }}>
-                    <span className="relative z-10 flex items-center gap-2">Explore Collection <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></span>
+                  <Link href="/collections" className="group relative inline-flex items-center justify-center px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white overflow-hidden rounded-md shadow-xl hover:shadow-2xl transition-all duration-300" style={{ backgroundColor: slide.accentColor }}>
+                    <span className="relative z-10 flex items-center gap-2">Explore Collection <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" /></span>
                   </Link>
-                  <Link href="/wellness-guide/daily-wellness-routine" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider text-[#2D5A27] bg-transparent border border-[#2D5A27] rounded-md w-full sm:w-auto hover:bg-[#2D5A27] hover:text-white transition-colors duration-300">
+                  <Link href="/wellness-guide/daily-wellness-routine" className="inline-flex items-center justify-center px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#2D5A27] bg-transparent border border-[#2D5A27] rounded-md hover:bg-[#2D5A27] hover:text-white transition-colors duration-300">
                     Find Your Ritual
                   </Link>
                 </div>
               </div>
 
-              {/* RIGHT SIDE COMPOSITION & FLOATING CARD */}
-              <div className="w-full lg:w-[55%] relative h-[400px] lg:h-full flex items-center justify-center lg:justify-end mt-12 lg:mt-0">
+              {/* RIGHT SIDE — Image below text on mobile, side-by-side on desktop */}
+              <div className="w-full lg:w-[55%] relative h-[350px] sm:h-[400px] lg:h-full flex items-center justify-center lg:justify-end flex-shrink-0">
                 
-                {/* Product Composition (New products slide upward 20px at 300ms, Old fade at 150ms) */}
+                {/* Product Composition */}
                 <div 
-                  className={`absolute inset-0 right-0 w-full lg:w-[120%] h-full mix-blend-multiply transition-all duration-[1000ms] ${isActive ? 'opacity-100 translate-y-0 delay-[300ms]' : 'opacity-0 translate-y-5 delay-[150ms]'}`}
-                  style={{
-                    WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
-                    maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
-                    ...transitionStyle
-                  }}
+                  className={`absolute inset-0 right-0 w-full lg:w-[120%] h-full transition-all duration-[1000ms] ${isActive ? 'opacity-100 translate-y-0 delay-[300ms]' : 'opacity-0 translate-y-5 delay-[150ms]'}`}
+                  style={transitionStyle}
                 >
                   <Image src={slide.imagePath} alt={slide.headline.replace('\n', ' ')} fill className="object-cover object-center lg:object-right" priority={index === 0} />
                 </div>
 
-                {/* Circular Trust Badge (900ms delay) */}
+                {/* Circular Trust Badge */}
                 <div 
-                  className={`absolute top-[10%] lg:top-[15%] right-[5%] w-24 h-24 lg:w-32 lg:h-32 rounded-full border-2 border-white shadow-2xl flex items-center justify-center text-center p-2 z-30 transition-all duration-[700ms] ${isActive ? 'opacity-100 rotate-0 scale-100 delay-[900ms]' : 'opacity-0 -rotate-12 scale-90 delay-[0ms]'}`}
+                  className={`absolute top-[8%] right-[5%] w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full border-2 border-white shadow-2xl flex items-center justify-center text-center p-1.5 sm:p-2 z-30 transition-all duration-[700ms] ${isActive ? 'opacity-100 rotate-0 scale-100 delay-[900ms]' : 'opacity-0 -rotate-12 scale-90 delay-[0ms]'}`}
                   style={{ backgroundColor: slide.accentColor, ...transitionStyle }}
                 >
-                  <p className="text-[10px] lg:text-xs font-bold text-white uppercase tracking-widest leading-tight whitespace-pre-line">{slide.trustBadge}</p>
+                  <p className="text-[8px] sm:text-[10px] lg:text-xs font-bold text-white uppercase tracking-widest leading-tight whitespace-pre-line">{slide.trustBadge}</p>
                 </div>
 
-                {/* Premium Glassmorphic Floating Card (800ms delay, Slides in from right, exits right) */}
+                {/* Floating Card */}
                 <div 
-                  className={`absolute bottom-[5%] lg:bottom-[15%] right-0 lg:right-[-20px] w-[280px] lg:w-[320px] rounded-2xl border border-white/40 p-6 shadow-[0_30px_60px_rgba(0,0,0,0.1)] backdrop-blur-md z-30 transition-all duration-[800ms] ${isActive ? 'opacity-100 translate-x-0 delay-[800ms]' : 'opacity-0 translate-x-[40px] delay-[0ms]'}`}
+                  className={`absolute bottom-[5%] lg:bottom-[15%] right-[3%] lg:right-[-20px] w-[220px] sm:w-[280px] lg:w-[320px] rounded-2xl border border-white/40 p-4 sm:p-6 shadow-[0_30px_60px_rgba(0,0,0,0.1)] backdrop-blur-md z-30 transition-all duration-[800ms] ${isActive ? 'opacity-100 translate-x-0 delay-[800ms]' : 'opacity-0 translate-x-[40px] delay-[0ms]'}`}
                   style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', ...transitionStyle }}
                 >
-                  <div className="flex items-center gap-2 mb-4">
-                    <ShieldCheck size={20} style={{ color: slide.accentColor }} />
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#2D5A27]">{slide.floatingCard.title}</h3>
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <ShieldCheck size={18} style={{ color: slide.accentColor }} />
+                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#2D5A27]">{slide.floatingCard.title}</h3>
                   </div>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 sm:space-y-3">
                     {slide.floatingCard.items.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm text-gray-700 font-medium">
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: slide.accentColor }} />
+                      <li key={i} className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-700 font-medium">
+                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: slide.accentColor }} />
                         {item}
                       </li>
                     ))}

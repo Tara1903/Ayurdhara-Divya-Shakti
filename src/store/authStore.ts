@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import toast from 'react-hot-toast';
 import { authService, User, Session } from '@/services/authService';
 
 import { useWishlistStore } from '@/store/wishlistStore';
@@ -52,5 +53,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true });
     await authService.signOut();
     set({ user: null, session: null, isLoading: false });
+    toast.success('Logged out successfully');
   }
 }));

@@ -37,6 +37,7 @@ export default function Navbar() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>(null);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
   const toggleMobileCategory = (slug: string) => {
     setExpandedMobileCategory(prev => prev === slug ? null : slug);
@@ -91,37 +92,34 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Announcement Bar */}
-      <div className="bg-[#2D5A27] text-white text-xs md:text-sm text-center py-2 px-4 font-sans font-medium tracking-wide">
-        Free Shipping on all orders above ₹999 | 100% Certified Organic
-      </div>
-      
       {/* Main Navbar */}
       <nav className="bg-white border-b border-gray-100 sticky top-0 z-[1000] shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="h-16 md:h-20 flex justify-between items-center gap-3 md:gap-6">
+          <div className="h-14 md:h-16 flex justify-between items-center gap-3 md:gap-6">
             
-            {/* Mobile Menu Toggle */}
-            <button 
-              onClick={() => { setIsMobileMenuOpen(true); document.body.style.overflow = 'hidden'; }} 
-              className="md:hidden text-gray-800 hover:text-[#4B7B3B] p-1 flex-shrink-0"
-            >
-              <Menu size={24} strokeWidth={2} />
-            </button>
+            <div className="flex items-center gap-2 md:gap-3">
+              {/* Mobile Menu Toggle */}
+              <button 
+                onClick={() => { setIsMobileMenuOpen(true); document.body.style.overflow = 'hidden'; }} 
+                className="md:hidden text-gray-800 hover:text-[#4B7B3B] p-1 flex-shrink-0"
+              >
+                <Menu size={24} strokeWidth={2} />
+              </button>
 
-            {/* Logo (Hidden on Mobile) */}
-            <Link href="/" className="hidden md:flex items-center no-underline relative h-10 w-32 md:h-12 md:w-40 flex-shrink-0">
-              <Image 
-                src="/images/logo.png" 
-                alt="Ayurdhara Divya Shakti" 
-                fill
-                className="object-contain object-left"
-                priority
-              />
-            </Link>
+              {/* Logo (Visible on Mobile & Desktop) */}
+              <Link href="/" className="flex items-center no-underline relative h-8 w-[140px] md:h-10 md:w-[180px] lg:w-[220px] flex-shrink-0">
+                <Image 
+                  src="/images/full-logo.png" 
+                  alt="Ayurdhara Divya Shakti" 
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
+              </Link>
+            </div>
 
-            {/* Centered Search Bar (Visible on Mobile & Desktop) */}
-            <div className="flex-1 flex justify-center max-w-2xl mx-auto">
+            {/* Centered Search Bar (Visible on Desktop only) */}
+            <div className="hidden md:flex flex-1 justify-center max-w-2xl mx-auto">
               <form onSubmit={handleSearch} className="relative flex items-center w-full">
                 <Search size={18} className="absolute left-3 text-gray-400" />
                 <input 
@@ -138,7 +136,7 @@ export default function Navbar() {
                 
                 {/* Search Suggestions Dropdown */}
                 {showDropdown && (
-                  <div className="absolute top-[110%] left-0 right-0 md:w-[450px] md:left-1/2 md:-translate-x-1/2 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-[9999]">
+                  <div className="absolute top-[110%] left-1/2 -translate-x-1/2 w-[450px] bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-[9999]">
                     {isSearching ? (
                       <div className="p-4 text-center text-sm text-gray-500 font-medium">Searching...</div>
                     ) : searchResults.length > 0 ? (
@@ -176,7 +174,7 @@ export default function Navbar() {
             </div>
 
             {/* Right Side: Links, Account, Cart */}
-            <div className="flex items-center gap-3 md:gap-5 flex-shrink-0">
+            <div className="flex items-center gap-2 md:gap-5 flex-shrink-0">
               <div className="hidden lg:flex items-center gap-6 mr-2">
                 <Link href="/mobile-app" className="text-sm font-bold text-[#2D5A27] hover:text-[#4B7B3B] uppercase tracking-wider transition-colors flex items-center gap-1">📱 App</Link>
                 <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</Link>
@@ -185,20 +183,100 @@ export default function Navbar() {
                 <Link href="/business-opportunity" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">BUSINESS OPPORTUNITY</Link>
               </div>
 
-              <Link href={user ? '/account' : '/login'} className="hidden md:flex text-gray-700 hover:text-[#4B7B3B] transition-colors">
-                <User size={24} strokeWidth={1.5} />
+              {/* Mobile Search Icon */}
+              <button 
+                className="md:hidden p-1 text-gray-700 hover:text-[#4B7B3B] transition-colors"
+                onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
+              >
+                <Search size={22} strokeWidth={1.5} />
+              </button>
+
+              <Link href={user ? '/account' : '/login'} className="flex text-gray-700 hover:text-[#4B7B3B] transition-colors p-1 items-center justify-center">
+                {user ? (
+                  user.avatarUrl ? (
+                    <div className="w-[26px] h-[26px] md:w-7 md:h-7 rounded-full overflow-hidden border border-gray-200">
+                      <Image src={user.avatarUrl} alt="Profile" width={28} height={28} className="object-cover w-full h-full" />
+                    </div>
+                  ) : user.fullName ? (
+                    <div className="w-[26px] h-[26px] md:w-7 md:h-7 rounded-full bg-[#4B7B3B] text-white flex items-center justify-center text-xs md:text-sm font-bold">
+                      {user.fullName.charAt(0).toUpperCase()}
+                    </div>
+                  ) : (
+                    <User size={22} strokeWidth={1.5} />
+                  )
+                ) : (
+                  <User size={22} strokeWidth={1.5} />
+                )}
               </Link>
               
               <button onClick={toggleCart} className="relative p-1 text-gray-700 hover:text-[#E88B23] transition-colors focus:outline-none">
-                <ShoppingBag size={24} strokeWidth={1.5} />
+                <ShoppingBag size={22} strokeWidth={1.5} />
                 {mounted && cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-[#E88B23] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm">
+                  <span className="absolute -top-1 -right-1 bg-[#E88B23] text-white text-[10px] font-bold w-4 h-4 md:w-5 md:h-5 flex items-center justify-center rounded-full shadow-sm">
                     {cartCount}
                   </span>
                 )}
               </button>
             </div>
           </div>
+          
+          {/* Mobile Search Bar Dropdown */}
+          {isMobileSearchOpen && (
+            <div className="md:hidden px-4 pb-3">
+              <form onSubmit={handleSearch} className="relative flex items-center w-full">
+                <Search size={18} className="absolute left-3 text-gray-400" />
+                <input 
+                  type="search" 
+                  name="q" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search products..." 
+                  autoComplete="off"
+                  className="w-full py-2 pl-10 pr-4 bg-[#f9f9f9] border border-gray-200 rounded-full text-sm text-gray-800 font-medium focus:outline-none focus:border-[#4B7B3B] focus:ring-1 focus:ring-[#4B7B3B] transition-all"
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                />
+                
+                {/* Search Suggestions Dropdown for Mobile */}
+                {showDropdown && (
+                  <div className="absolute top-[110%] left-0 right-0 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-[9999]">
+                    {isSearching ? (
+                      <div className="p-4 text-center text-sm text-gray-500 font-medium">Searching...</div>
+                    ) : searchResults.length > 0 ? (
+                      <ul className="m-0 p-0 list-none max-h-80 overflow-y-auto">
+                        {searchResults.slice(0, 4).map((result) => (
+                          <li key={result.slug} className="border-b border-gray-50">
+                            <Link 
+                              href={`/products/${result.slug}`} 
+                              onClick={() => setIsMobileSearchOpen(false)}
+                              className="flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors"
+                            >
+                              <div className="w-10 h-10 relative rounded border border-gray-100 overflow-hidden bg-gray-50 flex-shrink-0">
+                                {result.image && (
+                                  <Image src={result.image} alt={result.name} fill className="object-cover" sizes="40px" />
+                                )}
+                              </div>
+                              <div className="flex-1 overflow-hidden">
+                                <div className="text-sm font-bold text-gray-800 truncate">{result.name}</div>
+                                <div className="text-xs font-semibold text-[#E88B23]">₹{result.price}</div>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                        <li>
+                          <button onClick={() => { handleSearch(); setIsMobileSearchOpen(false); }} className="w-full p-3 bg-gray-50 text-[#4B7B3B] text-sm font-bold hover:bg-gray-100 transition-colors">
+                            View all results →
+                          </button>
+                        </li>
+                      </ul>
+                    ) : (
+                      <div className="p-4 text-center text-sm text-gray-500 font-medium">No products found for &quot;{searchQuery}&quot;</div>
+                    )}
+                  </div>
+                )}
+              </form>
+            </div>
+          )}
         </div>
         <CategoryNavbar />
       </nav>

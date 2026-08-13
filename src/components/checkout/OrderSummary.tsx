@@ -27,10 +27,6 @@ export default function OrderSummary() {
   const [couponMessage, setCouponMessage] = useState('');
   const [couponError, setCouponError] = useState(false);
 
-  // Sync coupon input if coupon already applied (e.g. from cart)
-  useEffect(() => {
-    if (appliedCouponCode) setCouponInput(appliedCouponCode);
-  }, [appliedCouponCode]);
 
   const pricing = calculatePricing(items, couponDiscount, shippingCharge, isGoldMember);
 

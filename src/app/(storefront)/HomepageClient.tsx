@@ -69,23 +69,10 @@ function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center min-h-[calc(100vh-80px)] py-12 lg:pt-12 lg:pb-24 gap-8 lg:gap-0">
 
           {/* LEFT SIDE — 45% Content */}
-          <div className="w-full lg:w-[45%] flex flex-col justify-center text-center lg:text-left order-1 pt-4 lg:pt-0">
-
-            {/* MOBILE ONLY LOGO */}
-            <div className="flex lg:hidden justify-center mb-5 mt-6 animate-fade-in" style={{ animationDuration: '500ms' }}>
-              <div className="relative w-[65%] max-w-[280px] aspect-[765/589]" style={{ mixBlendMode: 'multiply' }}>
-                <Image
-                  src="/images/ayurdhara_logo_hero.jpg"
-                  alt="Ayurdhara Divya Shakti Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
+          <div className="w-full lg:w-[45%] flex flex-col justify-center text-left order-1 pt-12 lg:pt-0">
 
             {/* Eyebrow */}
-            <div className="hero-fade-in-up flex items-center justify-center lg:justify-start gap-3 mb-6">
+            <div className="hero-fade-in-up flex items-center justify-start gap-3 mb-6">
               <span
                 className="text-xs font-semibold uppercase tracking-[0.2em]"
                 style={{ color: 'var(--forest)', fontVariant: 'small-caps' }}
@@ -115,13 +102,13 @@ function HeroSection() {
                 letterSpacing: '-0.02em',
               }}
             >
-              Ancient Wisdom.
-              <br />
-              Everyday Wellness.
+              Comfort<br />
+              For Every<br />
+              Generation.
             </h1>
 
             {/* Gold Decorative Divider */}
-            <div className="hero-fade-in-up-delay-1 flex items-center justify-center lg:justify-start gap-3 mb-6">
+            <div className="hero-fade-in-up-delay-1 flex items-center justify-start gap-3 mb-6">
               <div className="w-16 h-[1.5px]" style={{ backgroundColor: 'var(--luxury-gold)' }} />
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
                 <path d="M12 22c4-2 8-6 8-12C16 10 12 14 12 22z" />
@@ -132,7 +119,7 @@ function HeroSection() {
 
             {/* Description */}
             <p
-              className="hero-fade-in-up-delay-2 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0"
+              className="hero-fade-in-up-delay-2 leading-relaxed mb-8 max-w-lg mx-0"
               style={{
                 fontSize: 'clamp(0.95rem, 1.1vw, 1.0625rem)',
                 color: 'var(--hero-text-secondary)',
@@ -146,14 +133,14 @@ function HeroSection() {
             </p>
 
             {/* Trust Icons — 4 in a row (ABOVE buttons per reference) */}
-            <div className="hero-fade-in-up-delay-3 grid grid-cols-4 gap-3 max-w-sm mx-auto lg:mx-0 mb-8 lg:mb-8">
+            <div className="hero-fade-in-up-delay-3 grid grid-cols-4 gap-3 max-w-sm mx-0 mb-8 lg:mb-8">
               {[
                 { icon: TrustNaturalIcon, label: '100%\nNatural' },
                 { icon: TrustAyurvedicIcon, label: 'Ayurvedic\nFormula' },
                 { icon: TrustNoToxinsIcon, label: 'No\nToxins' },
                 { icon: TrustCrueltyFreeIcon, label: 'Cruelty\nFree' },
               ].map((item, i) => (
-                <div key={i} className="flex flex-col items-center gap-2">
+                <div key={i} className="flex flex-col items-center lg:items-start gap-2">
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center"
                     style={{
@@ -164,7 +151,7 @@ function HeroSection() {
                     <item.icon />
                   </div>
                   <span
-                    className="text-[10px] font-bold uppercase tracking-wider text-center leading-tight whitespace-pre-line"
+                    className="text-[10px] font-bold uppercase tracking-wider text-center lg:text-left leading-tight whitespace-pre-line"
                     style={{ color: 'var(--hero-text-secondary)' }}
                   >
                     {item.label}
@@ -173,8 +160,8 @@ function HeroSection() {
               ))}
             </div>
 
-            {/* CTA Buttons (Desktop Only, hidden on mobile to appear below product) */}
-            <div className="hidden lg:flex hero-fade-in-up-delay-4 flex-col sm:flex-row gap-4 justify-start">
+            {/* CTA Buttons */}
+            <div className="flex hero-fade-in-up-delay-4 flex-col sm:flex-row gap-4 justify-start">
               <Link
                 href="/collections"
                 className="hero-btn-primary inline-flex items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl shadow-lg"
@@ -259,33 +246,6 @@ function HeroSection() {
               </span>
             </div>
             
-            {/* CTA Buttons (Mobile Only, appears below product) */}
-            <div className="flex lg:hidden hero-fade-in-up flex-col w-full gap-4 mt-8 justify-center px-4">
-              <Link
-                href="/collections"
-                className="hero-btn-primary w-full inline-flex items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl shadow-lg"
-                style={{
-                  backgroundColor: 'var(--forest)',
-                  color: '#FFFFFF',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                Shop Now
-                <ArrowRight size={16} strokeWidth={2.5} />
-              </Link>
-              <Link
-                href="/collections"
-                className="hero-btn-secondary w-full inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl border-2"
-                style={{
-                  backgroundColor: 'transparent',
-                  color: 'var(--forest)',
-                  borderColor: 'var(--forest)',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                Explore Collection
-              </Link>
-            </div>
           </div>
         </div>
       </div>
@@ -440,14 +400,14 @@ function InfoIndiaIcon() {
 // ----------------------------------------------------------------------
 function Section1CategoryIcons() {
   const categories = [
-    { name: 'Oil Wellness', image: '/images/category_nabhi_1784743910260.jpg', link: '/oil-wellness-care' },
-    { name: 'Raw Herbs', image: '/images/products/herb-1.jpg', link: '/raw-herbs' }, // placeholder images will be fixed if missing
-    { name: 'Herbal Powders', image: '/images/products/powder-1.jpg', link: '/herbal-powders' },
-    { name: 'Herbal Capsules', image: '/images/products/capsule-1.jpg', link: '/herbal-capsules' },
-    { name: 'Herbal Tea', image: '/images/products/tea-1.jpg', link: '/herbal-tea' },
-    { name: 'Natural Foods', image: '/images/products/food-1.jpg', link: '/natural-foods' },
-    { name: 'Pure Spices', image: '/images/products/powder-1.jpg', link: '/pure-spices' },
-    { name: 'Wellness Packs', image: '/images/category_packs_1784743942477.jpg', link: '/wellness-combos' },
+    { name: 'Oil Wellness', image: '/images/categories/cat_oil_wellness_1786556871303.jpg', link: '/oil-wellness-care' },
+    { name: 'Raw Herbs', image: '/images/categories/cat_raw_herbs_1786556977927.jpg', link: '/raw-herbs' },
+    { name: 'Herbal Powders', image: '/images/categories/cat_herbal_powders_1786556998830.jpg', link: '/herbal-powders' },
+    { name: 'Herbal Capsules', image: '/images/categories/cat_herbal_capsules_1786557023735.jpg', link: '/herbal-capsules' },
+    { name: 'Herbal Tea', image: '/images/categories/cat_herbal_tea_1786557231547.jpg', link: '/herbal-tea' },
+    { name: 'Natural Foods', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/natural-foods' },
+    { name: 'Pure Spices', image: '/images/categories/cat_pure_spices_1786557545627.jpg', link: '/pure-spices' },
+    { name: 'Wellness Packs', image: '/images/categories/cat_wellness_packs_1786557692487.jpg', link: '/wellness-combos' },
   ];
 
   return (
@@ -457,8 +417,7 @@ function Section1CategoryIcons() {
           {categories.map((cat, i) => (
             <Link href={cat.link} key={i} className="group flex flex-col items-center text-center w-28 md:w-32">
               <div className="w-20 h-20 md:w-24 md:h-24 relative rounded-full overflow-hidden mb-4 bg-gray-100 shadow-sm border-4 border-white group-hover:border-[#E88B23] transition-all duration-300 group-hover:shadow-lg">
-                {/* Fallback to generic image if not found, since we don't have images for raw herbs yet */}
-                <Image src={cat.image.includes('product') ? '/images/category_hair_1784743931871.jpg' : cat.image} alt={cat.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src={cat.image} alt={cat.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
               <h3 className="text-xs md:text-sm font-bold text-gray-700 uppercase tracking-wider group-hover:text-[#4B7B3B] transition-colors leading-tight">
                 {cat.name}

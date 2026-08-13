@@ -24,7 +24,7 @@ export default function CategoryNavbar() {
   return (
     <div className="hidden lg:block bg-white border-b border-gray-100 relative z-[999]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ul className="flex items-center justify-center gap-8 h-12">
+        <ul className="flex items-center justify-center gap-8 h-10">
           {navigationData.map((category) => {
             const isActive = pathname.startsWith(`/${category.slug}`);
             return (

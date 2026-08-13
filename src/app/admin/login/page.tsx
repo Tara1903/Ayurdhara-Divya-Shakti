@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import toast from 'react-hot-toast';
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
@@ -58,11 +59,18 @@ export default function AdminLoginPage() {
         }
       }
 
+      toast.success('Admin login successful!');
       router.push('/admin');
       router.refresh();
       
     } catch (err: any) {
-      setError(err.message || 'Invalid credentials or unauthorized');
+      let errorMessage = err.message || 'Invalid credentials or unauthorized';
+      if (typeof errorMessage === 'string' && errorMessage === '{}') {
+        errorMessage = 'Invalid email or password.';
+      } else if (typeof errorMessage === 'object') {
+        errorMessage = JSON.stringify(errorMessage);
+      }
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -79,7 +87,7 @@ export default function AdminLoginPage() {
 
         {error && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
-            {error}
+            {typeof error === 'string' ? error : JSON.stringify(error)}
           </div>
         )}
 

@@ -260,6 +260,13 @@ export default function BusinessOpportunityPage() {
               📦 Become a Distributor
             </Link>
           </div>
+
+          <div className="mt-8 flex justify-center">
+            <Link href="/partner/login" className="flex items-center gap-2 text-white/80 hover:text-white font-medium text-sm border-b border-white/20 hover:border-white/50 pb-0.5 transition-colors">
+              <User size={16} />
+              Already a Partner? Log in to your Dashboard
+            </Link>
+          </div>
         </div>
       </section>
 

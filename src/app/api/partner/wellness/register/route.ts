@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { createClient as createAdminClient } from '@supabase/supabase-js';
 
 export async function POST(request: Request) {
   try {
@@ -16,7 +17,12 @@ export async function POST(request: Request) {
     // Generate unique Partner ID
     const partnerId = `ADS-WP-${Math.floor(10000 + Math.random() * 90000)}`;
 
-    const { data, error } = await supabase
+    const supabaseAdmin = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+
+    const { data, error } = await supabaseAdmin
       .from('partner_accounts')
       .insert({
         user_id: userId,
@@ -40,7 +46,7 @@ export async function POST(request: Request) {
     }
 
     // Initialize Wallet
-    await supabase.from('partner_wallets').insert({
+    await supabaseAdmin.from('partner_wallets').insert({
       partner_account_id: data.id,
       approved_balance: 0,
       pending_balance: 0

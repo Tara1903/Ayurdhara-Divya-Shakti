@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { unstable_cache } from 'next/cache';
 import type { Product } from '@/data/productData';

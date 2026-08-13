@@ -13,6 +13,7 @@ export interface User {
   goldMembershipStatus?: string;
   goldMemberSince?: string;
   role?: string;
+  avatarUrl?: string;
 }
 
 export interface Session {
@@ -47,7 +48,8 @@ export const authService = {
         isGoldMember: profile?.is_gold_member || false,
         goldMembershipStatus: profile?.gold_membership_status || 'inactive',
         goldMemberSince: profile?.gold_member_since || undefined,
-        role: profile?.role || 'customer'
+        role: profile?.role || 'customer',
+        avatarUrl: profile?.avatar_url || undefined
       }
     };
   },
@@ -71,11 +73,6 @@ export const authService = {
 
     if (error) return { user: null, error: error.message };
     
-    // Ensure mobile is updated in profile since the default trigger only does full_name
-    if (authData.user) {
-      await supabase.from('profiles').update({ mobile: data.mobile }).eq('id', authData.user.id);
-    }
-
     return {
       user: authData.user ? {
         id: authData.user.id,
@@ -115,16 +112,45 @@ export const authService = {
   },
 
   /**
+   * Send Email OTP for sign in / sign up
+   */
+  async sendEmailOtp(email: string): Promise<{ error: string | null }> {
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithOtp({ email });
+    return { error: error ? error.message : null };
+  },
+
+  /**
+   * Verify Email OTP
+   */
+  async verifyEmailOtp(email: string, token: string): Promise<{ session: Session | null; error: string | null }> {
+    const supabase = createClient();
+    const { data, error } = await supabase.auth.verifyOtp({
+      email,
+      token,
+      type: 'email'
+    });
+
+    if (error) return { session: null, error: error.message };
+
+    const sessionData = await this.getSession();
+    return { session: sessionData, error: null };
+  },
+
+  /**
    * Update User Profile
    */
   async updateProfile(userId: string, data: Partial<User>): Promise<{ user: User | null; error: string | null }> {
     const supabase = createClient();
+    
+    const updateData: any = {};
+    if (data.fullName !== undefined) updateData.full_name = data.fullName;
+    if (data.mobile !== undefined) updateData.mobile = data.mobile;
+    if (data.avatarUrl !== undefined) updateData.avatar_url = data.avatarUrl;
+
     const { data: updatedProfile, error } = await supabase
       .from('profiles')
-      .update({
-        full_name: data.fullName,
-        mobile: data.mobile
-      })
+      .update(updateData)
       .eq('id', userId)
       .select()
       .single();

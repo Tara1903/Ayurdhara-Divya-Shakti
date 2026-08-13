@@ -3,7 +3,7 @@ import Link from "next/link";
 import NavLogic from "@/components/NavLogic";
 import Navbar from "@/components/Navbar";
 import CartDrawer from "@/components/cart/CartDrawer";
-import AnnouncementBar from "@/components/AnnouncementBar";
+
 import Footer from "@/components/Footer";
 import AppPromoPopup from "@/components/AppPromoPopup";
 
@@ -21,8 +21,6 @@ export default function StorefrontLayout({
     <>
       <NavLogic />
       
-      {/* Universal Announcement Bar */}
-      <AnnouncementBar />
 
       {/* Dynamic React Navbar */}
       <Navbar />

@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { Save, ArrowLeft, Plus, Trash2 } from 'lucide-react';
+import { Save, ArrowLeft, Plus, Trash2, UploadCloud } from 'lucide-react';
 import Link from 'next/link';
 import { revalidateStorefront } from '@/app/actions/revalidate';
+import toast from 'react-hot-toast';
 
 interface ProductFormProps {
   initialData?: any;
@@ -66,6 +67,32 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
     const newImages = [...images];
     newImages[index].url = value;
     setImages(newImages);
+  };
+
+  const handleFileUpload = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const toastId = toast.loading('Uploading image...');
+    try {
+      const uploadFormData = new FormData();
+      uploadFormData.append('bucket', 'products');
+      uploadFormData.append('files', file);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: uploadFormData,
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) throw new Error(data.error || 'Upload failed');
+      
+      handleImageChange(index, data.urls[0]);
+      toast.success('Image uploaded successfully!', { id: toastId });
+    } catch (error: any) {
+      toast.error(error.message || 'Error uploading image', { id: toastId });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -292,15 +319,29 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                   <div className="w-16 h-16 bg-white border border-gray-300 rounded-md flex-shrink-0 overflow-hidden flex items-center justify-center">
                     {image.url ? <img src={image.url} alt="Preview" className="w-full h-full object-cover" /> : <span className="text-xs text-gray-400">Empty</span>}
                   </div>
-                  <div className="flex-1">
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Image URL</label>
-                    <input 
-                      type="text" 
-                      value={image.url}
-                      placeholder="https://..."
-                      onChange={(e) => handleImageChange(index, e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none"
-                    />
+                  <div className="flex-1 space-y-2">
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Upload Image File</label>
+                    <div className="flex items-center gap-2">
+                      <label className="flex-1 cursor-pointer bg-white border border-gray-300 hover:border-[#4B7B3B] text-gray-700 rounded-md px-3 py-2 text-sm flex items-center justify-center gap-2 transition-colors">
+                        <UploadCloud size={16} />
+                        <span>Choose File</span>
+                        <input 
+                          type="file" 
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => handleFileUpload(index, e)}
+                        />
+                      </label>
+                    </div>
+                    {image.url && (
+                      <input 
+                        type="text" 
+                        value={image.url}
+                        readOnly
+                        className="w-full px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-md text-xs text-gray-500 outline-none"
+                        title={image.url}
+                      />
+                    )}
                   </div>
                   {images.length > 1 && (
                     <button type="button" onClick={() => setImages(images.filter((_, i) => i !== index))} className="mt-5 text-red-500 hover:text-red-700">

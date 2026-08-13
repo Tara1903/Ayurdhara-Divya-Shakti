@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useCheckoutStore } from '@/store/checkoutStore';
 import { useCartStore } from '@/store/cartStore';
 import { calculatePricing, formatINR } from '@/services/pricingService';
@@ -192,9 +193,9 @@ export default function PlaceOrderButton() {
             >
               Retry
             </button>
-            <a href="/cart" className="btn-outline-small" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
+            <Link href="/cart" className="btn-outline-small" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
               Return to Cart
-            </a>
+            </Link>
           </div>
         </div>
       )}

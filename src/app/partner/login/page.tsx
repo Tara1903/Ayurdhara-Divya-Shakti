@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { authService } from '@/services/authService';
 import { useAuthStore } from '@/store/authStore';
 import { createClient } from '@/lib/supabase/client';
+import toast from 'react-hot-toast';
 
 function PartnerLoginForm() {
   const router = useRouter();
@@ -27,7 +28,13 @@ function PartnerLoginForm() {
     const { session, error: authError } = await authService.signIn(identifier, password);
     
     if (authError) {
-      setError(authError);
+      let errorMessage = 'Invalid login credentials.';
+      if (typeof authError === 'string') {
+        errorMessage = authError === '{}' ? 'Invalid email or password.' : authError;
+      } else if (authError && typeof authError === 'object') {
+        errorMessage = (authError as any).message || JSON.stringify(authError);
+      }
+      setError(errorMessage);
       setLoading(false);
       return;
     } 
@@ -61,6 +68,7 @@ function PartnerLoginForm() {
 
       const pType = partnerAccount.partner_type;
       const target = redirect || `/partner/dashboard/${pType}`;
+      toast.success('Login successful!');
       router.push(target);
     }
   };
@@ -80,7 +88,7 @@ function PartnerLoginForm() {
         <p className="auth-subtitle">Access your Wellness, Retail, or Distributor dashboard.</p>
       </div>
 
-      {error && <div className="auth-alert">{error}</div>}
+      {error && <div className="auth-alert">{typeof error === 'string' ? error : JSON.stringify(error)}</div>}
 
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="auth-field">
