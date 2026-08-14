@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Share2, Copy, FileText, Image as ImageIcon, Download } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { createClient } from '@/lib/supabase/client';
@@ -97,11 +98,11 @@ export default function WellnessDashboard() {
           </div>
           
           <div className="flex gap-2 w-full">
-            <button className="flex-1 bg-green-600 text-white py-2 rounded text-sm font-medium hover:bg-green-700 flex justify-center items-center gap-1">
-              WhatsApp
+            <button className="flex-1 bg-green-600 text-white py-2 rounded text-sm font-medium hover:bg-green-700 flex justify-center items-center gap-2 transition-colors">
+              <Share2 size={16} /> WhatsApp
             </button>
-            <button className="flex-1 bg-gray-800 text-white py-2 rounded text-sm font-medium hover:bg-gray-900 flex justify-center items-center gap-1">
-              Copy Link
+            <button className="flex-1 bg-gray-800 text-white py-2 rounded text-sm font-medium hover:bg-gray-900 flex justify-center items-center gap-2 transition-colors">
+              <Copy size={16} /> Copy Link
             </button>
           </div>
         </div>
@@ -130,23 +131,31 @@ export default function WellnessDashboard() {
             <ul className="space-y-4">
               <li className="flex justify-between items-center pb-4 border-b border-gray-50">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded flex items-center justify-center">📄</div>
+                  <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded flex items-center justify-center">
+                    <FileText size={20} />
+                  </div>
                   <div>
                     <div className="font-medium text-sm text-charcoal">Product Catalog PDF</div>
                     <div className="text-xs text-gray-500">12 MB</div>
                   </div>
                 </div>
-                <button className="text-olive text-sm font-medium">Download</button>
+                <a href="/downloads/ayurdhara-product-catalog.pdf" download className="flex items-center gap-1 text-olive hover:text-[#2D5A27] text-sm font-medium transition-colors">
+                  <Download size={16} /> Download
+                </a>
               </li>
               <li className="flex justify-between items-center pb-4 border-b border-gray-50">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-50 text-green-600 rounded flex items-center justify-center">🖼️</div>
+                  <div className="w-10 h-10 bg-green-50 text-green-600 rounded flex items-center justify-center">
+                    <ImageIcon size={20} />
+                  </div>
                   <div>
                     <div className="font-medium text-sm text-charcoal">WhatsApp Social Posters</div>
                     <div className="text-xs text-gray-500">ZIP File</div>
                   </div>
                 </div>
-                <button className="text-olive text-sm font-medium">Download</button>
+                <a href="/downloads/ayurdhara-social-posters.zip" download className="flex items-center gap-1 text-olive hover:text-[#2D5A27] text-sm font-medium transition-colors">
+                  <Download size={16} /> Download
+                </a>
               </li>
             </ul>
           </div>

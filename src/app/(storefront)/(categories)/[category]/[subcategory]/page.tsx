@@ -19,12 +19,27 @@ export default async function SubcategoryPage({ params }: { params: Promise<{ ca
   const category = getCategoryBySlug(resolvedParams.category);
   const subcategory = getSubcategoryBySlug(resolvedParams.category, resolvedParams.subcategory);
   
-  if (!category || !subcategory) {
+  if (!category) {
     notFound();
   }
 
   const allProducts = await getActiveProducts();
   
+  // Custom logic to intercept SEO product URLs (e.g., /oil-wellness-care/kids-body-wellness-massage-oil)
+  if (!subcategory) {
+    const product = allProducts.find(p => p.slug === resolvedParams.subcategory);
+    if (product) {
+      const { default: PDPClient } = await import('@/components/PDPClient');
+      return <PDPClient product={product} />;
+    }
+    notFound();
+  }
+  
+  if (resolvedParams.subcategory === 'body-massage-oil') {
+    const { default: BodyMassageOilLandingClient } = await import('./BodyMassageOilLandingClient');
+    return <BodyMassageOilLandingClient initialProducts={allProducts} />;
+  }
+
   // Custom logic to match products to subcategory
   const matchingProducts = allProducts.filter(p => {
     const prodCatLower = p.category.toLowerCase();

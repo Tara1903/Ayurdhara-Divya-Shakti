@@ -46,6 +46,16 @@ export default function PDPClient({ product }: { product: Product }) {
   const currentGoldMemberPrice = currentVariant ? currentVariant.goldMemberPrice : product.goldMemberPrice;
   const currentDiscount = currentOriginalPrice ? Math.round(((currentOriginalPrice - currentPrice) / currentOriginalPrice) * 100) : product.discount;
 
+  const getDynamicBadge = () => {
+    if (product.category === 'Body Massage Oil' && currentVariant) {
+      if (currentVariant.size === '50 ml') return 'TRIAL';
+      if (currentVariant.size === '100 ml') return 'STARTER';
+      if (currentVariant.size === '500 ml') return 'VALUE PACK';
+    }
+    return product.badge;
+  };
+  const dynamicBadge = getDynamicBadge();
+
   const handleVariantChange = (idx: number) => {
     setActiveVariantIdx(idx);
     const variant = product.variants[idx];
@@ -169,15 +179,15 @@ export default function PDPClient({ product }: { product: Product }) {
               )}
             </div>
 
-            {/* Badges */}
-            <div className="flex items-center gap-3 mb-4">
-              {product.badge && (
-                <span className="bg-[#232F3E] text-white text-[11px] font-bold px-2 py-1 flex items-center">
-                  {product.badge} <span className="bg-[#F90] text-[#232F3E] ml-1 px-1 rotate-3 font-black text-[10px]">PICK</span>
-                </span>
-              )}
-              <span className="text-sm font-semibold text-[#0F1111]">1K+ bought in past month</span>
-            </div>
+              {/* Badges */}
+              <div className="flex items-center gap-2 mb-3">
+                {dynamicBadge && (
+                  <span className="bg-[#232F3E] text-white text-[10px] font-bold px-2 py-0.5 flex items-center">
+                    {dynamicBadge} <span className="bg-[#F90] text-[#232F3E] ml-1 px-1 rotate-3 font-black text-[9px]">PICK</span>
+                  </span>
+                )}
+                <span className="text-xs font-semibold text-[#0F1111]">1K+ bought in past month</span>
+              </div>
 
             <hr className="hidden lg:block border-gray-200 mb-4" />
 

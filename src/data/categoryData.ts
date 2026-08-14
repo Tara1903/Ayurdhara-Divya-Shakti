@@ -21,6 +21,7 @@ export const navigationData: Category[] = [
       { name: "Men Wellness Oil Blend", slug: "men-wellness" },
       { name: "Women Wellness Oil Blend", slug: "women-wellness" },
       { name: "Senior Care Oil Blend", slug: "senior-care" },
+      { name: "Body Massage Oil", slug: "body-massage-oil" },
       { name: "Feet Massage Oil", slug: "feet-massage-oil" },
       { name: "Hair Wellness Oil", slug: "hair-wellness-oil" },
       { name: "Individual Wellness Packs", slug: "individual-wellness-packs" },

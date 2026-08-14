@@ -6,7 +6,6 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
   return (
     <ProtectedRoute>
       <div className="account-layout">
-        <Navbar />
         <div className="account-container">
           <aside className="account-sidebar">
             <AccountNavigation />

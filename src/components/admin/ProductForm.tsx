@@ -211,7 +211,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                 value={formData.name}
                 onChange={handleChange}
                 onBlur={!isEditing && !formData.slug ? generateSlug : undefined}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:border-[#4B7B3B] outline-none"
+                className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:border-[#4B7B3B] outline-none"
               />
             </div>
 
@@ -227,7 +227,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                   required
                   value={formData.slug}
                   onChange={handleChange}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-r-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:border-[#4B7B3B] outline-none font-mono"
+                  className="flex-1 px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-r-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:border-[#4B7B3B] outline-none font-mono"
                 />
               </div>
             </div>
@@ -239,7 +239,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                 rows={3}
                 value={formData.short_description}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:border-[#4B7B3B] outline-none"
+                className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:border-[#4B7B3B] outline-none"
               />
             </div>
           </div>
@@ -267,7 +267,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                       value={variant.size}
                       placeholder="e.g. 10 ml"
                       onChange={(e) => handleVariantChange(index, 'size', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none"
+                      className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none"
                       required
                     />
                   </div>
@@ -277,7 +277,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                       type="number" 
                       value={variant.price}
                       onChange={(e) => handleVariantChange(index, 'price', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none"
+                      className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none"
                       required
                     />
                   </div>
@@ -287,7 +287,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                       type="number" 
                       value={variant.original_price}
                       onChange={(e) => handleVariantChange(index, 'original_price', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none"
+                      className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none"
                     />
                   </div>
                   {variants.length > 1 && (
@@ -366,7 +366,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                 name="is_active"
                 value={formData.is_active ? "true" : "false"}
                 onChange={(e) => setFormData(prev => ({ ...prev, is_active: e.target.value === "true" }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none bg-white"
+                className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none bg-white"
               >
                 <option value="true">Active (Published)</option>
                 <option value="false">Draft (Hidden)</option>
@@ -379,7 +379,7 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                 name="category_id"
                 value={formData.category_id}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none bg-white"
+                className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none bg-white"
               >
                 <option value="">Select Category...</option>
                 {categories?.map(cat => (
