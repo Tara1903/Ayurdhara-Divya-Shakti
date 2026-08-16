@@ -73,6 +73,19 @@ export const authService = {
 
     if (error) return { user: null, error: error.message };
     
+    // Trigger welcome email via subscription endpoint
+    if (authData.user?.email) {
+      try {
+        fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: authData.user.email })
+        }).catch(err => console.error('Failed to trigger welcome email on signup:', err));
+      } catch (e) {
+        // Ignore failures in welcome email trigger
+      }
+    }
+
     return {
       user: authData.user ? {
         id: authData.user.id,

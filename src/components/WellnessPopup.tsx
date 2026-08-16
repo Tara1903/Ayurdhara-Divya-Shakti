@@ -5,30 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { X, Check } from "lucide-react";
 
-export default function WellnessPopup() {
-  const [isOpen, setIsOpen] = useState(false);
+interface WellnessPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function WellnessPopup({ isOpen, onClose }: WellnessPopupProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    
-    // Check session storage to see if already closed in this session
-    const hasSeenPopup = sessionStorage.getItem("hasSeenWellnessPopup");
-    
-    if (!hasSeenPopup) {
-      // Short delay after page load
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 3500);
-      
-      return () => clearTimeout(timer);
-    }
   }, []);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    sessionStorage.setItem("hasSeenWellnessPopup", "true");
-  };
 
   if (!mounted || !isOpen) return null;
 
@@ -52,7 +39,7 @@ export default function WellnessPopup() {
       >
         {/* Close Button */}
         <button 
-          onClick={handleClose}
+          onClick={onClose}
           className="absolute top-3 right-3 z-20 p-2 bg-white/90 shadow-sm hover:bg-gray-100 rounded-full text-gray-500 hover:text-gray-900 transition-colors"
           aria-label="Close popup"
         >
@@ -154,17 +141,17 @@ export default function WellnessPopup() {
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <Link 
                 href="/products/trial-wellness-pack" 
-                onClick={handleClose}
-                className="flex-1 py-3.5 px-6 text-center text-sm font-bold text-white bg-[#E88B23] hover:bg-[#D67A18] rounded-full transition-all shadow-md hover:shadow-lg whitespace-nowrap"
+                onClick={onClose}
+                className="flex-1 py-3.5 px-6 text-center text-sm font-bold text-white bg-gradient-to-r from-[#2D5A27] to-[#3a7232] rounded-xl hover:shadow-lg hover:shadow-[#2D5A27]/20 transition-all transform hover:-translate-y-0.5 whitespace-nowrap"
               >
                 START WITH TRIAL PACK
               </Link>
               <Link 
                 href="/collections" 
-                onClick={handleClose}
-                className="flex-1 py-3.5 px-6 text-center text-sm font-bold text-[#2D5A27] bg-white border-2 border-[#2D5A27] hover:bg-green-50 rounded-full transition-all whitespace-nowrap"
+                onClick={onClose}
+                className="py-3.5 px-8 text-center text-sm font-bold text-[#2D5A27] bg-green-50 rounded-xl hover:bg-green-100 transition-colors whitespace-nowrap"
               >
-                EXPLORE PRODUCTS
+                SHOP ALL BLENDS
               </Link>
             </div>
             
