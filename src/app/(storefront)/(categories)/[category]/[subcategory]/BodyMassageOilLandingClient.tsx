@@ -15,7 +15,7 @@ export default function BodyMassageOilLandingClient({ initialProducts }: BodyMas
   // Filter the 4 specific products
   const categoryProducts = initialProducts.filter(p => p.category === 'Body Massage Oil');
 
-  const sizes = ['All', '50 ml', '100 ml', '200 ml', '500 ml'];
+  const sizes = ['All', '50 ml', '100 ml', '200 ml'];
 
   const getVariant = (product: Product, size: string) => {
     return product.variants.find(v => v.size === size) || product.variants[0];
@@ -24,7 +24,7 @@ export default function BodyMassageOilLandingClient({ initialProducts }: BodyMas
   const getBadge = (size: string) => {
     if (size === '50 ml') return 'TRIAL';
     if (size === '100 ml') return 'STARTER';
-    if (size === '500 ml') return 'VALUE PACK';
+    if (size === '200 ml') return 'VALUE PACK';
     return null;
   };
 

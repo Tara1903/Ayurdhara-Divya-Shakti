@@ -203,8 +203,8 @@ export default async function AdminDashboard() {
             {[
               { label: 'Add Product', href: '/admin/products/new', color: 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700' },
               { label: 'View Orders', href: '/admin/orders', color: 'bg-blue-50 hover:bg-blue-100 text-blue-700' },
-              { label: 'Manage Coupons', href: '/admin/marketing/coupons', color: 'bg-amber-50 hover:bg-amber-100 text-amber-700' },
-              { label: 'Create Offer', href: '/admin/marketing/offers', color: 'bg-purple-50 hover:bg-purple-100 text-purple-700' },
+              { label: 'Manage Popups', href: '/admin/marketing/popups', color: 'bg-amber-50 hover:bg-amber-100 text-amber-700' },
+              { label: 'View Subscribers', href: '/admin/subscribers', color: 'bg-purple-50 hover:bg-purple-100 text-purple-700' },
               { label: 'Add Journal Post', href: '/admin/journal', color: 'bg-pink-50 hover:bg-pink-100 text-pink-700' },
               { label: 'View Inventory', href: '/admin/inventory', color: 'bg-red-50 hover:bg-red-100 text-red-700' },
               { label: 'FAQs', href: '/admin/content/faqs', color: 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700' },

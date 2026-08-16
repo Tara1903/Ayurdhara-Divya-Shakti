@@ -62,14 +62,13 @@ export const products: Product[] = [
     ],
     "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
     "variants": [
-      { "id": "kids-bmo-50", "size": "50 ml", "originalPrice": 399, "price": 249, "image": "/images/placeholder.jpg" },
-      { "id": "kids-bmo-100", "size": "100 ml", "originalPrice": 699, "price": 449, "image": "/images/placeholder.jpg" },
-      { "id": "kids-bmo-200", "size": "200 ml", "originalPrice": 1299, "price": 799, "image": "/images/placeholder.jpg" },
-      { "id": "kids-bmo-500", "size": "500 ml", "originalPrice": 2999, "price": 1799, "image": "/images/placeholder.jpg" }
+      { "id": "kids-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
+      { "id": "kids-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
+      { "id": "kids-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
     ],
-    "price": 249,
-    "originalPrice": 399,
-    "discount": 38,
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
     "rating": 5.0,
     "reviewCount": 0,
     "healthGoals": ["Daily Wellness", "Relaxation"],
@@ -103,14 +102,13 @@ export const products: Product[] = [
     ],
     "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
     "variants": [
-      { "id": "men-bmo-50", "size": "50 ml", "originalPrice": 399, "price": 249, "image": "/images/placeholder.jpg" },
-      { "id": "men-bmo-100", "size": "100 ml", "originalPrice": 699, "price": 449, "image": "/images/placeholder.jpg" },
-      { "id": "men-bmo-200", "size": "200 ml", "originalPrice": 1299, "price": 799, "image": "/images/placeholder.jpg" },
-      { "id": "men-bmo-500", "size": "500 ml", "originalPrice": 2999, "price": 1799, "image": "/images/placeholder.jpg" }
+      { "id": "men-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
+      { "id": "men-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
+      { "id": "men-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
     ],
-    "price": 249,
-    "originalPrice": 399,
-    "discount": 38,
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
     "rating": 5.0,
     "reviewCount": 0,
     "healthGoals": ["Daily Wellness", "Relaxation"],
@@ -144,14 +142,13 @@ export const products: Product[] = [
     ],
     "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
     "variants": [
-      { "id": "women-bmo-50", "size": "50 ml", "originalPrice": 399, "price": 249, "image": "/images/placeholder.jpg" },
-      { "id": "women-bmo-100", "size": "100 ml", "originalPrice": 699, "price": 449, "image": "/images/placeholder.jpg" },
-      { "id": "women-bmo-200", "size": "200 ml", "originalPrice": 1299, "price": 799, "image": "/images/placeholder.jpg" },
-      { "id": "women-bmo-500", "size": "500 ml", "originalPrice": 2999, "price": 1799, "image": "/images/placeholder.jpg" }
+      { "id": "women-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
+      { "id": "women-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
+      { "id": "women-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
     ],
-    "price": 249,
-    "originalPrice": 399,
-    "discount": 38,
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
     "rating": 5.0,
     "reviewCount": 0,
     "healthGoals": ["Daily Wellness", "Relaxation"],
@@ -185,14 +182,13 @@ export const products: Product[] = [
     ],
     "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
     "variants": [
-      { "id": "senior-bmo-50", "size": "50 ml", "originalPrice": 399, "price": 249, "image": "/images/placeholder.jpg" },
-      { "id": "senior-bmo-100", "size": "100 ml", "originalPrice": 699, "price": 449, "image": "/images/placeholder.jpg" },
-      { "id": "senior-bmo-200", "size": "200 ml", "originalPrice": 1299, "price": 799, "image": "/images/placeholder.jpg" },
-      { "id": "senior-bmo-500", "size": "500 ml", "originalPrice": 2999, "price": 1799, "image": "/images/placeholder.jpg" }
+      { "id": "senior-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
+      { "id": "senior-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
+      { "id": "senior-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
     ],
-    "price": 249,
-    "originalPrice": 399,
-    "discount": 38,
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
     "rating": 5.0,
     "reviewCount": 0,
     "healthGoals": ["Daily Wellness", "Relaxation"],
@@ -2116,6 +2112,46 @@ export const products: Product[] = [
     "routineProductIds": [],
     "durationText": "Up to 1 Month Wellness Care",
     "inclusions": "10 ml Nabhi Oil Blend, 30 ml Feet Massage Oil"
+  },
+  {
+    "id": "diamond-trial-wellness-pack",
+    "slug": "diamond-trial-wellness-pack",
+    "name": "💎 Diamond Trial Wellness Pack",
+    "category": "Individual Wellness Packs",
+    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
+    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
+    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
+    "benefits": [
+      { "icon": "Sparkles", "text": "Deep Nourishment" },
+      { "icon": "Leaf", "text": "100% Pure & Natural" }
+    ],
+    "ingredients": [
+      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
+    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
+    "variants": [
+      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
+    ],
+    "price": 999,
+    "originalPrice": 1499,
+    "discount": 33,
+    "rating": 5.0,
+    "reviewCount": 0,
+    "badge": "DIAMOND TRIAL",
+    "healthGoals": ["Daily Wellness", "Holistic Health"],
+    "idealFor": ["Everyone"],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
+    },
+    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
+    "certifications": ["100% Natural"],
+    "inclusions": "10 ml Nabhi Wellness Oil Blend\n30 ml Feet Massage Oil\n100 ml Body Wellness Massage Oil",
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
   },
   {
     "id": "gold-wellness-pack",

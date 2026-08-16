@@ -50,7 +50,7 @@ export default function PDPClient({ product }: { product: Product }) {
     if (product.category === 'Body Massage Oil' && currentVariant) {
       if (currentVariant.size === '50 ml') return 'TRIAL';
       if (currentVariant.size === '100 ml') return 'STARTER';
-      if (currentVariant.size === '500 ml') return 'VALUE PACK';
+      if (currentVariant.size === '200 ml') return 'VALUE PACK';
     }
     return product.badge;
   };
