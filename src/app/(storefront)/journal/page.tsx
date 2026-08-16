@@ -20,7 +20,7 @@ export default async function JournalPage() {
     <div className="bg-[#f9f9f9] min-h-screen">
       {/* Header */}
       <div className="bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 py-16 text-center">
+        <div className="max-w-6xl mx-auto px-4 py-8 text-center">
           <div className="w-16 h-16 bg-[#4B7B3B]/10 text-[#4B7B3B] rounded-full flex items-center justify-center mx-auto mb-6">
             <BookOpen size={32} />
           </div>
@@ -32,11 +32,11 @@ export default async function JournalPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-8">
         {error ? (
-          <div className="text-center py-10 md:py-14 text-red-500">Failed to load journal posts. Please try again later.</div>
+          <div className="text-center py-6 md:py-8 text-red-500">Failed to load journal posts. Please try again later.</div>
         ) : !posts || posts.length === 0 ? (
-          <div className="text-center py-10 md:py-14">
+          <div className="text-center py-6 md:py-8">
             <h3 className="text-xl font-bold text-gray-900 mb-2">No Articles Yet</h3>
             <p className="text-gray-500">Check back soon for new insights on Ayurvedic wellness.</p>
           </div>

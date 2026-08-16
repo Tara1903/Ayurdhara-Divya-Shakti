@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function WellnessGuideDailyRoutine() {
   return (
-    <div className="bg-[#f9f9f9] min-h-screen py-16">
+    <div className="bg-[#f9f9f9] min-h-screen py-8">
       <div className="container mx-auto px-4 max-w-3xl text-center">
         <h1 className="text-4xl font-serif font-bold text-[#2D5A27] mb-4">Daily Wellness Routine</h1>
         <p className="text-lg text-gray-600 mb-8">

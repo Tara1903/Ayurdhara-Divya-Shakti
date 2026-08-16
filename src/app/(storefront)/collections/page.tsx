@@ -16,7 +16,7 @@ export default async function CollectionsPage() {
       <div className="container py-8">
         <h1 className="heading-brand text-4xl mb-2 text-charcoal">All Products</h1>
         <p className="text-body text-stone mb-8">Discover our range of authentic Ayurvedic formulations designed for your specific wellness needs.</p>
-        <Suspense fallback={<div className="py-10 md:py-14 text-center text-stone">Loading collection...</div>}>
+        <Suspense fallback={<div className="py-6 md:py-8 text-center text-stone">Loading collection...</div>}>
           <CollectionsClient initialProducts={products} />
         </Suspense>
       </div>

@@ -142,7 +142,7 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
         </div>
 
         {filteredProducts.length === 0 ? (
-          <div className="text-center py-10 md:py-14 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div className="text-center py-6 md:py-8 bg-white rounded-xl shadow-sm border border-gray-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-3">No products found</h3>
             <p className="text-gray-500 mb-6">Try adjusting your filters or search query.</p>
             <button 

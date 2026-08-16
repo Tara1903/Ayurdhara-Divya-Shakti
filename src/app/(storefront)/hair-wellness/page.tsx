@@ -38,7 +38,7 @@ export default function HairWellnessPage() {
       </section>
 
       {/* Base Oils Section */}
-      <section className="py-12 md:py-16 px-6 lg:px-12 bg-ivory">
+      <section className="py-12 md:py-8 px-6 lg:px-12 bg-ivory">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 fade-in-section">
             <h2 className="text-title text-forest mb-4">Premium Base Oil Blend</h2>
@@ -67,7 +67,7 @@ export default function HairWellnessPage() {
       </section>
 
       {/* Traditional Herbs Section */}
-      <section className="py-12 md:py-16 px-6 lg:px-12 bg-forest text-ivory">
+      <section className="py-12 md:py-8 px-6 lg:px-12 bg-forest text-ivory">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 fade-in-section">
             <h2 className="text-title mb-4">Traditional Ayurvedic Herbs</h2>
@@ -98,7 +98,7 @@ export default function HairWellnessPage() {
       </section>
 
       {/* Routine Section */}
-      <section className="py-12 md:py-16 px-6 lg:px-12 bg-sand text-center">
+      <section className="py-12 md:py-8 px-6 lg:px-12 bg-sand text-center">
         <div className="max-w-3xl mx-auto fade-in-section">
           <h2 className="text-title text-forest mb-8">The Weekly Ritual</h2>
           <div className="bg-ivory p-8 rounded-2xl shadow-soft">

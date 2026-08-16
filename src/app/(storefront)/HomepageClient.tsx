@@ -411,7 +411,7 @@ function Section1CategoryIcons() {
   ];
 
   return (
-    <section className="py-16 bg-white border-b border-gray-100">
+    <section className="py-8 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center gap-4 md:gap-6 flex-wrap max-w-6xl mx-auto">
           {categories.map((cat, i) => (
@@ -435,7 +435,7 @@ function Section1CategoryIcons() {
 // ----------------------------------------------------------------------
 function Section2WrittenContent() {
   return (
-    <section className="py-12 md:py-16 bg-[#fcfcfc]">
+    <section className="py-12 md:py-8 bg-[#fcfcfc]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2D5A27] mb-6">
           Rooted in Tradition, Formulated for Today
@@ -495,7 +495,7 @@ function Section3OilWellness({ products }: { products: Product[] }) {
   }, [products, activeTab]);
 
   return (
-    <section className="py-12 md:py-16 bg-white border-t border-b border-gray-100">
+    <section className="py-12 md:py-8 bg-white border-t border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Oil Wellness Care</h2>
@@ -549,7 +549,7 @@ function Section3OilWellness({ products }: { products: Product[] }) {
 // ----------------------------------------------------------------------
 function Section4WrittenContent() {
   return (
-    <section className="py-12 md:py-16 bg-[#E0EBDC]/30">
+    <section className="py-12 md:py-8 bg-[#E0EBDC]/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="bg-white p-10 md:p-16 rounded-3xl shadow-sm border border-[#4B7B3B]/10 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#E88B23]/5 rounded-bl-full"></div>
@@ -608,7 +608,7 @@ function Section5ShopByGoal({ products }: { products: Product[] }) {
   }, [products, activeTab]);
 
   return (
-    <section className="py-12 md:py-16 bg-white border-b border-gray-100">
+    <section className="py-12 md:py-8 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Goal</h2>
@@ -661,7 +661,7 @@ function Section5ShopByGoal({ products }: { products: Product[] }) {
 // ----------------------------------------------------------------------
 function Section6WrittenContent() {
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-[#4B7B3B] to-[#2D5A27] text-white">
+    <section className="py-12 md:py-8 bg-gradient-to-br from-[#4B7B3B] to-[#2D5A27] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">
           Choose Wellness Your Way
@@ -710,7 +710,7 @@ function Section7ShopByForm({ products }: { products: Product[] }) {
   }, [products, activeTab]);
 
   return (
-    <section className="py-12 md:py-16 bg-[#fcfcfc] border-b border-gray-100">
+    <section className="py-12 md:py-8 bg-[#fcfcfc] border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <div className="text-center md:text-left mb-6 md:mb-0">
@@ -765,7 +765,7 @@ function Section7ShopByForm({ products }: { products: Product[] }) {
 // ----------------------------------------------------------------------
 function Section8WrittenContent() {
   return (
-    <section className="py-12 md:py-16 bg-white">
+    <section className="py-12 md:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="w-full md:w-1/2">
@@ -819,7 +819,7 @@ function Section9ShopByOffers({ products }: { products: Product[] }) {
   }, [products, activeTab]);
 
   return (
-    <section className="py-12 md:py-16 bg-[#E0EBDC]/20 border-y border-[#4B7B3B]/10">
+    <section className="py-12 md:py-8 bg-[#E0EBDC]/20 border-y border-[#4B7B3B]/10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Offers</h2>
@@ -872,7 +872,7 @@ function Section9ShopByOffers({ products }: { products: Product[] }) {
 // ----------------------------------------------------------------------
 function Section10WrittenContent() {
   return (
-    <section className="py-12 md:py-16 bg-white">
+    <section className="py-12 md:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2D5A27] mb-6">
           A Community of Healing
@@ -893,7 +893,7 @@ function Section10WrittenContent() {
 // ----------------------------------------------------------------------
 function Section10bDailyWellnessRoutine() {
   return (
-    <section className="py-12 md:py-16 bg-[#FAF7F2] border-y border-[#E0EBDC]">
+    <section className="py-12 md:py-8 bg-[#FAF7F2] border-y border-[#E0EBDC]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <span className="text-[#E88B23] text-sm font-bold uppercase tracking-widest mb-3 block">Simple & Effective</span>
@@ -951,7 +951,7 @@ function Section11CustomerReviews() {
   // Using generic positive sentiments rather than fabricated facts, 
   // keeping it empty-state/placeholder safe if real reviews aren't dynamically loaded yet.
   return (
-    <section className="py-12 md:py-16 bg-[#fcfcfc] border-y border-gray-100 overflow-hidden">
+    <section className="py-12 md:py-8 bg-[#fcfcfc] border-y border-gray-100 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-serif font-bold text-[#1A1A1A] mb-4">Customer Stories</h2>
@@ -993,7 +993,7 @@ function Section11CustomerReviews() {
 // ----------------------------------------------------------------------
 function Section12BrandStory() {
   return (
-    <section className="py-12 md:py-16 bg-white relative">
+    <section className="py-12 md:py-8 bg-white relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto bg-[#2D5A27] text-white rounded-3xl overflow-hidden shadow-xl flex flex-col md:flex-row">
           <div className="w-full md:w-5/12 relative min-h-[300px]">
