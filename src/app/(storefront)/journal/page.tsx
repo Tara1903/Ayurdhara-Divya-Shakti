@@ -34,9 +34,9 @@ export default async function JournalPage() {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-16">
         {error ? (
-          <div className="text-center py-20 text-red-500">Failed to load journal posts. Please try again later.</div>
+          <div className="text-center py-10 md:py-14 text-red-500">Failed to load journal posts. Please try again later.</div>
         ) : !posts || posts.length === 0 ? (
-          <div className="text-center py-20">
+          <div className="text-center py-10 md:py-14">
             <h3 className="text-xl font-bold text-gray-900 mb-2">No Articles Yet</h3>
             <p className="text-gray-500">Check back soon for new insights on Ayurvedic wellness.</p>
           </div>

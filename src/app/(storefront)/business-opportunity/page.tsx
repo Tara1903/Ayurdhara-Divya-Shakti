@@ -271,7 +271,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 2. THREE PARTNER CARDS ── */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <SectionHeading
             tag="Choose Your Path"
@@ -457,7 +457,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 4. PARTNER MARGIN SUMMARY TABLE ── */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <SectionHeading
             tag="Margin Structure"
@@ -504,7 +504,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 5. WELLNESS PARTNER EARNING EXAMPLES ── */}
-      <section className="py-20 bg-[#f8faf8]">
+      <section className="py-10 md:py-14 bg-[#f8faf8]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <SectionHeading
             tag="Partner Earnings"
@@ -538,7 +538,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 6. WELLNESS PACKS PARTNER BREAKDOWN ── */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeading
             tag="Product Channel Margins"
@@ -651,7 +651,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 7. QR & DIGITAL SYSTEM ── */}
-      <section className="py-20 bg-[#f8faf8]">
+      <section className="py-10 md:py-14 bg-[#f8faf8]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeading
             tag="Digital System"
@@ -711,7 +711,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 8. PARTNER WALLET ── */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeading
             tag="Partner Wallet"
@@ -783,7 +783,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 9. DISTRIBUTOR SECTION ── */}
-      <section className="py-20 bg-[#f8faf8]">
+      <section className="py-10 md:py-14 bg-[#f8faf8]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeading
             tag="Distributor Program"
@@ -840,7 +840,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 10. WHY JOIN ── */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <SectionHeading
             tag="Why Ayurdhara"
@@ -868,7 +868,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 11. APPLICATION FORM ── */}
-      <section id="apply" className="py-20 bg-[#f8faf8]">
+      <section id="apply" className="py-10 md:py-14 bg-[#f8faf8]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <SectionHeading
             tag="Apply Now"
@@ -966,7 +966,7 @@ export default function BusinessOpportunityPage() {
       </section>
 
       {/* ── 13. FINAL CTA ── */}
-      <section id="join" className="py-24 bg-[#2D5A27] text-white text-center relative overflow-hidden">
+      <section id="join" className="py-12 md:py-16 bg-[#2D5A27] text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#E88B23] blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-[#4B7B3B] blur-3xl" />
