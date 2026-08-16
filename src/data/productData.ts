@@ -60,11 +60,11 @@ export const products: Product[] = [
     "ingredients": [
       { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
     ],
-    "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
-      { "id": "kids-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
-      { "id": "kids-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
-      { "id": "kids-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
+      { "id": "kids-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "kids-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "kids-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
     ],
     "price": 349,
     "originalPrice": 499,
@@ -100,11 +100,11 @@ export const products: Product[] = [
     "ingredients": [
       { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
     ],
-    "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
-      { "id": "men-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
-      { "id": "men-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
-      { "id": "men-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
+      { "id": "men-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "men-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "men-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
     ],
     "price": 349,
     "originalPrice": 499,
@@ -140,11 +140,11 @@ export const products: Product[] = [
     "ingredients": [
       { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
     ],
-    "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
-      { "id": "women-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
-      { "id": "women-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
-      { "id": "women-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
+      { "id": "women-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "women-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "women-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
     ],
     "price": 349,
     "originalPrice": 499,
@@ -180,11 +180,11 @@ export const products: Product[] = [
     "ingredients": [
       { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
     ],
-    "images": [ "/images/categories/cat_oil_wellness_1786556871303.jpg" ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
-      { "id": "senior-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/placeholder.jpg" },
-      { "id": "senior-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/placeholder.jpg" },
-      { "id": "senior-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/placeholder.jpg" }
+      { "id": "senior-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "senior-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
+      { "id": "senior-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
     ],
     "price": 349,
     "originalPrice": 499,
@@ -245,21 +245,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/kids-smart-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/kids-smart-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/kids-smart-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -345,21 +343,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/kids-growth-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/kids-growth-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/kids-growth-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -445,21 +441,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/kids-calm-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/kids-calm-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/kids-calm-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -545,21 +539,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/kids-daily-care-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/kids-daily-care-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/kids-daily-care-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -645,21 +637,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/men-strength-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/men-strength-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/men-strength-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -745,21 +735,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/men-active-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/men-active-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/men-active-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -845,21 +833,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/men-heart-balance-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/men-heart-balance-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/men-heart-balance-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -945,21 +931,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/men-daily-wellness-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/men-daily-wellness-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/men-daily-wellness-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1045,21 +1029,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/women-harmony-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/women-harmony-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/women-harmony-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1145,21 +1127,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/women-care-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/women-care-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/women-care-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1245,21 +1225,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/women-glow-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/women-glow-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/women-glow-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1345,21 +1323,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/women-daily-wellness-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/women-daily-wellness-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/women-daily-wellness-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1445,21 +1421,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/senior-comfort-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/senior-comfort-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/senior-comfort-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1545,21 +1519,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/senior-active-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/senior-active-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/senior-active-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1645,21 +1617,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/senior-balance-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/senior-balance-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/senior-balance-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1745,21 +1715,19 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/senior-daily-wellness-oil-blend-10-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
         "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/senior-daily-wellness-oil-blend-10-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "20 ml",
         "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/senior-daily-wellness-oil-blend-20-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 199,
@@ -1845,27 +1813,25 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/feet-massage-oil-30-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "30 ml",
         "originalPrice": 599,
         "price": 399,
-        "image": "/images/products/feet-massage-oil-30-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "100 ml",
         "originalPrice": 1799,
         "price": 1199,
-        "image": "/images/products/feet-massage-oil-100-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "200 ml",
         "originalPrice": 3299,
         "price": 2199,
-        "image": "/images/products/feet-massage-oil-200-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 399,
@@ -1951,27 +1917,25 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/hair-wellness-oil-50-ml.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "50 ml",
         "originalPrice": 699,
         "price": 499,
-        "image": "/images/products/hair-wellness-oil-50-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "100 ml",
         "originalPrice": 1299,
         "price": 899,
-        "image": "/images/products/hair-wellness-oil-100-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       },
       {
         "size": "200 ml",
         "originalPrice": 2499,
         "price": 1799,
-        "image": "/images/products/hair-wellness-oil-200-ml.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 499,
@@ -2057,15 +2021,13 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/trial-wellness-pack-1-pack.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "Standard",
         "originalPrice": 749,
         "price": 499,
-        "image": "/images/products/trial-wellness-pack.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 499,
@@ -2193,15 +2155,13 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/gold-wellness-pack-1-pack.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "Standard",
         "originalPrice": 2999,
         "price": 2199,
-        "image": "/images/products/gold-wellness-pack.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 2199,
@@ -2289,15 +2249,13 @@ export const products: Product[] = [
         "role": "Targeted holistic wellness"
       }
     ],
-    "images": [
-      "/images/products/premium-wellness-pack-1-pack.jpg"
-    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "Standard",
         "originalPrice": 5499,
         "price": 3999,
-        "image": "/images/products/premium-wellness-pack.jpg"
+        "image": "/images/products/diamond-trial.jpg"
       }
     ],
     "price": 3999,
