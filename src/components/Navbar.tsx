@@ -177,7 +177,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2 md:gap-5 flex-shrink-0">
               <div className="hidden lg:flex items-center gap-6 mr-2">
                 <Link href="/mobile-app" className="text-sm font-bold text-[#2D5A27] hover:text-[#4B7B3B] uppercase tracking-wider transition-colors flex items-center gap-1">📱 App</Link>
-                <Link href="/collections" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</Link>
+                <a href="https://store.ayurdharadivyashakti.store" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Shop All</a>
                 <Link href="/wellness-combos" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">Combos</Link>
                 <Link href="/wellness-guide/how-to-use" className="text-sm font-bold text-gray-800 hover:text-[#4B7B3B] uppercase tracking-wider transition-colors">Guide</Link>
                 <Link href="/business-opportunity" className="text-sm font-bold text-[#E88B23] hover:text-[#D9381E] uppercase tracking-wider transition-colors">BUSINESS OPPORTUNITY</Link>
