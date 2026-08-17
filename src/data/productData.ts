@@ -1982,10 +1982,412 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "trial-wellness-pack",
-    "slug": "trial-wellness-pack",
-    "name": "?? Trial Wellness Pack",
+    "id": "kids-trial-wellness-pack",
+    "slug": "kids-trial-wellness-pack",
+    "name": "?? Kids Trial Wellness Pack",
+    "category": "Kids Care Oil Blend",
+    "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
+    "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
+    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
+    "benefits": [
+      {
+        "icon": "Sparkles",
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
+      },
+      {
+        "icon": "Shield",
+        "text": "Holistic Balance"
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Targeted holistic wellness"
+      }
+    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
+    "variants": [
+      {
+        "size": "Standard",
+        "originalPrice": 749,
+        "price": 499,
+        "image": "/images/products/diamond-trial.jpg"
+      }
+    ],
+    "price": 499,
+    "originalPrice": 749,
+    "discount": 33,
+    "rating": 4.9,
+    "reviewCount": 164,
+    "healthGoals": [
+      "Daily Wellness",
+      "Immunity",
+      "Balance"
+    ],
+    "idealFor": [
+      "All body types"
+    ],
+    "usageInstructions": {
+      "serving": "3-4 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+    },
+    "specifications": {
+      "Form": "Oil Blend",
+      "Packaging": "Amber Glass Dropper Bottle",
+      "Purity": "100% Natural, Unrefined",
+      "Origin": "Made in India"
+    },
+    "certifications": [
+      "100% Natural",
+      "Cruelty Free",
+      "Toxin Free",
+      "GMP Certified"
+    ],
+    "faqs": [
+      {
+        "question": "How to use this product?",
+        "answer": "Apply 3-4 drops to the belly button before sleeping."
+      },
+      {
+        "question": "Is this safe for daily use?",
+        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
+      }
+    ],
+    "relatedProductIds": [],
+    "routineProductIds": [],
+    "durationText": "Up to 1 Month Wellness Care",
+    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil"
+  },
+  {
+    "id": "diamond-trial-wellness-pack",
+    "slug": "diamond-trial-wellness-pack",
+    "name": "?? Gold Trial Wellness Pack",
     "category": "Individual Wellness Packs",
+    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
+    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
+    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
+    "benefits": [
+      { "icon": "Sparkles", "text": "Deep Nourishment" },
+      { "icon": "Leaf", "text": "100% Pure & Natural" }
+    ],
+    "ingredients": [
+      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
+    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
+    "variants": [
+      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
+    ],
+    "price": 999,
+    "originalPrice": 1499,
+    "discount": 33,
+    "rating": 5.0,
+    "reviewCount": 0,
+    "badge": "?? COMPLETE TRIAL",
+    "healthGoals": ["Daily Wellness", "Holistic Health"],
+    "idealFor": ["Everyone"],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
+    },
+    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
+    "certifications": ["100% Natural"],
+    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil, 100 ml Body Wellness Massage Oil",
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "men-trial-wellness-pack",
+    "slug": "men-trial-wellness-pack",
+    "name": "?? Men Trial Wellness Pack",
+    "category": "Men Wellness Oil Blend",
+    "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
+    "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
+    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
+    "benefits": [
+      {
+        "icon": "Sparkles",
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
+      },
+      {
+        "icon": "Shield",
+        "text": "Holistic Balance"
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Targeted holistic wellness"
+      }
+    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
+    "variants": [
+      {
+        "size": "Standard",
+        "originalPrice": 749,
+        "price": 499,
+        "image": "/images/products/diamond-trial.jpg"
+      }
+    ],
+    "price": 499,
+    "originalPrice": 749,
+    "discount": 33,
+    "rating": 4.9,
+    "reviewCount": 164,
+    "healthGoals": [
+      "Daily Wellness",
+      "Immunity",
+      "Balance"
+    ],
+    "idealFor": [
+      "All body types"
+    ],
+    "usageInstructions": {
+      "serving": "3-4 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+    },
+    "specifications": {
+      "Form": "Oil Blend",
+      "Packaging": "Amber Glass Dropper Bottle",
+      "Purity": "100% Natural, Unrefined",
+      "Origin": "Made in India"
+    },
+    "certifications": [
+      "100% Natural",
+      "Cruelty Free",
+      "Toxin Free",
+      "GMP Certified"
+    ],
+    "faqs": [
+      {
+        "question": "How to use this product?",
+        "answer": "Apply 3-4 drops to the belly button before sleeping."
+      },
+      {
+        "question": "Is this safe for daily use?",
+        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
+      }
+    ],
+    "relatedProductIds": [],
+    "routineProductIds": [],
+    "durationText": "Up to 1 Month Wellness Care",
+    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil"
+  },
+  {
+    "id": "diamond-trial-wellness-pack",
+    "slug": "diamond-trial-wellness-pack",
+    "name": "?? Gold Trial Wellness Pack",
+    "category": "Individual Wellness Packs",
+    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
+    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
+    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
+    "benefits": [
+      { "icon": "Sparkles", "text": "Deep Nourishment" },
+      { "icon": "Leaf", "text": "100% Pure & Natural" }
+    ],
+    "ingredients": [
+      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
+    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
+    "variants": [
+      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
+    ],
+    "price": 999,
+    "originalPrice": 1499,
+    "discount": 33,
+    "rating": 5.0,
+    "reviewCount": 0,
+    "badge": "?? COMPLETE TRIAL",
+    "healthGoals": ["Daily Wellness", "Holistic Health"],
+    "idealFor": ["Everyone"],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
+    },
+    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
+    "certifications": ["100% Natural"],
+    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil, 100 ml Body Wellness Massage Oil",
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "women-trial-wellness-pack",
+    "slug": "women-trial-wellness-pack",
+    "name": "?? Women Trial Wellness Pack",
+    "category": "Women Wellness Oil Blend",
+    "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
+    "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
+    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Supports daily vitality, balance, and holistic wellness.",
+    "benefits": [
+      {
+        "icon": "Sparkles",
+        "text": "Deep Nourishment"
+      },
+      {
+        "icon": "Leaf",
+        "text": "100% Pure & Natural"
+      },
+      {
+        "icon": "Shield",
+        "text": "Holistic Balance"
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Cold-pressed Sesame Oil",
+        "botanical": "Sesamum indicum",
+        "role": "Nourishing base"
+      },
+      {
+        "name": "Pure Almond Oil",
+        "botanical": "Prunus amygdalus",
+        "role": "Rich in vitamins"
+      },
+      {
+        "name": "Traditional Ayurvedic Herbs",
+        "botanical": "Various",
+        "role": "Targeted holistic wellness"
+      }
+    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
+    "variants": [
+      {
+        "size": "Standard",
+        "originalPrice": 749,
+        "price": 499,
+        "image": "/images/products/diamond-trial.jpg"
+      }
+    ],
+    "price": 499,
+    "originalPrice": 749,
+    "discount": 33,
+    "rating": 4.9,
+    "reviewCount": 164,
+    "healthGoals": [
+      "Daily Wellness",
+      "Immunity",
+      "Balance"
+    ],
+    "idealFor": [
+      "All body types"
+    ],
+    "usageInstructions": {
+      "serving": "3-4 drops",
+      "timing": "Before bedtime",
+      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+    },
+    "specifications": {
+      "Form": "Oil Blend",
+      "Packaging": "Amber Glass Dropper Bottle",
+      "Purity": "100% Natural, Unrefined",
+      "Origin": "Made in India"
+    },
+    "certifications": [
+      "100% Natural",
+      "Cruelty Free",
+      "Toxin Free",
+      "GMP Certified"
+    ],
+    "faqs": [
+      {
+        "question": "How to use this product?",
+        "answer": "Apply 3-4 drops to the belly button before sleeping."
+      },
+      {
+        "question": "Is this safe for daily use?",
+        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
+      }
+    ],
+    "relatedProductIds": [],
+    "routineProductIds": [],
+    "durationText": "Up to 1 Month Wellness Care",
+    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil"
+  },
+  {
+    "id": "diamond-trial-wellness-pack",
+    "slug": "diamond-trial-wellness-pack",
+    "name": "?? Gold Trial Wellness Pack",
+    "category": "Individual Wellness Packs",
+    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
+    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
+    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
+    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
+    "benefits": [
+      { "icon": "Sparkles", "text": "Deep Nourishment" },
+      { "icon": "Leaf", "text": "100% Pure & Natural" }
+    ],
+    "ingredients": [
+      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
+    ],
+    "images": [ "/images/products/diamond-trial.jpg" ],
+    "variants": [
+      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
+    ],
+    "price": 999,
+    "originalPrice": 1499,
+    "discount": 33,
+    "rating": 5.0,
+    "reviewCount": 0,
+    "badge": "?? COMPLETE TRIAL",
+    "healthGoals": ["Daily Wellness", "Holistic Health"],
+    "idealFor": ["Everyone"],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
+    },
+    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
+    "certifications": ["100% Natural"],
+    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil, 100 ml Body Wellness Massage Oil",
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "senior-trial-wellness-pack",
+    "slug": "senior-trial-wellness-pack",
+    "name": "?? Senior Trial Wellness Pack",
+    "category": "Senior Care Oil Blend",
     "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
     "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
     "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
