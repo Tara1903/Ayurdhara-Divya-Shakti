@@ -48,9 +48,10 @@ export default function PDPClient({ product }: { product: Product }) {
 
   const getDynamicBadge = () => {
     if (product.category === 'Body Massage Oil' && currentVariant) {
-      if (currentVariant.size === '50 ml') return 'TRIAL';
-      if (currentVariant.size === '100 ml') return 'STARTER';
-      if (currentVariant.size === '200 ml') return 'VALUE PACK';
+      const sizeLower = currentVariant.size.toLowerCase();
+      if (sizeLower === '50 ml') return 'TRIAL';
+      if (sizeLower === '100 ml') return 'STARTER';
+      if (sizeLower === '200 ml') return 'VALUE PACK';
     }
     return product.badge;
   };

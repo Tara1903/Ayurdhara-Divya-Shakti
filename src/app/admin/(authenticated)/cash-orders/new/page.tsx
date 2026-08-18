@@ -91,7 +91,7 @@ export default function NewCashOrderPage() {
       const product = products.find(p => p.slug === newItems[index].productId || p.id === newItems[index].productId);
       newItems[index].variant = value;
       if (product) {
-        const variantData = product.variants.find(v => v.size === value);
+        const variantData = product.variants.find(v => v.size.toLowerCase() === value.toLowerCase());
         if (variantData) {
           newItems[index].unitPrice = variantData.price;
         }

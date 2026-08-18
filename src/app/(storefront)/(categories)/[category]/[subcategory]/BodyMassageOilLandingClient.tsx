@@ -18,7 +18,7 @@ export default function BodyMassageOilLandingClient({ initialProducts }: BodyMas
   const sizes = ['All', '50 ml', '100 ml', '200 ml'];
 
   const getVariant = (product: Product, size: string) => {
-    return product.variants.find(v => v.size === size) || product.variants[0];
+    return product.variants.find(v => v.size.toLowerCase() === size.toLowerCase()) || product.variants[0];
   };
 
   const getBadge = (size: string) => {
