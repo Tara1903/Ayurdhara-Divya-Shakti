@@ -40,7 +40,18 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
     if (!prodCatLower) return false; // Prevent empty category string from matching everything
     
-    return prodCatLower === catNameLower || prodCatLower.includes(catNameLower) || catNameLower.includes(prodCatLower);
+    // Check if the product belongs directly to this category
+    if (prodCatLower === catNameLower || prodCatLower.includes(catNameLower) || catNameLower.includes(prodCatLower)) {
+      return true;
+    }
+
+    // Check if the product belongs to any subcategory of this main category
+    const belongsToSubcategory = category.subcategories?.some(sub => {
+      const subNameLower = sub.name.toLowerCase();
+      return prodCatLower === subNameLower || prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower);
+    });
+
+    return !!belongsToSubcategory;
   });
 
   return (
