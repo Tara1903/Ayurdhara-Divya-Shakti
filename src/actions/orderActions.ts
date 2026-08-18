@@ -42,7 +42,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     const product = dbProducts.find(p => p.slug === item.productId);
     if (!product) return { error: `Product ${item.productId} not found` };
 
-    const variant = product.product_variants.find(v => v.size === item.variant);
+    const variant = product.product_variants.find(v => v.size.toLowerCase() === item.variant.toLowerCase());
     if (!variant) return { error: `Variant ${item.variant} not found for ${product.name}` };
 
     const unitMrp = Number(variant.original_price);
