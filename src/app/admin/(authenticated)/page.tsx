@@ -79,12 +79,12 @@ export default async function AdminDashboard() {
         </div>
       </div>
 
-      {/* Quick Actions (Mobile Only) */}
-      <div className="md:hidden bg-white border border-gray-200 rounded-xl p-4">
-        <h3 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wider">Quick Actions</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {quickActions.slice(0, 6).map(action => (
-            <Link key={action.href} href={action.href} className={`flex items-center justify-center p-2.5 rounded-lg text-xs font-bold transition-colors ${action.color}`}>
+      {/* Quick Actions */}
+      <div className="bg-white border border-gray-200 rounded-xl p-4 md:p-5">
+        <h3 className="font-semibold text-gray-900 mb-3 md:mb-4 text-sm md:text-base uppercase tracking-wider md:normal-case md:tracking-normal">Quick Actions</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-3">
+          {quickActions.map(action => (
+            <Link key={action.href} href={action.href} className={`flex items-center justify-center p-2.5 md:p-3 rounded-lg text-xs md:text-sm font-bold md:font-medium transition-colors ${action.color}`}>
               {action.label}
             </Link>
           ))}
@@ -193,7 +193,7 @@ export default async function AdminDashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-4xl">
         {/* Recent Orders */}
         <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
           <div className="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
@@ -221,16 +221,6 @@ export default async function AdminDashboard() {
           </div>
         </div>
 
-        {/* Quick Actions (Desktop Only) */}
-        <div className="hidden md:block bg-white border border-gray-200 rounded-xl p-5">
-          <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
-          <div className="grid grid-cols-2 gap-3">
-            {quickActions.map(action => (
-              <Link key={action.href} href={action.href} className={`flex items-center justify-center p-3 rounded-lg text-sm font-medium transition-colors ${action.color}`}>
-                {action.label}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </div>
