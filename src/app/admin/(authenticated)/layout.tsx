@@ -37,11 +37,11 @@ export default async function AdminAuthenticatedLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 flex relative">
       <AdminSidebar />
-      <div className="flex-1 ml-64 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col min-h-screen w-full md:ml-64 transition-all duration-300 overflow-x-hidden">
         <AdminTopbar />
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 md:p-8">
           {children}
         </main>
       </div>

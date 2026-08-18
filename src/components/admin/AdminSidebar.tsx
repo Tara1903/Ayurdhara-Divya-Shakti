@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import { useAdminStore } from '@/store/adminStore';
 
 const NAV_SECTIONS = [
   {
@@ -125,6 +126,7 @@ export default function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const supabase = createClient();
+  const { isSidebarOpen, closeSidebar } = useAdminStore();
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -132,8 +134,17 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className="w-64 h-screen bg-[#1A1A1A] border-r border-[#222] text-[#E5E5E5] flex flex-col fixed left-0 top-0 overflow-y-auto">
-      {/* Brand */}
+    <>
+      {/* Mobile overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={closeSidebar}
+        />
+      )}
+      
+      <aside className={`w-64 h-screen bg-[#1A1A1A] border-r border-[#222] text-[#E5E5E5] flex flex-col fixed left-0 top-0 overflow-y-auto z-50 transform transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+        {/* Brand */}
       <div className="p-6 sticky top-0 bg-[#1A1A1A]/95 backdrop-blur z-10 border-b border-[#333]">
         <Link href="/admin" className="flex items-center gap-3">
           <Image src="/images/logo.png" alt="Ayurdhara Divya Shakti" width={32} height={32} className="object-contain" />
@@ -183,5 +194,6 @@ export default function AdminSidebar() {
         </button>
       </div>
     </aside>
+    </>
   );
 }

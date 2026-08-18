@@ -59,11 +59,36 @@ export default async function AdminDashboard() {
     cancelled: 'bg-red-100 text-red-800',
   };
 
+  const quickActions = [
+    { label: 'Add Product', href: '/admin/products/new', color: 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700' },
+    { label: 'View Orders', href: '/admin/orders', color: 'bg-blue-50 hover:bg-blue-100 text-blue-700' },
+    { label: 'Manage Popups', href: '/admin/marketing/popups', color: 'bg-amber-50 hover:bg-amber-100 text-amber-700' },
+    { label: 'View Subscribers', href: '/admin/subscribers', color: 'bg-purple-50 hover:bg-purple-100 text-purple-700' },
+    { label: 'Add Journal Post', href: '/admin/journal', color: 'bg-pink-50 hover:bg-pink-100 text-pink-700' },
+    { label: 'View Inventory', href: '/admin/inventory', color: 'bg-red-50 hover:bg-red-100 text-red-700' },
+    { label: 'FAQs', href: '/admin/content/faqs', color: 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700' },
+    { label: 'Analytics', href: '/admin/analytics', color: 'bg-teal-50 hover:bg-teal-100 text-teal-700' },
+  ];
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-serif text-gray-900">Dashboard</h1>
-        <p className="text-gray-500 mt-1">Live overview of your Ayurdhara Divya Shakti store.</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-serif text-gray-900">Dashboard</h1>
+          <p className="text-gray-500 mt-1">Live overview of your Ayurdhara Divya Shakti store.</p>
+        </div>
+      </div>
+
+      {/* Quick Actions (Mobile Only) */}
+      <div className="md:hidden bg-white border border-gray-200 rounded-xl p-4">
+        <h3 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wider">Quick Actions</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {quickActions.slice(0, 6).map(action => (
+            <Link key={action.href} href={action.href} className={`flex items-center justify-center p-2.5 rounded-lg text-xs font-bold transition-colors ${action.color}`}>
+              {action.label}
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* Action Center */}
@@ -196,20 +221,11 @@ export default async function AdminDashboard() {
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
+        {/* Quick Actions (Desktop Only) */}
+        <div className="hidden md:block bg-white border border-gray-200 rounded-xl p-5">
           <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
           <div className="grid grid-cols-2 gap-3">
-            {[
-              { label: 'Add Product', href: '/admin/products/new', color: 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700' },
-              { label: 'View Orders', href: '/admin/orders', color: 'bg-blue-50 hover:bg-blue-100 text-blue-700' },
-              { label: 'Manage Popups', href: '/admin/marketing/popups', color: 'bg-amber-50 hover:bg-amber-100 text-amber-700' },
-              { label: 'View Subscribers', href: '/admin/subscribers', color: 'bg-purple-50 hover:bg-purple-100 text-purple-700' },
-              { label: 'Add Journal Post', href: '/admin/journal', color: 'bg-pink-50 hover:bg-pink-100 text-pink-700' },
-              { label: 'View Inventory', href: '/admin/inventory', color: 'bg-red-50 hover:bg-red-100 text-red-700' },
-              { label: 'FAQs', href: '/admin/content/faqs', color: 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700' },
-              { label: 'Analytics', href: '/admin/analytics', color: 'bg-teal-50 hover:bg-teal-100 text-teal-700' },
-            ].map(action => (
+            {quickActions.map(action => (
               <Link key={action.href} href={action.href} className={`flex items-center justify-center p-3 rounded-lg text-sm font-medium transition-colors ${action.color}`}>
                 {action.label}
               </Link>
