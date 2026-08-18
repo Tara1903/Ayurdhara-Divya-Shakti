@@ -190,9 +190,9 @@ export default function CartDrawer() {
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-6 text-center">Taxes and shipping calculated at checkout</p>
               
               <div className="flex flex-col gap-3">
-                <button className="w-full py-4 bg-[#E88B23] hover:bg-[#D67A18] text-white font-bold uppercase tracking-widest rounded-lg transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                <Link href="/checkout" onClick={closeCart} className="w-full py-4 bg-[#E88B23] hover:bg-[#D67A18] text-white font-bold uppercase tracking-widest rounded-lg transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center flex justify-center items-center">
                   Proceed to Checkout
-                </button>
+                </Link>
                 <Link href="/cart" onClick={closeCart} className="w-full py-3.5 bg-white text-gray-700 font-bold uppercase tracking-widest rounded-lg border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-center transition-all">
                   View Full Cart
                 </Link>
