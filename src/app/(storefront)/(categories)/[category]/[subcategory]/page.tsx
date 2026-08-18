@@ -46,13 +46,24 @@ export default async function SubcategoryPage({ params }: { params: Promise<{ ca
     const prodNameLower = p.name.toLowerCase();
     const subNameLower = subcategory.name.toLowerCase();
     
+    if (!prodCatLower) return false;
+
+    // Handle Wellness Combos specifically to prevent cross-contamination
+    if (resolvedParams.category === 'wellness-combos') {
+      if (resolvedParams.subcategory === 'trial-packs') return prodNameLower.includes('trial');
+      if (resolvedParams.subcategory === 'gold-wellness-packs') return prodNameLower.includes('gold');
+      if (resolvedParams.subcategory === 'premium-wellness-packs') return prodNameLower.includes('premium');
+      if (resolvedParams.subcategory === 'family-packs') return prodNameLower.includes('family');
+      if (resolvedParams.subcategory === 'gift-packs') return prodNameLower.includes('gift');
+      return prodCatLower.includes('pack') || prodCatLower.includes('combo') || prodNameLower.includes('combo');
+    }
+
     // Hardcoded matching for existing products in DB since they might not be strictly tagged
     if (resolvedParams.subcategory === 'nabhi-oil-blends') return prodCatLower.includes('nabhi');
     if (resolvedParams.subcategory === 'feet-wellness-oil') return prodCatLower.includes('feet');
     if (resolvedParams.subcategory === 'hair-wellness-oil') return prodCatLower.includes('hair');
-    if (resolvedParams.category === 'wellness-combos' || prodCatLower.includes('pack')) return prodCatLower.includes('pack') || prodCatLower.includes('combo') || prodNameLower.includes('combo');
 
-    return prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower) || prodNameLower.includes(subNameLower);
+    return prodCatLower === subNameLower || prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower) || prodNameLower.includes(subNameLower);
   });
 
   return (

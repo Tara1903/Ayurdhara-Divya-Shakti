@@ -32,10 +32,15 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     
     // Special handling since db categories might not strictly match the new navigation yet
     if (resolvedParams.category === 'oil-wellness-care') return prodCatLower.includes('oil') || prodCatLower.includes('nabhi') || prodCatLower.includes('feet');
-    if (resolvedParams.category === 'wellness-combos') return prodCatLower.includes('pack') || prodCatLower.includes('combo');
+    if (resolvedParams.category === 'wellness-combos') {
+      const prodNameLower = p.name.toLowerCase();
+      return prodCatLower.includes('pack') || prodCatLower.includes('combo') || prodNameLower.includes('pack') || prodNameLower.includes('combo');
+    }
     if (resolvedParams.category === 'hair-wellness-oil') return prodCatLower.includes('hair');
 
-    return prodCatLower.includes(catNameLower) || catNameLower.includes(prodCatLower);
+    if (!prodCatLower) return false; // Prevent empty category string from matching everything
+    
+    return prodCatLower === catNameLower || prodCatLower.includes(catNameLower) || catNameLower.includes(prodCatLower);
   });
 
   return (
