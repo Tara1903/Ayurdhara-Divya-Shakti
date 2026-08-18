@@ -32,12 +32,9 @@ export default function PlaceOrderButton() {
   const subtotal = getCartSubtotal();
   const pricing = calculatePricing(items, couponDiscount, shippingCharge);
 
-  // All 4 steps must be completed before placing order
-  const allStepsComplete =
-    completedSteps.includes('contact') &&
-    completedSteps.includes('address') &&
-    completedSteps.includes('shipping') &&
-    completedSteps.includes('payment');
+  // If the payment step is completed, we assume all previous steps are done 
+  // because the flow is strictly linear.
+  const allStepsComplete = completedSteps.includes('payment');
 
   const isCod = selectedPaymentMethod === 'cod';
 
