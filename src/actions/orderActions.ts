@@ -222,6 +222,35 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     return { error: 'Failed to create order items' };
   }
 
+  // 4.5 Save address to profile if logged in
+  if (payload.customerId) {
+    const { data: existingAddresses } = await supabase
+      .from('addresses')
+      .select('id')
+      .eq('user_id', payload.customerId)
+      .eq('full_name', payload.shippingAddress.fullName)
+      .eq('mobile', payload.shippingAddress.mobile)
+      .eq('address_line1', payload.shippingAddress.addressLine1)
+      .eq('pin_code', payload.shippingAddress.pinCode);
+
+    if (!existingAddresses || existingAddresses.length === 0) {
+      await supabase.from('addresses').insert({
+        user_id: payload.customerId,
+        full_name: payload.shippingAddress.fullName,
+        mobile: payload.shippingAddress.mobile,
+        address_line1: payload.shippingAddress.addressLine1,
+        address_line2: payload.shippingAddress.addressLine2 || null,
+        landmark: payload.shippingAddress.landmark || null,
+        pin_code: payload.shippingAddress.pinCode,
+        city: payload.shippingAddress.city,
+        state: payload.shippingAddress.state,
+        country: payload.shippingAddress.country || 'India',
+        address_type: payload.shippingAddress.addressType || 'home',
+        is_default: false
+      });
+    }
+  }
+
   // 5. Finalize
   // If COD, deduct inventory immediately
   if (payload.paymentMethod === 'cod') {

@@ -5,6 +5,9 @@ import { useCheckoutStore } from '@/store/checkoutStore';
 import { checkPinServiceability } from '@/services/shippingService';
 import { getShippingCharge } from '@/services/pricingService';
 import { useCartStore } from '@/store/cartStore';
+import { useAuthStore } from '@/store/authStore';
+import { createClient } from '@/lib/supabase/client';
+import { useEffect } from 'react';
 import { INDIAN_STATES } from '@/types/address';
 import type { Address, AddressType } from '@/types/address';
 
@@ -36,6 +39,45 @@ export default function AddressForm() {
   const [touched, setTouched] = useState<Partial<Record<keyof Address, boolean>>>({});
   const [pinChecking, setPinChecking] = useState(false);
   const [pinResult, setPinResult] = useState<{ serviceable: boolean; message: string } | null>(null);
+
+  const { user } = useAuthStore();
+  const [savedAddresses, setSavedAddresses] = useState<any[]>([]);
+  const [loadingAddresses, setLoadingAddresses] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setLoadingAddresses(true);
+      const supabase = createClient();
+      supabase.from('addresses').select('*').eq('user_id', user.id).then(({ data }) => {
+        if (data && data.length > 0) {
+          setSavedAddresses(data);
+          setShowForm(false);
+        } else {
+          setShowForm(true);
+        }
+        setLoadingAddresses(false);
+      });
+    } else {
+      setShowForm(true);
+    }
+  }, [user]);
+
+  const selectSavedAddress = (addr: any) => {
+    setAddress({
+      fullName: addr.full_name,
+      mobile: addr.mobile,
+      addressLine1: addr.address_line1,
+      addressLine2: addr.address_line2 || '',
+      landmark: addr.landmark || '',
+      pinCode: addr.pin_code,
+      city: addr.city,
+      state: addr.state,
+      country: addr.country || 'India',
+      addressType: addr.address_type || 'home',
+    });
+    setShowForm(true);
+  };
 
   const isCompleted = completedSteps.includes('address');
 
