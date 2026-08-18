@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         .single();
 
       if (error || !order) {
-        console.error([Webhook] Order not found for Gateway ID: );
+        console.error(`[Webhook] Order not found for Gateway ID: ${orderId}`);
         return NextResponse.json({ error: 'Order not found' }, { status: 404 });
       }
 
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       const result = await markOrderAsPaid(order.id);
       
       if (!result.success) {
-        console.error([Webhook] Failed to mark order as paid: );
+        console.error(`[Webhook] Failed to mark order as paid: ${result.error}`);
         return NextResponse.json({ error: 'Failed to process payment' }, { status: 500 });
       }
     }

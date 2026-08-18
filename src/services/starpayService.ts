@@ -24,7 +24,7 @@ export async function createStarPayOrder(params: {
   metadata?: Record<string, unknown>;
 }): Promise<{ success: true; data: StarPayOrderResponse } | { success: false; error: string }> {
   try {
-    const res = await fetch("${STARPAY_API_URL}/api/orders", {
+    const res = await fetch(`${STARPAY_API_URL}/api/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
