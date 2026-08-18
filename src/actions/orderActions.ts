@@ -266,14 +266,19 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
   let starpayPaymentToken: string | null = null;
 
   if (payload.paymentMethod !== 'cod') {
+    const returnUrl = payload.returnUrl || 'http://localhost:3000/checkout/success';
+    const webhookUrl = returnUrl.replace('/checkout/success', '/api/webhooks/payment');
+
     const starpayResult = await createStarPayOrder({
       amount: finalTotal,
       description: `Ayurdhara Order ${orderRef}`,
       customerName: payload.shippingAddress.fullName,
       customerEmail: payload.guestEmail,
       customerPhone: payload.guestMobile,
+      returnUrl,
+      webhookUrl,
       metadata: {
-        ayurdharaOrderId: orderData.id,
+        storefrontOrderId: orderData.id,
         ayurdharaOrderRef: orderRef,
       },
     });

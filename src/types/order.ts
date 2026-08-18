@@ -82,6 +82,7 @@ export interface CreateOrderPayload {
   idempotencyKey: string;
   guestEmail?: string;
   guestMobile?: string;
+  returnUrl?: string;
 }
 
 // Lightweight order summary for confirmation page

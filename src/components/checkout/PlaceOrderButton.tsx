@@ -79,6 +79,7 @@ export default function PlaceOrderButton() {
         guestMobile: contact.mobile,
         guestEmail: contact.email || undefined,
         partnerCode: partnerCode || undefined,
+        returnUrl: `${window.location.origin}/checkout/success`,
       });
 
       // 2. Build a rich confirmation object to persist in session storage
