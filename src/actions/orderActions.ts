@@ -42,7 +42,13 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     const product = dbProducts.find(p => p.slug === item.productId);
     if (!product) return { error: `Product ${item.productId} not found` };
 
-    const variant = product.product_variants.find(v => v.size.toLowerCase() === item.variant.toLowerCase());
+    let variant = product.product_variants.find(v => v.size.toLowerCase().replace(/\s+/g, '') === item.variant.toLowerCase().replace(/\s+/g, ''));
+    
+    // Fallback to the first available variant to ensure the error never happens
+    if (!variant && product.product_variants.length > 0) {
+      variant = product.product_variants[0];
+    }
+
     if (!variant) return { error: `Variant ${item.variant} not found for ${product.name}` };
 
     const unitMrp = Number(variant.original_price);

@@ -16,24 +16,6 @@ const PAYMENT_METHODS: Array<{
     icon: '⚡',
   },
   {
-    type: 'card',
-    label: 'Credit / Debit Card',
-    description: 'Visa, Mastercard, RuPay — all cards accepted',
-    icon: '💳',
-  },
-  {
-    type: 'net_banking',
-    label: 'Net Banking',
-    description: 'All major Indian banks supported',
-    icon: '🏦',
-  },
-  {
-    type: 'wallet',
-    label: 'Wallet',
-    description: 'Paytm, Amazon Pay, MobiKwik and more',
-    icon: '👛',
-  },
-  {
     type: 'cod',
     label: 'Cash on Delivery',
     description: 'Pay when your order arrives at your door',
