@@ -1,6 +1,7 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import type { CreateOrderPayload, Order } from '@/types/order';
 import { createStarPayOrder } from '@/services/starpayService';
 
@@ -12,6 +13,7 @@ function generateOrderRef(): string {
 
 export async function processServerOrder(payload: CreateOrderPayload): Promise<{ order?: Order; error?: string }> {
   const supabase = await createClient();
+  const adminClient = createAdminClient();
 
   // 1. Fetch user to verify Gold Membership status
   let isGoldMember = false;
@@ -185,9 +187,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
   const orderRef = generateOrderRef();
 
   // 3. Create Order
-  const { data: orderData, error: orderInsertError } = await supabase
-    .from('orders')
-    .insert({
+  const { data: orderData, error: orderInsertError } = await adminClient.from('orders').insert({
       order_ref: orderRef,
       customer_id: payload.customerId || null,
       guest_email: payload.guestEmail,
@@ -215,8 +215,9 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     .single();
 
   if (orderInsertError || !orderData) {
-    return { error: 'Failed to create order record' };
-  }
+      console.error('orderInsertError:', orderInsertError);
+      return { error: 'Failed to create order record: ' + (orderInsertError ? JSON.stringify(orderInsertError) : 'No data') };
+    }
 
   // 4. Create Order Items
   const itemsToInsert = validatedItems.map(item => ({
@@ -224,9 +225,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     order_id: orderData.id
   }));
 
-  const { error: itemsError } = await supabase
-    .from('order_items')
-    .insert(itemsToInsert);
+  const { error: itemsError } = await adminClient.from('order_items').insert(itemsToInsert);
 
   if (itemsError) {
     // Ideally we would rollback or use a Postgres function
@@ -245,7 +244,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       .eq('pin_code', payload.shippingAddress.pinCode);
 
     if (!existingAddresses || existingAddresses.length === 0) {
-      await supabase.from('addresses').insert({
+      await adminClient.from('addresses').insert({
         user_id: payload.customerId,
         full_name: payload.shippingAddress.fullName,
         mobile: payload.shippingAddress.mobile,
@@ -398,11 +397,10 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
 
 export async function markOrderAsPaid(orderId: string): Promise<{ success: boolean; error?: string }> {
   const supabase = await createClient();
+  const adminClient = createAdminClient();
 
   // 1. Mark order as paid
-  const { data: order, error } = await supabase
-    .from('orders')
-    .update({ payment_status: 'paid' })
+  const { data: order, error } = await adminClient.from('orders').update({ payment_status: 'paid' })
     .eq('id', orderId)
     .select('customer_id, order_ref, partner_code, referral_reward_calculated, partner_type')
     .single();
@@ -413,15 +411,13 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
   // Use partner_account_id if available, fallback to lookup by partner_code
   let partnerAccId = (order as any).partner_account_id;
   if (!partnerAccId && order.partner_code) {
-    const { data: p } = await supabase.from('partner_accounts').select('id').eq('partner_id', order.partner_code).single();
+    const { data: p } = await adminClient.from('partner_accounts').select('id').eq('partner_id', order.partner_code).single();
     if (p) partnerAccId = p.id;
   }
 
   if (partnerAccId && order.referral_reward_calculated && order.referral_reward_calculated > 0) {
     // Insert into new transactions table
-    const { error: txError } = await supabase
-      .from('partner_transactions')
-      .insert({
+    const { error: txError } = await adminClient.from('partner_transactions').insert({
         partner_account_id: partnerAccId,
         order_id: orderId,
         type: order.partner_type === 'retailer' ? 'shop_sales_reward' : 'referral_reward',
@@ -431,9 +427,9 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
       
     if (!txError) {
       // Add to pending_balance in wallet
-      const { data: wData } = await supabase.from('partner_wallets').select('pending_balance').eq('partner_account_id', partnerAccId).single();
+      const { data: wData } = await adminClient.from('partner_wallets').select('pending_balance').eq('partner_account_id', partnerAccId).single();
       if (wData) {
-        await supabase.from('partner_wallets').update({
+        await adminClient.from('partner_wallets').update({
           pending_balance: wData.pending_balance + order.referral_reward_calculated
         }).eq('partner_account_id', partnerAccId);
       }
