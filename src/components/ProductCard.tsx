@@ -165,7 +165,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <select 
                   value={selectedCategory} 
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full appearance-none border border-gray-300 text-gray-700 py-1.5 px-3 pr-8 rounded text-xs focus:outline-none focus:border-[#4B7B3B]"
+                  className="w-full appearance-none border border-gray-300 text-gray-700 py-1.5 px-3 pr-8 rounded text-xs focus:outline-none focus:border-[#4B7B3B] bg-white"
                 >
                   <option value="" disabled>Choose Your Wellness Category</option>
                   <option value="Kids Care">Kids Care</option>
@@ -181,7 +181,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <select 
                   value={selectedVariantIdx} 
                   onChange={(e) => setSelectedVariantIdx(Number(e.target.value))}
-                  className="w-full appearance-none border border-gray-300 text-gray-700 py-1.5 px-3 pr-8 rounded text-xs focus:outline-none focus:border-[#4B7B3B]"
+                  className="w-full appearance-none border border-gray-300 text-gray-700 py-1.5 px-3 pr-8 rounded text-xs focus:outline-none focus:border-[#4B7B3B] bg-white"
                 >
                   {product.variants.map((v, i) => (
                     <option key={i} value={i}>{v.size}</option>
