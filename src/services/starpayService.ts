@@ -28,7 +28,7 @@ export async function createStarPayOrder(params: {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': INTERNAL_API_KEY,
+        'Authorization': `Bearer ${INTERNAL_API_KEY}`,
       },
       body: JSON.stringify({
         amount: params.amount,
@@ -36,7 +36,7 @@ export async function createStarPayOrder(params: {
         description: params.description,
         customerName: params.customerName || 'Guest',
         customerEmail: params.customerEmail,
-        customerPhone: params.customerPhone,
+        customerPhone: params.customerPhone || '0000000000',
         returnUrl: params.returnUrl,
         webhookUrl: params.webhookUrl,
         metadata: params.metadata,

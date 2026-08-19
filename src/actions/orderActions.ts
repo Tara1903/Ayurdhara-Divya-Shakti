@@ -201,7 +201,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       coupon_discount: couponDiscount,
       partner_code: partnerAccountId ? payload.partnerCode : null,
       partner_type: partnerType,
-      partner_account_id: partnerAccountId,
+      // partner_account_id missing in DB schema
       partner_discount: partnerDiscount,
       referral_reward_eligible_amount: referralRewardEligibleAmount,
       referral_reward_calculated: referralRewardCalculated,
@@ -404,14 +404,14 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
     .from('orders')
     .update({ payment_status: 'paid' })
     .eq('id', orderId)
-    .select('customer_id, order_ref, partner_code, partner_account_id, referral_reward_calculated, partner_type')
+    .select('customer_id, order_ref, partner_code, referral_reward_calculated, partner_type')
     .single();
 
   if (error || !order) return { success: false, error: 'Failed to update order payment status' };
 
   // Unified Partner Commission/Reward logic
   // Use partner_account_id if available, fallback to lookup by partner_code
-  let partnerAccId = order.partner_account_id;
+  let partnerAccId = (order as any).partner_account_id;
   if (!partnerAccId && order.partner_code) {
     const { data: p } = await supabase.from('partner_accounts').select('id').eq('partner_id', order.partner_code).single();
     if (p) partnerAccId = p.id;
