@@ -8,6 +8,7 @@ import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { useAuthStore } from "@/store/authStore";
 import { Product } from "@/data/productData";
+import toast from "react-hot-toast";
 import ProductReviews from "@/components/ProductReviews";
 
 export default function PDPClient({ product }: { product: Product }) {
@@ -15,7 +16,29 @@ export default function PDPClient({ product }: { product: Product }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
-  const [qty, setQty] = useState(1);
+  
+  const numMembersMatch = product.name.match(/^(\d)/);
+  const numMembers = numMembersMatch ? parseInt(numMembersMatch[1]) : 0;
+  
+  const isMassage = product.category === 'Body Massage Oil' || product.category === 'Feet Massage Oil' || product.category === 'Hair Wellness Oil';
+  const isIndividualPack = product.name === 'Trial Wellness Pack' || product.name === 'Diamond Trial Wellness Pack';
+  const isGoldPack = product.name === 'Gold Wellness Pack' || product.name === 'Premium Wellness Pack';
+  const isFamilyPack = product.category === 'Family Trial Wellness Packs' || product.category === 'Family Gold Wellness Packs';
+
+  let requiredSelectionsCount = 0;
+  if (isMassage || isIndividualPack) requiredSelectionsCount = 1;
+  else if (isGoldPack) requiredSelectionsCount = 4;
+  else if (isFamilyPack) requiredSelectionsCount = numMembers;
+
+  const defaultCategories = isGoldPack ? ['Kids Care', 'Men Wellness', 'Women Wellness', 'Senior Care'] : Array(Math.max(1, requiredSelectionsCount)).fill('');
+  const [categorySelections, setCategorySelections] = useState<string[]>(defaultCategories);
+
+  const handleCategoryChange = (idx: number, val: string) => {
+    const newSels = [...categorySelections];
+    newSels[idx] = val;
+    setCategorySelections(newSels);
+  };
+const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   
   // Mobile swipe carousel state
@@ -74,6 +97,25 @@ export default function PDPClient({ product }: { product: Product }) {
   };
 
   const handleAddToCart = () => {
+    let sizeStr = currentVariant ? currentVariant.size : 'Standard';
+    if (requiredSelectionsCount > 0) {
+      if (categorySelections.slice(0, requiredSelectionsCount).some(s => !s)) {
+        toast.error("Please select all required categories first!");
+        return;
+      }
+      
+      let selectionsStr = '';
+      if (isMassage || isIndividualPack) {
+        selectionsStr = categorySelections[0];
+      } else if (isGoldPack) {
+        selectionsStr = categorySelections.slice(0, 4).join(', ');
+      } else if (isFamilyPack) {
+        selectionsStr = categorySelections.slice(0, numMembers).map((s, i) => `Member ${i+1}: ${s}`).join(', ');
+      }
+      
+      sizeStr = `${sizeStr} | ${selectionsStr}`;
+    }
+
     useCartStore.getState().addItem({
       productId: product.slug,
       name: product.name,
@@ -81,7 +123,7 @@ export default function PDPClient({ product }: { product: Product }) {
       price: currentPrice,
       originalPrice: currentOriginalPrice,
       quantity: qty,
-      size: currentVariant ? currentVariant.size : 'Standard'
+      size: sizeStr
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
@@ -207,7 +249,36 @@ export default function PDPClient({ product }: { product: Product }) {
 
             {/* Variants (Desktop only here, rendered separately for mobile later) */}
             <div className="hidden lg:block mb-6">
-              {product.variants && product.variants.length > 0 && (
+              
+        {requiredSelectionsCount > 0 && (
+          <div className="mb-6">
+            <h3 className="text-sm font-semibold text-gray-900 mb-3">Choose Category</h3>
+            <div className="flex flex-col gap-3">
+              {Array.from({ length: requiredSelectionsCount }).map((_, idx) => (
+                <div key={idx} className="flex flex-col gap-1">
+                  {requiredSelectionsCount > 1 && (
+                    <span className="text-xs text-gray-600 font-medium">
+                      {isFamilyPack ? `Member ${idx + 1}` : `Selection ${idx + 1}`}
+                    </span>
+                  )}
+                  <select 
+                    value={categorySelections[idx]} 
+                    onChange={(e) => handleCategoryChange(idx, e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md bg-white text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:outline-none"
+                  >
+                    <option value="" disabled>Choose Category</option>
+                    <option value="Kids Care">Kids Care</option>
+                    <option value="Men Wellness">Men Wellness</option>
+                    <option value="Women Wellness">Women Wellness</option>
+                    <option value="Senior Care">Senior Care</option>
+                  </select>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {product.variants && product.variants.length > 0 && (
                 <>
                   <div className="text-sm font-medium text-gray-900 mb-2">
                     Size: <span className="font-bold">{currentVariant?.size}</span>

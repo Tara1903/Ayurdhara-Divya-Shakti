@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import { UpdateOrderStatusButton } from './UpdateOrderStatusButton';
+import { UpdatePaymentStatusButton } from './UpdatePaymentStatusButton';
 
 export const revalidate = 0;
 
@@ -65,12 +66,40 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
         <div className="bg-white border border-gray-200 rounded-xl p-5">
           <h3 className="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Payment</h3>
           <div className="space-y-1 text-sm">
-            <div className="flex justify-between"><span className="text-gray-500">Method</span><span className="uppercase font-medium">{order.payment_method}</span></div>
-            <div className="flex justify-between"><span className="text-gray-500">Status</span><span className={`font-medium ${order.payment_status === 'paid' ? 'text-green-600' : 'text-yellow-600'}`}>{order.payment_status}</span></div>
-            <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span>₹{order.subtotal?.toLocaleString('en-IN')}</span></div>
-            {order.coupon_discount > 0 && <div className="flex justify-between text-green-600"><span>Coupon ({order.coupon_code})</span><span>-₹{order.coupon_discount}</span></div>}
-            <div className="flex justify-between"><span className="text-gray-500">Shipping</span><span>{order.shipping_charge > 0 ? `₹${order.shipping_charge}` : 'Free'}</span></div>
-            <div className="flex justify-between font-bold text-base border-t pt-1 mt-1"><span>Total</span><span>₹{order.final_total?.toLocaleString('en-IN')}</span></div>
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-gray-500">Method</span>
+              <span className="uppercase font-medium text-xs bg-gray-100 px-2 py-0.5 rounded">{order.payment_method}</span>
+            </div>
+            
+            <div className="border-b border-gray-100 pb-2 mb-2">
+              <div className="text-gray-500 mb-1">Status</div>
+              <UpdatePaymentStatusButton 
+                orderId={order.id} 
+                currentStatus={order.payment_status} 
+                statuses={['pending', 'paid', 'payment_failed', 'refunded']} 
+              />
+            </div>
+            
+            {order.starpay_order_id && (
+              <div className="flex flex-col gap-0.5 border-b border-gray-100 pb-2 mb-2">
+                <span className="text-gray-500 text-xs">Gateway Order ID</span>
+                <span className="font-mono text-xs text-gray-800 break-all">{order.starpay_order_id}</span>
+              </div>
+            )}
+            
+            {order.starpay_payment_token && (
+              <div className="flex flex-col gap-0.5 border-b border-gray-100 pb-2 mb-2">
+                <span className="text-gray-500 text-xs">Payment Token</span>
+                <span className="font-mono text-xs text-gray-800 break-all">{order.starpay_payment_token}</span>
+              </div>
+            )}
+
+            <div className="space-y-1">
+              <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span>₹{order.subtotal?.toLocaleString('en-IN')}</span></div>
+              {order.coupon_discount > 0 && <div className="flex justify-between text-green-600"><span>Coupon ({order.coupon_code})</span><span>-₹{order.coupon_discount}</span></div>}
+              <div className="flex justify-between"><span className="text-gray-500">Shipping</span><span>{order.shipping_charge > 0 ? `₹${order.shipping_charge}` : 'Free'}</span></div>
+              <div className="flex justify-between font-bold text-base border-t pt-1 mt-1"><span>Total</span><span>₹{order.final_total?.toLocaleString('en-IN')}</span></div>
+            </div>
           </div>
         </div>
       </div>

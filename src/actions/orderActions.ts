@@ -42,7 +42,12 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     const product = dbProducts.find(p => p.slug === item.productId);
     if (!product) return { error: `Product ${item.productId} not found` };
 
-    let variant = product.product_variants.find(v => v.size.toLowerCase().replace(/\s+/g, '') === item.variant.toLowerCase().replace(/\s+/g, ''));
+    // Parse size from potentially combined string e.g. '100 ml | Men Wellness'
+    const requestedSize = item.variant.includes('|') 
+      ? item.variant.split('|')[0].trim().toLowerCase().replace(/\s+/g, '')
+      : item.variant.toLowerCase().replace(/\s+/g, '');
+
+    let variant = product.product_variants.find(v => v.size.toLowerCase().replace(/\s+/g, '') === requestedSize);
     
     // Fallback to the first available variant to ensure the error never happens
     if (!variant && product.product_variants.length > 0) {
@@ -74,7 +79,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       product_slug: product.slug,
       variant_id: variant.id,
       product_name_snapshot: product.name,
-      variant_snapshot: variant.size,
+      variant_snapshot: item.variant,
       quantity: item.quantity,
       unit_price: unitFinalPrice,
       original_unit_price: unitMrp,
@@ -304,6 +309,8 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     const returnUrl = payload.returnUrl || 'http://localhost:3000/checkout/success';
     const webhookUrl = returnUrl.replace('/checkout/success', '/api/webhooks/payment');
 
+    const itemSummary = validatedItems.map(item => `${item.quantity}x ${item.product_name_snapshot}`).join(', ').substring(0, 200);
+
     const starpayResult = await createStarPayOrder({
       amount: finalTotal,
       description: `Ayurdhara Order ${orderRef}`,
@@ -315,6 +322,15 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       metadata: {
         storefrontOrderId: orderData.id,
         ayurdharaOrderRef: orderRef,
+        customerId: payload.customerId || user?.id || 'guest',
+        isGoldMember: isGoldMember.toString(),
+        couponCode: payload.couponCode || 'NONE',
+        partnerCode: payload.partnerCode || 'NONE',
+        itemSummary,
+        billingStreet: payload.shippingAddress.addressLine1,
+        billingCity: payload.shippingAddress.city,
+        billingState: payload.shippingAddress.state,
+        billingPincode: payload.shippingAddress.pinCode,
       },
     });
 

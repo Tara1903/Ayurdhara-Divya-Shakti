@@ -37,6 +37,8 @@ export interface Product {
   faqs: { question: string; answer: string }[];
   relatedProductIds: string[];
   routineProductIds: string[];
+    selectionType?: 'single' | 'four-distinct' | 'per-member';
+    memberCount?: number;
   durationText?: string;
   inclusions?: string;
   totalQuantityMl?: string;
@@ -45,261 +47,53 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    "id": "kids-body-wellness-massage-oil",
-    "slug": "kids-body-wellness-massage-oil",
-    "name": "Kids Body Wellness Massage Oil",
-    "category": "Body Massage Oil",
-    "shortDescription": "Natural Body Wellness Massage Oil crafted for kids.",
-    "fullDescription": "Designed for daily body massage, relaxation, and a self-care routine. The Kids Body Wellness Massage Oil is meticulously crafted to support everyday wellness. Experience the timeless benefits of traditional oil massage rituals.",
-    "story": "Rooted in traditional practices, our wellness blends are crafted using only the most pristine, cold-pressed oils.",
-    "benefit": "Supports relaxation and everyday wellness.",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
-    ],
-    "ingredients": [
-      { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "kids-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "kids-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "kids-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
-    "price": 349,
-    "originalPrice": 499,
-    "discount": 30,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "healthGoals": ["Daily Wellness", "Relaxation"],
-    "idealFor": ["Kids"],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Apply to the body and gently massage."
-    },
-    "specifications": { "Form": "Massage Oil", "Packaging": "Amber Glass Bottle", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "men-body-wellness-massage-oil",
-    "slug": "men-body-wellness-massage-oil",
-    "name": "Men Body Wellness Massage Oil",
-    "category": "Body Massage Oil",
-    "shortDescription": "Natural Body Wellness Massage Oil crafted for men.",
-    "fullDescription": "Designed for daily body massage, relaxation, and a self-care routine. The Men Body Wellness Massage Oil is meticulously crafted to support everyday wellness. Experience the timeless benefits of traditional oil massage rituals.",
-    "story": "Rooted in traditional practices, our wellness blends are crafted using only the most pristine, cold-pressed oils.",
-    "benefit": "Supports relaxation and everyday wellness.",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
-    ],
-    "ingredients": [
-      { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "men-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "men-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "men-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
-    "price": 349,
-    "originalPrice": 499,
-    "discount": 30,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "healthGoals": ["Daily Wellness", "Relaxation"],
-    "idealFor": ["Men"],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Apply to the body and gently massage."
-    },
-    "specifications": { "Form": "Massage Oil", "Packaging": "Amber Glass Bottle", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "women-body-wellness-massage-oil",
-    "slug": "women-body-wellness-massage-oil",
-    "name": "Women Body Wellness Massage Oil",
-    "category": "Body Massage Oil",
-    "shortDescription": "Natural Body Wellness Massage Oil crafted for women.",
-    "fullDescription": "Designed for daily body massage, relaxation, and a self-care routine. The Women Body Wellness Massage Oil is meticulously crafted to support everyday wellness. Experience the timeless benefits of traditional oil massage rituals.",
-    "story": "Rooted in traditional practices, our wellness blends are crafted using only the most pristine, cold-pressed oils.",
-    "benefit": "Supports relaxation and everyday wellness.",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
-    ],
-    "ingredients": [
-      { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "women-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "women-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "women-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
-    "price": 349,
-    "originalPrice": 499,
-    "discount": 30,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "healthGoals": ["Daily Wellness", "Relaxation"],
-    "idealFor": ["Women"],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Apply to the body and gently massage."
-    },
-    "specifications": { "Form": "Massage Oil", "Packaging": "Amber Glass Bottle", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "senior-body-wellness-massage-oil",
-    "slug": "senior-body-wellness-massage-oil",
-    "name": "Senior Body Wellness Massage Oil",
-    "category": "Body Massage Oil",
-    "shortDescription": "Natural Body Wellness Massage Oil crafted for seniors.",
-    "fullDescription": "Designed for daily body massage, relaxation, and a self-care routine. The Senior Body Wellness Massage Oil is meticulously crafted to support everyday wellness. Experience the timeless benefits of traditional oil massage rituals.",
-    "story": "Rooted in traditional practices, our wellness blends are crafted using only the most pristine, cold-pressed oils.",
-    "benefit": "Supports relaxation and everyday wellness.",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
-    ],
-    "ingredients": [
-      { "name": "Natural Oil Base", "botanical": "Natural Oils", "role": "Nourishing base" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "senior-bmo-50", "size": "50 ml", "originalPrice": 499, "price": 349, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "senior-bmo-100", "size": "100 ml", "originalPrice": 799, "price": 599, "image": "/images/products/diamond-trial.jpg" },
-      { "id": "senior-bmo-200", "size": "200 ml", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
-    "price": 349,
-    "originalPrice": 499,
-    "discount": 30,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "healthGoals": ["Daily Wellness", "Relaxation"],
-    "idealFor": ["Seniors"],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Apply to the body and gently massage."
-    },
-    "specifications": { "Form": "Massage Oil", "Packaging": "Amber Glass Bottle", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-
-  {
     "id": "kids-smart-oil-blend",
     "slug": "kids-smart-oil-blend",
     "name": "Kids Smart Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "Premium Kids Smart Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Kids Smart Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/kids-smart-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 161,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -308,96 +102,49 @@ export const products: Product[] = [
     "slug": "kids-growth-oil-blend",
     "name": "Kids Growth Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "Premium Kids Growth Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Kids Growth Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/kids-growth-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 155,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -406,96 +153,49 @@ export const products: Product[] = [
     "slug": "kids-calm-oil-blend",
     "name": "Kids Calm Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "Premium Kids Calm Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Kids Calm Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/kids-calm-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 143,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -504,96 +204,49 @@ export const products: Product[] = [
     "slug": "kids-daily-care-oil-blend",
     "name": "Kids Daily Care Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "Premium Kids Daily Care Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Kids Daily Care Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/kids-daily-care-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 152,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -602,96 +255,49 @@ export const products: Product[] = [
     "slug": "men-strength-oil-blend",
     "name": "Men Strength Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "Premium Men Strength Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Men Strength Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/men-strength-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 130,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -700,96 +306,49 @@ export const products: Product[] = [
     "slug": "men-active-oil-blend",
     "name": "Men Active Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "Premium Men Active Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Men Active Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/men-active-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 124,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -798,96 +357,49 @@ export const products: Product[] = [
     "slug": "men-heart-balance-oil-blend",
     "name": "Men Heart Balance Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "Premium Men Heart Balance Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Men Heart Balance Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/men-heart-balance-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 132,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -896,96 +408,49 @@ export const products: Product[] = [
     "slug": "men-daily-wellness-oil-blend",
     "name": "Men Daily Wellness Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "Premium Men Daily Wellness Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Men Daily Wellness Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/men-daily-wellness-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 132,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -994,96 +459,49 @@ export const products: Product[] = [
     "slug": "women-harmony-oil-blend",
     "name": "Women Harmony Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "Premium Women Harmony Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Women Harmony Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/women-harmony-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 129,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1092,96 +510,49 @@ export const products: Product[] = [
     "slug": "women-care-oil-blend",
     "name": "Women Care Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "Premium Women Care Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Women Care Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/women-care-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 155,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1190,96 +561,49 @@ export const products: Product[] = [
     "slug": "women-glow-oil-blend",
     "name": "Women Glow Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "Premium Women Glow Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Women Glow Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/women-glow-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 142,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1288,96 +612,49 @@ export const products: Product[] = [
     "slug": "women-daily-wellness-oil-blend",
     "name": "Women Daily Wellness Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "Premium Women Daily Wellness Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Women Daily Wellness Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/women-daily-wellness-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 149,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1386,96 +663,49 @@ export const products: Product[] = [
     "slug": "senior-comfort-oil-blend",
     "name": "Senior Comfort Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "Premium Senior Comfort Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Senior Comfort Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/senior-comfort-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 162,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1484,96 +714,49 @@ export const products: Product[] = [
     "slug": "senior-active-oil-blend",
     "name": "Senior Active Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "Premium Senior Active Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Senior Active Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/senior-active-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 145,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1582,96 +765,49 @@ export const products: Product[] = [
     "slug": "senior-balance-oil-blend",
     "name": "Senior Balance Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "Premium Senior Balance Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Senior Balance Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/senior-balance-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 165,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1680,96 +816,92 @@ export const products: Product[] = [
     "slug": "senior-daily-wellness-oil-blend",
     "name": "Senior Daily Wellness Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "Premium Senior Daily Wellness Oil Blend crafted for holistic wellness.",
-    "fullDescription": "The Senior Daily Wellness Oil Blend is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness blend.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/senior-daily-wellness-oil-blend.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
       {
         "size": "10 ml",
-        "originalPrice": 299,
         "price": 199,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 299,
+        "image": ""
       },
       {
         "size": "20 ml",
-        "originalPrice": 499,
         "price": 349,
-        "image": "/images/products/diamond-trial.jpg"
+        "originalPrice": 499,
+        "image": ""
       }
     ],
     "price": 199,
     "originalPrice": 299,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 150,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1 Month",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "3 Drops",
+      "timing": "Night",
+      "instructions": "Apply in belly button."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "body-massage-oil",
+    "slug": "body-massage-oil",
+    "name": "Body Massage Oil",
+    "selectionType": "single",
+    "category": "Body Massage Oil",
+    "shortDescription": "Premium Ayurvedic wellness massage oil.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/body-massage-oil.jpg"
     ],
+    "variants": [
+      { "size": "50 ml", "price": 349, "originalPrice": 499, "image": "/images/products/body-massage-oil-50ml.jpg" },
+      { "size": "100 ml", "price": 599, "originalPrice": 899, "image": "/images/products/body-massage-oil-100ml.jpg" },
+      { "size": "200 ml", "price": 999, "originalPrice": 1499, "image": "/images/products/body-massage-oil-200ml.jpg" }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Varies by usage",
+    "healthGoals": [],
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Apply and massage gently."
+    },
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1777,103 +909,42 @@ export const products: Product[] = [
     "id": "feet-massage-oil",
     "slug": "feet-massage-oil",
     "name": "Feet Massage Oil",
+    "selectionType": "single",
     "category": "Feet Massage Oil",
-    "shortDescription": "Premium Feet Massage Oil crafted for holistic wellness.",
-    "fullDescription": "The Feet Massage Oil is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness massage oil.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/feet-massage-oil.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
-      {
-        "size": "30 ml",
-        "originalPrice": 599,
-        "price": 399,
-        "image": "/images/products/diamond-trial.jpg"
-      },
-      {
-        "size": "100 ml",
-        "originalPrice": 1799,
-        "price": 1199,
-        "image": "/images/products/diamond-trial.jpg"
-      },
-      {
-        "size": "200 ml",
-        "originalPrice": 3299,
-        "price": 2199,
-        "image": "/images/products/diamond-trial.jpg"
-      }
+      { "size": "30 ml", "price": 399, "originalPrice": 599, "image": "/images/products/feet-massage-oil-30ml.jpg" },
+      { "size": "100 ml", "price": 1199, "originalPrice": 1799, "image": "/images/products/feet-massage-oil-100ml.jpg" },
+      { "size": "200 ml", "price": 2199, "originalPrice": 3299, "image": "/images/products/feet-massage-oil-200ml.jpg" }
     ],
     "price": 399,
     "originalPrice": 599,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 139,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Varies by usage",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Apply and massage gently."
     },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
+    "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
@@ -1881,638 +952,119 @@ export const products: Product[] = [
     "id": "hair-wellness-oil",
     "slug": "hair-wellness-oil",
     "name": "Hair Wellness Oil",
+    "selectionType": "single",
     "category": "Hair Wellness Oil",
-    "shortDescription": "Premium Hair Wellness Oil crafted for holistic wellness.",
-    "fullDescription": "The Hair Wellness Oil is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Ayurvedic wellness massage oil.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/hair-wellness-oil.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
     "variants": [
-      {
-        "size": "50 ml",
-        "originalPrice": 699,
-        "price": 499,
-        "image": "/images/products/diamond-trial.jpg"
-      },
-      {
-        "size": "100 ml",
-        "originalPrice": 1299,
-        "price": 899,
-        "image": "/images/products/diamond-trial.jpg"
-      },
-      {
-        "size": "200 ml",
-        "originalPrice": 2499,
-        "price": 1799,
-        "image": "/images/products/diamond-trial.jpg"
-      }
+      { "size": "50 ml", "price": 499, "originalPrice": 699, "image": "/images/products/hair-wellness-oil-50ml.jpg" },
+      { "size": "100 ml", "price": 899, "originalPrice": 1299, "image": "/images/products/hair-wellness-oil-100ml.jpg" },
+      { "size": "200 ml", "price": 1799, "originalPrice": 2499, "image": "/images/products/hair-wellness-oil-200ml.jpg" }
     ],
     "price": 499,
     "originalPrice": 699,
     "discount": 29,
-    "rating": 4.9,
-    "reviewCount": 159,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
-    "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
-    },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
-    "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
-    ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "kids-trial-wellness-pack",
-    "slug": "kids-trial-wellness-pack",
-    "name": "?? Kids Trial Wellness Pack",
-    "category": "Kids Care Oil Blend",
-    "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
-    "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
-    ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      {
-        "size": "Standard",
-        "originalPrice": 749,
-        "price": 499,
-        "image": "/images/products/diamond-trial.jpg"
-      }
-    ],
-    "price": 499,
-    "originalPrice": 749,
-    "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 164,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
-    "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
-    },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
-    "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
-    ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "durationText": "Up to 1 Month Wellness Care",
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil"
-  },
-  {
-    "id": "diamond-trial-wellness-pack",
-    "slug": "diamond-trial-wellness-pack",
-    "name": "?? Gold Trial Wellness Pack",
-    "category": "Individual Wellness Packs",
-    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
-    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
-    ],
-    "ingredients": [
-      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
-    "price": 999,
-    "originalPrice": 1499,
-    "discount": 33,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "badge": "?? COMPLETE TRIAL",
-    "healthGoals": ["Daily Wellness", "Holistic Health"],
-    "idealFor": ["Everyone"],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Varies by usage",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
+      "instructions": "Apply and massage gently."
     },
-    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil, 100 ml Body Wellness Massage Oil",
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
   {
-    "id": "men-trial-wellness-pack",
-    "slug": "men-trial-wellness-pack",
-    "name": "?? Men Trial Wellness Pack",
-    "category": "Men Wellness Oil Blend",
-    "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
-    "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "id": "trial-wellness-pack",
+    "slug": "trial-wellness-pack",
+    "name": "Trial Wellness Pack",
+    "selectionType": "single",
+    "category": "Individual Wellness Packs",
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/trial-wellness-pack.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      {
-        "size": "Standard",
-        "originalPrice": 749,
-        "price": 499,
-        "image": "/images/products/diamond-trial.jpg"
-      }
-    ],
+    "variants": [],
     "price": 499,
     "originalPrice": 749,
     "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 164,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
-    "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
-    },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
-    "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
-    ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "🌱 STARTER TRIAL",
+    "inclusions": "• 10 ml Nabhi Wellness Oil Blend\n• 30 ml Feet Massage Oil",
     "durationText": "Up to 1 Month Wellness Care",
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil"
-  },
-  {
-    "id": "diamond-trial-wellness-pack",
-    "slug": "diamond-trial-wellness-pack",
-    "name": "?? Gold Trial Wellness Pack",
-    "category": "Individual Wellness Packs",
-    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
-    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
-    ],
-    "ingredients": [
-      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
-    "price": 999,
-    "originalPrice": 1499,
-    "discount": 33,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "badge": "?? COMPLETE TRIAL",
-    "healthGoals": ["Daily Wellness", "Holistic Health"],
-    "idealFor": ["Everyone"],
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
+      "instructions": "Use as directed."
     },
-    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil, 100 ml Body Wellness Massage Oil",
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
   {
-    "id": "women-trial-wellness-pack",
-    "slug": "women-trial-wellness-pack",
-    "name": "?? Women Trial Wellness Pack",
-    "category": "Women Wellness Oil Blend",
-    "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
-    "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
-    ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      {
-        "size": "Standard",
-        "originalPrice": 749,
-        "price": 499,
-        "image": "/images/products/diamond-trial.jpg"
-      }
-    ],
-    "price": 499,
-    "originalPrice": 749,
-    "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 164,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
-    "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
-    },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
-    "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
-    ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "durationText": "Up to 1 Month Wellness Care",
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil"
-  },
-  {
     "id": "diamond-trial-wellness-pack",
     "slug": "diamond-trial-wellness-pack",
-    "name": "?? Gold Trial Wellness Pack",
+    "name": "Diamond Trial Wellness Pack",
+    "selectionType": "single",
     "category": "Individual Wellness Packs",
-    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
-    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/diamond-trial-wellness-pack.jpg"
     ],
-    "ingredients": [
-      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
+    "variants": [],
     "price": 999,
     "originalPrice": 1499,
     "discount": 33,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "badge": "?? COMPLETE TRIAL",
-    "healthGoals": ["Daily Wellness", "Holistic Health"],
-    "idealFor": ["Everyone"],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "💎 COMPLETE TRIAL",
+    "inclusions": "• 10 ml Nabhi Wellness Oil Blend\n• 30 ml Feet Massage Oil\n• 100 ml Body Wellness Massage Oil",
+    "durationText": "Complete 3-Step Wellness Trial",
+    "healthGoals": [],
+    "idealFor": [],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
+      "instructions": "Use as directed."
     },
-    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil, 100 ml Body Wellness Massage Oil",
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "senior-trial-wellness-pack",
-    "slug": "senior-trial-wellness-pack",
-    "name": "?? Senior Trial Wellness Pack",
-    "category": "Senior Care Oil Blend",
-    "shortDescription": "Premium Trial Wellness Pack crafted for holistic wellness.",
-    "fullDescription": "The Trial Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
-    ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      {
-        "size": "Standard",
-        "originalPrice": 749,
-        "price": 499,
-        "image": "/images/products/diamond-trial.jpg"
-      }
-    ],
-    "price": 499,
-    "originalPrice": 749,
-    "discount": 33,
-    "rating": 4.9,
-    "reviewCount": 164,
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
-    "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
-    },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
+    "specifications": {},
     "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
+      "100% Natural"
     ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
-    "durationText": "Up to 1 Month Wellness Care",
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil"
-  },
-  {
-    "id": "diamond-trial-wellness-pack",
-    "slug": "diamond-trial-wellness-pack",
-    "name": "?? Gold Trial Wellness Pack",
-    "category": "Individual Wellness Packs",
-    "shortDescription": "Experience three simple wellness rituals in one premium trial pack.",
-    "fullDescription": "Complete 3-Step Wellness Trial. Experience three simple wellness rituals in one premium trial pack. Designed for daily self-care and holistic wellness.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Complete 3-Step Wellness Trial (Nabhi • Feet • Body)",
-    "benefits": [
-      { "icon": "Sparkles", "text": "Deep Nourishment" },
-      { "icon": "Leaf", "text": "100% Pure & Natural" }
-    ],
-    "ingredients": [
-      { "name": "Premium Oil Blends", "botanical": "Natural Extracts", "role": "Active" }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      { "id": "diamond-trial-pack-1", "size": "1 Pack", "originalPrice": 1499, "price": 999, "image": "/images/products/diamond-trial.jpg" }
-    ],
-    "price": 999,
-    "originalPrice": 1499,
-    "discount": 33,
-    "rating": 5.0,
-    "reviewCount": 0,
-    "badge": "?? COMPLETE TRIAL",
-    "healthGoals": ["Daily Wellness", "Holistic Health"],
-    "idealFor": ["Everyone"],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Follow the 3-step routine: Apply Nabhi Wellness Oil, Massage with Feet Massage Oil, and complete with Body Wellness Massage Oil."
-    },
-    "specifications": { "Form": "Oil Blends", "Packaging": "Premium Kit", "Purity": "100% Natural" },
-    "certifications": ["100% Natural"],
-    "inclusions": "10 ml Nabhi Wellness Oil Blend, 30 ml Feet Massage Oil, 100 ml Body Wellness Massage Oil",
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
@@ -2520,219 +1072,117 @@ export const products: Product[] = [
   {
     "id": "gold-wellness-pack",
     "slug": "gold-wellness-pack",
-    "name": "?? Diamond Wellness Pack",
+    "name": "Gold Wellness Pack",
+    "selectionType": "four-distinct",
     "category": "Individual Wellness Packs",
-    "shortDescription": "Premium Gold Wellness Pack crafted for holistic wellness.",
-    "fullDescription": "The Gold Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/gold-wellness-pack.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      {
-        "size": "Standard",
-        "originalPrice": 2499,
-        "price": 1799,
-        "image": "/images/products/diamond-trial.jpg"
-      }
-    ],
+    "variants": [],
     "price": 1799,
     "originalPrice": 2499,
     "discount": 28,
-    "rating": 4.9,
-    "reviewCount": 143, 
-    "badge": "?? BEST VALUE",
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
-    "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
-    },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
-    "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
-    ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "🟡 BEST VALUE",
+    "inclusions": "• 40 ml Nabhi Wellness Oil Blend (4 × 10 ml)\n• 100 ml Feet Massage Oil",
     "durationText": "Up to 4 Months Wellness Care",
-    "inclusions": "40 ml Nabhi Wellness Oil Blend (4 � 10 ml), 100 ml Feet Massage Oil"
+    "healthGoals": [],
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
   },
   {
     "id": "premium-wellness-pack",
     "slug": "premium-wellness-pack",
-    "name": "?? Premium Wellness Pack",
+    "name": "Premium Wellness Pack",
+    "selectionType": "four-distinct",
     "category": "Individual Wellness Packs",
-    "shortDescription": "Premium Premium Wellness Pack crafted for holistic wellness.",
-    "fullDescription": "The Premium Wellness Pack is meticulously crafted to support your daily wellness routine. Applied to the navel or specific areas, this traditional Ayurvedic formulation nourishes deeply. Experience the timeless benefits of daily self-care with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts, our wellness blends are crafted using only the most pristine, cold-pressed oils and wild-harvested botanicals.",
-    "benefit": "Supports daily vitality, balance, and holistic wellness.",
-    "benefits": [
-      {
-        "icon": "Sparkles",
-        "text": "Deep Nourishment"
-      },
-      {
-        "icon": "Leaf",
-        "text": "100% Pure & Natural"
-      },
-      {
-        "icon": "Shield",
-        "text": "Holistic Balance"
-      }
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/premium-wellness-pack.jpg"
     ],
-    "ingredients": [
-      {
-        "name": "Cold-pressed Sesame Oil",
-        "botanical": "Sesamum indicum",
-        "role": "Nourishing base"
-      },
-      {
-        "name": "Pure Almond Oil",
-        "botanical": "Prunus amygdalus",
-        "role": "Rich in vitamins"
-      },
-      {
-        "name": "Traditional Ayurvedic Herbs",
-        "botanical": "Various",
-        "role": "Targeted holistic wellness"
-      }
-    ],
-    "images": [ "/images/products/diamond-trial.jpg" ],
-    "variants": [
-      {
-        "size": "Standard",
-        "originalPrice": 4999,
-        "price": 3299,
-        "image": "/images/products/diamond-trial.jpg"
-      }
-    ],
+    "variants": [],
     "price": 3299,
     "originalPrice": 4999,
     "discount": 34,
-    "rating": 4.9,
-    "reviewCount": 138, 
-    "badge": "?? LONG-TERM VALUE",
-    "healthGoals": [
-      "Daily Wellness",
-      "Immunity",
-      "Balance"
-    ],
-    "idealFor": [
-      "All body types"
-    ],
-    "usageInstructions": {
-      "serving": "3-4 drops",
-      "timing": "Before bedtime",
-      "instructions": "Apply to the navel and gently massage in a circular motion until fully absorbed."
-    },
-    "specifications": {
-      "Form": "Oil Blend",
-      "Packaging": "Amber Glass Dropper Bottle",
-      "Purity": "100% Natural, Unrefined",
-      "Origin": "Made in India"
-    },
-    "certifications": [
-      "100% Natural",
-      "Cruelty Free",
-      "Toxin Free",
-      "GMP Certified"
-    ],
-    "faqs": [
-      {
-        "question": "How to use this product?",
-        "answer": "Apply 3-4 drops to the belly button before sleeping."
-      },
-      {
-        "question": "Is this safe for daily use?",
-        "answer": "Yes, it is entirely formulated with gentle, natural ingredients safe for daily application."
-      }
-    ],
-    "relatedProductIds": [],
-    "routineProductIds": [],
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "💚 LONG-TERM VALUE",
+    "inclusions": "• 80 ml Nabhi Wellness Oil Blend (4 × 20 ml)\n• 200 ml Feet Massage Oil",
     "durationText": "Up to 8 Months Wellness Care",
-    "inclusions": "80 ml Nabhi Wellness Oil Blend (4 � 20 ml), 200 ml Feet Massage Oil"
+    "healthGoals": [],
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
   },
   {
     "id": "2-member-family-trial",
     "slug": "2-member-family-trial",
     "name": "2 Member Family Trial",
+    "selectionType": "per-member",
+    "memberCount": 2,
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
     "story": "Rooted in ancient Ayurvedic texts.",
     "benefit": "Supports daily vitality for the family.",
     "benefits": [],
     "ingredients": [],
-    "images": ["/images/products/diamond-trial.jpg"],
+    "images": [
+      "/images/products/2-member-family-trial.jpg"
+    ],
     "variants": [],
-    "price": 899,
-    "originalPrice": 1499,
-    "discount": Math.round(((1499 - 899) / 1499) * 100),
-    "rating": 5.0,
+    "price": 3199,
+    "originalPrice": 4999,
+    "discount": 36,
+    "rating": 5,
     "reviewCount": 12,
-    "badge": "???????? FAMILY SAVING",
-    "inclusions": "Family Pack Inclusion",
-    "durationText": "Up to 1 Month",
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "2x Member Trial",
+    "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
     "specifications": {},
-    "certifications": ["100% Natural"],
+    "certifications": [
+      "100% Natural"
+    ],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
@@ -2741,28 +1191,38 @@ export const products: Product[] = [
     "id": "3-member-family-trial",
     "slug": "3-member-family-trial",
     "name": "3 Member Family Trial",
+    "selectionType": "per-member",
+    "memberCount": 3,
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
     "story": "Rooted in ancient Ayurvedic texts.",
     "benefit": "Supports daily vitality for the family.",
     "benefits": [],
     "ingredients": [],
-    "images": ["/images/products/diamond-trial.jpg"],
+    "images": [
+      "/images/products/3-member-family-trial.jpg"
+    ],
     "variants": [],
-    "price": 1299,
-    "originalPrice": 2249,
-    "discount": Math.round(((2249 - 1299) / 2249) * 100),
-    "rating": 5.0,
+    "price": 4799,
+    "originalPrice": 7499,
+    "discount": 36,
+    "rating": 5,
     "reviewCount": 12,
-    "badge": "???????? FAMILY SAVING",
-    "inclusions": "Family Pack Inclusion",
-    "durationText": "Up to 1 Month",
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "3x Member Trial",
+    "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
     "specifications": {},
-    "certifications": ["100% Natural"],
+    "certifications": [
+      "100% Natural"
+    ],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
@@ -2771,28 +1231,38 @@ export const products: Product[] = [
     "id": "4-member-family-trial",
     "slug": "4-member-family-trial",
     "name": "4 Member Family Trial",
+    "selectionType": "per-member",
+    "memberCount": 4,
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
     "story": "Rooted in ancient Ayurvedic texts.",
     "benefit": "Supports daily vitality for the family.",
     "benefits": [],
     "ingredients": [],
-    "images": ["/images/products/diamond-trial.jpg"],
+    "images": [
+      "/images/products/4-member-family-trial.jpg"
+    ],
     "variants": [],
-    "price": 1699,
-    "originalPrice": 2999,
-    "discount": Math.round(((2999 - 1699) / 2999) * 100),
-    "rating": 5.0,
+    "price": 6399,
+    "originalPrice": 9999,
+    "discount": 36,
+    "rating": 5,
     "reviewCount": 12,
-    "badge": "???????? FAMILY SAVING",
-    "inclusions": "Family Pack Inclusion",
-    "durationText": "Up to 1 Month",
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "4x Member Trial",
+    "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
     "specifications": {},
-    "certifications": ["100% Natural"],
+    "certifications": [
+      "100% Natural"
+    ],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
@@ -2801,152 +1271,202 @@ export const products: Product[] = [
     "id": "5-member-family-trial",
     "slug": "5-member-family-trial",
     "name": "5 Member Family Trial",
+    "selectionType": "per-member",
+    "memberCount": 5,
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
     "story": "Rooted in ancient Ayurvedic texts.",
     "benefit": "Supports daily vitality for the family.",
     "benefits": [],
     "ingredients": [],
-    "images": ["/images/products/diamond-trial.jpg"],
-    "variants": [],
-    "price": 2099,
-    "originalPrice": 3749,
-    "discount": Math.round(((3749 - 2099) / 3749) * 100),
-    "rating": 5.0,
-    "reviewCount": 12,
-    "badge": "???????? FAMILY SAVING",
-    "inclusions": "Family Pack Inclusion",
-    "durationText": "Up to 1 Month",
-    "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
-    "specifications": {},
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "2-member-family-diamond",
-    "slug": "2-member-family-diamond",
-    "name": "2 Member Family Diamond",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Supports daily vitality for the family.",
-    "benefits": [],
-    "ingredients": [],
-    "images": ["/images/products/gold-pack.jpg"],
-    "variants": [],
-    "price": 3199,
-    "originalPrice": 4999,
-    "discount": Math.round(((4999 - 3199) / 4999) * 100),
-    "rating": 5.0,
-    "reviewCount": 12,
-    "badge": "???????? DIAMOND FAMILY VALUE",
-    "inclusions": "Family Pack Inclusion",
-    "durationText": "Up to 4 Months",
-    "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
-    "specifications": {},
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "3-member-family-diamond",
-    "slug": "3-member-family-diamond",
-    "name": "3 Member Family Diamond",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Supports daily vitality for the family.",
-    "benefits": [],
-    "ingredients": [],
-    "images": ["/images/products/gold-pack.jpg"],
-    "variants": [],
-    "price": 4799,
-    "originalPrice": 7499,
-    "discount": Math.round(((7499 - 4799) / 7499) * 100),
-    "rating": 5.0,
-    "reviewCount": 12,
-    "badge": "???????? DIAMOND FAMILY VALUE",
-    "inclusions": "Family Pack Inclusion",
-    "durationText": "Up to 4 Months",
-    "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
-    "specifications": {},
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "4-member-family-diamond",
-    "slug": "4-member-family-diamond",
-    "name": "4 Member Family Diamond",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Supports daily vitality for the family.",
-    "benefits": [],
-    "ingredients": [],
-    "images": ["/images/products/gold-pack.jpg"],
-    "variants": [],
-    "price": 6399,
-    "originalPrice": 9999,
-    "discount": Math.round(((9999 - 6399) / 9999) * 100),
-    "rating": 5.0,
-    "reviewCount": 12,
-    "badge": "???????? DIAMOND FAMILY VALUE",
-    "inclusions": "Family Pack Inclusion",
-    "durationText": "Up to 4 Months",
-    "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
-    "specifications": {},
-    "certifications": ["100% Natural"],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "5-member-family-diamond",
-    "slug": "5-member-family-diamond",
-    "name": "5 Member Family Diamond",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Premium Family Wellness Pack for holistic care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together with our premium botanical blends.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Supports daily vitality for the family.",
-    "benefits": [],
-    "ingredients": [],
-    "images": ["/images/products/gold-pack.jpg"],
+    "images": [
+      "/images/products/5-member-family-trial.jpg"
+    ],
     "variants": [],
     "price": 7999,
     "originalPrice": 12499,
-    "discount": Math.round(((12499 - 7999) / 12499) * 100),
-    "rating": 5.0,
+    "discount": 36,
+    "rating": 5,
     "reviewCount": 12,
-    "badge": "???????? DIAMOND FAMILY VALUE",
-    "inclusions": "Family Pack Inclusion",
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "5x Member Trial",
     "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": ["Family"],
-    "usageInstructions": { "serving": "As needed", "timing": "Daily", "instructions": "Use as directed." },
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
     "specifications": {},
-    "certifications": ["100% Natural"],
+    "certifications": [
+      "100% Natural"
+    ],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
+  {
+    "id": "2-member-family-gold",
+    "slug": "2-member-family-gold",
+    "name": "2 Member Family Gold",
+    "selectionType": "per-member",
+    "memberCount": 2,
+    "category": "Family Gold Wellness Packs",
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/2-member-family-gold.jpg"
+    ],
+    "variants": [],
+    "price": 3999,
+    "originalPrice": 5499,
+    "discount": 27,
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "2x Member Gold",
+    "durationText": "Up to 4 Months",
+    "healthGoals": [],
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "3-member-family-gold",
+    "slug": "3-member-family-gold",
+    "name": "3 Member Family Gold",
+    "selectionType": "per-member",
+    "memberCount": 3,
+    "category": "Family Gold Wellness Packs",
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/3-member-family-gold.jpg"
+    ],
+    "variants": [],
+    "price": 5799,
+    "originalPrice": 8249,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "3x Member Gold",
+    "durationText": "Up to 4 Months",
+    "healthGoals": [],
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "4-member-family-gold",
+    "slug": "4-member-family-gold",
+    "name": "4 Member Family Gold",
+    "selectionType": "per-member",
+    "memberCount": 4,
+    "category": "Family Gold Wellness Packs",
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/4-member-family-gold.jpg"
+    ],
+    "variants": [],
+    "price": 7499,
+    "originalPrice": 10999,
+    "discount": 32,
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "4x Member Gold",
+    "durationText": "Up to 4 Months",
+    "healthGoals": [],
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "5-member-family-gold",
+    "slug": "5-member-family-gold",
+    "name": "5 Member Family Gold",
+    "selectionType": "per-member",
+    "memberCount": 5,
+    "category": "Family Gold Wellness Packs",
+    "shortDescription": "Premium Family Wellness Pack for holistic care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care together.",
+    "story": "Rooted in ancient Ayurvedic texts.",
+    "benefit": "Supports daily vitality for the family.",
+    "benefits": [],
+    "ingredients": [],
+    "images": [
+      "/images/products/5-member-family-gold.jpg"
+    ],
+    "variants": [],
+    "price": 8999,
+    "originalPrice": 13749,
+    "discount": 35,
+    "rating": 5,
+    "reviewCount": 12,
+    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
+    "inclusions": "5x Member Gold",
+    "durationText": "Up to 4 Months",
+    "healthGoals": [],
+    "idealFor": [],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Daily",
+      "instructions": "Use as directed."
+    },
+    "specifications": {},
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  }
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
