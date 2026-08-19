@@ -37,8 +37,8 @@ export interface Product {
   faqs: { question: string; answer: string }[];
   relatedProductIds: string[];
   routineProductIds: string[];
-    selectionType?: 'single' | 'four-distinct' | 'per-member';
-    memberCount?: number;
+  selectionType?: 'single' | 'four-distinct' | 'per-member';
+  memberCount?: number;
   durationText?: string;
   inclusions?: string;
   totalQuantityMl?: string;
@@ -51,11 +51,24 @@ export const products: Product[] = [
     "slug": "kids-smart-oil-blend",
     "name": "Kids Smart Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "Gentle everyday wellness oil for a simple traditional-inspired massage and self-care routine for children.",
+    "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Gentle everyday wellness oil for a simple traditional-inspired massage and self-care routine for children.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Smile",
+        "text": "Gentle-feel"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/kids-smart-oil-blend.jpg"
@@ -81,15 +94,20 @@ export const products: Product[] = [
     "reviewCount": 12,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Kids"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -102,11 +120,24 @@ export const products: Product[] = [
     "slug": "kids-growth-oil-blend",
     "name": "Kids Growth Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "A nourishing-feel oil blend designed to make regular children's massage and everyday wellness care simple and enjoyable.",
+    "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A nourishing-feel oil blend designed to make regular children's massage and everyday wellness care simple and enjoyable.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Smile",
+        "text": "Gentle-feel"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/kids-growth-oil-blend.jpg"
@@ -132,15 +163,20 @@ export const products: Product[] = [
     "reviewCount": 12,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Kids"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -153,11 +189,24 @@ export const products: Product[] = [
     "slug": "kids-calm-oil-blend",
     "name": "Kids Calm Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "A gentle-feel blend for a peaceful massage and relaxing self-care routine for children.",
+    "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A gentle-feel blend for a peaceful massage and relaxing self-care routine for children.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Smile",
+        "text": "Gentle-feel"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/kids-calm-oil-blend.jpg"
@@ -183,15 +232,20 @@ export const products: Product[] = [
     "reviewCount": 12,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Kids"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -204,11 +258,24 @@ export const products: Product[] = [
     "slug": "kids-daily-care-oil-blend",
     "name": "Kids Daily Care Oil Blend",
     "category": "Kids Care Oil Blend",
-    "shortDescription": "An easy everyday oil-care blend designed for a consistent family massage and wellness routine.",
+    "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "An easy everyday oil-care blend designed for a consistent family massage and wellness routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Smile",
+        "text": "Gentle-feel"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/kids-daily-care-oil-blend.jpg"
@@ -234,15 +301,20 @@ export const products: Product[] = [
     "reviewCount": 12,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Kids"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -255,11 +327,20 @@ export const products: Product[] = [
     "slug": "men-strength-oil-blend",
     "name": "Men Strength Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "A premium wellness blend designed for men's everyday massage and traditional-inspired self-care routine.",
+    "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A premium wellness blend designed for men's everyday massage and traditional-inspired self-care routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/men-strength-oil-blend.jpg"
@@ -282,18 +363,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 15,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Men"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -306,11 +392,20 @@ export const products: Product[] = [
     "slug": "men-active-oil-blend",
     "name": "Men Active Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "A refreshing-feel oil blend for men who enjoy regular massage and an active self-care routine.",
+    "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A refreshing-feel oil blend for men who enjoy regular massage and an active self-care routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/men-active-oil-blend.jpg"
@@ -333,18 +428,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 15,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Men"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -357,11 +457,20 @@ export const products: Product[] = [
     "slug": "men-heart-balance-oil-blend",
     "name": "Men Heart Balance Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "A wellness-focused blend created around a calm, balanced and enjoyable oil-massage ritual.",
+    "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A wellness-focused blend created around a calm, balanced and enjoyable oil-massage ritual.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/men-heart-balance-oil-blend.jpg"
@@ -384,18 +493,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 15,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Men"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -408,11 +522,20 @@ export const products: Product[] = [
     "slug": "men-daily-wellness-oil-blend",
     "name": "Men Daily Wellness Oil Blend",
     "category": "Men Wellness Oil Blend",
-    "shortDescription": "A versatile everyday blend for men who want to include simple traditional-inspired oil care in their routine.",
+    "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A versatile everyday blend for men who want to include simple traditional-inspired oil care in their routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/men-daily-wellness-oil-blend.jpg"
@@ -435,18 +558,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 15,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Men"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -459,11 +587,20 @@ export const products: Product[] = [
     "slug": "women-harmony-oil-blend",
     "name": "Women Harmony Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "A graceful wellness blend designed for women's everyday self-care and traditional-inspired massage routine.",
+    "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A graceful wellness blend designed for women's everyday self-care and traditional-inspired massage routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/women-harmony-oil-blend.jpg"
@@ -486,18 +623,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 22,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Women"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -510,11 +652,20 @@ export const products: Product[] = [
     "slug": "women-care-oil-blend",
     "name": "Women Care Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "A simple everyday personal-care oil designed to make traditional-inspired oil massage convenient.",
+    "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A simple everyday personal-care oil designed to make traditional-inspired oil massage convenient.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/women-care-oil-blend.jpg"
@@ -537,18 +688,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 22,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Women"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -561,11 +717,20 @@ export const products: Product[] = [
     "slug": "women-glow-oil-blend",
     "name": "Women Glow Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "A nourishing-feel blend designed for a refreshing and enjoyable personal wellness ritual.",
+    "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A nourishing-feel blend designed for a refreshing and enjoyable personal wellness ritual.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/women-glow-oil-blend.jpg"
@@ -588,18 +753,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 22,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Women"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -612,11 +782,20 @@ export const products: Product[] = [
     "slug": "women-daily-wellness-oil-blend",
     "name": "Women Daily Wellness Oil Blend",
     "category": "Women Wellness Oil Blend",
-    "shortDescription": "A versatile everyday wellness blend for a simple and consistent women's self-care routine.",
+    "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A versatile everyday wellness blend for a simple and consistent women's self-care routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Everyday self-care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/women-daily-wellness-oil-blend.jpg"
@@ -639,18 +818,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 22,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Women"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -663,11 +847,20 @@ export const products: Product[] = [
     "slug": "senior-comfort-oil-blend",
     "name": "Senior Comfort Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "A gentle-feel wellness blend designed for a comforting massage and traditional-inspired self-care routine.",
+    "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A gentle-feel wellness blend designed for a comforting massage and traditional-inspired self-care routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Comfort-focused"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/senior-comfort-oil-blend.jpg"
@@ -690,18 +883,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 18,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Seniors"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -714,11 +912,20 @@ export const products: Product[] = [
     "slug": "senior-active-oil-blend",
     "name": "Senior Active Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "Created for seniors who enjoy maintaining a regular massage and everyday wellness routine.",
+    "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Created for seniors who enjoy maintaining a regular massage and everyday wellness routine.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Comfort-focused"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/senior-active-oil-blend.jpg"
@@ -741,18 +948,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 18,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Seniors"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -765,11 +977,20 @@ export const products: Product[] = [
     "slug": "senior-balance-oil-blend",
     "name": "Senior Balance Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "A balanced-feel wellness blend designed around a calm and enjoyable massage ritual.",
+    "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A balanced-feel wellness blend designed around a calm and enjoyable massage ritual.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Comfort-focused"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/senior-balance-oil-blend.jpg"
@@ -792,18 +1013,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 18,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Seniors"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -816,11 +1042,20 @@ export const products: Product[] = [
     "slug": "senior-daily-wellness-oil-blend",
     "name": "Senior Daily Wellness Oil Blend",
     "category": "Senior Care Oil Blend",
-    "shortDescription": "A practical everyday blend for regular massage and traditional-inspired personal wellness care.",
+    "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A practical everyday blend for regular massage and traditional-inspired personal wellness care.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Traditional-inspired care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Comfort-focused"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/senior-daily-wellness-oil-blend.jpg"
@@ -843,61 +1078,23 @@ export const products: Product[] = [
     "originalPrice": 299,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 18,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Up to 1 Month",
+    "durationText": "Up to 1 Month Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "Seniors"
+    ],
     "usageInstructions": {
       "serving": "3 Drops",
       "timing": "Night",
       "instructions": "Apply in belly button."
     },
-    "specifications": {},
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "body-massage-oil",
-    "slug": "body-massage-oil",
-    "name": "Body Massage Oil",
-    "selectionType": "single",
-    "category": "Body Massage Oil",
-    "shortDescription": "A premium massage oil designed for regular massage and self-care routines. Available in Kids, Men, Women, and Senior variants.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A premium massage oil designed for regular massage and self-care routines. Available in Kids, Men, Women, and Senior variants.",
-    "benefits": [],
-    "ingredients": [],
-    "images": [
-      "/images/products/body-massage-oil.jpg"
-    ],
-    "variants": [
-      { "size": "50 ml", "price": 349, "originalPrice": 499, "image": "/images/products/body-massage-oil-50ml.jpg" },
-      { "size": "100 ml", "price": 599, "originalPrice": 899, "image": "/images/products/body-massage-oil-100ml.jpg" },
-      { "size": "200 ml", "price": 999, "originalPrice": 1499, "image": "/images/products/body-massage-oil-200ml.jpg" }
-    ],
-    "price": 349,
-    "originalPrice": 499,
-    "discount": 30,
-    "rating": 5,
-    "reviewCount": 12,
-    "badge": "100% NATURAL",
-    "inclusions": "1x Bottle",
-    "durationText": "Varies by usage",
-    "healthGoals": [],
-    "idealFor": [],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Apply and massage gently."
+    "specifications": {
+      "Net Quantity": "10ml / 20ml",
+      "Storage": "Store in a cool, dry place"
     },
-    "specifications": {},
     "certifications": [
       "100% Natural"
     ],
@@ -906,41 +1103,81 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "feet-massage-oil",
-    "slug": "feet-massage-oil",
-    "name": "Feet Massage Oil",
-    "selectionType": "single",
+    "id": "kids-foot-comfort-oil",
+    "slug": "kids-foot-comfort-oil",
+    "name": "Kids Foot Comfort Oil",
     "category": "Feet Massage Oil",
-    "shortDescription": "A comforting foot massage oil designed for a relaxing foot-care routine. Available in Kids, Men, Women, and Senior variants.",
+    "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A comforting foot massage oil designed for a relaxing foot-care routine. Available in Kids, Men, Women, and Senior variants.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Foot massage"
+      },
+      {
+        "icon": "Heart",
+        "text": "Relaxing-feel routine"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired foot care"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy application"
+      },
+      {
+        "icon": "Check",
+        "text": "Everyday personal wellness"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/feet-massage-oil.jpg"
+      "/images/products/kids-foot-comfort-oil.jpg"
     ],
     "variants": [
-      { "size": "30 ml", "price": 399, "originalPrice": 599, "image": "/images/products/feet-massage-oil-30ml.jpg" },
-      { "size": "100 ml", "price": 1199, "originalPrice": 1799, "image": "/images/products/feet-massage-oil-100ml.jpg" },
-      { "size": "200 ml", "price": 2199, "originalPrice": 3299, "image": "/images/products/feet-massage-oil-200ml.jpg" }
+      {
+        "size": "30 ml",
+        "price": 399,
+        "originalPrice": 599,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 1199,
+        "originalPrice": 1799,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 2199,
+        "originalPrice": 3299,
+        "image": ""
+      }
     ],
     "price": 399,
     "originalPrice": 599,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 10,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Varies by usage",
+    "durationText": "Up to 1-3 Months Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Apply and massage gently."
+      "serving": "Few Drops",
+      "timing": "Night",
+      "instructions": "Massage on feet."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "30ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -949,41 +1186,642 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "hair-wellness-oil",
-    "slug": "hair-wellness-oil",
-    "name": "Hair Wellness Oil",
-    "selectionType": "single",
-    "category": "Hair Wellness Oil",
-    "shortDescription": "A nourishing hair oil designed for regular hair-care and personal wellness rituals. Available in Kids, Men, Women, and Senior variants.",
+    "id": "men-active-foot-wellness-oil",
+    "slug": "men-active-foot-wellness-oil",
+    "name": "Men Active Foot Wellness Oil",
+    "category": "Feet Massage Oil",
+    "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
     "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A nourishing hair oil designed for regular hair-care and personal wellness rituals. Available in Kids, Men, Women, and Senior variants.",
-    "benefits": [],
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Foot massage"
+      },
+      {
+        "icon": "Heart",
+        "text": "Relaxing-feel routine"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired foot care"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy application"
+      },
+      {
+        "icon": "Check",
+        "text": "Everyday personal wellness"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/hair-wellness-oil.jpg"
+      "/images/products/men-active-foot-wellness-oil.jpg"
     ],
     "variants": [
-      { "size": "50 ml", "price": 499, "originalPrice": 699, "image": "/images/products/hair-wellness-oil-50ml.jpg" },
-      { "size": "100 ml", "price": 899, "originalPrice": 1299, "image": "/images/products/hair-wellness-oil-100ml.jpg" },
-      { "size": "200 ml", "price": 1799, "originalPrice": 2499, "image": "/images/products/hair-wellness-oil-200ml.jpg" }
+      {
+        "size": "30 ml",
+        "price": 399,
+        "originalPrice": 599,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 1199,
+        "originalPrice": 1799,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 2199,
+        "originalPrice": 3299,
+        "image": ""
+      }
+    ],
+    "price": 399,
+    "originalPrice": 599,
+    "discount": 33,
+    "rating": 5,
+    "reviewCount": 10,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "Few Drops",
+      "timing": "Night",
+      "instructions": "Massage on feet."
+    },
+    "specifications": {
+      "Net Quantity": "30ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "women-foot-harmony-oil",
+    "slug": "women-foot-harmony-oil",
+    "name": "Women Foot Harmony Oil",
+    "category": "Feet Massage Oil",
+    "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Foot massage"
+      },
+      {
+        "icon": "Heart",
+        "text": "Relaxing-feel routine"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired foot care"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy application"
+      },
+      {
+        "icon": "Check",
+        "text": "Everyday personal wellness"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/women-foot-harmony-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "30 ml",
+        "price": 399,
+        "originalPrice": 599,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 1199,
+        "originalPrice": 1799,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 2199,
+        "originalPrice": 3299,
+        "image": ""
+      }
+    ],
+    "price": 399,
+    "originalPrice": 599,
+    "discount": 33,
+    "rating": 5,
+    "reviewCount": 10,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "Few Drops",
+      "timing": "Night",
+      "instructions": "Massage on feet."
+    },
+    "specifications": {
+      "Net Quantity": "30ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "senior-foot-comfort-oil",
+    "slug": "senior-foot-comfort-oil",
+    "name": "Senior Foot Comfort Oil",
+    "category": "Feet Massage Oil",
+    "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Foot massage"
+      },
+      {
+        "icon": "Heart",
+        "text": "Relaxing-feel routine"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired foot care"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy application"
+      },
+      {
+        "icon": "Check",
+        "text": "Everyday personal wellness"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/senior-foot-comfort-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "30 ml",
+        "price": 399,
+        "originalPrice": 599,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 1199,
+        "originalPrice": 1799,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 2199,
+        "originalPrice": 3299,
+        "image": ""
+      }
+    ],
+    "price": 399,
+    "originalPrice": 599,
+    "discount": 33,
+    "rating": 5,
+    "reviewCount": 10,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "Few Drops",
+      "timing": "Night",
+      "instructions": "Massage on feet."
+    },
+    "specifications": {
+      "Net Quantity": "30ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "kids-gentle-body-wellness-oil",
+    "slug": "kids-gentle-body-wellness-oil",
+    "name": "Kids Gentle Body Wellness Oil",
+    "category": "Body Massage Oil",
+    "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Full-body massage"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired oil care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel massage experience"
+      },
+      {
+        "icon": "Check",
+        "text": "Personal self-care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/kids-gentle-body-wellness-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 349,
+        "originalPrice": 499,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 599,
+        "originalPrice": 899,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 999,
+        "originalPrice": 1499,
+        "image": ""
+      }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 14,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Anytime",
+      "instructions": "Massage gently on body."
+    },
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "men-active-body-wellness-oil",
+    "slug": "men-active-body-wellness-oil",
+    "name": "Men Active Body Wellness Oil",
+    "category": "Body Massage Oil",
+    "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Full-body massage"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired oil care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel massage experience"
+      },
+      {
+        "icon": "Check",
+        "text": "Personal self-care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/men-active-body-wellness-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 349,
+        "originalPrice": 499,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 599,
+        "originalPrice": 899,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 999,
+        "originalPrice": 1499,
+        "image": ""
+      }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 14,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Anytime",
+      "instructions": "Massage gently on body."
+    },
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "women-harmony-body-wellness-oil",
+    "slug": "women-harmony-body-wellness-oil",
+    "name": "Women Harmony Body Wellness Oil",
+    "category": "Body Massage Oil",
+    "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Full-body massage"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired oil care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel massage experience"
+      },
+      {
+        "icon": "Check",
+        "text": "Personal self-care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/women-harmony-body-wellness-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 349,
+        "originalPrice": 499,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 599,
+        "originalPrice": 899,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 999,
+        "originalPrice": 1499,
+        "image": ""
+      }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 14,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Anytime",
+      "instructions": "Massage gently on body."
+    },
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "senior-comfort-body-wellness-oil",
+    "slug": "senior-comfort-body-wellness-oil",
+    "name": "Senior Comfort Body Wellness Oil",
+    "category": "Body Massage Oil",
+    "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
+    "benefits": [
+      {
+        "icon": "ShieldCheck",
+        "text": "Full-body massage"
+      },
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired oil care"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel massage experience"
+      },
+      {
+        "icon": "Check",
+        "text": "Personal self-care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/senior-comfort-body-wellness-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 349,
+        "originalPrice": 499,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 599,
+        "originalPrice": 899,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 999,
+        "originalPrice": 1499,
+        "image": ""
+      }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 14,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "As needed",
+      "timing": "Anytime",
+      "instructions": "Massage gently on body."
+    },
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "kids-gentle-hair-wellness-oil",
+    "slug": "kids-gentle-hair-wellness-oil",
+    "name": "Kids Gentle Hair Wellness Oil",
+    "category": "Hair Wellness Oil",
+    "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired hair care"
+      },
+      {
+        "icon": "Check",
+        "text": "Regular grooming routine"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel oil application"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy massage/application"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/kids-gentle-hair-wellness-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 499,
+        "originalPrice": 699,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 899,
+        "originalPrice": 1299,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 1799,
+        "originalPrice": 2499,
+        "image": ""
+      }
     ],
     "price": 499,
     "originalPrice": 699,
     "discount": 29,
     "rating": 5,
-    "reviewCount": 12,
+    "reviewCount": 20,
     "badge": "100% NATURAL",
     "inclusions": "1x Bottle",
-    "durationText": "Varies by usage",
+    "durationText": "Up to 1-3 Months Wellness Care",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Apply and massage gently."
+      "serving": "Few Drops",
+      "timing": "Anytime",
+      "instructions": "Massage on scalp."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -992,37 +1830,301 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "trial-wellness-pack",
-    "slug": "trial-wellness-pack",
-    "name": "Trial Wellness Pack",
-    "selectionType": "single",
-    "category": "Individual Wellness Packs",
-    "shortDescription": "A convenient introductory wellness combination for experiencing a simple Nabhi and foot-care routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A convenient introductory wellness combination for experiencing a simple Nabhi and foot-care routine.",
-    "benefits": [],
+    "id": "men-hair-strength-wellness-oil",
+    "slug": "men-hair-strength-wellness-oil",
+    "name": "Men Hair Strength Wellness Oil",
+    "category": "Hair Wellness Oil",
+    "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired hair care"
+      },
+      {
+        "icon": "Check",
+        "text": "Regular grooming routine"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel oil application"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy massage/application"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/trial-wellness-pack.jpg"
+      "/images/products/men-hair-strength-wellness-oil.jpg"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 499,
+        "originalPrice": 699,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 899,
+        "originalPrice": 1299,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 1799,
+        "originalPrice": 2499,
+        "image": ""
+      }
+    ],
+    "price": 499,
+    "originalPrice": 699,
+    "discount": 29,
+    "rating": 5,
+    "reviewCount": 20,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "Few Drops",
+      "timing": "Anytime",
+      "instructions": "Massage on scalp."
+    },
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "women-hair-harmony-wellness-oil",
+    "slug": "women-hair-harmony-wellness-oil",
+    "name": "Women Hair Harmony Wellness Oil",
+    "category": "Hair Wellness Oil",
+    "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired hair care"
+      },
+      {
+        "icon": "Check",
+        "text": "Regular grooming routine"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel oil application"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy massage/application"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/women-hair-harmony-wellness-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 499,
+        "originalPrice": 699,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 899,
+        "originalPrice": 1299,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 1799,
+        "originalPrice": 2499,
+        "image": ""
+      }
+    ],
+    "price": 499,
+    "originalPrice": 699,
+    "discount": 29,
+    "rating": 5,
+    "reviewCount": 20,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "Few Drops",
+      "timing": "Anytime",
+      "instructions": "Massage on scalp."
+    },
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "senior-hair-care-wellness-oil",
+    "slug": "senior-hair-care-wellness-oil",
+    "name": "Senior Hair Care Wellness Oil",
+    "category": "Hair Wellness Oil",
+    "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "fullDescription": "Experience the timeless benefits of daily self-care.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Traditional-inspired hair care"
+      },
+      {
+        "icon": "Check",
+        "text": "Regular grooming routine"
+      },
+      {
+        "icon": "Heart",
+        "text": "Nourishing-feel oil application"
+      },
+      {
+        "icon": "Check",
+        "text": "Easy massage/application"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/senior-hair-care-wellness-oil.jpg"
+    ],
+    "variants": [
+      {
+        "size": "50 ml",
+        "price": 499,
+        "originalPrice": 699,
+        "image": ""
+      },
+      {
+        "size": "100 ml",
+        "price": 899,
+        "originalPrice": 1299,
+        "image": ""
+      },
+      {
+        "size": "200 ml",
+        "price": 1799,
+        "originalPrice": 2499,
+        "image": ""
+      }
+    ],
+    "price": 499,
+    "originalPrice": 699,
+    "discount": 29,
+    "rating": 5,
+    "reviewCount": 20,
+    "badge": "100% NATURAL",
+    "inclusions": "1x Bottle",
+    "durationText": "Up to 1-3 Months Wellness Care",
+    "healthGoals": [],
+    "idealFor": [
+      "All"
+    ],
+    "usageInstructions": {
+      "serving": "Few Drops",
+      "timing": "Anytime",
+      "instructions": "Massage on scalp."
+    },
+    "specifications": {
+      "Net Quantity": "50ml / 100ml / 200ml",
+      "Storage": "Store in a cool, dry place"
+    },
+    "certifications": [
+      "100% Natural"
+    ],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "individual-trial-wellness-pack",
+    "slug": "individual-trial-wellness-pack",
+    "name": "Individual Trial Wellness Pack",
+    "category": "Individual Trial Wellness Pack",
+    "shortDescription": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil. 40 ml total volume. Up to 1 Month Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil. 40 ml total volume. Up to 1 Month Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil"
+      },
+      {
+        "icon": "Check",
+        "text": "40 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 1 Month Wellness Care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/individual-trial-wellness-pack.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 499,
+        "originalPrice": 749,
+        "image": ""
+      }
+    ],
     "price": 499,
     "originalPrice": 749,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "🌱 STARTER TRIAL",
-    "inclusions": "• 10 ml Nabhi Wellness Oil Blend\n• 30 ml Feet Massage Oil",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil",
     "durationText": "Up to 1 Month Wellness Care",
+    "totalQuantityMl": "40 ml",
+    "selectionType": "single",
+    "memberCount": 1,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "40 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1034,34 +2136,61 @@ export const products: Product[] = [
     "id": "diamond-trial-wellness-pack",
     "slug": "diamond-trial-wellness-pack",
     "name": "Diamond Trial Wellness Pack",
-    "selectionType": "single",
-    "category": "Individual Wellness Packs",
-    "shortDescription": "A complete introductory combination bringing Nabhi, feet and body massage care together in one convenient wellness pack.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A complete introductory combination bringing Nabhi, feet and body massage care together in one convenient wellness pack.",
-    "benefits": [],
+    "category": "Diamond Trial Wellness Pack",
+    "shortDescription": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil. 140 ml total volume. Up to 1 Month Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil. 140 ml total volume. Up to 1 Month Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil"
+      },
+      {
+        "icon": "Check",
+        "text": "140 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 1 Month Wellness Care"
+      }
+    ],
     "ingredients": [],
     "images": [
       "/images/products/diamond-trial-wellness-pack.jpg"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 999,
+        "originalPrice": 1499,
+        "image": ""
+      }
+    ],
     "price": 999,
     "originalPrice": 1499,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "💎 COMPLETE TRIAL",
-    "inclusions": "• 10 ml Nabhi Wellness Oil Blend\n• 30 ml Feet Massage Oil\n• 100 ml Body Wellness Massage Oil",
-    "durationText": "Complete 3-Step Wellness Trial",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil",
+    "durationText": "Up to 1 Month Wellness Care",
+    "totalQuantityMl": "140 ml",
+    "selectionType": "single",
+    "memberCount": 1,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "140 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1070,37 +2199,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "gold-wellness-pack",
-    "slug": "gold-wellness-pack",
-    "name": "Gold Wellness Pack",
-    "selectionType": "four-distinct",
-    "category": "Individual Wellness Packs",
-    "shortDescription": "A multi-category wellness pack bringing all four Ayurdhara Divya Shakti wellness blends together for a broader personal or family routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A multi-category wellness pack bringing all four Ayurdhara Divya Shakti wellness blends together for a broader personal or family routine.",
-    "benefits": [],
+    "id": "individual-gold-wellness-pack",
+    "slug": "individual-gold-wellness-pack",
+    "name": "Individual Gold Wellness Pack",
+    "category": "Individual Gold Wellness Pack",
+    "shortDescription": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil. 140 ml total volume. Up to 4 Months Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil. 140 ml total volume. Up to 4 Months Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil"
+      },
+      {
+        "icon": "Check",
+        "text": "140 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 4 Months Wellness Care"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/gold-wellness-pack.jpg"
+      "/images/products/individual-gold-wellness-pack.jpg"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 1799,
+        "originalPrice": 2499,
+        "image": ""
+      }
+    ],
     "price": 1799,
     "originalPrice": 2499,
     "discount": 28,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "🟡 BEST VALUE",
-    "inclusions": "• 40 ml Nabhi Wellness Oil Blend (4 × 10 ml)\n• 100 ml Feet Massage Oil",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil",
     "durationText": "Up to 4 Months Wellness Care",
+    "totalQuantityMl": "140 ml",
+    "selectionType": "single",
+    "memberCount": 1,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "140 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1109,37 +2265,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "premium-wellness-pack",
-    "slug": "premium-wellness-pack",
-    "name": "Premium Wellness Pack",
-    "selectionType": "four-distinct",
-    "category": "Individual Wellness Packs",
-    "shortDescription": "Our premium multi-category wellness experience, combining four dedicated wellness blends with a larger foot massage oil for a longer-term self-care routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Our premium multi-category wellness experience, combining four dedicated wellness blends with a larger foot massage oil for a longer-term self-care routine.",
-    "benefits": [],
+    "id": "individual-premium-wellness-pack",
+    "slug": "individual-premium-wellness-pack",
+    "name": "Individual Premium Wellness Pack",
+    "category": "Individual Premium Wellness Pack",
+    "shortDescription": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil. 280 ml total volume. Up to 8 Months Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil. 280 ml total volume. Up to 8 Months Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil"
+      },
+      {
+        "icon": "Check",
+        "text": "280 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 8 Months Wellness Care"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/premium-wellness-pack.jpg"
+      "/images/products/individual-premium-wellness-pack.jpg"
     ],
-    "variants": [],
-    "price": 3299,
-    "originalPrice": 4999,
-    "discount": 34,
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 3999,
+        "originalPrice": 5999,
+        "image": ""
+      }
+    ],
+    "price": 3999,
+    "originalPrice": 5999,
+    "discount": 33,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "💚 LONG-TERM VALUE",
-    "inclusions": "• 80 ml Nabhi Wellness Oil Blend (4 × 20 ml)\n• 200 ml Feet Massage Oil",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil",
     "durationText": "Up to 8 Months Wellness Care",
+    "totalQuantityMl": "280 ml",
+    "selectionType": "single",
+    "memberCount": 1,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "280 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1148,38 +2331,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "2-member-family-trial",
-    "slug": "2-member-family-trial",
-    "name": "2 Member Family Trial",
+    "id": "2-member-family-trial-pack",
+    "slug": "2-member-family-trial-pack",
+    "name": "2 Member Family Trial Pack",
+    "category": "Family Trial Wellness Packs",
+    "shortDescription": "Trial packs for 2 members. 80 ml total volume. Up to 1 Month Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Trial packs for 2 members. 80 ml total volume. Up to 1 Month Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Trial packs for 2 members"
+      },
+      {
+        "icon": "Check",
+        "text": "80 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 1 Month Wellness Care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/2-member-family-trial-pack.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 899,
+        "originalPrice": 1499,
+        "image": ""
+      }
+    ],
+    "price": 899,
+    "originalPrice": 1499,
+    "discount": 40,
+    "rating": 5,
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Trial packs for 2 members",
+    "durationText": "Up to 1 Month Wellness Care",
+    "totalQuantityMl": "80 ml",
     "selectionType": "per-member",
     "memberCount": 2,
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "An introductory family wellness option where each member can choose their preferred wellness category.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "An introductory family wellness option where each member can choose their preferred wellness category.",
-    "benefits": [],
-    "ingredients": [],
-    "images": [
-      "/images/products/2-member-family-trial.jpg"
-    ],
-    "variants": [],
-    "price": 3199,
-    "originalPrice": 4999,
-    "discount": 36,
-    "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "2x Member Trial",
-    "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "80 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1188,38 +2397,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "3-member-family-trial",
-    "slug": "3-member-family-trial",
-    "name": "3 Member Family Trial",
+    "id": "3-member-family-trial-pack",
+    "slug": "3-member-family-trial-pack",
+    "name": "3 Member Family Trial Pack",
+    "category": "Family Trial Wellness Packs",
+    "shortDescription": "Trial packs for 3 members. 120 ml total volume. Up to 1 Month Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Trial packs for 3 members. 120 ml total volume. Up to 1 Month Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Trial packs for 3 members"
+      },
+      {
+        "icon": "Check",
+        "text": "120 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 1 Month Wellness Care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/3-member-family-trial-pack.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 1299,
+        "originalPrice": 2249,
+        "image": ""
+      }
+    ],
+    "price": 1299,
+    "originalPrice": 2249,
+    "discount": 42,
+    "rating": 5,
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Trial packs for 3 members",
+    "durationText": "Up to 1 Month Wellness Care",
+    "totalQuantityMl": "120 ml",
     "selectionType": "per-member",
     "memberCount": 3,
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "A convenient family trial pack allowing three members to personalize their wellness categories.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A convenient family trial pack allowing three members to personalize their wellness categories.",
-    "benefits": [],
-    "ingredients": [],
-    "images": [
-      "/images/products/3-member-family-trial.jpg"
-    ],
-    "variants": [],
-    "price": 4799,
-    "originalPrice": 7499,
-    "discount": 36,
-    "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "3x Member Trial",
-    "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "120 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1228,38 +2463,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "4-member-family-trial",
-    "slug": "4-member-family-trial",
-    "name": "4 Member Family Trial",
+    "id": "4-member-family-trial-pack",
+    "slug": "4-member-family-trial-pack",
+    "name": "4 Member Family Trial Pack",
+    "category": "Family Trial Wellness Packs",
+    "shortDescription": "Trial packs for 4 members. 160 ml total volume. Up to 1 Month Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Trial packs for 4 members. 160 ml total volume. Up to 1 Month Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Trial packs for 4 members"
+      },
+      {
+        "icon": "Check",
+        "text": "160 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 1 Month Wellness Care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/4-member-family-trial-pack.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 1699,
+        "originalPrice": 2999,
+        "image": ""
+      }
+    ],
+    "price": 1699,
+    "originalPrice": 2999,
+    "discount": 43,
+    "rating": 5,
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Trial packs for 4 members",
+    "durationText": "Up to 1 Month Wellness Care",
+    "totalQuantityMl": "160 ml",
     "selectionType": "per-member",
     "memberCount": 4,
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "A family-friendly introduction to personalized wellness oil care for four members.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A family-friendly introduction to personalized wellness oil care for four members.",
-    "benefits": [],
-    "ingredients": [],
-    "images": [
-      "/images/products/4-member-family-trial.jpg"
-    ],
-    "variants": [],
-    "price": 6399,
-    "originalPrice": 9999,
-    "discount": 36,
-    "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "4x Member Trial",
-    "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "160 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1268,38 +2529,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "5-member-family-trial",
-    "slug": "5-member-family-trial",
-    "name": "5 Member Family Trial",
+    "id": "5-member-family-trial-pack",
+    "slug": "5-member-family-trial-pack",
+    "name": "5 Member Family Trial Pack",
+    "category": "Family Trial Wellness Packs",
+    "shortDescription": "Trial packs for 5 members. 200 ml total volume. Up to 1 Month Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Trial packs for 5 members. 200 ml total volume. Up to 1 Month Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Trial packs for 5 members"
+      },
+      {
+        "icon": "Check",
+        "text": "200 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 1 Month Wellness Care"
+      }
+    ],
+    "ingredients": [],
+    "images": [
+      "/images/products/5-member-family-trial-pack.jpg"
+    ],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 2099,
+        "originalPrice": 3749,
+        "image": ""
+      }
+    ],
+    "price": 2099,
+    "originalPrice": 3749,
+    "discount": 44,
+    "rating": 5,
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Trial packs for 5 members",
+    "durationText": "Up to 1 Month Wellness Care",
+    "totalQuantityMl": "200 ml",
     "selectionType": "per-member",
     "memberCount": 5,
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "A convenient family trial option for five members, with individual category selection for everyone.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A convenient family trial option for five members, with individual category selection for everyone.",
-    "benefits": [],
-    "ingredients": [],
-    "images": [
-      "/images/products/5-member-family-trial.jpg"
-    ],
-    "variants": [],
-    "price": 7999,
-    "originalPrice": 12499,
-    "discount": 36,
-    "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "5x Member Trial",
-    "durationText": "Up to 4 Months",
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "200 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1308,38 +2595,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "2-member-family-gold",
-    "slug": "2-member-family-gold",
-    "name": "2 Member Family Gold",
-    "selectionType": "per-member",
-    "memberCount": 2,
+    "id": "2-member-family-gold-wellness-pack",
+    "slug": "2-member-family-gold-wellness-pack",
+    "name": "2 Member Family Gold Wellness Pack",
     "category": "Family Gold Wellness Packs",
-    "shortDescription": "A longer-term personalized wellness option for two family members.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A longer-term personalized wellness option for two family members.",
-    "benefits": [],
+    "shortDescription": "Gold packs for 2 members. 280 ml total volume. Up to 4 Months Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gold packs for 2 members. 280 ml total volume. Up to 4 Months Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Gold packs for 2 members"
+      },
+      {
+        "icon": "Check",
+        "text": "280 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 4 Months Wellness Care"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/2-member-family-gold.jpg"
+      "/images/products/2-member-family-gold-wellness-pack.jpg"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 3999,
+        "originalPrice": 5499,
+        "image": ""
+      }
+    ],
     "price": 3999,
     "originalPrice": 5499,
     "discount": 27,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "2x Member Gold",
-    "durationText": "Up to 4 Months",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Gold packs for 2 members",
+    "durationText": "Up to 4 Months Wellness Care",
+    "totalQuantityMl": "280 ml",
+    "selectionType": "per-member",
+    "memberCount": 2,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "280 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1348,38 +2661,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "3-member-family-gold",
-    "slug": "3-member-family-gold",
-    "name": "3 Member Family Gold",
-    "selectionType": "per-member",
-    "memberCount": 3,
+    "id": "3-member-family-gold-wellness-pack",
+    "slug": "3-member-family-gold-wellness-pack",
+    "name": "3 Member Family Gold Wellness Pack",
     "category": "Family Gold Wellness Packs",
-    "shortDescription": "A personalized family wellness combination designed for three members.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A personalized family wellness combination designed for three members.",
-    "benefits": [],
+    "shortDescription": "Gold packs for 3 members. 420 ml total volume. Up to 4 Months Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gold packs for 3 members. 420 ml total volume. Up to 4 Months Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Gold packs for 3 members"
+      },
+      {
+        "icon": "Check",
+        "text": "420 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 4 Months Wellness Care"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/3-member-family-gold.jpg"
+      "/images/products/3-member-family-gold-wellness-pack.jpg"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 5799,
+        "originalPrice": 8249,
+        "image": ""
+      }
+    ],
     "price": 5799,
     "originalPrice": 8249,
     "discount": 30,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "3x Member Gold",
-    "durationText": "Up to 4 Months",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Gold packs for 3 members",
+    "durationText": "Up to 4 Months Wellness Care",
+    "totalQuantityMl": "420 ml",
+    "selectionType": "per-member",
+    "memberCount": 3,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "420 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1388,38 +2727,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "4-member-family-gold",
-    "slug": "4-member-family-gold",
-    "name": "4 Member Family Gold",
-    "selectionType": "per-member",
-    "memberCount": 4,
+    "id": "4-member-family-gold-wellness-pack",
+    "slug": "4-member-family-gold-wellness-pack",
+    "name": "4 Member Family Gold Wellness Pack",
     "category": "Family Gold Wellness Packs",
-    "shortDescription": "A convenient multi-member family wellness solution with individual category selection.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "A convenient multi-member family wellness solution with individual category selection.",
-    "benefits": [],
+    "shortDescription": "Gold packs for 4 members. 560 ml total volume. Up to 4 Months Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gold packs for 4 members. 560 ml total volume. Up to 4 Months Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Gold packs for 4 members"
+      },
+      {
+        "icon": "Check",
+        "text": "560 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 4 Months Wellness Care"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/4-member-family-gold.jpg"
+      "/images/products/4-member-family-gold-wellness-pack.jpg"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 7499,
+        "originalPrice": 10999,
+        "image": ""
+      }
+    ],
     "price": 7499,
     "originalPrice": 10999,
     "discount": 32,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "4x Member Gold",
-    "durationText": "Up to 4 Months",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Gold packs for 4 members",
+    "durationText": "Up to 4 Months Wellness Care",
+    "totalQuantityMl": "560 ml",
+    "selectionType": "per-member",
+    "memberCount": 4,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "560 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1428,38 +2793,64 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "5-member-family-gold",
-    "slug": "5-member-family-gold",
-    "name": "5 Member Family Gold",
-    "selectionType": "per-member",
-    "memberCount": 5,
+    "id": "5-member-family-gold-wellness-pack",
+    "slug": "5-member-family-gold-wellness-pack",
+    "name": "5 Member Family Gold Wellness Pack",
     "category": "Family Gold Wellness Packs",
-    "shortDescription": "Our larger family wellness option, allowing five members to create their own personalized category combinations.",
-    "fullDescription": "Experience the timeless benefits of daily self-care together.",
-    "story": "Rooted in ancient Ayurvedic texts.",
-    "benefit": "Our larger family wellness option, allowing five members to create their own personalized category combinations.",
-    "benefits": [],
+    "shortDescription": "Gold packs for 5 members. 700 ml total volume. Up to 4 Months Wellness Care",
+    "fullDescription": "A complete wellness routine in one convenient pack.",
+    "story": "Rooted in ancient wellness texts.",
+    "benefit": "Gold packs for 5 members. 700 ml total volume. Up to 4 Months Wellness Care",
+    "benefits": [
+      {
+        "icon": "Check",
+        "text": "Gold packs for 5 members"
+      },
+      {
+        "icon": "Check",
+        "text": "700 ml"
+      },
+      {
+        "icon": "Check",
+        "text": "Up to 4 Months Wellness Care"
+      }
+    ],
     "ingredients": [],
     "images": [
-      "/images/products/5-member-family-gold.jpg"
+      "/images/products/5-member-family-gold-wellness-pack.jpg"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "size": "Pack",
+        "price": 8999,
+        "originalPrice": 13749,
+        "image": ""
+      }
+    ],
     "price": 8999,
     "originalPrice": 13749,
     "discount": 35,
     "rating": 5,
-    "reviewCount": 12,
-    "badge": "👨‍👩‍👧 GOLD FAMILY VALUE",
-    "inclusions": "5x Member Gold",
-    "durationText": "Up to 4 Months",
+    "reviewCount": 25,
+    "badge": "100% NATURAL",
+    "inclusions": "Gold packs for 5 members",
+    "durationText": "Up to 4 Months Wellness Care",
+    "totalQuantityMl": "700 ml",
+    "selectionType": "per-member",
+    "memberCount": 5,
     "healthGoals": [],
-    "idealFor": [],
+    "idealFor": [
+      "All"
+    ],
     "usageInstructions": {
       "serving": "As needed",
       "timing": "Daily",
-      "instructions": "Use as directed."
+      "instructions": "Use as part of personal wellness routine."
     },
-    "specifications": {},
+    "specifications": {
+      "Net Quantity": "700 ml",
+      "Storage": "Store in a cool, dry place"
+    },
     "certifications": [
       "100% Natural"
     ],
@@ -1468,11 +2859,3 @@ export const products: Product[] = [
     "routineProductIds": []
   }
 ];
-
-export function getProductBySlug(slug: string): Product | undefined {
-  return products.find(p => p.slug === slug);
-}
-
-export function getAllProductSlugs(): string[] {
-  return products.map(p => p.slug);
-}

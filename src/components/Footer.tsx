@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <span className="text-2xl font-serif tracking-wide block mb-6 text-[#E88B23] font-bold">Ayurdhara</span>
             <p className="text-sm leading-relaxed text-gray-300 font-medium">
-              Elevating Ayurvedic wellness with premium, natural formulations inspired by 5000 years of tradition. 100% organic, pure, and authentic.
+              Ayurdhara Divya Shakti brings traditional-inspired oil care into a simple modern wellness routine. Our Oil Wellness Care range includes personalized Nabhi oils, Feet Massage Oils, Body Massage Oils and Hair Wellness Oils for Kids, Men, Women and Seniors. The collection is designed around simple self-care, massage and everyday wellness rituals.
             </p>
           </div>
 
@@ -50,7 +50,12 @@ export default function Footer() {
 
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 gap-6">
+        <div className="pt-8 border-t border-white/10 text-center mb-6">
+          <p className="text-xs text-gray-500 font-medium max-w-4xl mx-auto leading-relaxed">
+            Disclaimer: These products are intended for general wellness and personal-care use. Product information is not intended to diagnose, treat, cure or prevent any disease.
+          </p>
+        </div>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <span className="text-sm text-gray-500 font-medium">&copy; {new Date().getFullYear()} Ayurdhara Divya Shakti. All rights reserved.</span>
           <div className="flex gap-6">
             <Link href="#" className="text-gray-500 hover:text-white text-sm font-medium transition-colors">Privacy Policy</Link>
