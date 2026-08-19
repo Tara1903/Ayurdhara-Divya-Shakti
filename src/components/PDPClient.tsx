@@ -387,6 +387,36 @@ const [qty, setQty] = useState(1);
 
           {/* === 3. VARIANTS ON MOBILE ONLY (order-3) === */}
           <div className="order-3 lg:hidden px-4 pt-4 border-b border-gray-200 pb-4">
+          {requiredSelectionsCount > 0 && (
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                {isGoldPack ? 'Choose Your 4 Wellness Categories' : 'Choose Your Wellness Category'}
+              </h3>
+              <div className="flex flex-col gap-3">
+                {Array.from({ length: requiredSelectionsCount }).map((_, idx) => (
+                  <div key={idx} className="flex flex-col gap-1">
+                    {requiredSelectionsCount > 1 && (
+                      <span className="text-xs text-gray-600 font-medium">
+                        {isFamilyPack ? `Member ${idx + 1}` : `Category ${idx + 1}`}
+                      </span>
+                    )}
+                    <select 
+                      value={categorySelections[idx]} 
+                      onChange={(e) => handleCategoryChange(idx, e.target.value)}
+                      className="w-full p-2 border border-gray-300 rounded-md bg-white text-sm focus:ring-1 focus:ring-[#4B7B3B] focus:outline-none"
+                    >
+                      <option value="" disabled>Choose Category</option>
+                      <option value="Kids Care">Kids Care</option>
+                      <option value="Men Wellness">Men Wellness</option>
+                      <option value="Women Wellness">Women Wellness</option>
+                      <option value="Senior Care">Senior Care</option>
+                    </select>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
             {product.variants && product.variants.length > 0 && (
               <>
                 <div className="text-sm font-medium text-gray-900 mb-2">
