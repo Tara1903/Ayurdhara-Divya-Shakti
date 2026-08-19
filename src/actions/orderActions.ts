@@ -19,7 +19,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
   let isGoldMember = false;
   const { data: { user } } = await supabase.auth.getUser();
   if (user) {
-    const { data: profile } = await supabase.from('profiles').select('is_gold_member').eq('id', user.id).single();
+    const { data: profile } = await adminClient.from('profiles').select('is_gold_member').eq('id', user.id).single();
     if (profile?.is_gold_member) {
       isGoldMember = true;
     }
@@ -27,7 +27,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
 
   // 2. Fetch current prices from database
   const itemIds = payload.items.map(i => i.productId);
-  const { data: dbProducts, error: dbError } = await supabase
+  const { data: dbProducts, error: dbError } = await adminClient
     .from('products')
     .select('id, slug, name, product_variants(id, size, price, original_price, gold_member_price), product_images(url)')
     .in('slug', itemIds);
@@ -96,7 +96,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
   let couponDiscount = 0;
   
   if (payload.couponCode) {
-    const { data: coupon } = await supabase
+    const { data: coupon } = await adminClient
       .from('coupons')
       .select('*')
       .eq('code', payload.couponCode)
@@ -137,7 +137,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
 
   if (payload.partnerCode) {
     // Lookup in the new partner_accounts table
-    const { data: partner } = await supabase
+    const { data: partner } = await adminClient
       .from('partner_accounts')
       .select('id, partner_type, status')
       .eq('partner_id', payload.partnerCode)
@@ -149,7 +149,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       partnerType = partner.partner_type;
       
       // Get Commercial settings for this partner type
-      const { data: siteSettings } = await supabase
+      const { data: siteSettings } = await adminClient
         .from('site_content')
         .select('content')
         .eq('key', 'partner_commercial_settings')
@@ -234,7 +234,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
 
   // 4.5 Save address to profile if logged in
   if (payload.customerId) {
-    const { data: existingAddresses } = await supabase
+    const { data: existingAddresses } = await adminClient
       .from('addresses')
       .select('id')
       .eq('user_id', payload.customerId)
@@ -268,14 +268,14 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     // Prepaid orders deduct inventory upon successful payment webhook.
     for (const item of validatedItems) {
       // Get current variant
-      const { data: variant } = await supabase
+      const { data: variant } = await adminClient
         .from('product_variants')
         .select('stock_quantity')
         .eq('id', item.variant_id)
         .single();
         
       if (variant) {
-        await supabase
+        await adminClient
           .from('product_variants')
           .update({ stock_quantity: Math.max(0, variant.stock_quantity - item.quantity) })
           .eq('id', item.variant_id);
@@ -284,14 +284,14 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     
     // Also update coupon usage if applicable
     if (payload.couponCode && couponDiscount > 0) {
-      const { data: coupon } = await supabase
+      const { data: coupon } = await adminClient
         .from('coupons')
         .select('used_count')
         .eq('code', payload.couponCode)
         .single();
         
       if (coupon) {
-        await supabase
+        await adminClient
           .from('coupons')
           .update({ used_count: coupon.used_count + 1 })
           .eq('code', payload.couponCode);
@@ -339,7 +339,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       starpayCheckoutUrl = starpayResult.data.checkoutUrl;
 
       // Store StarPay order reference in the Ayurdhara order
-      await supabase
+      await adminClient
         .from('orders')
         .update({
           starpay_order_id: starpayOrderId,
@@ -439,14 +439,14 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
   if (!order.customer_id) return { success: true }; // Guest order, no membership
 
   // 2. Check if order contains gold membership eligible course
-  const { data: orderItems } = await supabase
+  const { data: orderItems } = await adminClient
     .from('order_items')
     .select('product_id, variant_id, quantity')
     .eq('order_id', orderId);
 
   if (orderItems && orderItems.length > 0) {
     const productIds = orderItems.map((i: any) => i.product_id);
-    const { data: eligibleProducts } = await supabase
+    const { data: eligibleProducts } = await adminClient
       .from('products')
       .select('slug, name')
       .in('slug', productIds)
@@ -455,7 +455,7 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
     if (eligibleProducts && eligibleProducts.length > 0) {
       // 3. Activate Gold Membership
       const courseName = eligibleProducts[0].name;
-      await supabase
+      await adminClient
         .from('profiles')
         .update({
           is_gold_member: true,
@@ -469,14 +469,14 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
     
     // 4. Deduct Inventory for Prepaid Order
     for (const item of orderItems) {
-      const { data: variant } = await supabase
+      const { data: variant } = await adminClient
         .from('product_variants')
         .select('stock_quantity')
         .eq('id', item.variant_id)
         .single();
         
       if (variant) {
-        await supabase
+        await adminClient
           .from('product_variants')
           .update({ stock_quantity: Math.max(0, variant.stock_quantity - item.quantity) })
           .eq('id', item.variant_id);
@@ -485,21 +485,21 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
   }
 
   // 5. Update coupon usage if applicable
-  const { data: orderDetails } = await supabase
+  const { data: orderDetails } = await adminClient
     .from('orders')
     .select('coupon_code, coupon_discount, final_total')
     .eq('id', orderId)
     .single();
 
   if (orderDetails?.coupon_code && Number(orderDetails.coupon_discount) > 0) {
-    const { data: coupon } = await supabase
+    const { data: coupon } = await adminClient
       .from('coupons')
       .select('used_count')
       .eq('code', orderDetails.coupon_code)
       .single();
       
     if (coupon) {
-      await supabase
+      await adminClient
         .from('coupons')
         .update({ used_count: coupon.used_count + 1 })
         .eq('code', orderDetails.coupon_code);
@@ -511,14 +511,14 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
     const pointsToAward = Math.floor(orderDetails?.final_total / 10); // 1 point per 10 INR
     
     // Check if customer_rewards exists
-    const { data: rewardData } = await supabase
+    const { data: rewardData } = await adminClient
       .from('customer_rewards')
       .select('*')
       .eq('user_id', order.customer_id)
       .single();
 
     if (rewardData) {
-      await supabase
+      await adminClient
         .from('customer_rewards')
         .update({
           points_balance: rewardData.points_balance + pointsToAward,
@@ -526,7 +526,7 @@ export async function markOrderAsPaid(orderId: string): Promise<{ success: boole
         })
         .eq('user_id', order.customer_id);
     } else {
-      await supabase
+      await adminClient
         .from('customer_rewards')
         .insert({
           user_id: order.customer_id,
