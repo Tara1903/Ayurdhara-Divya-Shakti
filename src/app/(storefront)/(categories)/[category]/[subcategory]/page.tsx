@@ -63,7 +63,13 @@ export default async function SubcategoryPage({ params }: { params: Promise<{ ca
     if (resolvedParams.subcategory === 'feet-wellness-oil') return prodCatLower.includes('feet');
     if (resolvedParams.subcategory === 'hair-wellness-oil') return prodCatLower.includes('hair');
 
-    return prodCatLower === subNameLower || prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower) || prodNameLower.includes(subNameLower);
+    // Fix naive "women" includes "men" bug
+      if (prodCatLower === subNameLower) return true;
+      if (prodNameLower === subNameLower) return true;
+      if (subNameLower === 'women wellness oil blend' && prodCatLower === 'men wellness oil blend') return false;
+      if (subNameLower === 'men wellness oil blend' && prodCatLower === 'women wellness oil blend') return false;
+      
+      return prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower) || prodNameLower.includes(subNameLower);
   });
 
   return (
