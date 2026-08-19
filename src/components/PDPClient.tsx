@@ -303,14 +303,18 @@ const [qty, setQty] = useState(1);
             </div>
             
             {/* Desktop Bullet Points */}
-            <div className="hidden lg:block mt-4">
-              <h3 className="font-bold text-base mb-2">About this item</h3>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-gray-900">
-                {product.benefits.map((b, i) => (
-                  <li key={i}>{b.text}</li>
-                ))}
-              </ul>
-            </div>
+              <div className="mt-4 pb-4">
+                <h3 className="font-bold text-base mb-2">About this item</h3>
+                {product.benefits && product.benefits.length > 0 ? (
+                  <ul className="list-disc pl-4 space-y-1 text-sm text-gray-900">
+                    {product.benefits.map((b, i) => (
+                      <li key={i}>{b.text}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-gray-900 leading-relaxed">{product.shortDescription || product.benefit}</p>
+                )}
+              </div>
           </div>
 
           {/* === 2. LEFT COLUMN ON DESKTOP / 2ND ON MOBILE (Images) === */}
