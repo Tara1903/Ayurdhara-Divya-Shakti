@@ -125,7 +125,7 @@ export default function BodyMassageOilLandingClient({ initialProducts }: BodyMas
                     </div>
                     
                     <Link 
-                      href={`/oil-wellness-care/${product.slug}${selectedSize !== 'All' ? `?size=${encodeURIComponent(selectedSize)}` : ''}`}
+                      href={`/products/${product.slug}${selectedSize !== 'All' ? `?size=${encodeURIComponent(selectedSize)}` : ''}`}
                       className="w-full flex items-center justify-center gap-2 bg-[#f8faf8] hover:bg-[#4B7B3B] hover:text-white text-[#2D5A27] font-bold py-3 px-4 rounded-xl transition-colors"
                     >
                       View Details <ArrowRight size={18} />
