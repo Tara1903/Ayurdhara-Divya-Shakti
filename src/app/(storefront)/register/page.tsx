@@ -11,11 +11,15 @@ function RegisterForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get('redirect') || '/';
+  const prefillEmail = searchParams.get('email') || '';
+  const prefillMobile = searchParams.get('mobile') || '';
+  const prefillName = searchParams.get('name') || '';
+  
   const setSession = useAuthStore((state) => state.setSession);
 
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
+  const [fullName, setFullName] = useState(prefillName);
+  const [email, setEmail] = useState(prefillEmail);
+  const [mobile, setMobile] = useState(prefillMobile);
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

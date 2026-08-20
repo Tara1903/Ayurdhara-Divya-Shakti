@@ -5,6 +5,7 @@ import { use } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { formatINR } from '@/services/pricingService';
+import { useAuthStore } from '@/store/authStore';
 import type { OrderConfirmation } from '@/types/order';
 
 interface PageProps {
@@ -33,6 +34,7 @@ export default function OrderConfirmationPage({ params }: PageProps) {
   const [order, setOrder] = useState<OrderConfirmation | null>(null);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const { user } = useAuthStore();
 
   useEffect(() => {
     setMounted(true);
@@ -292,38 +294,39 @@ export default function OrderConfirmationPage({ params }: PageProps) {
         </div>
 
         {/* Guest account prompt */}
-        <div style={{
-          textAlign: 'center',
-          padding: '1.5rem',
-          background: 'white',
-          border: '1px solid var(--sand)',
-          borderRadius: '12px',
-          marginTop: '1.5rem',
-        }}>
-          <p style={{ fontSize: '0.875rem', color: 'var(--charcoal)', fontWeight: 600, marginBottom: '0.35rem' }}>
-            Want to track your order?
-          </p>
-          <p style={{ fontSize: '0.8rem', color: 'var(--stone)', marginBottom: '1rem' }}>
-            Create an account to view order history, track shipments, and save addresses.
-          </p>
-          <Link
-            href="#"
-            style={{
-              display: 'inline-block',
-              padding: '0.625rem 1.5rem',
-              background: 'var(--ivory)',
-              border: '1.5px solid var(--sand)',
-              borderRadius: '8px',
-              fontSize: '0.825rem',
-              fontWeight: 600,
-              color: 'var(--charcoal)',
-              textDecoration: 'none',
-              transition: 'border-color 200ms',
-            }}
-          >
-            Create Account (Coming Soon)
-          </Link>
-        </div>
+        {!user && (
+          <div style={{
+            textAlign: 'center',
+            padding: '1.5rem',
+            background: 'white',
+            border: '1px solid var(--sand)',
+            borderRadius: '12px',
+            marginTop: '1.5rem',
+          }}>
+            <p style={{ fontSize: '0.875rem', color: 'var(--charcoal)', fontWeight: 600, marginBottom: '0.35rem' }}>
+              Want to track your order?
+            </p>
+            <p style={{ fontSize: '0.8rem', color: 'var(--stone)', marginBottom: '1rem' }}>
+              Create an account to view order history, track shipments, and save addresses.
+            </p>
+            <Link
+              href={`/register?email=${encodeURIComponent(order.email || '')}&mobile=${encodeURIComponent(order.mobile || '')}&name=${encodeURIComponent(order.customerName || '')}`}
+              style={{
+                display: 'inline-block',
+                padding: '0.625rem 1.5rem',
+                background: 'var(--ivory)',
+                border: '1.5px solid var(--sand)',
+                borderRadius: '8px',
+                fontSize: '0.825rem',
+                fontWeight: 600,
+                color: 'var(--charcoal)',
+                textDecoration: 'none',
+              }}
+            >
+              Create Account
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
