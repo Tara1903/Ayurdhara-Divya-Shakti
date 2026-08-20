@@ -193,15 +193,56 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       .select('*')
       .eq('idempotency_key', payload.idempotencyKey)
       .single();
-
+    
     if (existingOrder) {
-      // Order was already created in a previous attempt — return it
+      // Order was already created in a previous attempt
+      let starpayCheckoutUrl = null;
+      let starpayOrderId = existingOrder.starpay_order_id || null;
+      let starpayPaymentToken = existingOrder.starpay_payment_token || null;
+      
+      // If it was a prepaid order but StarPay failed previously, retry creating StarPay order
+      if (existingOrder.payment_method !== 'cod' && !starpayOrderId) {
+        const returnUrl = payload.returnUrl || 'http://localhost:3000/checkout/success';
+        const webhookUrl = returnUrl.replace('/checkout/success', '/api/webhooks/payment');
+        
+        const starpayResult = await createStarPayOrder({
+          amount: existingOrder.final_total,
+          description: `Ayurdhara Order ${existingOrder.order_ref}`,
+          customerName: payload.shippingAddress.fullName,
+          customerEmail: payload.guestEmail,
+          customerPhone: payload.guestMobile,
+          returnUrl,
+          webhookUrl,
+          metadata: {
+            storefrontOrderId: existingOrder.id,
+            ayurdharaOrderRef: existingOrder.order_ref,
+            customerId: existingOrder.customer_id || user?.id || 'guest',
+            isGoldMember: isGoldMember.toString(),
+            couponCode: payload.couponCode || 'NONE',
+            partnerCode: payload.partnerCode || 'NONE',
+          }
+        });
+        
+        if (starpayResult.success) {
+          starpayOrderId = starpayResult.data.orderId;
+          starpayPaymentToken = starpayResult.data.paymentToken;
+          starpayCheckoutUrl = starpayResult.data.checkoutUrl;
+          
+          await adminClient.from('orders').update({
+            starpay_order_id: starpayOrderId,
+            starpay_payment_token: starpayPaymentToken,
+          }).eq('id', existingOrder.id);
+        } else {
+          return { error: 'Payment gateway unavailable. Please try again.' };
+        }
+      }
+      
       // Fetch its items too
       const { data: existingItems } = await adminClient
         .from('order_items')
         .select('*')
         .eq('order_id', existingOrder.id);
-
+        
       return {
         order: {
           id: existingOrder.id,
@@ -209,9 +250,9 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
           customerId: existingOrder.customer_id,
           guestEmail: existingOrder.guest_email,
           guestMobile: existingOrder.guest_mobile,
-          starpayCheckoutUrl: null,
-          starpayOrderId: existingOrder.starpay_order_id || null,
-          starpayPaymentToken: existingOrder.starpay_payment_token || null,
+          starpayCheckoutUrl,
+          starpayOrderId,
+          starpayPaymentToken,
           items: (existingItems || []).map((vi: any) => ({
             productId: vi.product_id,
             productSlug: vi.product_slug,
@@ -407,7 +448,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
         .eq('id', orderData.id);
     } else {
       console.error('[StarPay] Failed to create payment order:', starpayResult.error);
-      // Don't block order creation — fall back to manual payment flow
+      return { error: 'Payment gateway unavailable. Please try again later.' };
     }
   }
 
