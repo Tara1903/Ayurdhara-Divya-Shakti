@@ -210,7 +210,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
           description: `Ayurdhara Order ${existingOrder.order_ref}`,
           customerName: payload.shippingAddress.fullName,
           customerEmail: payload.guestEmail,
-          customerPhone: payload.guestMobile,
+          customerPhone: payload.guestMobile || payload.shippingAddress.mobile || '9999999999',
           returnUrl,
           webhookUrl,
           metadata: {
@@ -415,7 +415,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       description: `Ayurdhara Order ${orderRef}`,
       customerName: payload.shippingAddress.fullName,
       customerEmail: payload.guestEmail,
-      customerPhone: payload.guestMobile,
+      customerPhone: payload.guestMobile || payload.shippingAddress.mobile || '9999999999',
       returnUrl,
       webhookUrl,
       metadata: {
