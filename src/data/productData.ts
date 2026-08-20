@@ -52,8 +52,8 @@ export const products: Product[] = [
     "name": "Kids Smart Oil Blend",
     "category": "Kids Care Oil Blend",
     "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A gentle-feel, traditional-inspired wellness oil designed specifically for children's regular personal care routines. This nourishing blend makes everyday self-care simple, focusing on comfort and a relaxing massage experience.",
+    "story": "Rooted in the timeless principles of gentle care, this natural-inspired formulation is crafted to introduce children to a comforting daily wellness ritual.",
     "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "benefits": [
       {
@@ -121,8 +121,8 @@ export const products: Product[] = [
     "name": "Kids Growth Oil Blend",
     "category": "Kids Care Oil Blend",
     "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A gentle-feel, traditional-inspired wellness oil designed specifically for children's regular personal care routines. This nourishing blend makes everyday self-care simple, focusing on comfort and a relaxing massage experience.",
+    "story": "Rooted in the timeless principles of gentle care, this natural-inspired formulation is crafted to introduce children to a comforting daily wellness ritual.",
     "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "benefits": [
       {
@@ -190,8 +190,8 @@ export const products: Product[] = [
     "name": "Kids Calm Oil Blend",
     "category": "Kids Care Oil Blend",
     "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A gentle-feel, traditional-inspired wellness oil designed specifically for children's regular personal care routines. This nourishing blend makes everyday self-care simple, focusing on comfort and a relaxing massage experience.",
+    "story": "Rooted in the timeless principles of gentle care, this natural-inspired formulation is crafted to introduce children to a comforting daily wellness ritual.",
     "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "benefits": [
       {
@@ -259,8 +259,8 @@ export const products: Product[] = [
     "name": "Kids Daily Care Oil Blend",
     "category": "Kids Care Oil Blend",
     "shortDescription": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A gentle-feel, traditional-inspired wellness oil designed specifically for children's regular personal care routines. This nourishing blend makes everyday self-care simple, focusing on comfort and a relaxing massage experience.",
+    "story": "Rooted in the timeless principles of gentle care, this natural-inspired formulation is crafted to introduce children to a comforting daily wellness ritual.",
     "benefit": "Gentle-feel, traditional-inspired Nabhi wellness oil care designed for children's regular personal wellness routine.",
     "benefits": [
       {
@@ -328,8 +328,8 @@ export const products: Product[] = [
     "name": "Men Strength Oil Blend",
     "category": "Men Wellness Oil Blend",
     "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A premium, natural-inspired wellness oil crafted for men's daily self-care rituals. Experience a relaxing-feel massage routine designed to complement an active lifestyle and support everyday vitality.",
+    "story": "Inspired by traditional wellness practices, this oil provides a comforting and nourishing-feel experience, designed specifically for modern men's personal care.",
     "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "benefits": [
       {
@@ -393,8 +393,8 @@ export const products: Product[] = [
     "name": "Men Active Oil Blend",
     "category": "Men Wellness Oil Blend",
     "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A premium, natural-inspired wellness oil crafted for men's daily self-care rituals. Experience a relaxing-feel massage routine designed to complement an active lifestyle and support everyday vitality.",
+    "story": "Inspired by traditional wellness practices, this oil provides a comforting and nourishing-feel experience, designed specifically for modern men's personal care.",
     "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "benefits": [
       {
@@ -458,8 +458,8 @@ export const products: Product[] = [
     "name": "Men Heart Balance Oil Blend",
     "category": "Men Wellness Oil Blend",
     "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A premium, natural-inspired wellness oil crafted for men's daily self-care rituals. Experience a relaxing-feel massage routine designed to complement an active lifestyle and support everyday vitality.",
+    "story": "Inspired by traditional wellness practices, this oil provides a comforting and nourishing-feel experience, designed specifically for modern men's personal care.",
     "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "benefits": [
       {
@@ -523,8 +523,8 @@ export const products: Product[] = [
     "name": "Men Daily Wellness Oil Blend",
     "category": "Men Wellness Oil Blend",
     "shortDescription": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A premium, natural-inspired wellness oil crafted for men's daily self-care rituals. Experience a relaxing-feel massage routine designed to complement an active lifestyle and support everyday vitality.",
+    "story": "Inspired by traditional wellness practices, this oil provides a comforting and nourishing-feel experience, designed specifically for modern men's personal care.",
     "benefit": "Men's traditional-inspired Nabhi wellness oil routine focused on everyday self-care and personal wellness.",
     "benefits": [
       {
@@ -588,8 +588,8 @@ export const products: Product[] = [
     "name": "Women Harmony Oil Blend",
     "category": "Women Wellness Oil Blend",
     "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A nourishing-feel, traditional-inspired wellness oil curated for women's daily self-care. This premium blend supports a relaxing massage routine, focusing on everyday comfort and natural-inspired care.",
+    "story": "Drawing from ancient wellness principles, this luxurious blend was created to bring a moment of peaceful self-care into the modern woman's daily routine.",
     "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "benefits": [
       {
@@ -653,8 +653,8 @@ export const products: Product[] = [
     "name": "Women Care Oil Blend",
     "category": "Women Wellness Oil Blend",
     "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A nourishing-feel, traditional-inspired wellness oil curated for women's daily self-care. This premium blend supports a relaxing massage routine, focusing on everyday comfort and natural-inspired care.",
+    "story": "Drawing from ancient wellness principles, this luxurious blend was created to bring a moment of peaceful self-care into the modern woman's daily routine.",
     "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "benefits": [
       {
@@ -718,8 +718,8 @@ export const products: Product[] = [
     "name": "Women Glow Oil Blend",
     "category": "Women Wellness Oil Blend",
     "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A nourishing-feel, traditional-inspired wellness oil curated for women's daily self-care. This premium blend supports a relaxing massage routine, focusing on everyday comfort and natural-inspired care.",
+    "story": "Drawing from ancient wellness principles, this luxurious blend was created to bring a moment of peaceful self-care into the modern woman's daily routine.",
     "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "benefits": [
       {
@@ -783,8 +783,8 @@ export const products: Product[] = [
     "name": "Women Daily Wellness Oil Blend",
     "category": "Women Wellness Oil Blend",
     "shortDescription": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A nourishing-feel, traditional-inspired wellness oil curated for women's daily self-care. This premium blend supports a relaxing massage routine, focusing on everyday comfort and natural-inspired care.",
+    "story": "Drawing from ancient wellness principles, this luxurious blend was created to bring a moment of peaceful self-care into the modern woman's daily routine.",
     "benefit": "Women's traditional-inspired Nabhi oil-care routine designed for simple everyday personal wellness.",
     "benefits": [
       {
@@ -848,8 +848,8 @@ export const products: Product[] = [
     "name": "Senior Comfort Oil Blend",
     "category": "Senior Care Oil Blend",
     "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A comforting-feel, traditional-inspired wellness oil designed to support seniors in their everyday personal care. This gentle blend is ideal for a relaxing massage routine, bringing a sense of daily comfort.",
+    "story": "Crafted with deep respect for traditional wellness, this nourishing-feel oil is formulated to provide gentle, everyday care for mature skin and daily vitality.",
     "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "benefits": [
       {
@@ -913,8 +913,8 @@ export const products: Product[] = [
     "name": "Senior Active Oil Blend",
     "category": "Senior Care Oil Blend",
     "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A comforting-feel, traditional-inspired wellness oil designed to support seniors in their everyday personal care. This gentle blend is ideal for a relaxing massage routine, bringing a sense of daily comfort.",
+    "story": "Crafted with deep respect for traditional wellness, this nourishing-feel oil is formulated to provide gentle, everyday care for mature skin and daily vitality.",
     "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "benefits": [
       {
@@ -978,8 +978,8 @@ export const products: Product[] = [
     "name": "Senior Balance Oil Blend",
     "category": "Senior Care Oil Blend",
     "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A comforting-feel, traditional-inspired wellness oil designed to support seniors in their everyday personal care. This gentle blend is ideal for a relaxing massage routine, bringing a sense of daily comfort.",
+    "story": "Crafted with deep respect for traditional wellness, this nourishing-feel oil is formulated to provide gentle, everyday care for mature skin and daily vitality.",
     "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "benefits": [
       {
@@ -1043,8 +1043,8 @@ export const products: Product[] = [
     "name": "Senior Daily Wellness Oil Blend",
     "category": "Senior Care Oil Blend",
     "shortDescription": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A comforting-feel, traditional-inspired wellness oil designed to support seniors in their everyday personal care. This gentle blend is ideal for a relaxing massage routine, bringing a sense of daily comfort.",
+    "story": "Crafted with deep respect for traditional wellness, this nourishing-feel oil is formulated to provide gentle, everyday care for mature skin and daily vitality.",
     "benefit": "Comfort-focused, traditional-inspired Nabhi oil-care routine for senior personal wellness.",
     "benefits": [
       {
@@ -1108,8 +1108,8 @@ export const products: Product[] = [
     "name": "Kids Foot Comfort Oil",
     "category": "Feet Massage Oil",
     "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A gentle-feel, traditional-inspired wellness oil designed specifically for children's regular personal care routines. This nourishing blend makes everyday self-care simple, focusing on comfort and a relaxing massage experience.",
+    "story": "Rooted in the timeless principles of gentle care, this natural-inspired formulation is crafted to introduce children to a comforting daily wellness ritual.",
     "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
     "benefits": [
       {
@@ -1191,8 +1191,8 @@ export const products: Product[] = [
     "name": "Men Active Foot Wellness Oil",
     "category": "Feet Massage Oil",
     "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A premium, natural-inspired wellness oil crafted for men's daily self-care rituals. Experience a relaxing-feel massage routine designed to complement an active lifestyle and support everyday vitality.",
+    "story": "Inspired by traditional wellness practices, this oil provides a comforting and nourishing-feel experience, designed specifically for modern men's personal care.",
     "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
     "benefits": [
       {
@@ -1274,8 +1274,8 @@ export const products: Product[] = [
     "name": "Women Foot Harmony Oil",
     "category": "Feet Massage Oil",
     "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A nourishing-feel, traditional-inspired wellness oil curated for women's daily self-care. This premium blend supports a relaxing massage routine, focusing on everyday comfort and natural-inspired care.",
+    "story": "Drawing from ancient wellness principles, this luxurious blend was created to bring a moment of peaceful self-care into the modern woman's daily routine.",
     "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
     "benefits": [
       {
@@ -1357,8 +1357,8 @@ export const products: Product[] = [
     "name": "Senior Foot Comfort Oil",
     "category": "Feet Massage Oil",
     "shortDescription": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A comforting-feel, traditional-inspired wellness oil designed to support seniors in their everyday personal care. This gentle blend is ideal for a relaxing massage routine, bringing a sense of daily comfort.",
+    "story": "Crafted with deep respect for traditional wellness, this nourishing-feel oil is formulated to provide gentle, everyday care for mature skin and daily vitality.",
     "benefit": "Relaxing-feel routine and traditional-inspired foot care for easy application and everyday personal wellness.",
     "benefits": [
       {
@@ -1440,8 +1440,8 @@ export const products: Product[] = [
     "name": "Kids Gentle Body Wellness Oil",
     "category": "Body Massage Oil",
     "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A gentle-feel, traditional-inspired wellness oil designed specifically for children's regular personal care routines. This nourishing blend makes everyday self-care simple, focusing on comfort and a relaxing massage experience.",
+    "story": "Rooted in the timeless principles of gentle care, this natural-inspired formulation is crafted to introduce children to a comforting daily wellness ritual.",
     "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
     "benefits": [
       {
@@ -1519,8 +1519,8 @@ export const products: Product[] = [
     "name": "Men Active Body Wellness Oil",
     "category": "Body Massage Oil",
     "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A premium, natural-inspired wellness oil crafted for men's daily self-care rituals. Experience a relaxing-feel massage routine designed to complement an active lifestyle and support everyday vitality.",
+    "story": "Inspired by traditional wellness practices, this oil provides a comforting and nourishing-feel experience, designed specifically for modern men's personal care.",
     "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
     "benefits": [
       {
@@ -1598,8 +1598,8 @@ export const products: Product[] = [
     "name": "Women Harmony Body Wellness Oil",
     "category": "Body Massage Oil",
     "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A nourishing-feel, traditional-inspired wellness oil curated for women's daily self-care. This premium blend supports a relaxing massage routine, focusing on everyday comfort and natural-inspired care.",
+    "story": "Drawing from ancient wellness principles, this luxurious blend was created to bring a moment of peaceful self-care into the modern woman's daily routine.",
     "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
     "benefits": [
       {
@@ -1677,8 +1677,8 @@ export const products: Product[] = [
     "name": "Senior Comfort Body Wellness Oil",
     "category": "Body Massage Oil",
     "shortDescription": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A comforting-feel, traditional-inspired wellness oil designed to support seniors in their everyday personal care. This gentle blend is ideal for a relaxing massage routine, bringing a sense of daily comfort.",
+    "story": "Crafted with deep respect for traditional wellness, this nourishing-feel oil is formulated to provide gentle, everyday care for mature skin and daily vitality.",
     "benefit": "Traditional-inspired oil care offering a nourishing-feel full-body massage experience for personal self-care.",
     "benefits": [
       {
@@ -1756,8 +1756,8 @@ export const products: Product[] = [
     "name": "Kids Gentle Hair Wellness Oil",
     "category": "Hair Wellness Oil",
     "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A gentle-feel, traditional-inspired wellness oil designed specifically for children's regular personal care routines. This nourishing blend makes everyday self-care simple, focusing on comfort and a relaxing massage experience.",
+    "story": "Rooted in the timeless principles of gentle care, this natural-inspired formulation is crafted to introduce children to a comforting daily wellness ritual.",
     "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
     "benefits": [
       {
@@ -1835,8 +1835,8 @@ export const products: Product[] = [
     "name": "Men Hair Strength Wellness Oil",
     "category": "Hair Wellness Oil",
     "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A premium, natural-inspired wellness oil crafted for men's daily self-care rituals. Experience a relaxing-feel massage routine designed to complement an active lifestyle and support everyday vitality.",
+    "story": "Inspired by traditional wellness practices, this oil provides a comforting and nourishing-feel experience, designed specifically for modern men's personal care.",
     "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
     "benefits": [
       {
@@ -1914,8 +1914,8 @@ export const products: Product[] = [
     "name": "Women Hair Harmony Wellness Oil",
     "category": "Hair Wellness Oil",
     "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A nourishing-feel, traditional-inspired wellness oil curated for women's daily self-care. This premium blend supports a relaxing massage routine, focusing on everyday comfort and natural-inspired care.",
+    "story": "Drawing from ancient wellness principles, this luxurious blend was created to bring a moment of peaceful self-care into the modern woman's daily routine.",
     "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
     "benefits": [
       {
@@ -1993,8 +1993,8 @@ export const products: Product[] = [
     "name": "Senior Hair Care Wellness Oil",
     "category": "Hair Wellness Oil",
     "shortDescription": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
-    "fullDescription": "Experience the timeless benefits of daily self-care.",
-    "story": "Rooted in ancient wellness texts.",
+    "fullDescription": "A comforting-feel, traditional-inspired wellness oil designed to support seniors in their everyday personal care. This gentle blend is ideal for a relaxing massage routine, bringing a sense of daily comfort.",
+    "story": "Crafted with deep respect for traditional wellness, this nourishing-feel oil is formulated to provide gentle, everyday care for mature skin and daily vitality.",
     "benefit": "Traditional-inspired hair care with a nourishing-feel oil application for a regular grooming routine.",
     "benefits": [
       {
@@ -2073,7 +2073,7 @@ export const products: Product[] = [
     "category": "Individual Trial Wellness Pack",
     "shortDescription": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil. 40 ml total volume. Up to 1 Month Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil. 40 ml total volume. Up to 1 Month Wellness Care",
     "benefits": [
       {
@@ -2139,7 +2139,7 @@ export const products: Product[] = [
     "category": "Diamond Trial Wellness Pack",
     "shortDescription": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil. 140 ml total volume. Up to 1 Month Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil. 140 ml total volume. Up to 1 Month Wellness Care",
     "benefits": [
       {
@@ -2205,7 +2205,7 @@ export const products: Product[] = [
     "category": "Individual Gold Wellness Pack",
     "shortDescription": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil. 140 ml total volume. Up to 4 Months Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil. 140 ml total volume. Up to 4 Months Wellness Care",
     "benefits": [
       {
@@ -2271,7 +2271,7 @@ export const products: Product[] = [
     "category": "Individual Premium Wellness Pack",
     "shortDescription": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil. 280 ml total volume. Up to 8 Months Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil. 280 ml total volume. Up to 8 Months Wellness Care",
     "benefits": [
       {
@@ -2337,7 +2337,7 @@ export const products: Product[] = [
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Trial packs for 2 members. 80 ml total volume. Up to 1 Month Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Trial packs for 2 members. 80 ml total volume. Up to 1 Month Wellness Care",
     "benefits": [
       {
@@ -2403,7 +2403,7 @@ export const products: Product[] = [
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Trial packs for 3 members. 120 ml total volume. Up to 1 Month Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Trial packs for 3 members. 120 ml total volume. Up to 1 Month Wellness Care",
     "benefits": [
       {
@@ -2469,7 +2469,7 @@ export const products: Product[] = [
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Trial packs for 4 members. 160 ml total volume. Up to 1 Month Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Trial packs for 4 members. 160 ml total volume. Up to 1 Month Wellness Care",
     "benefits": [
       {
@@ -2535,7 +2535,7 @@ export const products: Product[] = [
     "category": "Family Trial Wellness Packs",
     "shortDescription": "Trial packs for 5 members. 200 ml total volume. Up to 1 Month Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Trial packs for 5 members. 200 ml total volume. Up to 1 Month Wellness Care",
     "benefits": [
       {
@@ -2601,7 +2601,7 @@ export const products: Product[] = [
     "category": "Family Gold Wellness Packs",
     "shortDescription": "Gold packs for 2 members. 280 ml total volume. Up to 4 Months Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Gold packs for 2 members. 280 ml total volume. Up to 4 Months Wellness Care",
     "benefits": [
       {
@@ -2667,7 +2667,7 @@ export const products: Product[] = [
     "category": "Family Gold Wellness Packs",
     "shortDescription": "Gold packs for 3 members. 420 ml total volume. Up to 4 Months Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Gold packs for 3 members. 420 ml total volume. Up to 4 Months Wellness Care",
     "benefits": [
       {
@@ -2733,7 +2733,7 @@ export const products: Product[] = [
     "category": "Family Gold Wellness Packs",
     "shortDescription": "Gold packs for 4 members. 560 ml total volume. Up to 4 Months Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Gold packs for 4 members. 560 ml total volume. Up to 4 Months Wellness Care",
     "benefits": [
       {
@@ -2799,7 +2799,7 @@ export const products: Product[] = [
     "category": "Family Gold Wellness Packs",
     "shortDescription": "Gold packs for 5 members. 700 ml total volume. Up to 4 Months Wellness Care",
     "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "Rooted in ancient wellness texts.",
+    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
     "benefit": "Gold packs for 5 members. 700 ml total volume. Up to 4 Months Wellness Care",
     "benefits": [
       {
