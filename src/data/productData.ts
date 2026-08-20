@@ -2859,3 +2859,11 @@ export const products: Product[] = [
     "routineProductIds": []
   }
 ];
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find(p => p.slug === slug);
+}
+
+export function getAllProductSlugs(): string[] {
+  return products.map(p => p.slug);
+}
