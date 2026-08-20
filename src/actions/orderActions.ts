@@ -186,7 +186,66 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
   const finalTotal = Math.max(0, Number((subtotal + shippingCharge - couponDiscount - partnerDiscount).toFixed(2)));
   const orderRef = generateOrderRef();
 
-  // 3. Create Order
+  // 3. Check if an order with this idempotency key already exists (handles retries)
+  if (payload.idempotencyKey) {
+    const { data: existingOrder } = await adminClient
+      .from('orders')
+      .select('*')
+      .eq('idempotency_key', payload.idempotencyKey)
+      .single();
+
+    if (existingOrder) {
+      // Order was already created in a previous attempt — return it
+      // Fetch its items too
+      const { data: existingItems } = await adminClient
+        .from('order_items')
+        .select('*')
+        .eq('order_id', existingOrder.id);
+
+      return {
+        order: {
+          id: existingOrder.id,
+          orderRef: existingOrder.order_ref,
+          customerId: existingOrder.customer_id,
+          guestEmail: existingOrder.guest_email,
+          guestMobile: existingOrder.guest_mobile,
+          starpayCheckoutUrl: null,
+          starpayOrderId: existingOrder.starpay_order_id || null,
+          starpayPaymentToken: existingOrder.starpay_payment_token || null,
+          items: (existingItems || []).map((vi: any) => ({
+            productId: vi.product_id,
+            productSlug: vi.product_slug,
+            name: vi.product_name_snapshot,
+            variant: vi.variant_snapshot,
+            image: vi.image_snapshot,
+            quantity: vi.quantity,
+            unitPrice: vi.unit_price,
+            originalUnitPrice: vi.original_unit_price,
+            lineTotal: vi.line_total
+          })),
+          shippingAddress: existingOrder.shipping_address_snapshot,
+          pricing: {
+            subtotal: existingOrder.subtotal,
+            itemDiscount: existingOrder.item_discount,
+            couponCode: existingOrder.coupon_code,
+            couponDiscount: existingOrder.coupon_discount,
+            partnerDiscount: existingOrder.partner_discount || 0,
+            shippingCharge: existingOrder.shipping_charge,
+            finalTotal: existingOrder.final_total
+          },
+          paymentMethod: existingOrder.payment_method as any,
+          paymentStatus: existingOrder.payment_status as any,
+          orderStatus: existingOrder.order_status as any,
+          paymentAttempts: [],
+          idempotencyKey: existingOrder.idempotency_key,
+          createdAt: existingOrder.created_at,
+          updatedAt: existingOrder.updated_at
+        }
+      };
+    }
+  }
+
+  // 3b. Create Order
   const { data: orderData, error: orderInsertError } = await adminClient.from('orders').insert({
       order_ref: orderRef,
       customer_id: payload.customerId || null,

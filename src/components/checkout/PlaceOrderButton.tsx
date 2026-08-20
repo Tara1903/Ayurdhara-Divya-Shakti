@@ -26,6 +26,7 @@ export default function PlaceOrderButton() {
     setSubmissionError,
     setPlacedOrderRef,
     resetCheckout,
+    regenerateIdempotencyKey,
   } = useCheckoutStore();
 
   const { items, clearCart, getCartSubtotal, partnerCode } = useCartStore();
@@ -160,6 +161,7 @@ export default function PlaceOrderButton() {
       const message =
         err instanceof Error ? err.message : 'Something went wrong. Please try again.';
       setSubmissionError(message);
+      regenerateIdempotencyKey();
       setSubmitting(false);
     }
   };

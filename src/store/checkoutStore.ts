@@ -30,6 +30,7 @@ interface CheckoutStore extends CheckoutState {
   setSubmitting: (isSubmitting: boolean) => void;
   setSubmissionError: (error: string | null) => void;
   setPlacedOrderRef: (ref: string) => void;
+  regenerateIdempotencyKey: () => void;
 
   // Reset
   resetCheckout: () => void;
@@ -136,6 +137,10 @@ export const useCheckoutStore = create<CheckoutStore>((set, get) => ({
 
   setPlacedOrderRef: (ref) => {
     set({ placedOrderRef: ref });
+  },
+
+  regenerateIdempotencyKey: () => {
+    set({ idempotencyKey: generateIdempotencyKey() });
   },
 
   resetCheckout: () => {
