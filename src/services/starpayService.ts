@@ -1,6 +1,3 @@
-const STARPAY_API_URL = process.env.STARPAY_API_URL || 'https://payment-gateway-web-kappa.vercel.app';
-const INTERNAL_API_KEY = process.env.INTERNAL_API_KEY || process.env.STARPAY_INTERNAL_API_KEY || '';
-
 export interface StarPayOrderResponse {
   orderId: string;
   orderRef: string;
@@ -23,6 +20,9 @@ export async function createStarPayOrder(params: {
   webhookUrl: string;
   metadata?: Record<string, unknown>;
 }): Promise<{ success: true; data: StarPayOrderResponse } | { success: false; error: string }> {
+  const STARPAY_API_URL = process.env.STARPAY_API_URL || 'https://payment-gateway-web-kappa.vercel.app';
+  const INTERNAL_API_KEY = process.env.INTERNAL_API_KEY || process.env.STARPAY_INTERNAL_API_KEY || '';
+
   try {
     const res = await fetch(`${STARPAY_API_URL}/api/orders`, {
       method: 'POST',

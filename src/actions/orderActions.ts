@@ -233,7 +233,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
             starpay_payment_token: starpayPaymentToken,
           }).eq('id', existingOrder.id);
         } else {
-          return { error: 'Payment gateway unavailable. Please try again.' };
+          return { error: `StarPay Error (Retry): ${starpayResult.error}` };
         }
       }
       
@@ -448,7 +448,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
         .eq('id', orderData.id);
     } else {
       console.error('[StarPay] Failed to create payment order:', starpayResult.error);
-      return { error: 'Payment gateway unavailable. Please try again later.' };
+      return { error: `StarPay Error: ${starpayResult.error}` };
     }
   }
 
