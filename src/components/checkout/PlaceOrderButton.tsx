@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCheckoutStore } from '@/store/checkoutStore';
 import { useCartStore } from '@/store/cartStore';
+import { useAuthStore } from '@/store/authStore';
 import { calculatePricing, formatINR } from '@/services/pricingService';
 import { createPendingOrder } from '@/services/orderService';
 import { paymentService } from '@/services/paymentService';
@@ -52,8 +53,11 @@ export default function PlaceOrderButton() {
     setSubmissionError(null);
 
     try {
+      const user = useAuthStore.getState().user;
+
       // 1. Create the pending order (backend validates pricing server-side in production)
       const order = await createPendingOrder({
+        customerId: user?.id,
         items: items.map((item) => ({
           productId: item.productId,
           variant: item.size,

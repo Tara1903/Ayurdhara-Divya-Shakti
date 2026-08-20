@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
 import { useCheckoutStore } from '@/store/checkoutStore';
+import { useAuthStore } from '@/store/authStore';
 import CheckoutProgress from '@/components/checkout/CheckoutProgress';
 import ContactForm from '@/components/checkout/ContactForm';
 import AddressForm from '@/components/checkout/AddressForm';
@@ -95,14 +96,23 @@ export default function CheckoutPage() {
     setMounted(true);
   }, []);
 
+  const { user, isInitialized } = useAuthStore();
+
   // Redirect to cart if empty (after mount)
   useEffect(() => {
     if (mounted && items.length === 0) {
-      router.replace('/cart');
+      router.push('/cart');
     }
   }, [mounted, items.length, router]);
 
-  if (!mounted) {
+  // Require login to checkout
+  useEffect(() => {
+    if (isInitialized && !user) {
+      router.push('/login?redirect=/checkout');
+    }
+  }, [isInitialized, user, router]);
+
+  if (!mounted || items.length === 0 || !isInitialized || !user) {
     return (
       <div className="checkout-page">
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
