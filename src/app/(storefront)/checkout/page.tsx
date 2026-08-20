@@ -154,16 +154,10 @@ export default function CheckoutPage() {
             addressType: addr.address_type || 'home',
           });
           
-          // Auto-complete steps to jump straight to Payment
+          // Auto-complete steps to jump straight to Shipping
           state.completeStep('contact');
-          
-          const subtotal = useCartStore.getState().getCartSubtotal();
-          const shipping = subtotal >= 1000 ? 0 : 50;
-          state.setShippingMethod('standard', shipping);
-          
           state.completeStep('address');
-          state.completeStep('shipping');
-          state.goToStep('payment');
+          state.goToStep('shipping');
         } else {
           // No saved address, just prefill contact basics
           state.setContact({
