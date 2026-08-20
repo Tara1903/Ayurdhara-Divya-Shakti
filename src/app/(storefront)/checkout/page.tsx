@@ -112,6 +112,72 @@ export default function CheckoutPage() {
     }
   }, [isInitialized, user, router]);
 
+  // Auto-fill checkout for logged-in users to streamline workflow (Amazon-style)
+  useEffect(() => {
+    if (isInitialized && user && mounted && items.length > 0) {
+      // Only auto-fill if contact hasn't been completed yet (first load)
+      const state = useCheckoutStore.getState();
+      if (state.completedSteps.includes('contact')) return;
+
+      const autoFill = async () => {
+        const { createClient } = await import('@/lib/supabase/client');
+        const supabase = createClient();
+        
+        // Fetch saved addresses
+        const { data: addresses } = await supabase
+          .from('addresses')
+          .select('*')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false });
+          
+        if (addresses && addresses.length > 0) {
+          const addr = addresses[0]; // Most recent address
+          
+          // Auto-fill Contact
+          state.setContact({
+            fullName: addr.full_name || user.user_metadata?.full_name || '',
+            mobile: addr.mobile || '',
+            email: user.email || '',
+          });
+          
+          // Auto-fill Address
+          state.setAddress({
+            fullName: addr.full_name,
+            mobile: addr.mobile,
+            addressLine1: addr.address_line1,
+            addressLine2: addr.address_line2 || '',
+            landmark: addr.landmark || '',
+            pinCode: addr.pin_code,
+            city: addr.city,
+            state: addr.state,
+            country: addr.country || 'India',
+            addressType: addr.address_type || 'home',
+          });
+          
+          // Auto-complete steps to jump straight to Payment
+          state.completeStep('contact');
+          
+          const subtotal = useCartStore.getState().getCartSubtotal();
+          const shipping = subtotal >= 1000 ? 0 : 50;
+          state.setShippingMethod('standard', shipping);
+          
+          state.completeStep('address');
+          state.completeStep('shipping');
+          state.goToStep('payment');
+        } else {
+          // No saved address, just prefill contact basics
+          state.setContact({
+            fullName: user.user_metadata?.full_name || '',
+            email: user.email || '',
+            mobile: '',
+          });
+        }
+      };
+      
+      autoFill();
+    }
+  }, [isInitialized, user, mounted, items.length]);
+
   if (!mounted || items.length === 0 || !isInitialized || !user) {
     return (
       <div className="checkout-page">
