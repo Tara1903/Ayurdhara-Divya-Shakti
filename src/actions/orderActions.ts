@@ -78,6 +78,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
 
     validatedItems.push({
       product_id: product.id,
+      product_slug: product.slug,
       variant_id: variant.id,
       product_name_snapshot: product.name,
       variant_snapshot: item.variant,
@@ -85,8 +86,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       unit_price: unitFinalPrice,
       original_unit_price: unitMrp,
       line_total: unitFinalPrice * item.quantity,
-      image_snapshot: product.product_images?.[0]?.url || '',
-      _product_slug: product.slug // kept for response mapping only, stripped before DB insert
+      image_snapshot: product.product_images?.[0]?.url || ''
     });
   }
 
@@ -279,10 +279,10 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
     }
 
   // 4. Create Order Items
-  const itemsToInsert = validatedItems.map(item => {
-    const { _product_slug, ...dbItem } = item as any;
-    return { ...dbItem, order_id: orderData.id };
-  });
+  const itemsToInsert = validatedItems.map(item => ({
+    ...item,
+    order_id: orderData.id
+  }));
 
   const { error: itemsError } = await adminClient.from('order_items').insert(itemsToInsert);
 
@@ -424,7 +424,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       starpayPaymentToken,
       items: validatedItems.map(vi => ({
         productId: vi.product_id,
-        productSlug: (vi as any)._product_slug,
+        productSlug: vi.product_slug,
         name: vi.product_name_snapshot,
         variant: vi.variant_snapshot,
         image: vi.image_snapshot,
