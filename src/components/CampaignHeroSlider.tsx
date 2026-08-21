@@ -209,8 +209,9 @@ export default function CampaignHeroSlider() {
                   <Link href="/wellness-guide/daily-wellness-routine" className="inline-flex items-center justify-center px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#2D5A27] bg-transparent border border-[#2D5A27] rounded-md hover:bg-[#2D5A27] hover:text-white transition-colors duration-300">
                       Find Your Ritual
                     </Link>
-                    <Link href="/collections?q=trial" className="inline-flex items-center justify-center px-5 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#2D5A27] bg-[#E0EBDC]/50 border border-[#2D5A27] rounded-md hover:bg-[#2D5A27] hover:text-white transition-colors duration-300">
-                      Try Our Trial Packs
+                    <Link href="/trial-packs" className="inline-flex flex-col items-center justify-center px-5 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#2D5A27] bg-[#E0EBDC]/50 border border-[#2D5A27] rounded-md hover:bg-[#2D5A27] hover:text-white transition-colors duration-300">
+                      <span>TRY OUR TRIAL PACKS</span>
+                      <span className="text-[10px] font-medium opacity-80 normal-case tracking-normal">Starting ₹499</span>
                     </Link>
                 </div>
               </div>
