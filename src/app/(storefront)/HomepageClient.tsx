@@ -414,13 +414,13 @@ function Section1CategoryIcons() {
   return (
     <section className="py-8 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center gap-4 md:gap-6 flex-wrap max-w-6xl mx-auto">
+        <div className="flex justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-3 xl:gap-6 flex-wrap lg:flex-nowrap max-w-[1400px] mx-auto w-full">
           {categories.map((cat, i) => (
-            <Link href={cat.link} key={i} className="group flex flex-col items-center text-center w-24 md:w-28">
-              <div className="w-16 h-16 md:w-20 md:h-20 relative rounded-full overflow-hidden mb-3 bg-gray-100 shadow-sm border-[3px] border-white group-hover:border-[#E88B23] transition-all duration-300 group-hover:shadow-lg">
+            <Link href={cat.link} key={i} className="group flex flex-col items-center text-center w-24 md:w-28 lg:w-24 xl:w-28 shrink-0">
+              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 xl:w-20 xl:h-20 relative rounded-full overflow-hidden mb-3 bg-gray-100 shadow-sm border-[3px] border-white group-hover:border-[#E88B23] transition-all duration-300 group-hover:shadow-lg">
                 <Image src={cat.image} alt={cat.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
-              <h3 className="text-[10px] md:text-xs font-bold text-gray-700 uppercase tracking-wider group-hover:text-[#4B7B3B] transition-colors leading-tight">
+              <h3 className="text-[10px] md:text-xs lg:text-[10px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider group-hover:text-[#4B7B3B] transition-colors leading-tight">
                 {cat.name}
               </h3>
             </Link>
