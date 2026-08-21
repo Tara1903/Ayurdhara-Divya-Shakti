@@ -135,7 +135,7 @@ export default function CheckoutPage() {
           
           // Auto-fill Contact
           state.setContact({
-            fullName: addr.full_name || user.user_metadata?.full_name || '',
+            fullName: addr.full_name || user.fullName || '',
             mobile: addr.mobile || '',
             email: user.email || '',
           });
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
         } else {
           // No saved address, just prefill contact basics
           state.setContact({
-            fullName: user.user_metadata?.full_name || '',
+            fullName: user.fullName || '',
             email: user.email || '',
             mobile: '',
           });
