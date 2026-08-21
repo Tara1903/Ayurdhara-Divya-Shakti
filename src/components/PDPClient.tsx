@@ -21,8 +21,8 @@ export default function PDPClient({ product }: { product: Product }) {
   const numMembers = numMembersMatch ? parseInt(numMembersMatch[1]) : 0;
   
   const isMassage = product.category === 'Body Massage Oil' || product.category === 'Feet Massage Oil' || product.category === 'Hair Wellness Oil';
-  const isIndividualPack = product.name === 'Trial Wellness Pack' || product.name === 'Diamond Trial Wellness Pack';
-  const isGoldPack = product.name === 'Gold Wellness Pack' || product.name === 'Premium Wellness Pack';
+  const isIndividualPack = product.name === 'Trial Wellness Pack' || product.name === 'Diamond Trial Wellness Pack' || product.name === 'Gold Wellness Pack' || product.name === 'Premium Wellness Pack';
+  const isGoldPack = false;
   const isFamilyPack = product.category === 'Family Trial Wellness Packs' || product.category === 'Family Gold Wellness Packs';
 
   let requiredSelectionsCount = 0;
@@ -32,6 +32,11 @@ export default function PDPClient({ product }: { product: Product }) {
 
   const defaultCategories = isGoldPack ? ['Kids Care', 'Men Wellness', 'Women Wellness', 'Senior Care'] : Array(Math.max(1, requiredSelectionsCount)).fill('');
   const [categorySelections, setCategorySelections] = useState<string[]>(defaultCategories);
+
+  let displayTitle = product.name;
+  if ((isMassage || isIndividualPack) && categorySelections[0]) {
+    displayTitle = `${categorySelections[0]} ${product.name}`;
+  }
 
   const handleCategoryChange = (idx: number, val: string) => {
     const newSels = [...categorySelections];
@@ -55,7 +60,7 @@ const [qty, setQty] = useState(1);
     } else {
       addWishlist({
         id: product.slug,
-        name: product.name,
+        name: displayTitle,
         price: currentPrice,
         image: product.images[0],
         slug: product.slug
@@ -118,7 +123,7 @@ const [qty, setQty] = useState(1);
 
     useCartStore.getState().addItem({
       productId: product.slug,
-      name: product.name,
+      name: displayTitle,
       image: currentVariant && currentVariant.image ? currentVariant.image : product.images[0],
       price: currentPrice,
       originalPrice: currentOriginalPrice,
@@ -394,7 +399,7 @@ const [qty, setQty] = useState(1);
           {requiredSelectionsCount > 0 && (
             <div className="mb-6">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                {isGoldPack ? 'Choose Your 4 Wellness Categories' : 'Choose Your Wellness Category'}
+                {'Choose Your Wellness Category'}
               </h3>
               <div className="flex flex-col gap-3">
                 {Array.from({ length: requiredSelectionsCount }).map((_, idx) => (
@@ -479,8 +484,8 @@ const [qty, setQty] = useState(1);
                         {(() => {
                           const d1 = new Date(); d1.setDate(d1.getDate() + 4);
                           const d2 = new Date(); d2.setDate(d2.getDate() + 6);
-                          const fmt = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
-                          return \ – \;
+                          const fmt = (d) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+                          return fmt(d1) + ' - ' + fmt(d2);
                         })()}
                       </p>
                     </div>
@@ -493,8 +498,8 @@ const [qty, setQty] = useState(1);
                         {(() => {
                           const d1 = new Date(); d1.setDate(d1.getDate() + 2);
                           const d2 = new Date(); d2.setDate(d2.getDate() + 3);
-                          const fmt = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
-                          return \ – \;
+                          const fmt = (d) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+                          return fmt(d1) + ' - ' + fmt(d2);
                         })()}
                       </p>
                     </div>
