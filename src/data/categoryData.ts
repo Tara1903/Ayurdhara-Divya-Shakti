@@ -72,18 +72,18 @@ export const navigationData: Category[] = [
     ]
   },
   {
-    name: "Natural Foods",
-    slug: "natural-foods",
-    description: "Pure, unprocessed natural foods for a healthy lifestyle.",
-    subcategories: [
-      { name: "Cold Pressed Oils", slug: "cold-pressed-oils" },
-      { name: "Honey", slug: "honey" },
-      { name: "Ghee", slug: "ghee" },
-      { name: "Dry Fruits", slug: "dry-fruits" },
-      { name: "Seeds", slug: "seeds" },
-      { name: "Jaggery", slug: "jaggery" },
-    ]
-  },
+      name: "Natural Foods",
+      slug: "natural-foods",
+      description: "Pure, unprocessed natural foods for a healthy lifestyle.",
+      subcategories: [
+        { name: "Cold Pressed Oils", slug: "cold-pressed-oils" },
+        { name: "Honey", slug: "honey" },
+        { name: "Ghee", slug: "ghee" },
+        { name: "Dry Fruits", slug: "dry-fruits" },
+        { name: "Seeds", slug: "seeds" },
+        { name: "Jaggery", slug: "jaggery" }
+      ]
+    },
   {
     name: "Pure Spices",
     slug: "pure-spices",
