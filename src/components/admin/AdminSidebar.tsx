@@ -50,6 +50,7 @@ const NAV_SECTIONS = [
     title: 'COMMERCE',
     items: [
       { label: 'Products', href: '/admin/products', icon: Package },
+      { label: 'Auto Product Images', href: '/admin/auto-images', icon: Sparkles },
       { label: 'Collections', href: '/admin/collections', icon: Layers },
       { label: 'Categories', href: '/admin/categories', icon: Tag },
       { label: 'Ingredients', href: '/admin/ingredients', icon: Leaf },

@@ -1,12 +1,11 @@
-'use client';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { Save, ArrowLeft, Plus, Trash2, UploadCloud } from 'lucide-react';
+import { Save, ArrowLeft, Plus, Trash2, UploadCloud, Sparkles, RefreshCw, CheckCircle, Info } from 'lucide-react';
 import Link from 'next/link';
 import { revalidateStorefront } from '@/app/actions/revalidate';
 import toast from 'react-hot-toast';
+import { analyzeProductForImages, ProductImageIntelligence } from '@/lib/image-system';
 
 interface ProductFormProps {
   initialData?: any;
@@ -26,7 +25,12 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
     short_description: initialData?.short_description || '',
     category_id: initialData?.category_id || '',
     is_active: initialData?.is_active ?? true,
+    image_mode: 'Auto',
+    image_keyword: '',
   });
+
+  const [imageIntelligence, setImageIntelligence] = useState<ProductImageIntelligence | null>(null);
+  const [isAutoGenerating, setIsAutoGenerating] = useState(false);
 
   const [variants, setVariants] = useState<any[]>(
     initialData?.product_variants?.length > 0 
@@ -39,6 +43,48 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
       ? initialData.product_images 
       : [{ url: '', display_order: 0 }]
   );
+
+  // Automatically compute Image Intelligence & Keywords on name / category changes
+  useEffect(() => {
+    if (formData.name) {
+      const selectedCategory = categories?.find(c => c.id === formData.category_id)?.name || '';
+      const intel = analyzeProductForImages(formData.name, selectedCategory);
+      setImageIntelligence(intel);
+      if (!formData.image_keyword || formData.image_mode === 'Auto') {
+        setFormData(prev => ({ ...prev, image_keyword: intel.generatedKeywords }));
+      }
+    }
+  }, [formData.name, formData.category_id, categories]);
+
+  const handleAutoGenerateImage = async () => {
+    if (!formData.name) {
+      toast.error('Please enter a product name first.');
+      return;
+    }
+    setIsAutoGenerating(true);
+    const toastId = toast.loading('Resolving best product image...');
+    try {
+      const selectedCategory = categories?.find(c => c.id === formData.category_id)?.name || '';
+      const res = await fetch('/api/admin/auto-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          category: selectedCategory,
+          customKeyword: formData.image_keyword
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to resolve image');
+      
+      setImages([{ url: data.imageUrl, display_order: 0 }]);
+      toast.success('Automatic image resolved & attached!', { id: toastId });
+    } catch (err: any) {
+      toast.error(err.message || 'Error generating image', { id: toastId });
+    } finally {
+      setIsAutoGenerating(false);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -300,30 +346,95 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
             </div>
           </div>
           
-          {/* Images */}
+          {/* Automatic Product Image System */}
           <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4">
             <div className="flex justify-between items-center border-b border-gray-100 pb-2">
-              <h2 className="text-lg font-bold text-[#2D5A27] uppercase tracking-wide">Images</h2>
+              <div>
+                <h2 className="text-lg font-bold text-[#2D5A27] uppercase tracking-wide flex items-center gap-2">
+                  <Sparkles size={18} className="text-[#E88B23]" /> Product Image System
+                </h2>
+                <p className="text-xs text-gray-500">Automatic product photography and multi-tier asset resolver</p>
+              </div>
               <button 
                 type="button" 
                 onClick={() => setImages([...images, { url: '', display_order: images.length }])}
-                className="text-sm font-bold text-[#E88B23] flex items-center gap-1 hover:underline"
+                className="text-xs font-bold text-[#E88B23] flex items-center gap-1 hover:underline"
               >
-                <Plus size={16} /> Add Image
+                <Plus size={14} /> Add Additional Image
               </button>
             </div>
+
+            {/* Image Mode & Keyword Configuration */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#fbfdfa] p-4 rounded-lg border border-[#e5efe3]">
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Image Mode</label>
+                <select
+                  name="image_mode"
+                  value={formData.image_mode}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-md text-xs font-semibold focus:ring-1 focus:ring-[#4B7B3B] outline-none"
+                >
+                  <option value="Auto">✨ Auto (Recommended - Dynamic Resolver)</option>
+                  <option value="Upload">📁 Manual Upload</option>
+                  <option value="AI Generate">🤖 AI Generate</option>
+                  <option value="Library">🖼️ Select from Library</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">Image Keywords (Editable)</label>
+                <input
+                  type="text"
+                  name="image_keyword"
+                  value={formData.image_keyword}
+                  onChange={handleChange}
+                  placeholder="e.g. ashwagandha root dried raw herbs bowl"
+                  className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-md text-xs focus:ring-1 focus:ring-[#4B7B3B] outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Intelligence Insights Badge */}
+            {imageIntelligence && (
+              <div className="flex flex-wrap items-center justify-between gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-gray-700">Detected Form:</span>
+                  <span className="px-2 py-0.5 rounded bg-[#2D5A27] text-white font-bold uppercase text-[10px]">
+                    {imageIntelligence.productForm.replace('_', ' ')}
+                  </span>
+                  <span className="text-gray-400">|</span>
+                  <span className="text-green-700 font-semibold flex items-center gap-1">
+                    <CheckCircle size={12} /> {imageIntelligence.confidenceScore}% Confidence
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleAutoGenerateImage}
+                  disabled={isAutoGenerating}
+                  className="px-3 py-1.5 bg-[#2D5A27] hover:bg-[#23471f] text-white rounded font-bold text-xs flex items-center gap-1.5 transition-colors disabled:opacity-50"
+                >
+                  <RefreshCw size={12} className={isAutoGenerating ? 'animate-spin' : ''} />
+                  {isAutoGenerating ? 'Resolving Image...' : 'Auto-Resolve Image'}
+                </button>
+              </div>
+            )}
             
-            <div className="space-y-4">
+            <div className="space-y-4 pt-2">
               {images.map((image, index) => (
                 <div key={index} className="flex items-center gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                  <div className="w-16 h-16 bg-white border border-gray-300 rounded-md flex-shrink-0 overflow-hidden flex items-center justify-center">
-                    {image.url ? <img src={image.url} alt="Preview" className="w-full h-full object-cover" /> : <span className="text-xs text-gray-400">Empty</span>}
+                  <div className="w-20 h-20 bg-white border border-gray-300 rounded-lg flex-shrink-0 overflow-hidden flex items-center justify-center relative shadow-sm">
+                    {image.url ? (
+                      <img src={image.url} alt="Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-xs text-gray-400">Empty</span>
+                    )}
                   </div>
                   <div className="flex-1 space-y-2">
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Upload Image File</label>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Upload / Image URL</label>
                     <div className="flex items-center gap-2">
-                      <label className="flex-1 cursor-pointer bg-white border border-gray-300 hover:border-[#4B7B3B] text-gray-700 rounded-md px-3 py-2 text-sm flex items-center justify-center gap-2 transition-colors">
-                        <UploadCloud size={16} />
+                      <label className="cursor-pointer bg-white border border-gray-300 hover:border-[#4B7B3B] text-gray-700 rounded-md px-3 py-1.5 text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm">
+                        <UploadCloud size={14} />
                         <span>Choose File</span>
                         <input 
                           type="file" 
@@ -332,16 +443,14 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
                           onChange={(e) => handleFileUpload(index, e)}
                         />
                       </label>
-                    </div>
-                    {image.url && (
                       <input 
                         type="text" 
                         value={image.url}
-                        readOnly
-                        className="w-full px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-md text-xs text-gray-500 outline-none"
-                        title={image.url}
+                        onChange={(e) => handleImageChange(index, e.target.value)}
+                        placeholder="Or enter image URL directly..."
+                        className="flex-1 px-3 py-1.5 bg-white border border-gray-300 rounded-md text-xs text-gray-800 outline-none focus:ring-1 focus:ring-[#4B7B3B]"
                       />
-                    )}
+                    </div>
                   </div>
                   {images.length > 1 && (
                     <button type="button" onClick={() => setImages(images.filter((_, i) => i !== index))} className="mt-5 text-red-500 hover:text-red-700">
