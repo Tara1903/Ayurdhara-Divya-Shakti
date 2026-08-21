@@ -506,12 +506,13 @@ function Section3OilWellness({ products }: { products: Product[] }) {
     <section className="py-12 md:py-8 bg-white border-t border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Oil Wellness Care</h2>
-          <p className="text-gray-500">Discover our signature cold-pressed wellness oils.</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Oil Wellness Care</h2>
+            <p className="text-gray-500">Discover our signature cold-pressed wellness oils.</p>
+          </div>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 max-w-7xl mx-auto w-full">
+        {/* Category Tabs - Edge to Edge */}
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 sm:px-6 lg:px-8 w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -532,7 +533,8 @@ function Section3OilWellness({ products }: { products: Product[] }) {
           ))}
         </div>
 
-        {/* Product Grid */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Product Grid */}
         <div className="min-h-[400px]">
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -619,12 +621,13 @@ function Section5ShopByGoal({ products }: { products: Product[] }) {
     <section className="py-12 md:py-8 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Goal</h2>
-          <p className="text-gray-500">Find the perfect Ayurvedic formulations for your specific needs.</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Goal</h2>
+            <p className="text-gray-500">Find the perfect Ayurvedic formulations for your specific needs.</p>
+          </div>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 max-w-7xl mx-auto w-full">
+        {/* Category Tabs - Edge to Edge */}
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 sm:px-6 lg:px-8 w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -645,7 +648,8 @@ function Section5ShopByGoal({ products }: { products: Product[] }) {
           ))}
         </div>
 
-        {/* Product Grid */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Product Grid */}
         <div className="min-h-[400px]">
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -721,12 +725,13 @@ function Section7ShopByForm({ products }: { products: Product[] }) {
     <section className="py-12 md:py-8 bg-[#fcfcfc] border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Form</h2>
-          <p className="text-gray-500">Find products in the format you love most.</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Form</h2>
+            <p className="text-gray-500">Find products in the format you love most.</p>
+          </div>
         </div>
-          
-        {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start lg:justify-center px-4 max-w-7xl mx-auto w-full">
+
+        {/* Category Tabs - Edge to Edge */}
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 sm:px-6 lg:px-8 w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -747,7 +752,8 @@ function Section7ShopByForm({ products }: { products: Product[] }) {
           ))}
         </div>
 
-        {/* Product Grid */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Product Grid */}
         <div className="min-h-[400px]">
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -831,12 +837,13 @@ function Section9ShopByOffers({ products }: { products: Product[] }) {
     <section className="py-12 md:py-8 bg-[#E0EBDC]/20 border-y border-[#4B7B3B]/10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Offers</h2>
-          <p className="text-gray-500">Discover our best values and curated wellness combinations.</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Offers</h2>
+            <p className="text-gray-500">Discover our best values and curated wellness combinations.</p>
+          </div>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start lg:justify-center px-4 max-w-7xl mx-auto w-full">
+        {/* Category Tabs - Edge to Edge */}
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 sm:px-6 lg:px-8 w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -857,7 +864,8 @@ function Section9ShopByOffers({ products }: { products: Product[] }) {
           ))}
         </div>
 
-        {/* Product Grid */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Product Grid */}
         <div className="min-h-[400px]">
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
