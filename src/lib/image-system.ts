@@ -185,35 +185,7 @@ export function determineProductForm(
     return 'raw_herb';
   }
 
-  // 3. Herbal Teas
-  if (
-    lowerCat.includes('tea') ||
-    lowerSub.includes('tea') ||
-    lowerName.includes('tea')
-  ) {
-    return 'tea';
-  }
-
-  // 4. Kadha
-  if (
-    lowerCat.includes('kadha') ||
-    lowerSub.includes('kadha') ||
-    lowerName.includes('kadha')
-  ) {
-    return 'kadha';
-  }
-
-  // 5. Wellness Drinks
-  if (
-    lowerCat.includes('drink') ||
-    lowerSub.includes('drink') ||
-    lowerName.includes('drink mix') ||
-    lowerName.includes('beverage')
-  ) {
-    return 'drink';
-  }
-
-  // 6. Cold Pressed Oils & Wellness Oils
+  // 3. Cold Pressed Oils, Essential Oils & Wellness Oils
   if (
     lowerCat.includes('oil') ||
     lowerSub.includes('oil') ||
@@ -222,6 +194,15 @@ export function determineProductForm(
     lowerName.includes('nabhi')
   ) {
     return 'oil';
+  }
+
+  // 4. Herbal Teas (excluding Tea Tree oils)
+  if (
+    (lowerCat.includes('tea') && !lowerCat.includes('tea tree')) ||
+    (lowerSub.includes('tea') && !lowerSub.includes('tea tree')) ||
+    (lowerName.includes('tea') && !lowerName.includes('tea tree'))
+  ) {
+    return 'tea';
   }
 
   // 7. Honey

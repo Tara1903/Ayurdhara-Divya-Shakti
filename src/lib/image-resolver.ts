@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Master Image Resolver & Curated Wellness Asset Library
  * High-definition, licensed botanical and wellness imagery mapped to ingredient & category
  */
@@ -119,6 +119,16 @@ export const CURATED_WELLNESS_LIBRARY: Record<string, string> = {
   // === WELLNESS PACKS / COMBOS ===
   'wellness_packs': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=80',
   'trial_packs': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=80',
+
+  // === NATURAL AROMA & DIFFUSER BLENDS ===
+  'lavender_aroma': 'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?auto=format&fit=crop&w=900&q=80',
+  'sandalwood_aroma': 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80',
+  'jasmine_aroma': 'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?auto=format&fit=crop&w=900&q=80',
+  'mogra_aroma': 'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?auto=format&fit=crop&w=900&q=80',
+  'kewda_aroma': 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80',
+  'relaxation_aroma': 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80',
+  'diffuser_blend': 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80',
+  'generic_aroma': 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80',
 };
 
 /**
