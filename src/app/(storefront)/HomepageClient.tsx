@@ -815,8 +815,8 @@ function Section9ShopByOffers({ products }: { products: Product[] }) {
       return products.filter(p => {
         const isCombo = p.category.toLowerCase().includes('pack') || p.category.toLowerCase().includes('combo') || p.name.toLowerCase().includes('pack');
         
-        const hasVariant = (term) => p.variants && p.variants.some(v => v.size.toLowerCase().includes(term));
-        const nameOrCat = (term) => p.name.toLowerCase().includes(term) || p.category.toLowerCase().includes(term);
+        const hasVariant = (term: string) => p.variants && p.variants.some(v => v.size.toLowerCase().includes(term));
+        const nameOrCat = (term: string) => p.name.toLowerCase().includes(term) || p.category.toLowerCase().includes(term);
 
         switch(activeTab) {
           case 'trial': return nameOrCat('trial') || nameOrCat('starter') || hasVariant('trial') || hasVariant('10ml') || hasVariant('10 ml');
