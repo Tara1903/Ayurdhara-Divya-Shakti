@@ -109,7 +109,7 @@ export const navigationData: Category[] = [
         ]
   },
   {
-    name: "Natural Fragrance & Essential Oils",
+    name: "Natural Aroma",
     slug: "natural-fragrance-essential-oils",
     description: "Pure-inspired aromas and essential oils for everyday self-care, relaxation and natural living.",
     subcategories: [
