@@ -208,7 +208,8 @@ const [qty, setQty] = useState(1);
             </div>
 
             {/* Title */}
-            <h1 className="text-[20px] md:text-[24px] font-medium mb-2 text-gray-900 leading-snug">{product.name}</h1>
+            <div className="text-[10px] md:text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1 mt-2">PRODUCT TYPE: <span className="text-[#2D5A27] font-bold">{product.category}</span></div>
+              <h1 className="text-[20px] md:text-[24px] font-medium mb-2 text-gray-900 leading-snug">{product.name}</h1>
             <p className="text-sm text-[#4b5563] mb-2">{product.shortDescription}</p>
 
             {/* Desktop Ratings & Badges */}

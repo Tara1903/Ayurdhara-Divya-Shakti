@@ -131,7 +131,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
         </Link>
-        <p className="text-xs text-[#2D5A27] mb-2">{product.category}</p>
+        <p className="text-[10px] md:text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wider">PRODUCT TYPE: <br className="hidden md:block" /><span className="text-[#2D5A27] font-bold">{product.category}</span></p>
         
         <p className="text-xs md:text-sm text-gray-600 mb-3 line-clamp-2">{product.benefit}</p>
           

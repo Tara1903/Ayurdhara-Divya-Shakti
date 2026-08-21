@@ -97,8 +97,8 @@ export const navigationData: Category[] = [
     ]
   },
   {
-    name: "Wellness Combos",
-    slug: "wellness-combos",
+    name: "Wellness Packs",
+      slug: "wellness-packs",
     description: "Curated wellness combos and gift packs for comprehensive care.",
     subcategories: [
       { name: "Trial Packs", slug: "trial-packs" },
@@ -106,6 +106,18 @@ export const navigationData: Category[] = [
       { name: "Premium Wellness Packs", slug: "premium-wellness-packs" },
       { name: "Family Packs", slug: "family-packs" },
       { name: "Gift Packs", slug: "gift-packs" },
+        ]
+  },
+  {
+    name: "Natural Fragrance & Essential Oils",
+    slug: "natural-fragrance-essential-oils",
+    description: "Pure-inspired aromas and essential oils for everyday self-care, relaxation and natural living.",
+    subcategories: [
+      { name: "Essential Oils", slug: "essential-oils" },
+      { name: "Natural Fragrance", slug: "natural-fragrance" },
+      { name: "Wellness Aroma", slug: "wellness-aroma" },
+      { name: "Diffuser Blends", slug: "diffuser-blends" },
+      { name: "Essential Oil Combos", slug: "essential-oil-combos" }
     ]
   }
 ];
