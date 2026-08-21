@@ -485,7 +485,7 @@ const [qty, setQty] = useState(1);
                         {(() => {
                           const d1 = new Date(); d1.setDate(d1.getDate() + 4);
                           const d2 = new Date(); d2.setDate(d2.getDate() + 6);
-                          const fmt = (d) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+                          const fmt = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
                           return fmt(d1) + ' - ' + fmt(d2);
                         })()}
                       </p>
@@ -499,7 +499,7 @@ const [qty, setQty] = useState(1);
                         {(() => {
                           const d1 = new Date(); d1.setDate(d1.getDate() + 2);
                           const d2 = new Date(); d2.setDate(d2.getDate() + 3);
-                          const fmt = (d) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+                          const fmt = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
                           return fmt(d1) + ' - ' + fmt(d2);
                         })()}
                       </p>
