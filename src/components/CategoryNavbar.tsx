@@ -25,7 +25,8 @@ export default function CategoryNavbar() {
     <div className="hidden lg:block bg-white border-b border-gray-100 relative z-[999]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <ul className="flex items-center justify-center gap-8 h-10">
-          {navigationData.map((category) => {
+          {navigationData.map((category, index) => {
+            const positionClass = index < 3 ? 'left-0' : index > navigationData.length - 4 ? 'right-0' : 'left-1/2 -translate-x-1/2';
             const isActive = pathname.startsWith(`/${category.slug}`);
             return (
               <li 
@@ -46,7 +47,7 @@ export default function CategoryNavbar() {
 
                 {/* Mega Menu Dropdown */}
                 <div 
-                  className={`absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white border border-gray-100 shadow-xl rounded-b-xl overflow-hidden transition-all duration-200 origin-top ${
+                  className={`absolute top-full ${positionClass} w-[600px] bg-white border border-gray-100 shadow-xl rounded-b-xl overflow-hidden transition-all duration-200 origin-top ${
                     activeCategory === category.slug 
                       ? 'opacity-100 scale-100 visible' 
                       : 'opacity-0 scale-95 invisible'
