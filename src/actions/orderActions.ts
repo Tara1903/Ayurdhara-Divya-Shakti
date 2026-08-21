@@ -340,18 +340,18 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       .eq('user_id', payload.customerId)
       .eq('full_name', payload.shippingAddress.fullName)
       .eq('mobile', payload.shippingAddress.mobile)
-      .eq('address_line1', payload.shippingAddress.addressLine1)
-      .eq('pin_code', payload.shippingAddress.pinCode);
+      .eq('address_line_1', payload.shippingAddress.addressLine1)
+        .eq('pincode', payload.shippingAddress.pinCode);
 
     if (!existingAddresses || existingAddresses.length === 0) {
       await adminClient.from('addresses').insert({
         user_id: payload.customerId,
         full_name: payload.shippingAddress.fullName,
         mobile: payload.shippingAddress.mobile,
-        address_line1: payload.shippingAddress.addressLine1,
-        address_line2: payload.shippingAddress.addressLine2 || null,
-        landmark: payload.shippingAddress.landmark || null,
-        pin_code: payload.shippingAddress.pinCode,
+        address_line_1: payload.shippingAddress.addressLine1,
+          address_line_2: payload.shippingAddress.addressLine2 || null,
+          landmark: payload.shippingAddress.landmark || null,
+          pincode: payload.shippingAddress.pinCode,
         city: payload.shippingAddress.city,
         state: payload.shippingAddress.state,
         country: payload.shippingAddress.country || 'India',
