@@ -1,0 +1,23 @@
+﻿name: 🌿 Autonomous Cloud Product Image System
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs every 6 hours in GitHub Cloud 24/7
+  workflow_dispatch:        # Allows manual run from GitHub web interface
+
+jobs:
+  update-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Trigger Vercel Serverless Cron Endpoint
+        run: |
+          echo "Triggering cloud image maintenance endpoint..."
+          curl -s -X GET "https://www.ayurdharadivyashakti.store/api/cron/auto-images" || echo "Website endpoint notified"
