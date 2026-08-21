@@ -465,7 +465,7 @@ function Section3OilWellness({ products }: { products: Product[] }) {
       { id: 'feet', label: 'Feet Wellness Oil', image: '/images/category_feet_1784743921281.jpg' },
       { id: 'body', label: 'Body Massage Oil', image: '/images/category_feet_1784743921281.jpg' },
       { id: 'hair', label: 'Hair Wellness Oil', image: '/images/category_hair_1784743931871.jpg' },
-      { id: 'trial', label: 'Trial Wellness Oil Packs', image: '/images/products/nabhi-kids-smart-10ml.jpg' },
+      { id: 'trial', label: 'Trial Wellness Oil Packs', image: '/images/categories/cat_trial_pack.jpg' },
       { id: 'gold', label: 'Gold Wellness Oil Packs', image: '/images/category_packs_1784743942477.jpg' }
     ];
     
