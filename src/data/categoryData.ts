@@ -44,7 +44,7 @@ export const navigationData: Category[] = [
     slug: "herbal-powders",
     description: "Finely ground herbal powders for daily nutrition and wellness.",
     subcategories: [
-      { name: "Single Herb Powders", slug: "single-herb-powders" },
+      { name: "Single Herb Powder", slug: "single-herb-powder" },
       { name: "Wellness Powder Blends", slug: "wellness-powder-blends" },
       { name: "Superfood Powders", slug: "superfood-powders" },
       { name: "Daily Nutrition Powders", slug: "daily-nutrition-powders" },
