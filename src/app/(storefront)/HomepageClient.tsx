@@ -511,7 +511,7 @@ function Section3OilWellness({ products }: { products: Product[] }) {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start px-4 max-w-7xl mx-auto w-full">
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 max-w-7xl mx-auto w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -624,7 +624,7 @@ function Section5ShopByGoal({ products }: { products: Product[] }) {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start px-4 max-w-7xl mx-auto w-full">
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start xl:justify-center px-4 max-w-7xl mx-auto w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -728,7 +728,7 @@ function Section7ShopByForm({ products }: { products: Product[] }) {
         </div>
           
         {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start px-4 max-w-7xl mx-auto w-full">
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start lg:justify-center px-4 max-w-7xl mx-auto w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -838,7 +838,7 @@ function Section9ShopByOffers({ products }: { products: Product[] }) {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start px-4 max-w-7xl mx-auto w-full">
+        <div className="flex overflow-x-auto pb-8 mb-10 gap-4 sm:gap-6 md:gap-8 scrollbar-hide justify-start lg:justify-center px-4 max-w-7xl mx-auto w-full">
           {tabs.map(tab => (
             <button
               key={tab.id}
