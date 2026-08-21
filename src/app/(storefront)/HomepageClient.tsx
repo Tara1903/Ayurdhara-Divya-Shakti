@@ -720,11 +720,9 @@ function Section7ShopByForm({ products }: { products: Product[] }) {
   return (
     <section className="py-12 md:py-8 bg-[#fcfcfc] border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-          <div className="text-center md:text-left mb-6 md:mb-0">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-2">Shop By Form</h2>
-            <p className="text-gray-500">Find products in the format you love most.</p>
-          </div>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-4">Shop By Form</h2>
+          <p className="text-gray-500">Find products in the format you love most.</p>
         </div>
           
         {/* Category Tabs */}
