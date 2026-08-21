@@ -583,13 +583,13 @@ function Section4WrittenContent() {
 // ----------------------------------------------------------------------
 function Section5ShopByGoal({ products }: { products: Product[] }) {
   const tabs = [
-    { id: 'daily', label: 'Daily Wellness', image: '/images/products/nabhi-kids-smart-15ml.jpg' },
+    { id: 'daily', label: 'Daily Wellness', image: '/images/categories/cat_daily_wellness.jpg' },
     { id: 'hair', label: 'Hair Wellness', image: '/images/category_hair_1784743931871.jpg' },
     { id: 'skin', label: 'Skin Wellness', image: '/images/category_nabhi_1784743910260.jpg' },
-    { id: 'women', label: "Women's Wellness", image: '/images/products/nabhi-women-15ml.jpg' },
-    { id: 'men', label: "Men's Wellness", image: '/images/products/nabhi-men-15ml.jpg' },
-    { id: 'kids', label: 'Kids Care', image: '/images/products/nabhi-kids-smart-15ml.jpg' },
-    { id: 'senior', label: 'Senior Care', image: '/images/products/nabhi-senior-15ml.jpg' },
+    { id: 'women', label: "Women's Wellness", image: '/images/categories/cat_womens_wellness.jpg' },
+    { id: 'men', label: "Men's Wellness", image: '/images/categories/cat_mens_wellness.jpg' },
+    { id: 'kids', label: 'Kids Care', image: '/images/categories/cat_kids_care.jpg' },
+    { id: 'senior', label: 'Senior Care', image: '/images/categories/cat_senior_care.jpg' },
     { id: 'family', label: 'Family Wellness', image: '/images/category_packs_1784743942477.jpg' },
   ];
   
