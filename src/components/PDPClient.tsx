@@ -468,9 +468,38 @@ const [qty, setQty] = useState(1);
                   <span className="text-3xl font-medium text-gray-900">{currentPrice}</span>
               </div>
 
-              <div className="mb-4">
-                <span className="text-[#4B7B3B] hover:text-[#2D5A27] text-sm cursor-pointer hover:underline">FREE delivery</span> 
-                <span className="text-sm font-bold text-gray-900"> Wednesday, 19 August.</span>
+                            {/* Delivery Options */}
+              <div className="mb-4 text-sm bg-gray-50/50 rounded-lg p-3 border border-gray-100">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-[#4B7B3B] mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
+                    <div>
+                      <p className="text-[#4B7B3B] font-medium">Standard Delivery (FREE)</p>
+                      <p className="text-gray-700 font-medium mt-0.5">
+                        {(() => {
+                          const d1 = new Date(); d1.setDate(d1.getDate() + 4);
+                          const d2 = new Date(); d2.setDate(d2.getDate() + 6);
+                          const fmt = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+                          return \ – \;
+                        })()}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 mt-2 pt-2 border-t border-gray-100">
+                    <svg className="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <div>
+                      <p className="text-gray-600">Express Delivery (?99)</p>
+                      <p className="text-gray-900 font-medium mt-0.5">
+                        {(() => {
+                          const d1 = new Date(); d1.setDate(d1.getDate() + 2);
+                          const d2 = new Date(); d2.setDate(d2.getDate() + 3);
+                          const fmt = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+                          return \ – \;
+                        })()}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="text-xl font-medium text-[#2D5A27] mb-4">
