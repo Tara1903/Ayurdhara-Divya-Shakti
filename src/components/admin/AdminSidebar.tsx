@@ -33,7 +33,8 @@ import {
   Shield,
   History,
   LogOut,
-  Printer
+  Printer,
+  Sparkles
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
