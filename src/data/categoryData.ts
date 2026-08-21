@@ -36,8 +36,7 @@ export const navigationData: Category[] = [
     subcategories: [
       { name: "Single Herbs", slug: "single-herbs" },
       { name: "Premium Herbs", slug: "premium-herbs" },
-      { name: "Seasonal Herbs", slug: "seasonal-herbs" },
-      { name: "Herb Collection", slug: "herb-collection" },
+      { name: "Seasonal Collections", slug: "seasonal-collections" },
     ]
   },
   {
