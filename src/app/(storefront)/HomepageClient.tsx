@@ -483,9 +483,9 @@ function Section3OilWellness({ products }: { products: Product[] }) {
           case 'men': return cat.includes('men') || isTrial;
           case 'women': return cat.includes('women') || isTrial;
           case 'senior': return cat.includes('senior') || isTrial;
-          case 'feet': return cat.includes('feet') || isTrial;
-          case 'body': return cat.includes('body') || isTrial;
-          case 'hair': return cat.includes('hair') || isTrial;
+          case 'feet': return cat.includes('feet');
+          case 'body': return cat.includes('body');
+          case 'hair': return cat.includes('hair');
           case 'trial': return p.variants.some(v => v.size.toLowerCase().includes('trial') || v.size.toLowerCase().includes('10ml') || v.size.toLowerCase().includes('10 ml'));
           case 'gold': return p.variants.some(v => v.size.toLowerCase().includes('gold') || v.size.toLowerCase().includes('15ml'));
           case 'premium': return p.variants.some(v => v.size.toLowerCase().includes('premium'));
