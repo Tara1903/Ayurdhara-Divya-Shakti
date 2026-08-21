@@ -117,7 +117,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Heart size={18} className={inWishlist ? "fill-red-500 text-red-500" : ""} />
         </button>
         <Image
-          src={product.images[0]}
+          src={product.images?.[0] || '/images/categories/cat_raw_herbs_1786556977927.jpg'}
           alt={product.name}
           fill
           className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
