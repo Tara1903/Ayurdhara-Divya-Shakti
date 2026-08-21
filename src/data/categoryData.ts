@@ -66,7 +66,7 @@ export const navigationData: Category[] = [
     slug: "herbal-tea-drinks",
     description: "Soothing herbal teas, traditional kadhas, and wellness drinks.",
     subcategories: [
-      { name: "Herbal Tea", slug: "herbal-tea" },
+      { name: "Herbal Teas", slug: "herbal-teas" },
       { name: "Kadha", slug: "kadha" },
       { name: "Wellness Drinks", slug: "wellness-drinks" },
     ]
