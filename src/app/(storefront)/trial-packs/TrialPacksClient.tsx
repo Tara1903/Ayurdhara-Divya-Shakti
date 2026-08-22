@@ -133,7 +133,7 @@ const FEET_PACKS: TrialPackDef[] = [
     totalQuantity: 'Total: 30 ml',
     duration: 'Up to 15 Days*',
     image: '/images/categories/cat_oil_wellness_1786556871303.jpg',
-    requiresCategory: false
+    requiresCategory: true
   },
   {
     id: 'feet-wellness-routine-pack',
@@ -147,7 +147,7 @@ const FEET_PACKS: TrialPackDef[] = [
     totalQuantity: 'Total: 60 ml',
     duration: 'Up to 1 Month*',
     image: '/images/categories/cat_oil_wellness_1786556871303.jpg',
-    requiresCategory: false
+    requiresCategory: true
   }
 ];
 
@@ -162,7 +162,9 @@ export default function TrialPacksClient() {
     'gold-trial-pack': 'Kids Care',
     'diamond-trial-pack': 'Kids Care',
     'nabhi-2-variant-trial-pack': 'Kids Care',
-    'nabhi-4-variant-trial-pack': 'Kids Care'
+    'nabhi-4-variant-trial-pack': 'Kids Care',
+    'feet-wellness-trial-pack': 'Kids Care',
+    'feet-wellness-routine-pack': 'Kids Care'
   });
 
   const handleAddToCart = (pack: TrialPackDef) => {
@@ -397,6 +399,21 @@ export default function TrialPacksClient() {
                   <p className="text-xs text-stone-600">
                     &bull; {pack.contents[0]}
                   </p>
+
+                  {pack.requiresCategory && (
+                    <div className="space-y-1 pt-1">
+                      <label className="text-[11px] font-bold text-stone-600">Category / Age Group:</label>
+                      <select 
+                        value={categorySelections[pack.id] || 'Kids Care'}
+                        onChange={(e) => setCategorySelections(prev => ({ ...prev, [pack.id]: e.target.value }))}
+                        className="w-full bg-white border border-stone-300 rounded-md p-1.5 text-xs font-semibold text-stone-800"
+                      >
+                        {CATEGORIES.map(c => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-8 pt-4">

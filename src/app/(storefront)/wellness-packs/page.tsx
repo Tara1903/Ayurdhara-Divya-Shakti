@@ -70,6 +70,8 @@ export default function WellnessPacksPage() {
   const [selectedNabhiCat, setSelectedNabhiCat] = useState('kids');
   const [nabhi2Cat, setNabhi2Cat] = useState('Kids Care');
   const [nabhi4Cat, setNabhi4Cat] = useState('Kids Care');
+  const [feetTrialCat, setFeetTrialCat] = useState('Kids Care');
+  const [feetRoutineCat, setFeetRoutineCat] = useState('Kids Care');
   
   const [primeCat, setPrimeCat] = useState('Kids Care');
   const [silverCat, setSilverCat] = useState('Kids Care');
@@ -384,11 +386,25 @@ export default function WellnessPacksPage() {
                 <p className="text-xs text-stone-600">
                   Ideal for first-time foot wellness trial before starting a monthly bedtime routine.
                 </p>
+
+                <div className="space-y-1.5 pt-2">
+                  <label className="text-xs font-bold text-stone-700">Select Category / Age Group:</label>
+                  <select 
+                    value={feetTrialCat} 
+                    onChange={(e) => setFeetTrialCat(e.target.value)}
+                    className="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm font-semibold text-stone-800"
+                  >
+                    <option value="Kids Care">Kids Care (Gentle Bedtime Relaxation)</option>
+                    <option value="Men Wellness">Men&apos;s Care (Deep Muscle Relief)</option>
+                    <option value="Women Wellness">Women&apos;s Care (Stress Relief &amp; Calm)</option>
+                    <option value="Senior Care">Senior Care (Joint &amp; Nerve Ease)</option>
+                  </select>
+                </div>
               </div>
 
               <div className="mt-8 pt-4">
                 <button
-                  onClick={() => handleQuickAdd('feet-wellness-trial-pack', 'Feet Wellness Trial Pack', 349, 499, '30 ml', '/images/categories/cat_oil_wellness_1786556871303.jpg')}
+                  onClick={() => handleQuickAdd('feet-wellness-trial-pack', 'Feet Wellness Trial Pack', 349, 499, `30 ml | ${feetTrialCat}`, '/images/categories/cat_oil_wellness_1786556871303.jpg')}
                   className="w-full bg-[#2D5A27] hover:bg-[#1B3617] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
                 >
                   Buy Feet Trial (₹349) <ArrowRight size={18} />
@@ -424,11 +440,25 @@ export default function WellnessPacksPage() {
                 <p className="text-xs text-stone-600">
                   Full 1-month bedtime routine pack for long-term foot care, cracked heel recovery and calm nights.
                 </p>
+
+                <div className="space-y-1.5 pt-2">
+                  <label className="text-xs font-bold text-stone-700">Select Category / Age Group:</label>
+                  <select 
+                    value={feetRoutineCat} 
+                    onChange={(e) => setFeetRoutineCat(e.target.value)}
+                    className="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm font-semibold text-stone-800"
+                  >
+                    <option value="Kids Care">Kids Care (Gentle Bedtime Relaxation)</option>
+                    <option value="Men Wellness">Men&apos;s Care (Deep Muscle Relief)</option>
+                    <option value="Women Wellness">Women&apos;s Care (Stress Relief &amp; Calm)</option>
+                    <option value="Senior Care">Senior Care (Joint &amp; Nerve Ease)</option>
+                  </select>
+                </div>
               </div>
 
               <div className="mt-8 pt-4">
                 <button
-                  onClick={() => handleQuickAdd('feet-wellness-routine-pack', 'Feet Wellness Routine Pack', 499, 699, '60 ml', '/images/categories/cat_oil_wellness_1786556871303.jpg')}
+                  onClick={() => handleQuickAdd('feet-wellness-routine-pack', 'Feet Wellness Routine Pack', 499, 699, `60 ml | ${feetRoutineCat}`, '/images/categories/cat_oil_wellness_1786556871303.jpg')}
                   className="w-full bg-[#E88B23] hover:bg-[#d07b1d] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
                 >
                   Buy Routine Pack (₹499) <ArrowRight size={18} />
