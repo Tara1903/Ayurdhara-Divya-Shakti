@@ -1,0 +1,11 @@
+# Ignored for Vercel Deployment
+.next
+android
+node_modules
+*.apk
+*.aab
+*.log
+test-lorem.js
+test.html
+AYURDHARA
+docs
