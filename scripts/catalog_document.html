@@ -29,7 +29,7 @@
       width: 210mm;
       min-height: 297mm;
       height: 297mm;
-      padding: 16mm 18mm;
+      padding: 15mm 17mm;
       position: relative;
       page-break-after: always;
       background: #FAF8F2;
@@ -41,10 +41,10 @@
     .page::before {
       content: '';
       position: absolute;
-      top: 6mm;
-      left: 6mm;
-      right: 6mm;
-      bottom: 6mm;
+      top: 5mm;
+      left: 5mm;
+      right: 5mm;
+      bottom: 5mm;
       border: 1.5px solid #D6B97B;
       pointer-events: none;
       border-radius: 4px;
@@ -52,10 +52,10 @@
     .page::after {
       content: '';
       position: absolute;
-      top: 8mm;
-      left: 8mm;
-      right: 8mm;
-      bottom: 8mm;
+      top: 7mm;
+      left: 7mm;
+      right: 7mm;
+      bottom: 7mm;
       border: 0.5px solid rgba(214, 185, 123, 0.4);
       pointer-events: none;
     }
@@ -82,37 +82,37 @@
     /* Header */
     .header-bar {
       text-align: center;
-      padding-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 2px solid #D4AF37;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       position: relative;
     }
     .brand-logo-text {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: #123C2C;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
     .brand-subtitle {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: #C49746;
-      margin-top: 2px;
+      margin-top: 1px;
     }
     .catalog-title-badge {
       display: inline-block;
       background: linear-gradient(135deg, #123C2C, #1B563F);
       color: #F8F6F0;
-      padding: 4px 18px;
+      padding: 3px 16px;
       border-radius: 20px;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-top: 8px;
+      margin-top: 6px;
       border: 1px solid #D4AF37;
     }
 
@@ -120,22 +120,22 @@
     .section-header {
       background: linear-gradient(90deg, #123C2C 0%, #1D543F 100%);
       color: #FAF8F2;
-      padding: 7px 14px;
-      border-radius: 6px;
-      margin-bottom: 12px;
+      padding: 6px 12px;
+      border-radius: 5px;
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-left: 4px solid #D4AF37;
     }
     .section-header h2 {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
     .section-header .tagline {
-      font-size: 10px;
+      font-size: 9.5px;
       color: #E8D39E;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 600;
@@ -145,7 +145,12 @@
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
     .grid-4 {
       display: grid;
@@ -157,60 +162,50 @@
     .card {
       background: #FFFFFF;
       border: 1px solid #E5DEC9;
-      border-radius: 8px;
-      padding: 11px 13px;
+      border-radius: 7px;
+      padding: 10px 12px;
       position: relative;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
     .card.highlighted {
       border: 1.5px solid #D4AF37;
       background: #FFFCF5;
     }
     .card-title {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       color: #123C2C;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .card-subtitle {
-      font-size: 10.5px;
+      font-size: 10px;
       color: #7A6F5D;
       font-weight: 500;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     /* Variant Box */
     .variant-group {
       background: #F8F6F0;
       border: 1px solid #E6DEC8;
-      border-radius: 6px;
-      padding: 8px 10px;
-      margin-bottom: 7px;
-    }
-    .variant-group-header {
-      font-weight: 700;
-      font-size: 11.5px;
-      color: #1A543E;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-      border-bottom: 1px solid #E2D7BE;
-      padding-bottom: 2px;
+      border-radius: 5px;
+      padding: 7px 9px;
+      margin-bottom: 6px;
     }
     .variant-item {
-      font-size: 10.5px;
+      font-size: 10px;
       display: flex;
       align-items: flex-start;
-      margin-bottom: 3px;
+      margin-bottom: 2.5px;
       line-height: 1.35;
     }
     .variant-item .bullet {
       color: #C49746;
       font-weight: bold;
-      margin-right: 5px;
+      margin-right: 4px;
     }
     .variant-item strong {
       color: #123C2C;
@@ -222,65 +217,64 @@
       background: #123C2C;
       color: #FFFFFF;
       border-radius: 5px;
-      padding: 6px 10px;
+      padding: 5px 9px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 6px;
+      margin-top: 5px;
       border: 1px solid #D4AF37;
     }
     .price-main {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: #EED69F;
     }
     .price-mrp {
-      font-size: 10.5px;
+      font-size: 10px;
       color: #C2D6CA;
       text-decoration: line-through;
     }
     .price-save {
       background: #C49746;
       color: #FFFFFF;
-      font-size: 9.5px;
+      font-size: 9px;
       font-weight: 700;
-      padding: 2px 6px;
+      padding: 2px 5px;
       border-radius: 3px;
       text-transform: uppercase;
     }
 
     /* Pack Features Pill */
     .specs-pill {
-      font-size: 10px;
+      font-size: 9.5px;
       background: #E8F0EA;
       color: #1A543E;
       font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 12px;
+      padding: 1.5px 7px;
+      border-radius: 10px;
       display: inline-block;
-      margin-top: 4px;
     }
     .cat-selector-pill {
-      font-size: 9.5px;
+      font-size: 9px;
       background: #FAF0D8;
       border: 1px dashed #C49746;
       color: #7A5210;
       font-weight: 700;
-      padding: 2px 6px;
+      padding: 2px 5px;
       border-radius: 4px;
       display: inline-block;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     /* Footer */
     .footer-bar {
       margin-top: auto;
-      padding-top: 10px;
+      padding-top: 8px;
       border-top: 1px solid #D6B97B;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 10px;
+      font-size: 9.5px;
       color: #706859;
     }
     .footer-bar strong {
@@ -291,13 +285,13 @@
       justify-content: space-around;
       background: #EDF3ED;
       border: 1px solid #C7D9C9;
-      border-radius: 6px;
-      padding: 6px 10px;
-      margin-bottom: 12px;
+      border-radius: 5px;
+      padding: 5px 8px;
+      margin-bottom: 10px;
       text-align: center;
     }
     .trust-badge-item {
-      font-size: 9.5px;
+      font-size: 9px;
       font-weight: 700;
       color: #123C2C;
       text-transform: uppercase;
@@ -305,7 +299,7 @@
     }
     .trust-badge-item span {
       color: #C49746;
-      margin-right: 4px;
+      margin-right: 3px;
     }
   </style>
 </head>
@@ -333,7 +327,7 @@
       <div class="tagline">Standard Individual Variant Size: 5 ml @ ₹199 each (MRP: ₹299)</div>
     </div>
 
-    <div class="grid-2" style="margin-bottom: 14px;">
+    <div class="grid-2" style="margin-bottom: 10px;">
       <!-- KIDS CARE -->
       <div class="card">
         <div class="card-title">
@@ -401,7 +395,7 @@
       <div class="tagline">Family Oil Wellness Packs — Select Any Category</div>
     </div>
 
-    <div class="grid-2" style="margin-bottom: 12px;">
+    <div class="grid-2" style="margin-bottom: 8px;">
       <!-- NABHI 2-VARIANT -->
       <div class="card highlighted">
         <div class="card-title">
@@ -409,7 +403,7 @@
           <span class="specs-pill" style="background:#C49746; color:#FFF;">POPULAR TRIAL</span>
         </div>
         <div class="card-subtitle"><strong>Inclusions:</strong> 2 x 5 ml Nabhi Oils = 10 ml Total Volume</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
+        <div style="font-size:10.5px; color:#4A4235; margin-bottom:4px; line-height:1.35;">
           • Select any <strong>2 targeted variants</strong> from one chosen category<br>
           • <strong>Wellness Duration:</strong> Up to 1 Month* Wellness Care
         </div>
@@ -417,7 +411,7 @@
         <div class="price-box">
           <div>
             <span class="price-main">₹349</span>
-            <span class="price-mrp" style="margin-left:6px;">₹499</span>
+            <span class="price-mrp" style="margin-left:5px;">₹499</span>
           </div>
           <div class="price-save">Save 30%</div>
         </div>
@@ -427,10 +421,10 @@
       <div class="card highlighted">
         <div class="card-title">
           <span>Nabhi 4-Variant Trial Pack</span>
-          <span class="specs-pill" style="background:#123C2C; color:#EED69F;">FULL CATEGORY</span>
+          <span class="specs-pill" style="background:#123C2C; color:#EED69F;">FULL SET</span>
         </div>
         <div class="card-subtitle"><strong>Inclusions:</strong> 4 x 5 ml Nabhi Oils = 20 ml Total Volume</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
+        <div style="font-size:10.5px; color:#4A4235; margin-bottom:4px; line-height:1.35;">
           • Complete collection: <strong>All 4 variants</strong> from one chosen category<br>
           • <strong>Wellness Duration:</strong> Up to 2 Months* Wellness Care
         </div>
@@ -438,7 +432,7 @@
         <div class="price-box">
           <div>
             <span class="price-main">₹599</span>
-            <span class="price-mrp" style="margin-left:6px;">₹999</span>
+            <span class="price-mrp" style="margin-left:5px;">₹999</span>
           </div>
           <div class="price-save">Save 40%</div>
         </div>
@@ -453,36 +447,35 @@
   </div>
 
 
-  <!-- PAGE 2: FEET MASSAGE OILS & COMBO TRIAL PACKS -->
+  <!-- PAGE 2: FEET MASSAGE, BODY MASSAGE & COMBO TRIAL PACKS -->
   <div class="page">
     <div class="header-bar">
       <div class="brand-logo-text">Ayurdhara Divya Shakti</div>
       <div class="brand-subtitle">Complete Oil Wellness Care & Master Combos</div>
     </div>
 
-    <!-- SECTION 3: FEET MASSAGE OILS -->
+    <!-- SECTION 3: FEET & BODY MASSAGE OILS -->
     <div class="section-header">
-      <h2>3. Feet Massage Oils (Padabhyanga Therapy)</h2>
-      <div class="tagline">Restorative Foot Sole Oil for Stress Relief & Sound Sleep</div>
+      <h2>3. Feet & Body Massage Oils (Padabhyanga & Abhyanga)</h2>
+      <div class="tagline">Restorative Foot & Whole Body Therapy — Available in all 4 Categories</div>
     </div>
 
-    <div class="grid-2" style="margin-bottom: 14px;">
+    <div class="grid-2" style="margin-bottom: 10px;">
       <!-- FEET TRIAL PACK -->
       <div class="card highlighted">
         <div class="card-title">
-          <span>Feet Wellness Trial Pack</span>
+          <span>Feet Massage Oil (Trial 30 ml)</span>
           <span class="specs-pill">30 ml • 15 Days</span>
         </div>
-        <div class="card-subtitle"><strong>Volume:</strong> 30 ml Bottle • Up to 15 Days* Wellness Care</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
-          • Infused with cooling, calming herbs to relieve daily foot fatigue & leg strain.<br>
-          • Promotes rapid relaxation before bedtime when massaged onto foot soles.
+        <div class="card-subtitle"><strong>Padabhyanga Therapy</strong> • Up to 15 Days* Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • Soothes tired legs, relieves sole fatigue and activates nerve relaxation for deep sleep.
         </div>
-        <div class="cat-selector-pill">✦ Category Selector: Kids Care | Men's | Women's | Senior</div>
+        <div class="cat-selector-pill">✦ Category: Kids | Men | Women | Senior</div>
         <div class="price-box">
           <div>
             <span class="price-main">₹349</span>
-            <span class="price-mrp" style="margin-left:6px;">₹499</span>
+            <span class="price-mrp" style="margin-left:5px;">₹499</span>
           </div>
           <div class="price-save">Save 30%</div>
         </div>
@@ -491,21 +484,60 @@
       <!-- FEET ROUTINE PACK -->
       <div class="card highlighted">
         <div class="card-title">
-          <span>Feet Wellness Routine Pack</span>
+          <span>Feet Massage Oil (Routine 60 ml)</span>
           <span class="specs-pill">60 ml • 1 Month</span>
         </div>
-        <div class="card-subtitle"><strong>Volume:</strong> 60 ml Bottle • Up to 1 Month* Wellness Care</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
-          • Full 30-day nightly supply for chronic stress relief, deep sleep & circulation.<br>
-          • Ideal daily routine companion for working professionals and seniors.
+        <div class="card-subtitle"><strong>Padabhyanga Routine</strong> • Up to 1 Month* Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • Full 30-day supply for chronic stress relief, deep sleep and heel repair.
         </div>
-        <div class="cat-selector-pill">✦ Category Selector: Kids Care | Men's | Women's | Senior</div>
+        <div class="cat-selector-pill">✦ Category: Kids | Men | Women | Senior</div>
         <div class="price-box">
           <div>
             <span class="price-main">₹499</span>
-            <span class="price-mrp" style="margin-left:6px;">₹699</span>
+            <span class="price-mrp" style="margin-left:5px;">₹699</span>
           </div>
           <div class="price-save">Save 28%</div>
+        </div>
+      </div>
+
+      <!-- BODY MASSAGE 50 ML -->
+      <div class="card highlighted">
+        <div class="card-title">
+          <span>Body Massage Oil (Trial 50 ml)</span>
+          <span class="specs-pill">50 ml • 15 Days</span>
+        </div>
+        <div class="card-subtitle"><strong>Abhyanga Therapy</strong> • Up to 15 Days* Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • Whole body nourishing botanical blend for muscle comfort, joint mobility & skin glow.
+        </div>
+        <div class="cat-selector-pill">✦ Category: Kids | Men | Women | Senior</div>
+        <div class="price-box">
+          <div>
+            <span class="price-main">₹349</span>
+            <span class="price-mrp" style="margin-left:5px;">₹499</span>
+          </div>
+          <div class="price-save">Save 30%</div>
+        </div>
+      </div>
+
+      <!-- BODY MASSAGE 100 ML -->
+      <div class="card highlighted">
+        <div class="card-title">
+          <span>Body Massage Oil (Starter 100 ml)</span>
+          <span class="specs-pill">100 ml • 1 Month</span>
+        </div>
+        <div class="card-subtitle"><strong>Abhyanga Routine</strong> • Up to 1 Month* Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • Monthly full-body self-care oil for sustained vitality and cellular rejuvenation.
+        </div>
+        <div class="cat-selector-pill">✦ Category: Kids | Men | Women | Senior</div>
+        <div class="price-box">
+          <div>
+            <span class="price-main">₹599</span>
+            <span class="price-mrp" style="margin-left:5px;">₹899</span>
+          </div>
+          <div class="price-save">Save 33%</div>
         </div>
       </div>
     </div>
@@ -516,23 +548,22 @@
       <div class="tagline">Integrated Nabhi + Feet + Body Massage Regimens</div>
     </div>
 
-    <div class="grid-2" style="gap: 12px; margin-bottom: 14px;">
+    <div class="grid-2" style="gap: 10px; margin-bottom: 10px;">
       <!-- PRIME TRIAL PACK -->
       <div class="card highlighted">
         <div class="card-title">
           <span>Prime Trial Pack</span>
           <span class="specs-pill" style="background:#1A543E; color:#FFF;">STARTER COMBO</span>
         </div>
-        <div class="card-subtitle"><strong>Total Volume: 70 ml</strong> • Up to 1 Month* Wellness Care</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
-          • <strong>2 x 5 ml Nabhi Oils</strong> (Choice of category)<br>
-          • <strong>+ 60 ml Feet Massage Oil</strong>
+        <div class="card-subtitle"><strong>Total: 70 ml</strong> • Up to 1 Month* Wellness Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • <strong>2 x 5 ml Nabhi Oils + 60 ml Feet Massage Oil</strong>
         </div>
-        <div class="cat-selector-pill">✦ Category Selector: Kids Care | Men's | Women's | Senior</div>
+        <div class="cat-selector-pill">✦ Category: Kids Care | Men's | Women's | Senior</div>
         <div class="price-box">
           <div>
             <span class="price-main">₹699</span>
-            <span class="price-mrp" style="margin-left:6px;">₹999</span>
+            <span class="price-mrp" style="margin-left:5px;">₹999</span>
           </div>
           <div class="price-save">Save 30%</div>
         </div>
@@ -544,16 +575,15 @@
           <span>Silver Trial Pack</span>
           <span class="specs-pill" style="background:#708090; color:#FFF;">BEST VALUE</span>
         </div>
-        <div class="card-subtitle"><strong>Total Volume: 140 ml</strong> • Up to 2 Months* Wellness Care</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
-          • <strong>4 x 5 ml Nabhi Oils</strong> (Full category set)<br>
-          • <strong>+ 120 ml Feet Massage Oil</strong> (2 x 60 ml)
+        <div class="card-subtitle"><strong>Total: 140 ml</strong> • Up to 2 Months* Wellness Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • <strong>4 x 5 ml Nabhi Oils + 120 ml Feet Massage Oil</strong> (2 x 60 ml)
         </div>
-        <div class="cat-selector-pill">✦ Category Selector: Kids Care | Men's | Women's | Senior</div>
+        <div class="cat-selector-pill">✦ Category: Kids Care | Men's | Women's | Senior</div>
         <div class="price-box">
           <div>
             <span class="price-main">₹999</span>
-            <span class="price-mrp" style="margin-left:6px;">₹1,499</span>
+            <span class="price-mrp" style="margin-left:5px;">₹1,499</span>
           </div>
           <div class="price-save">Save 33%</div>
         </div>
@@ -565,16 +595,15 @@
           <span>Gold Trial Pack</span>
           <span class="specs-pill" style="background:#C49746; color:#FFF;">COMPLETE SELF-CARE</span>
         </div>
-        <div class="card-subtitle"><strong>Total Volume: 170 ml</strong> • Up to 1 Month* Wellness Care</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
-          • <strong>2 x 5 ml Nabhi Oils</strong> (Choice of category)<br>
-          • <strong>+ 60 ml Feet Oil + 100 ml Body Massage Oil</strong>
+        <div class="card-subtitle"><strong>Total: 170 ml</strong> • Up to 1 Month* Wellness Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • <strong>2 x 5 ml Nabhi + 60 ml Feet Oil + 100 ml Body Oil</strong>
         </div>
-        <div class="cat-selector-pill">✦ Category Selector: Kids Care | Men's | Women's | Senior</div>
+        <div class="cat-selector-pill">✦ Category: Kids Care | Men's | Women's | Senior</div>
         <div class="price-box">
           <div>
             <span class="price-main">₹1,199</span>
-            <span class="price-mrp" style="margin-left:6px;">₹1,799</span>
+            <span class="price-mrp" style="margin-left:5px;">₹1,799</span>
           </div>
           <div class="price-save">Save 33%</div>
         </div>
@@ -586,16 +615,15 @@
           <span>Diamond Trial Pack</span>
           <span class="specs-pill" style="background:#123C2C; color:#EED69F;">FLAGSHIP COMBO</span>
         </div>
-        <div class="card-subtitle"><strong>Total Volume: 240 ml</strong> • Up to 2 Months* Wellness Care</div>
-        <div style="font-size:11px; color:#4A4235; margin-bottom:6px; line-height:1.4;">
-          • <strong>4 x 5 ml Nabhi Oils</strong> (Full category set)<br>
-          • <strong>+ 120 ml Feet Oil + 100 ml Body Massage Oil</strong>
+        <div class="card-subtitle"><strong>Total: 240 ml</strong> • Up to 2 Months* Wellness Care</div>
+        <div style="font-size:10px; color:#4A4235; margin-bottom:3px; line-height:1.3;">
+          • <strong>4 x 5 ml Nabhi + 120 ml Feet Oil + 100 ml Body Oil</strong>
         </div>
-        <div class="cat-selector-pill">✦ Category Selector: Kids Care | Men's | Women's | Senior</div>
+        <div class="cat-selector-pill">✦ Category: Kids Care | Men's | Women's | Senior</div>
         <div class="price-box">
           <div>
             <span class="price-main">₹1,599</span>
-            <span class="price-mrp" style="margin-left:6px;">₹2,299</span>
+            <span class="price-mrp" style="margin-left:5px;">₹2,299</span>
           </div>
           <div class="price-save">Save 30%</div>
         </div>
@@ -603,20 +631,20 @@
     </div>
 
     <!-- USAGE & ROUTINE GUIDELINES -->
-    <div style="background:#EDF3ED; border:1px solid #CADBCB; border-radius:6px; padding:8px 12px; margin-bottom:10px;">
-      <div style="font-weight:700; font-size:11px; color:#123C2C; text-transform:uppercase; margin-bottom:4px;">
+    <div style="background:#EDF3ED; border:1px solid #CADBCB; border-radius:5px; padding:6px 10px; margin-bottom:8px;">
+      <div style="font-weight:700; font-size:10.5px; color:#123C2C; text-transform:uppercase; margin-bottom:3px;">
         ✦ Daily Application & Routine Guidelines:
       </div>
-      <div style="font-size:10px; color:#3A4D3E; line-height:1.45;">
-        <strong>• Nabhi Oils (Navel Therapy):</strong> Apply 2–3 drops directly inside the navel button twice daily (morning & night). Gently massage clockwise for 1 minute.<br>
-        <strong>• Feet Oils (Padabhyanga):</strong> Apply 5–10 drops on soles before sleep. Massage gently for 3–5 minutes to activate vital reflex points and induce deep sleep.<br>
-        <strong>• Body Oil (Abhyanga):</strong> Warm slightly and apply across the body 20 minutes prior to a warm bath for complete cellular rejuvenation.
+      <div style="font-size:9.5px; color:#3A4D3E; line-height:1.4;">
+        <strong>• Nabhi Oils (Navel Therapy):</strong> 2–3 drops inside navel button morning & night. Massage clockwise for 1 min.<br>
+        <strong>• Feet Oils (Padabhyanga):</strong> 5–10 drops on soles before sleep. Massage 3–5 min for nerve calm and sound sleep.<br>
+        <strong>• Body Oil (Abhyanga):</strong> Warm slightly and massage gently across body 20 mins prior to bath.
       </div>
     </div>
 
     <div class="footer-bar">
       <div>Official Store: <strong>www.ayurdharadivyashakti.store</strong></div>
-      <div>Page 2 of 2 • Feet Oils & Combo Wellness Packs</div>
+      <div>Page 2 of 2 • Feet, Body & Combo Packs</div>
       <div>Helpline: <strong>+91 98765 43210</strong></div>
     </div>
   </div>

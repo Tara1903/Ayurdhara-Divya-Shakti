@@ -72,6 +72,9 @@ export default function WellnessPacksPage() {
   const [nabhi4Cat, setNabhi4Cat] = useState('Kids Care');
   const [feetTrialCat, setFeetTrialCat] = useState('Kids Care');
   const [feetRoutineCat, setFeetRoutineCat] = useState('Kids Care');
+  const [bodyTrialCat, setBodyTrialCat] = useState('Kids Care');
+  const [bodyStarterCat, setBodyStarterCat] = useState('Kids Care');
+  const [bodyValueCat, setBodyValueCat] = useState('Kids Care');
   
   const [primeCat, setPrimeCat] = useState('Kids Care');
   const [silverCat, setSilverCat] = useState('Kids Care');
@@ -468,11 +471,193 @@ export default function WellnessPacksPage() {
           </div>
         </section>
 
-        {/* SECTION 3: COMBO TRIAL PACKS */}
+        {/* SECTION 3: BODY MASSAGE OILS */}
         <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200">
           <div className="border-b border-stone-200 pb-4 mb-8">
             <div className="inline-block bg-[#2D5A27] text-white text-xs font-bold uppercase px-3 py-1 rounded-md mb-2">
-              3. COMBO TRIAL PACKS
+              3. BODY MASSAGE OILS
+            </div>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B3617]">
+              Body Wellness Massage Oils (Abhyanga Therapy)
+            </h2>
+            <p className="text-stone-600 text-sm mt-1">
+              Restorative full-body botanical oils formulated for joint comfort, deep muscle revitalization and glowing vitality.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* 50 ml Trial */}
+            <div className="bg-[#FAF8F5] rounded-2xl border border-stone-200 p-6 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="text-xs font-bold uppercase text-[#2D5A27] block mb-1">15-Day Trial</span>
+                    <h3 className="text-lg font-serif font-bold text-[#1B3617]">
+                      BODY WELLNESS TRIAL PACK
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs text-stone-400 line-through">MRP: ₹499</span>
+                    <span className="text-2xl font-extrabold text-[#E88B23] block">₹349</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 py-3 border-y border-stone-200 text-xs">
+                  <div>
+                    <span className="text-stone-500 font-bold uppercase block">Bottle Size</span>
+                    <span className="font-bold text-stone-900 text-sm">50 ml</span>
+                  </div>
+                  <div>
+                    <span className="text-stone-500 font-bold uppercase block">Duration</span>
+                    <span className="font-bold text-stone-900 text-sm">Up to 15 Days*</span>
+                  </div>
+                </div>
+                <p className="text-xs text-stone-600">
+                  Ideal for first-time full body massage ritual and skin rejuvenation.
+                </p>
+
+                <div className="space-y-1.5 pt-2">
+                  <label className="text-xs font-bold text-stone-700">Select Category / Age Group:</label>
+                  <select 
+                    value={bodyTrialCat} 
+                    onChange={(e) => setBodyTrialCat(e.target.value)}
+                    className="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm font-semibold text-stone-800"
+                  >
+                    <option value="Kids Care">Kids Care (Gentle Daily Massage)</option>
+                    <option value="Men Wellness">Men&apos;s Care (Active Energy &amp; Muscle Tone)</option>
+                    <option value="Women Wellness">Women&apos;s Care (Inner Radiance &amp; Balance)</option>
+                    <option value="Senior Care">Senior Care (Joint Ease &amp; Warming Care)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-4">
+                <button
+                  onClick={() => handleQuickAdd('body-wellness-trial-pack', 'Body Wellness Trial Pack', 349, 499, `50 ml | ${bodyTrialCat}`, '/images/categories/cat_oil_wellness_1786556871303.jpg')}
+                  className="w-full bg-[#2D5A27] hover:bg-[#1B3617] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                  Buy 50 ml Trial (₹349) <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* 100 ml Starter */}
+            <div className="bg-[#FAF8F5] rounded-2xl border border-stone-200 p-6 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="text-xs font-bold uppercase text-[#E88B23] block mb-1">1-Month Routine</span>
+                    <h3 className="text-lg font-serif font-bold text-[#1B3617]">
+                      BODY WELLNESS STARTER PACK
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs text-stone-400 line-through">MRP: ₹899</span>
+                    <span className="text-2xl font-extrabold text-[#E88B23] block">₹599</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 py-3 border-y border-stone-200 text-xs">
+                  <div>
+                    <span className="text-stone-500 font-bold uppercase block">Bottle Size</span>
+                    <span className="font-bold text-stone-900 text-sm">100 ml</span>
+                  </div>
+                  <div>
+                    <span className="text-stone-500 font-bold uppercase block">Duration</span>
+                    <span className="font-bold text-stone-900 text-sm">Up to 1 Month*</span>
+                  </div>
+                </div>
+                <p className="text-xs text-stone-600">
+                  Full 1-month bedtime and morning Abhyanga body massage supply.
+                </p>
+
+                <div className="space-y-1.5 pt-2">
+                  <label className="text-xs font-bold text-stone-700">Select Category / Age Group:</label>
+                  <select 
+                    value={bodyStarterCat} 
+                    onChange={(e) => setBodyStarterCat(e.target.value)}
+                    className="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm font-semibold text-stone-800"
+                  >
+                    <option value="Kids Care">Kids Care (Gentle Daily Massage)</option>
+                    <option value="Men Wellness">Men&apos;s Care (Active Energy &amp; Muscle Tone)</option>
+                    <option value="Women Wellness">Women&apos;s Care (Inner Radiance &amp; Balance)</option>
+                    <option value="Senior Care">Senior Care (Joint Ease &amp; Warming Care)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-4">
+                <button
+                  onClick={() => handleQuickAdd('body-wellness-starter-pack', 'Body Wellness Starter Pack', 599, 899, `100 ml | ${bodyStarterCat}`, '/images/categories/cat_oil_wellness_1786556871303.jpg')}
+                  className="w-full bg-[#E88B23] hover:bg-[#d07b1d] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                  Buy 100 ml Pack (₹599) <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* 200 ml Value */}
+            <div className="bg-[#FAF8F5] rounded-2xl border border-stone-200 p-6 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="text-xs font-bold uppercase text-[#2D5A27] block mb-1">2-3 Months Value</span>
+                    <h3 className="text-lg font-serif font-bold text-[#1B3617]">
+                      BODY WELLNESS VALUE PACK
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs text-stone-400 line-through">MRP: ₹1499</span>
+                    <span className="text-2xl font-extrabold text-[#E88B23] block">₹999</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 py-3 border-y border-stone-200 text-xs">
+                  <div>
+                    <span className="text-stone-500 font-bold uppercase block">Bottle Size</span>
+                    <span className="font-bold text-stone-900 text-sm">200 ml</span>
+                  </div>
+                  <div>
+                    <span className="text-stone-500 font-bold uppercase block">Duration</span>
+                    <span className="font-bold text-stone-900 text-sm">Up to 2-3 Months*</span>
+                  </div>
+                </div>
+                <p className="text-xs text-stone-600">
+                  Best value family &amp; long-term daily body massage economy pack.
+                </p>
+
+                <div className="space-y-1.5 pt-2">
+                  <label className="text-xs font-bold text-stone-700">Select Category / Age Group:</label>
+                  <select 
+                    value={bodyValueCat} 
+                    onChange={(e) => setBodyValueCat(e.target.value)}
+                    className="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm font-semibold text-stone-800"
+                  >
+                    <option value="Kids Care">Kids Care (Gentle Daily Massage)</option>
+                    <option value="Men Wellness">Men&apos;s Care (Active Energy &amp; Muscle Tone)</option>
+                    <option value="Women Wellness">Women&apos;s Care (Inner Radiance &amp; Balance)</option>
+                    <option value="Senior Care">Senior Care (Joint Ease &amp; Warming Care)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-4">
+                <button
+                  onClick={() => handleQuickAdd('body-wellness-value-pack', 'Body Wellness Value Pack', 999, 1499, `200 ml | ${bodyValueCat}`, '/images/categories/cat_oil_wellness_1786556871303.jpg')}
+                  className="w-full bg-[#2D5A27] hover:bg-[#1B3617] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                  Buy 200 ml Pack (₹999) <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: COMBO TRIAL PACKS */}
+        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200">
+          <div className="border-b border-stone-200 pb-4 mb-8">
+            <div className="inline-block bg-[#2D5A27] text-white text-xs font-bold uppercase px-3 py-1 rounded-md mb-2">
+              4. COMBO TRIAL PACKS
             </div>
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B3617]">
               Complete Family Trial Oil Wellness Combos

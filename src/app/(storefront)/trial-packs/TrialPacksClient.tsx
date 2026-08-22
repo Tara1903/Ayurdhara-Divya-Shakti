@@ -151,6 +151,51 @@ const FEET_PACKS: TrialPackDef[] = [
   }
 ];
 
+const BODY_PACKS: TrialPackDef[] = [
+  {
+    id: 'body-wellness-trial-pack',
+    slug: 'body-wellness-trial-pack',
+    name: 'Body Wellness Trial Pack',
+    badge: '15 DAYS TRIAL',
+    badgeColor: 'bg-[#2D5A27]',
+    mrp: 499,
+    offerPrice: 349,
+    contents: ['50 ml Abhyanga Whole Body Massage Oil'],
+    totalQuantity: 'Total: 50 ml',
+    duration: 'Up to 15 Days*',
+    image: '/images/categories/cat_oil_wellness_1786556871303.jpg',
+    requiresCategory: true
+  },
+  {
+    id: 'body-wellness-starter-pack',
+    slug: 'body-wellness-starter-pack',
+    name: 'Body Wellness Starter Pack',
+    badge: '1 MONTH ROUTINE',
+    badgeColor: 'bg-[#E88B23]',
+    mrp: 899,
+    offerPrice: 599,
+    contents: ['100 ml Abhyanga Whole Body Massage Oil'],
+    totalQuantity: 'Total: 100 ml',
+    duration: 'Up to 1 Month*',
+    image: '/images/categories/cat_oil_wellness_1786556871303.jpg',
+    requiresCategory: true
+  },
+  {
+    id: 'body-wellness-value-pack',
+    slug: 'body-wellness-value-pack',
+    name: 'Body Wellness Value Pack',
+    badge: '2-3 MONTHS CARE',
+    badgeColor: 'bg-[#123C2C]',
+    mrp: 1499,
+    offerPrice: 999,
+    contents: ['200 ml Abhyanga Whole Body Massage Oil'],
+    totalQuantity: 'Total: 200 ml',
+    duration: 'Up to 2-3 Months*',
+    image: '/images/categories/cat_oil_wellness_1786556871303.jpg',
+    requiresCategory: true
+  }
+];
+
 export default function TrialPacksClient() {
   const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
@@ -164,7 +209,10 @@ export default function TrialPacksClient() {
     'nabhi-2-variant-trial-pack': 'Kids Care',
     'nabhi-4-variant-trial-pack': 'Kids Care',
     'feet-wellness-trial-pack': 'Kids Care',
-    'feet-wellness-routine-pack': 'Kids Care'
+    'feet-wellness-routine-pack': 'Kids Care',
+    'body-wellness-trial-pack': 'Kids Care',
+    'body-wellness-starter-pack': 'Kids Care',
+    'body-wellness-value-pack': 'Kids Care'
   });
 
   const handleAddToCart = (pack: TrialPackDef) => {
@@ -361,7 +409,7 @@ export default function TrialPacksClient() {
               SECTION 3 &bull; FEET MASSAGE OILS
             </div>
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B3617]">
-              Feet Massage Oils (Trial Packs)
+              Feet Massage Oils (Padabhyanga Therapy)
             </h2>
             <p className="text-stone-600 text-sm mt-1">
               Deep relaxation Padabhyanga formulation for calm nerves and overnight foot recovery.
@@ -382,6 +430,82 @@ export default function TrialPacksClient() {
                     <div className="text-right">
                       <span className="text-xs text-stone-400 line-through">MRP: ₹{pack.mrp}</span>
                       <span className="text-2xl md:text-3xl font-extrabold text-[#E88B23] block">₹{pack.offerPrice}</span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 py-3 border-y border-stone-200 text-xs">
+                    <div>
+                      <span className="text-stone-500 font-bold uppercase block">Bottle Size</span>
+                      <span className="font-bold text-stone-900 text-sm">{pack.totalQuantity}</span>
+                    </div>
+                    <div>
+                      <span className="text-stone-500 font-bold uppercase block">Duration</span>
+                      <span className="font-bold text-stone-900 text-sm">{pack.duration}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-stone-600">
+                    &bull; {pack.contents[0]}
+                  </p>
+
+                  {pack.requiresCategory && (
+                    <div className="space-y-1 pt-1">
+                      <label className="text-[11px] font-bold text-stone-600">Category / Age Group:</label>
+                      <select 
+                        value={categorySelections[pack.id] || 'Kids Care'}
+                        onChange={(e) => setCategorySelections(prev => ({ ...prev, [pack.id]: e.target.value }))}
+                        className="w-full bg-white border border-stone-300 rounded-md p-1.5 text-xs font-semibold text-stone-800"
+                      >
+                        {CATEGORIES.map(c => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+
+                <div className="mt-8 pt-4">
+                  <button
+                    onClick={() => handleAddToCart(pack)}
+                    className="w-full bg-[#E88B23] hover:bg-[#d07b1d] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    Buy Now (₹{pack.offerPrice}) <ArrowRight size={18} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        {/* 4. BODY MASSAGE OILS */}
+        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200">
+          <div className="border-b border-stone-200 pb-4 mb-8">
+            <div className="inline-block bg-[#2D5A27] text-white text-xs font-bold uppercase px-3 py-1 rounded-md mb-2">
+              SECTION 4 &bull; BODY MASSAGE OILS
+            </div>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B3617]">
+              Body Wellness Massage Oils (Abhyanga Therapy)
+            </h2>
+            <p className="text-stone-600 text-sm mt-1">
+              Full body nourishing botanical oil crafted for muscle rejuvenation, cellular revitalization and skin glow.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {BODY_PACKS.map((pack) => (
+              <div key={pack.id} className="bg-[#FAF8F5] rounded-2xl border border-stone-200 p-6 flex flex-col justify-between hover:shadow-md transition-all">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className={`${pack.badgeColor} text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md inline-block mb-1.5`}>
+                        {pack.badge}
+                      </span>
+                      <h3 className="text-lg font-serif font-bold text-[#1B3617]">{pack.name}</h3>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs text-stone-400 line-through">MRP: ₹{pack.mrp}</span>
+                      <span className="text-2xl font-extrabold text-[#E88B23] block">₹{pack.offerPrice}</span>
                     </div>
                   </div>
 
