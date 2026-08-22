@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { analyzeProductForImages } from '@/lib/image-system';
 import { resolveAutoProductImage } from '@/lib/image-resolver';
@@ -61,14 +61,22 @@ export async function POST(req: Request) {
       }
     }
 
-    // If productId provided, update product_images table
+    // If productId provided, update product_images table & products primary_image_url
     if (productId) {
       await supabase.from('product_images').delete().eq('product_id', productId);
       await supabase.from('product_images').insert({
         product_id: productId,
         url: finalImageUrl,
-        display_order: 1
+        display_order: 0
       });
+      await supabase.from('products').update({
+        primary_image_url: finalImageUrl,
+        updated_at: new Date().toISOString()
+      }).eq('id', productId);
+
+      const { data: p } = await supabase.from('products').select('slug').eq('id', productId).single();
+      const { revalidateStorefront } = await import('@/app/actions/revalidate');
+      await revalidateStorefront(p?.slug);
     }
 
     return NextResponse.json({

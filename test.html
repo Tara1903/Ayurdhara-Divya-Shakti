@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.outer {
+  width: 400px;
+  overflow-x: auto;
+  border: 1px solid red;
+  text-align: center;
+}
+.inner-fit {
+  display: inline-flex;
+  gap: 10px;
+  background: lightblue;
+}
+.inner-overflow {
+  display: inline-flex;
+  gap: 10px;
+  background: lightgreen;
+}
+.item {
+  width: 100px;
+  height: 50px;
+  background: blue;
+  color: white;
+}
+</style>
+</head>
+<body>
+  <p>Fits (should be centered):</p>
+  <div class="outer">
+    <div class="inner-fit">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+
+  <p>Overflows (should start at left and scroll right):</p>
+  <div class="outer">
+    <div class="inner-overflow">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+    </div>
+  </div>
+</body>
+</html>

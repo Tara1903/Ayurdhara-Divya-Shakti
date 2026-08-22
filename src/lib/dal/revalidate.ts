@@ -5,19 +5,37 @@ import { revalidateTag, revalidatePath } from 'next/cache';
  * Called after ANY product admin action.
  */
 export function revalidateAllProducts() {
-  revalidateTag('products', 'default');
-  revalidatePath('/collections');
-  revalidatePath('/wellness-packs');
-  revalidatePath('/');
+  try {
+    revalidateTag('products', 'default');
+    revalidateTag('metadata', 'default');
+    revalidateTag('categories', 'default');
+    revalidateTag('homepage-content', 'default');
+  } catch {}
+  try {
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+    revalidatePath('/collections');
+    revalidatePath('/wellness-packs');
+    revalidatePath('/trial-packs');
+  } catch {}
 }
 
 /**
  * Revalidate a specific product page.
  */
 export function revalidateProduct(slug: string) {
-  revalidateTag('products', 'default');
-  revalidatePath(`/products/${slug}`);
-  revalidatePath('/collections');
+  try {
+    revalidateTag('products', 'default');
+    revalidateTag('metadata', 'default');
+  } catch {}
+  try {
+    revalidatePath(`/products/${slug}`);
+    revalidatePath('/collections');
+    revalidatePath('/wellness-packs');
+    revalidatePath('/trial-packs');
+    revalidatePath('/', 'layout');
+    revalidatePath('/');
+  } catch {}
 }
 
 /**

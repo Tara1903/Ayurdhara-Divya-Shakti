@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
 import { Save, ArrowLeft, Plus, Trash2, UploadCloud, Sparkles, RefreshCw, CheckCircle, Info } from 'lucide-react';
 import Link from 'next/link';
-import { revalidateStorefront } from '@/app/actions/revalidate';
 import toast from 'react-hot-toast';
 import { analyzeProductForImages, ProductImageIntelligence } from '@/lib/image-system';
 
@@ -17,15 +15,19 @@ interface ProductFormProps {
 export default function ProductForm({ initialData, categories = [] }: ProductFormProps) {
   const isEditing = !!initialData;
   const router = useRouter();
-  const supabase = createClient();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Robust initialization of categories
+  const matchedCategoryId = initialData?.category_id || 
+    categories?.find(c => c.name?.toLowerCase() === initialData?.category?.toLowerCase())?.id || '';
 
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
     slug: initialData?.slug || '',
-    short_description: initialData?.short_description || '',
-    category_id: initialData?.category_id || '',
+    short_description: initialData?.short_description || initialData?.shortDescription || '',
+    full_description: initialData?.full_description || initialData?.fullDescription || '',
+    category_id: matchedCategoryId,
     is_active: initialData?.is_active ?? true,
     image_mode: 'Auto',
     image_keyword: '',
@@ -34,17 +36,48 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
   const [imageIntelligence, setImageIntelligence] = useState<ProductImageIntelligence | null>(null);
   const [isAutoGenerating, setIsAutoGenerating] = useState(false);
 
-  const [variants, setVariants] = useState<any[]>(
-    initialData?.product_variants?.length > 0 
-      ? initialData.product_variants 
-      : [{ size: 'Standard', price: 0, original_price: 0 }]
-  );
+  // Initialize variants from DB or static product shape
+  const initialVariants = () => {
+    if (initialData?.product_variants?.length > 0) {
+      return initialData.product_variants.map((v: any) => ({
+        size: v.size || 'Standard',
+        price: v.price || 0,
+        original_price: v.original_price || v.price || 0
+      }));
+    }
+    if (initialData?.variants?.length > 0) {
+      return initialData.variants.map((v: any) => ({
+        size: v.size || 'Standard',
+        price: v.price || 0,
+        original_price: v.originalPrice || v.price || 0
+      }));
+    }
+    return [{ size: 'Standard', price: initialData?.price || 0, original_price: initialData?.originalPrice || 0 }];
+  };
 
-  const [images, setImages] = useState<any[]>(
-    initialData?.product_images?.length > 0 
-      ? initialData.product_images 
-      : [{ url: '', display_order: 0 }]
-  );
+  const [variants, setVariants] = useState<any[]>(initialVariants);
+
+  // Initialize images from DB or static product shape
+  const initialImages = () => {
+    if (initialData?.product_images?.length > 0) {
+      return initialData.product_images.map((img: any, idx: number) => ({
+        url: typeof img === 'string' ? img : (img.url || ''),
+        display_order: img.display_order ?? idx
+      }));
+    }
+    if (initialData?.images?.length > 0) {
+      return initialData.images.map((url: string, idx: number) => ({
+        url: url || '',
+        display_order: idx
+      }));
+    }
+    if (initialData?.primary_image_url) {
+      return [{ url: initialData.primary_image_url, display_order: 0 }];
+    }
+    return [{ url: '', display_order: 0 }];
+  };
+
+  const [images, setImages] = useState<any[]>(initialImages);
 
   // Automatically compute Image Intelligence & Keywords on name / category changes
   useEffect(() => {
@@ -147,71 +180,53 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
     e.preventDefault();
     setLoading(true);
     setError(null);
+    const toastId = toast.loading('Saving product & updating website...');
 
     try {
-      const productPayload = {
+      const validVariants = variants
+        .filter(v => v.size)
+        .map(v => ({
+          size: v.size,
+          price: Number(v.price) || 0,
+          original_price: Number(v.original_price) || Number(v.price) || 0
+        }));
+
+      const validImages = images
+        .filter(i => i.url && i.url.trim().length > 0)
+        .map((i, idx) => ({
+          url: i.url.trim(),
+          display_order: idx
+        }));
+
+      const payload = {
         name: formData.name,
         slug: formData.slug,
         short_description: formData.short_description,
+        full_description: formData.full_description,
         category_id: formData.category_id || null,
         is_active: formData.is_active,
-        updated_at: new Date().toISOString()
+        variants: validVariants,
+        images: validImages
       };
 
-      let productId = initialData?.id;
+      const url = isEditing ? `/api/admin/products/${initialData.id || initialData.slug}` : '/api/admin/products';
+      const method = isEditing ? 'PUT' : 'POST';
 
-      if (isEditing) {
-        const { error: pErr } = await supabase
-          .from('products')
-          .update(productPayload)
-          .eq('id', productId);
-        if (pErr) throw pErr;
-      } else {
-        const { data, error: pErr } = await supabase
-          .from('products')
-          .insert([productPayload])
-          .select('id')
-          .single();
-        if (pErr) throw pErr;
-        productId = data.id;
-      }
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
-      // Handle Variants (Simple delete and recreate for now to avoid complex diffing)
-      if (isEditing) {
-        await supabase.from('product_variants').delete().eq('product_id', productId);
-      }
-      const validVariants = variants.filter(v => v.size && Number(v.price) > 0);
-      if (validVariants.length > 0) {
-        const variantsPayload = validVariants.map(v => ({
-          product_id: productId,
-          size: v.size,
-          price: Number(v.price),
-          original_price: Number(v.original_price) || Number(v.price),
-          is_active: true
-        }));
-        await supabase.from('product_variants').insert(variantsPayload);
-      }
+      const resData = await res.json();
+      if (!res.ok) throw new Error(resData.error || 'Failed to save product');
 
-      // Handle Images
-      if (isEditing) {
-        await supabase.from('product_images').delete().eq('product_id', productId);
-      }
-      const validImages = images.filter(i => i.url);
-      if (validImages.length > 0) {
-        const imagesPayload = validImages.map((i, idx) => ({
-          product_id: productId,
-          url: i.url,
-          display_order: idx
-        }));
-        await supabase.from('product_images').insert(imagesPayload);
-      }
-
-      await revalidateStorefront();
-
+      toast.success('Product updated and website updated live!', { id: toastId });
       router.push('/admin/products');
       router.refresh();
     } catch (err: any) {
       setError(err.message || 'Failed to save product');
+      toast.error(err.message || 'Failed to save product', { id: toastId });
     } finally {
       setLoading(false);
     }
