@@ -18,6 +18,7 @@ import {
   Smartphone,
   Package,
   Star,
+  Download,
 } from 'lucide-react';
 
 export const metadata = {
@@ -65,22 +66,27 @@ function FlowBox({ children, accent }: { children: React.ReactNode; accent?: boo
 
 // ── partner margin table data ─────────────────────────────────────────────────
 const marginRows = [
-  { type: 'Individual Products', partner: '3%', shop: '5%', total: '8%' },
-  { type: 'Trial Packs', partner: '10%', shop: '20%', total: '30%' },
-  { type: 'Gold Packs', partner: '12%', shop: '24%', total: '36%' },
-  { type: 'Premium Pack', partner: '15%', shop: '30%', total: '45%' },
+  { type: 'Individual Wellness Products (Oils, Herbs, Powders, Capsules, Teas, Spices, Aromas)', partner: '3%', shop: '5%', total: '8%' },
+  { type: 'Trial & Prime Wellness Packs (Prime, Silver, Individual Care Packs)', partner: '10%', shop: '20%', total: '30%' },
+  { type: 'Gold Wellness Packs (Family Care & Multi-Bottle Sets)', partner: '12%', shop: '24%', total: '36%' },
+  { type: 'Diamond & Flagship Wellness Packs (Complete Holistic Care)', partner: '15%', shop: '30%', total: '45%' },
 ];
 
 // ── earning example rows ──────────────────────────────────────────────────────
 const earningExamples = [
-  { product: 'Individual 10 ml', offer: '₹199', pct: '3%', partner: '≈ ₹6' },
-  { product: 'Individual 20 ml', offer: '₹349', pct: '3%', partner: '≈ ₹10' },
-  { product: 'Trial Pack', offer: '₹499', pct: '10%', partner: '≈ ₹50' },
-  { product: 'Gold Pack', offer: '₹2,199', pct: '12%', partner: '≈ ₹264' },
-  { product: 'Premium Pack', offer: '₹3,999', pct: '15%', partner: '≈ ₹600' },
-  { product: 'Feet Oil 30 ml', offer: '₹399', pct: '3%', partner: '≈ ₹12' },
-  { product: 'Feet Oil 100 ml', offer: '₹1,199', pct: '3%', partner: '≈ ₹36' },
-  { product: 'Hair Oil 50 ml', offer: '₹499', pct: '3%', partner: '≈ ₹15' },
+  { product: 'Silver Trial Wellness Pack (50 ml)', offer: '₹699', pct: '10%', partner: '≈ ₹70' },
+  { product: 'Gold Trial Wellness Pack (130 ml)', offer: '₹999', pct: '12%', partner: '≈ ₹120' },
+  { product: 'Diamond Trial Wellness Pack (240 ml)', offer: '₹1,599', pct: '15%', partner: '≈ ₹240' },
+  { product: 'Prime Trial Pack (4×5 ml)', offer: '₹499', pct: '10%', partner: '≈ ₹50' },
+  { product: 'Kids / Women / Men / Senior Pack', offer: '₹499', pct: '10%', partner: '≈ ₹50' },
+  { product: 'Pure Lavender Essential Oil 15 ml', offer: '₹349', pct: '3%', partner: '≈ ₹10.5' },
+  { product: 'Natural Sandalwood Aroma Roll-On', offer: '₹399', pct: '3%', partner: '≈ ₹12' },
+  { product: 'Women Harmony Body Oil 100 ml', offer: '₹499', pct: '3%', partner: '≈ ₹15' },
+  { product: 'Men Active Body Oil 100 ml', offer: '₹499', pct: '3%', partner: '≈ ₹15' },
+  { product: 'Senior Comfort Body Oil 200 ml', offer: '₹899', pct: '3%', partner: '≈ ₹27' },
+  { product: 'Feet Massage Oil 60 ml', offer: '₹449', pct: '3%', partner: '≈ ₹13.5' },
+  { product: 'Hair Wellness Oil 100 ml', offer: '₹549', pct: '3%', partner: '≈ ₹16.5' },
+  { product: 'Holistic Aromatherapy 3-Oil Combo', offer: '₹899', pct: '10%', partner: '≈ ₹90' },
 ];
 
 // ── partner-type card data ────────────────────────────────────────────────────
@@ -103,7 +109,7 @@ const partnerCards = [
       'WhatsApp Sharing & Digital Materials',
       'Order Tracking Dashboard',
     ],
-    earning: ['3% Individual', '10% Trial', '12% Gold', '15% Premium'],
+    earning: ['3% Individual Products', '10% Trial & Prime Packs', '12% Gold Packs', '15% Diamond Packs'],
     cta: 'Join as Wellness Partner',
     ctaHref: '/partner/wellness-signup',
     color: 'amber',
@@ -117,7 +123,7 @@ const partnerCards = [
     bestFor: 'Existing retail shops',
     needsStock: true,
     benefits: [
-      'Approved retail margin',
+      'Approved retail margin (5% to 30%)',
       'Unique Shop ID & Shop QR',
       'Customer gets 2% extra QR discount',
       'Digital Wellness Kit',
@@ -126,7 +132,7 @@ const partnerCards = [
       'WhatsApp Product Sharing',
       'Repeat Customer Opportunity',
     ],
-    earning: ['Approved retail margin per product type'],
+    earning: ['5% Individual', '20% Trial & Prime', '24% Gold', '30% Diamond'],
     cta: 'Join as Retail Shop Partner',
     ctaHref: '/partner/retailer-signup',
     color: 'green',
@@ -149,7 +155,7 @@ const partnerCards = [
       'Wallet & Earnings Tracking',
       'Repeat Order Opportunity',
     ],
-    earning: ['Admin-controlled distributor margin'],
+    earning: ['Admin-controlled distributor bulk pricing'],
     cta: 'Become a Distributor',
     ctaHref: '/partner/distributor-signup',
     color: 'dark',
@@ -159,34 +165,54 @@ const partnerCards = [
 // ── pack data ─────────────────────────────────────────────────────────────────
 const individualPacks = [
   {
-    label: 'Trial Wellness Pack',
+    label: 'Silver Trial Wellness Pack',
+    offer: '₹699',
+    mrp: '₹999',
+    contents: '4×5 ml Nabhi + 30 ml Feet Massage Oil (50 ml Total)',
+    duration: '1 Month Complete Care Routine',
+    partner: '10% ≈ ₹70',
+    shop: '20% ≈ ₹140',
+    channel: '30% ≈ ₹210',
+  },
+  {
+    label: 'Gold Trial Wellness Pack',
+    offer: '₹999',
+    mrp: '₹1,499',
+    contents: '4×5 ml Nabhi + 60 ml Feet + 50 ml Body Oil (130 ml Total)',
+    duration: 'Up to 1.5 Months Complete Care',
+    partner: '12% ≈ ₹120',
+    shop: '24% ≈ ₹240',
+    channel: '36% ≈ ₹360',
+  },
+  {
+    label: 'Diamond Trial Wellness Pack',
+    offer: '₹1,599',
+    mrp: '₹2,299',
+    contents: '4×5 ml Nabhi + 120 ml Feet + 100 ml Body Oil (240 ml Total)',
+    duration: 'Up to 2 Months Complete Family Care',
+    partner: '15% ≈ ₹240',
+    shop: '30% ≈ ₹480',
+    channel: '45% ≈ ₹720',
+  },
+  {
+    label: 'Prime Trial Pack',
     offer: '₹499',
     mrp: '₹749',
-    contents: '10 ml Nabhi + 30 ml Feet',
-    duration: 'Up to 1 Month',
+    contents: '4×5 ml Nabhi Essential Trial Oils',
+    duration: '1 Month Routine Initiation',
     partner: '10% ≈ ₹50',
     shop: '20% ≈ ₹100',
     channel: '30% ≈ ₹150',
   },
   {
-    label: 'Gold Wellness Pack',
-    offer: '₹2,199',
-    mrp: '₹2,999',
-    contents: '4×10 ml Nabhi + 100 ml Feet',
-    duration: 'Up to 4 Months',
-    partner: '12% ≈ ₹264',
-    shop: '24% ≈ ₹528',
-    channel: '36% ≈ ₹792',
-  },
-  {
-    label: 'Premium Wellness Pack',
-    offer: '₹3,999',
-    mrp: '₹5,499',
-    contents: '4×20 ml Nabhi + 200 ml Feet',
-    duration: 'Up to 8 Months',
-    partner: '15% ≈ ₹600',
-    shop: '30% ≈ ₹1,200',
-    channel: '45% ≈ ₹1,800',
+    label: 'Targeted Care Pack (Kids / Women / Men / Senior)',
+    offer: '₹499',
+    mrp: '₹699',
+    contents: '5 ml Target Nabhi + 30 ml Feet Massage Oil',
+    duration: '1 Month Focused Care',
+    partner: '10% ≈ ₹50',
+    shop: '20% ≈ ₹100',
+    channel: '30% ≈ ₹150',
   },
 ];
 
@@ -204,13 +230,39 @@ const familyGoldPacks = [
   { members: 5, offer: '₹8,999', mrp: '₹13,749', partner: '≈ ₹1,080', shop: '≈ ₹2,160', channel: '≈ ₹3,240' },
 ];
 
-const oilProducts = [
-  { name: 'Feet Massage Oil 30 ml', offer: '₹399', mrp: '₹599', partner: '≈ ₹12', shop: '≈ ₹20', channel: '≈ ₹32' },
-  { name: 'Feet Massage Oil 100 ml', offer: '₹1,199', mrp: '₹1,799', partner: '≈ ₹36', shop: '≈ ₹60', channel: '≈ ₹96' },
-  { name: 'Feet Massage Oil 200 ml', offer: '₹2,199', mrp: '₹3,299', partner: '≈ ₹66', shop: '≈ ₹110', channel: '≈ ₹176' },
-  { name: 'Hair Wellness Oil 50 ml', offer: '₹499', mrp: '₹699', partner: '≈ ₹15', shop: '≈ ₹25', channel: '≈ ₹40' },
-  { name: 'Hair Wellness Oil 100 ml', offer: '₹899', mrp: '₹1,299', partner: '≈ ₹27', shop: '≈ ₹45', channel: '≈ ₹72' },
-  { name: 'Hair Wellness Oil 200 ml', offer: '₹1,799', mrp: '₹2,499', partner: '≈ ₹54', shop: '≈ ₹90', channel: '≈ ₹144' },
+const bodyOilProducts = [
+  { name: 'Kids Gentle Body Wellness Oil 50 ml', offer: '₹249', mrp: '₹349', partner: '≈ ₹7.5', shop: '≈ ₹12.5', channel: '≈ ₹20' },
+  { name: 'Kids Gentle Body Wellness Oil 100 ml', offer: '₹449', mrp: '₹599', partner: '≈ ₹13.5', shop: '≈ ₹22.5', channel: '≈ ₹36' },
+  { name: 'Kids Gentle Body Wellness Oil 200 ml', offer: '₹799', mrp: '₹1,099', partner: '≈ ₹24', shop: '≈ ₹40', channel: '≈ ₹64' },
+  { name: 'Women Harmony Body Wellness Oil 50 ml', offer: '₹279', mrp: '₹399', partner: '≈ ₹8.4', shop: '≈ ₹14', channel: '≈ ₹22.3' },
+  { name: 'Women Harmony Body Wellness Oil 100 ml', offer: '₹499', mrp: '₹699', partner: '≈ ₹15', shop: '≈ ₹25', channel: '≈ ₹40' },
+  { name: 'Women Harmony Body Wellness Oil 200 ml', offer: '₹899', mrp: '₹1,249', partner: '≈ ₹27', shop: '≈ ₹45', channel: '≈ ₹72' },
+  { name: 'Men Active Body Wellness Oil 100 ml', offer: '₹499', mrp: '₹699', partner: '≈ ₹15', shop: '≈ ₹25', channel: '≈ ₹40' },
+  { name: 'Men Active Body Wellness Oil 200 ml', offer: '₹899', mrp: '₹1,249', partner: '≈ ₹27', shop: '≈ ₹45', channel: '≈ ₹72' },
+  { name: 'Senior Comfort Body Wellness Oil 100 ml', offer: '₹499', mrp: '₹699', partner: '≈ ₹15', shop: '≈ ₹25', channel: '≈ ₹40' },
+  { name: 'Senior Comfort Body Wellness Oil 200 ml', offer: '₹899', mrp: '₹1,249', partner: '≈ ₹27', shop: '≈ ₹45', channel: '≈ ₹72' },
+];
+
+const feetAndHairProducts = [
+  { name: 'Kids Foot Comfort Oil 30 ml', offer: '₹199', mrp: '₹299', partner: '≈ ₹6', shop: '≈ ₹10', channel: '≈ ₹16' },
+  { name: 'Kids Foot Comfort Oil 60 ml', offer: '₹349', mrp: '₹499', partner: '≈ ₹10.5', shop: '≈ ₹17.5', channel: '≈ ₹28' },
+  { name: 'Women / Men / Senior Foot Oil 30 ml', offer: '₹249', mrp: '₹349', partner: '≈ ₹7.5', shop: '≈ ₹12.5', channel: '≈ ₹20' },
+  { name: 'Women / Men / Senior Foot Oil 60 ml', offer: '₹449', mrp: '₹599', partner: '≈ ₹13.5', shop: '≈ ₹22.5', channel: '≈ ₹36' },
+  { name: 'Women / Men / Senior Foot Oil 120 ml', offer: '₹799', mrp: '₹1,099', partner: '≈ ₹24', shop: '≈ ₹40', channel: '≈ ₹64' },
+  { name: 'Kids Gentle Hair Wellness Oil 50 ml', offer: '₹249', mrp: '₹349', partner: '≈ ₹7.5', shop: '≈ ₹12.5', channel: '≈ ₹20' },
+  { name: 'Kids Gentle Hair Wellness Oil 100 ml', offer: '₹449', mrp: '₹599', partner: '≈ ₹13.5', shop: '≈ ₹22.5', channel: '≈ ₹36' },
+  { name: 'Women / Men / Senior Hair Oil 50 ml', offer: '₹299', mrp: '₹399', partner: '≈ ₹9', shop: '≈ ₹15', channel: '≈ ₹24' },
+  { name: 'Women / Men / Senior Hair Oil 100 ml', offer: '₹549', mrp: '₹749', partner: '≈ ₹16.5', shop: '≈ ₹27.5', channel: '≈ ₹44' },
+  { name: 'Women / Men / Senior Hair Oil 200 ml', offer: '₹999', mrp: '₹1,399', partner: '≈ ₹30', shop: '≈ ₹50', channel: '≈ ₹80' },
+];
+
+const naturalAromaProducts = [
+  { name: 'Pure Lavender Essential Oil 15 ml', offer: '₹349', mrp: '₹499', partner: '≈ ₹10.5', shop: '≈ ₹17.5', channel: '≈ ₹28' },
+  { name: 'Pure Lavender Essential Oil 30 ml', offer: '₹599', mrp: '₹849', partner: '≈ ₹18', shop: '≈ ₹30', channel: '≈ ₹48' },
+  { name: 'Natural Sandalwood Aroma Roll-On 10 ml', offer: '₹399', mrp: '₹549', partner: '≈ ₹12', shop: '≈ ₹20', channel: '≈ ₹32' },
+  { name: 'Mogra & Jasmine Wellness Fragrance Oil 15 ml', offer: '₹349', mrp: '₹499', partner: '≈ ₹10.5', shop: '≈ ₹17.5', channel: '≈ ₹28' },
+  { name: 'Eucalyptus & Lemongrass Diffuser Blend 20 ml', offer: '₹329', mrp: '₹449', partner: '≈ ₹10', shop: '≈ ₹16.5', channel: '≈ ₹26.3' },
+  { name: 'Holistic Aromatherapy 3-Oil Combo Pack', offer: '₹899', mrp: '≈ ₹1,299', partner: '≈ ₹90', shop: '≈ ₹180', channel: '≈ ₹270' },
 ];
 
 // ── application form fields ───────────────────────────────────────────────────
@@ -256,12 +308,23 @@ export default function BusinessOpportunityPage() {
             <Link href="/partner/wellness-signup" className="w-full sm:w-auto px-8 py-4 bg-[#E88B23] hover:bg-[#cc7a1f] text-white rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-[#E88B23]/30">
               🤝 Join as Wellness Partner
             </Link>
+            <Link href="/partner/retailer-signup" className="w-full sm:w-auto px-8 py-4 bg-white text-[#2D5A27] hover:bg-gray-100 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
+              🛍️ Retail Shop Partner
+            </Link>
             <Link href="/partner/distributor-signup" className="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full font-bold text-lg transition-all backdrop-blur-sm">
               📦 Become a Distributor
             </Link>
           </div>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-6">
+            <a 
+              href="/Ayurdhara_Divya_Shakti_Oil_Wellness_Catalog.pdf" 
+              download 
+              className="flex items-center gap-2 text-white bg-white/15 hover:bg-white/25 px-5 py-2.5 rounded-full font-semibold text-sm transition-all border border-white/20 shadow-sm"
+            >
+              <Download size={16} className="text-[#E88B23]" />
+              Download Official Product Catalog PDF
+            </a>
             <Link href="/partner/login" className="flex items-center gap-2 text-white/80 hover:text-white font-medium text-sm border-b border-white/20 hover:border-white/50 pb-0.5 transition-colors">
               <User size={16} />
               Already a Partner? Log in to your Dashboard
@@ -621,21 +684,75 @@ export default function BusinessOpportunityPage() {
             </table>
           </div>
 
-          {/* Feet + Hair Oils */}
-          <h3 className="text-xl font-bold text-[#2D5A27] mb-5">👣🌿 Feet & Hair Wellness Oils (3% / 5% / 8%)</h3>
+          {/* Body Massage Oils */}
+          <h3 className="text-xl font-bold text-[#2D5A27] mb-5">✨🌿 Body Massage Wellness Oils (3% / 5% / 8%)</h3>
+          <div className="overflow-x-auto rounded-2xl shadow-sm border border-gray-100 bg-white mb-12">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-[#f8faf8]">
+                  <th className="py-3 px-5 text-left font-bold text-[#2D5A27] border-b border-gray-100">Product</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">Offer Price</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#E88B23] border-b border-gray-100">🤝 Partner 3%</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#4B7B3B] border-b border-gray-100">🛍️ Shop 5%</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">📊 Channel 8%</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-50">
+                {bodyOilProducts.map((p, i) => (
+                  <tr key={i} className="hover:bg-[#f8faf8]">
+                    <td className="py-3 px-5 font-semibold text-gray-800">{p.name}</td>
+                    <td className="py-3 px-5 text-center font-bold text-gray-800">{p.offer}</td>
+                    <td className="py-3 px-5 text-center font-bold text-[#E88B23]">{p.partner}</td>
+                    <td className="py-3 px-5 text-center font-bold text-[#4B7B3B]">{p.shop}</td>
+                    <td className="py-3 px-5 text-center font-bold text-[#2D5A27]">{p.channel}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Feet & Hair Oils */}
+          <h3 className="text-xl font-bold text-[#2D5A27] mb-5">👣💇 Feet & Hair Wellness Oils (3% / 5% / 8%)</h3>
+          <div className="overflow-x-auto rounded-2xl shadow-sm border border-gray-100 bg-white mb-12">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-[#f8faf8]">
+                  <th className="py-3 px-5 text-left font-bold text-[#2D5A27] border-b border-gray-100">Product</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">Offer Price</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#E88B23] border-b border-gray-100">🤝 Partner 3%</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#4B7B3B] border-b border-gray-100">🛍️ Shop 5%</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">📊 Channel 8%</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-50">
+                {feetAndHairProducts.map((p, i) => (
+                  <tr key={i} className="hover:bg-[#f8faf8]">
+                    <td className="py-3 px-5 font-semibold text-gray-800">{p.name}</td>
+                    <td className="py-3 px-5 text-center font-bold text-gray-800">{p.offer}</td>
+                    <td className="py-3 px-5 text-center font-bold text-[#E88B23]">{p.partner}</td>
+                    <td className="py-3 px-5 text-center font-bold text-[#4B7B3B]">{p.shop}</td>
+                    <td className="py-3 px-5 text-center font-bold text-[#2D5A27]">{p.channel}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Natural Aroma & Essential Oils */}
+          <h3 className="text-xl font-bold text-[#2D5A27] mb-5">🌸🕯️ Natural Aroma & Essential Oils (3% - 10% / 5% - 20%)</h3>
           <div className="overflow-x-auto rounded-2xl shadow-sm border border-gray-100 bg-white">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="bg-[#f8faf8]">
                   <th className="py-3 px-5 text-left font-bold text-[#2D5A27] border-b border-gray-100">Product</th>
-                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">Offer</th>
-                  <th className="py-3 px-5 text-center font-bold text-[#E88B23] border-b border-gray-100">Partner 3%</th>
-                  <th className="py-3 px-5 text-center font-bold text-[#4B7B3B] border-b border-gray-100">Shop 5%</th>
-                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">Channel 8%</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">Offer Price</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#E88B23] border-b border-gray-100">🤝 Partner Rate</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#4B7B3B] border-b border-gray-100">🛍️ Shop Rate</th>
+                  <th className="py-3 px-5 text-center font-bold text-[#2D5A27] border-b border-gray-100">📊 Channel Pool</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {oilProducts.map((p, i) => (
+                {naturalAromaProducts.map((p, i) => (
                   <tr key={i} className="hover:bg-[#f8faf8]">
                     <td className="py-3 px-5 font-semibold text-gray-800">{p.name}</td>
                     <td className="py-3 px-5 text-center font-bold text-gray-800">{p.offer}</td>

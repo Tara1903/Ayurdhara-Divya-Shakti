@@ -38,29 +38,39 @@ export async function validatePartnerCode(code: string, type: 'wellness' | 'reta
   };
 }
 
-export async function computeCommission(productSlug: string, partnerType: 'wellness' | 'retail', quantity: number, unitPrice: number): Promise<{ rate: number, amount: number }> {
-  // Cash referrals rules:
-  // Trial: 10%
-  // Gold: 12%
-  // Premium: To Be Defined (assume 0 or some default, let's use 12% if it's a pack, otherwise 0 for now as specified "TO BE DEFINED")
-  
+export async function computeCommission(
+  productSlug: string,
+  partnerType: 'wellness' | 'retail',
+  quantity: number,
+  unitPrice: number
+): Promise<{ rate: number; amount: number }> {
   let rate = 0;
-  
+  const slug = (productSlug || '').toLowerCase();
+
   if (partnerType === 'wellness') {
-    if (productSlug.includes('trial')) {
-      rate = 10;
-    } else if (productSlug.includes('gold')) {
+    if (slug.includes('diamond') || slug.includes('premium')) {
+      rate = 15;
+    } else if (slug.includes('gold')) {
       rate = 12;
-    } else if (productSlug.includes('premium')) {
-      rate = 0; // TO BE DEFINED
+    } else if (slug.includes('trial') || slug.includes('silver') || slug.includes('prime') || slug.includes('pack')) {
+      rate = 10;
+    } else {
+      // Individual products (Oils, Raw Herbs, Powders, Capsules, Teas, Foods, Spices, Aromas)
+      rate = 3;
     }
   } else if (partnerType === 'retail') {
-    // Retail margins might be different, but for now we follow the same or assume 0 until defined.
-    // The prompt only defined referral structure for "Cash Referral Reward" (Wellness Partner).
-    rate = 0; 
+    if (slug.includes('diamond') || slug.includes('premium')) {
+      rate = 30;
+    } else if (slug.includes('gold')) {
+      rate = 24;
+    } else if (slug.includes('trial') || slug.includes('silver') || slug.includes('prime') || slug.includes('pack')) {
+      rate = 20;
+    } else {
+      // Individual products approved retail margin
+      rate = 5;
+    }
   }
 
-  const amount = (rate / 100) * (unitPrice * quantity);
-  
+  const amount = Math.round(((rate / 100) * (unitPrice * quantity)) * 100) / 100;
   return { rate, amount };
 }
