@@ -2337,6 +2337,177 @@ export const products: Product[] = [
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
+  },
+  {
+    "id": "pure-lavender-essential-oil",
+    "slug": "pure-lavender-essential-oil",
+    "name": "Pure Lavender Essential Oil",
+    "category": "Natural Aroma",
+    "shortDescription": "100% Pure therapeutic-grade steam-distilled Lavender essential oil for deep calmness and soothing relaxation.",
+    "fullDescription": "Distilled from pristine lavender blossoms, this pure essential oil delivers an exquisite floral and calming botanical aroma. Perfect for diffusers, pillow misting, and stress-relieving evening rituals.",
+    "story": "Crafted using traditional steam distillation to capture the pure volatile essence of mountain-grown lavender.",
+    "benefit": "Promotes deep relaxation, calms the mind, and creates a tranquil atmosphere for restful sleep.",
+    "benefits": [
+      { "icon": "Check", "text": "100% Pure Steam Distilled" },
+      { "icon": "Check", "text": "Calms Mind & Relieves Tension" },
+      { "icon": "Check", "text": "Ideal for Diffusers & Evening Care" }
+    ],
+    "ingredients": [],
+    "images": ["https://images.unsplash.com/photo-1597714026720-8f74c62310ba?auto=format&fit=crop&w=900&q=80"],
+    "variants": [
+      { "size": "15 ml", "price": 349, "originalPrice": 499, "goldMemberPrice": 314, "image": "" },
+      { "size": "30 ml", "price": 599, "originalPrice": 899, "goldMemberPrice": 539, "image": "" }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 42,
+    "badge": "BESTSELLER",
+    "healthGoals": ["Stress Relief", "Sleep Care"],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "3-5 drops", "timing": "Evening / Night", "instructions": "Add 3-5 drops to a diffuser with water, or blend with carrier oil for relaxing topical touch points." },
+    "specifications": { "Net Quantity": "15 ml", "Form": "Pure Essential Oil", "Extraction": "Steam Distillation" },
+    "certifications": ["100% Natural", "Therapeutic Grade", "Chemical Free"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "natural-sandalwood-aroma-roll-on",
+    "slug": "natural-sandalwood-aroma-roll-on",
+    "name": "Natural Sandalwood Aroma Roll-On",
+    "category": "Natural Aroma",
+    "shortDescription": "Pure sandalwood and sacred botanical aroma in a convenient pocket roll-on for instant mindfulness and tranquility.",
+    "fullDescription": "An enriching, sacred sandalwood aroma roll-on blended in pure jojoba base. Designed for effortless pulse-point application throughout the day to evoke mental clarity and grounded peace.",
+    "story": "Inspired by age-old temple fragrances and royal sandalwood ceremonies of ancient India.",
+    "benefit": "Instantly grounds the senses, enhances focus, and surrounds you with an earthy, regal fragrance.",
+    "benefits": [
+      { "icon": "Check", "text": "Pure Sacred Sandalwood Notes" },
+      { "icon": "Check", "text": "Convenient Pocket Pulse-Point Roll-On" },
+      { "icon": "Check", "text": "Zero Alcohol & Zero Synthetic Fixatives" }
+    ],
+    "ingredients": [],
+    "images": ["https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80"],
+    "variants": [
+      { "size": "10 ml Roll-On", "price": 399, "originalPrice": 599, "goldMemberPrice": 359, "image": "" }
+    ],
+    "price": 399,
+    "originalPrice": 599,
+    "discount": 33,
+    "rating": 5,
+    "reviewCount": 38,
+    "badge": "PREMIUM",
+    "healthGoals": ["Mindfulness", "Daily Energy"],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "1 application", "timing": "Anytime", "instructions": "Gently roll over pulse points (wrists, temples, behind ears) and breathe in deeply." },
+    "specifications": { "Net Quantity": "10 ml", "Form": "Pocket Aroma Roll-On", "Alcohol Content": "0%" },
+    "certifications": ["100% Natural", "Cruelty Free", "Non-Toxic"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "mogra-jasmine-wellness-fragrance-oil",
+    "slug": "mogra-jasmine-wellness-fragrance-oil",
+    "name": "Mogra & Jasmine Wellness Fragrance Oil",
+    "category": "Natural Aroma",
+    "shortDescription": "Enchanting Indian Mogra & royal Jasmine blossom extract for a blissful, uplifting natural floral aura.",
+    "fullDescription": "Experience the opulent, sweet floral essence of fresh night-blooming Mogra and Royal Jasmine flowers. Handcrafted to uplift mood and surround your sacred living space with pure joy.",
+    "story": "Harvested in early dawn when jasmine petals retain their peak aromatic nectar and vital life force.",
+    "benefit": "Elevates mood, sparks creativity, and leaves an enchanting natural floral fragrance.",
+    "benefits": [
+      { "icon": "Check", "text": "Authentic Indian Mogra & Jasmine" },
+      { "icon": "Check", "text": "Uplifting & Mood-Enhancing" },
+      { "icon": "Check", "text": "Long-Lasting Natural Scent" }
+    ],
+    "ingredients": [],
+    "images": ["https://images.unsplash.com/photo-1597714026720-8f74c62310ba?auto=format&fit=crop&w=900&q=80"],
+    "variants": [
+      { "size": "15 ml", "price": 349, "originalPrice": 499, "goldMemberPrice": 314, "image": "" }
+    ],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 29,
+    "badge": "FLORAL ESSENCE",
+    "healthGoals": ["Mood Elevation", "Home Wellness"],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "3-4 drops", "timing": "Morning & Evening", "instructions": "Diffuse in ultrasonic or reed diffusers, or add to potpourri and bathwater." },
+    "specifications": { "Net Quantity": "15 ml", "Form": "Pure Botanical Oil", "Aroma": "Exotic Sweet Floral" },
+    "certifications": ["100% Natural", "Ayurvedic Inspired", "Chemical Free"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "eucalyptus-lemongrass-diffuser-blend",
+    "slug": "eucalyptus-lemongrass-diffuser-blend",
+    "name": "Eucalyptus & Lemongrass Diffuser Blend",
+    "category": "Natural Aroma",
+    "shortDescription": "Crisp Nilgiri Eucalyptus paired with zesty organic Lemongrass for fresh air purification and respiratory vitality.",
+    "fullDescription": "A refreshing and invigorating synergy of cool Nilgiri Eucalyptus and bright South Indian Lemongrass. Clears the ambiance, supports open airways, and revitalizes tired minds.",
+    "story": "Harnessing the high-altitude vitality of Nilgiri eucalyptus groves and organic lemongrass farms.",
+    "benefit": "Purifies ambient indoor air, clears congestion, and promotes energetic focus.",
+    "benefits": [
+      { "icon": "Check", "text": "Clears Air & Vitalizes Energy" },
+      { "icon": "Check", "text": "Fresh Lemongrass & Nilgiri Eucalyptus" },
+      { "icon": "Check", "text": "Ideal for Workspaces & Living Rooms" }
+    ],
+    "ingredients": [],
+    "images": ["https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80"],
+    "variants": [
+      { "size": "20 ml", "price": 329, "originalPrice": 499, "goldMemberPrice": 296, "image": "" }
+    ],
+    "price": 329,
+    "originalPrice": 499,
+    "discount": 34,
+    "rating": 5,
+    "reviewCount": 31,
+    "badge": "AIR PURIFYING",
+    "healthGoals": ["Daily Energy", "Immunity Care"],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "4-6 drops", "timing": "Morning / Daytime", "instructions": "Add 4-6 drops to diffuser or vaporizing bowl with warm water." },
+    "specifications": { "Net Quantity": "20 ml", "Form": "Diffuser Blend", "Aroma": "Fresh Citrus & Herbal Crisp" },
+    "certifications": ["100% Natural", "Therapeutic Grade", "Chemical Free"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "holistic-aromatherapy-combo-pack",
+    "slug": "holistic-aromatherapy-combo-pack",
+    "name": "Holistic Aromatherapy 3-Oil Combo Pack",
+    "category": "Natural Aroma",
+    "shortDescription": "Complete 3-piece wellness set: Lavender (Sleep), Eucalyptus (Focus), and Sandalwood (Peace). Total: 45 ml.",
+    "fullDescription": "The ultimate therapeutic aroma starter set for holistic self-care. Contains 15 ml Lavender for restful nights, 15 ml Eucalyptus for clear mornings, and 15 ml Sandalwood for centered afternoons.",
+    "story": "Curated by Ayurvedic aromatherapy specialists to align your senses with the natural circadian cycle.",
+    "benefit": "Provides all-day sensory balance: uplifting focus in the day and serene tranquility at night.",
+    "benefits": [
+      { "icon": "Check", "text": "3 Full-Size 15 ml Bottles" },
+      { "icon": "Check", "text": "Complete Morning, Afternoon & Night Care" },
+      { "icon": "Check", "text": "Luxury Gift Box Packaging" }
+    ],
+    "ingredients": [],
+    "images": ["/images/categories/cat_natural_fragrance.jpg"],
+    "variants": [
+      { "size": "3 x 15 ml Combo (45 ml)", "price": 899, "originalPrice": 1299, "goldMemberPrice": 809, "image": "" }
+    ],
+    "price": 899,
+    "originalPrice": 1299,
+    "discount": 31,
+    "rating": 5,
+    "reviewCount": 56,
+    "badge": "VALUE COMBO",
+    "healthGoals": ["Stress Relief", "Daily Energy", "Sleep Care"],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "All-Day Circadian Care", "instructions": "Use Eucalyptus in morning, Sandalwood in afternoon, and Lavender before bedtime." },
+    "specifications": { "Net Quantity": "45 ml (3 x 15 ml)", "Packaging": "Luxury Amber Dropper Bottles" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
   }
 ];
 

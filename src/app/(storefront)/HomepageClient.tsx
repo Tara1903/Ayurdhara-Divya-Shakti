@@ -408,7 +408,7 @@ function Section1CategoryIcons() {
     { name: 'Natural Foods', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/natural-foods' },
     { name: 'Pure Spices', image: '/images/categories/cat_pure_spices_1786557545627.jpg', link: '/pure-spices' },
     { name: 'Wellness Packs', image: '/images/categories/cat_wellness_packs_1786557692487.jpg', link: '/wellness-packs' },
-      { name: 'Natural Aroma', image: '/images/categories/cat_natural_fragrance.jpg', link: '/natural-fragrance-essential-oils' },
+    { name: 'Natural Aroma', image: '/images/categories/cat_natural_fragrance.jpg', link: '/natural-aroma' },
   ];
 
   return (

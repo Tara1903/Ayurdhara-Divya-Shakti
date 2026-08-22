@@ -169,7 +169,10 @@ export const getActiveProducts = unstable_cache(
     }
 
     logger.debug({ message: 'getActiveProducts success', context: 'DAL', duration: Date.now() - startTime });
-    return (data || []).map(mapDbProductToAppProduct);
+    const dbAppProducts = (data || []).map(mapDbProductToAppProduct);
+    const dbSlugs = new Set(dbAppProducts.map(p => p.slug));
+    const unseededStaticProducts = staticProducts.filter(p => !dbSlugs.has(p.slug));
+    return [...dbAppProducts, ...unseededStaticProducts];
   },
   ['all-products'],
   { revalidate: 60, tags: ['products'] }
@@ -213,10 +216,11 @@ export const getAllActiveProductSlugs = unstable_cache(
     const { data, error } = await supabase.from('products').select('slug').eq('is_active', true);
 
     if (error || !data) return staticProducts.map(p => p.slug);
-    return data.map((p: any) => p.slug);
+    const dbSlugs = data.map((p: any) => p.slug);
+    return Array.from(new Set([...dbSlugs, ...staticProducts.map(p => p.slug)]));
   },
-  ['product-slugs'],
-  { revalidate: 3600, tags: ['products'] }
+  ['all-product-slugs'],
+  { revalidate: 60, tags: ['products'] }
 );
 
 export const getProductsByCategory = unstable_cache(

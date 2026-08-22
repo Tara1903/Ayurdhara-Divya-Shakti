@@ -106,8 +106,8 @@ export const navigationData: Category[] = [
   },
   {
     name: "Natural Aroma",
-    slug: "natural-fragrance-essential-oils",
-    description: "Pure-inspired aromas and essential oils for everyday self-care, relaxation and natural living.",
+    slug: "natural-aroma",
+    description: "Pure-inspired aromas, therapeutic essential oils and wellness fragrances for everyday self-care, relaxation and natural living.",
     subcategories: [
       { name: "Essential Oils", slug: "essential-oils" },
       { name: "Natural Fragrance", slug: "natural-fragrance" },
@@ -133,6 +133,9 @@ export const accountLinks = [
 ];
 
 export function getCategoryBySlug(slug: string): Category | undefined {
+  if (slug === 'natural-fragrance-essential-oils' || slug === 'natural-aroma') {
+    return navigationData.find(cat => cat.slug === 'natural-aroma') || navigationData.find(cat => cat.slug === slug);
+  }
   return navigationData.find(cat => cat.slug === slug);
 }
 
