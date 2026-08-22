@@ -48,28 +48,31 @@ export default async function SubcategoryPage({ params }: { params: Promise<{ ca
     
     if (!prodCatLower) return false;
 
-    // Handle Wellness Combos specifically to prevent cross-contamination
-    if (resolvedParams.category === 'wellness-combos') {
-      if (resolvedParams.subcategory === 'trial-packs') return prodNameLower.includes('trial');
-      if (resolvedParams.subcategory === 'gold-wellness-packs') return prodNameLower.includes('gold');
-      if (resolvedParams.subcategory === 'premium-wellness-packs') return prodNameLower.includes('premium');
-      if (resolvedParams.subcategory === 'family-packs') return prodNameLower.includes('family');
-      if (resolvedParams.subcategory === 'gift-packs') return prodNameLower.includes('gift');
-      return prodCatLower.includes('pack') || prodCatLower.includes('combo') || prodNameLower.includes('combo');
+    // Direct slug matching for Oil Wellness & Trial categories
+    if (resolvedParams.subcategory === 'nabhi-trial-packs') return prodCatLower.includes('nabhi trial') || (prodNameLower.includes('nabhi') && prodNameLower.includes('trial'));
+    if (resolvedParams.subcategory === 'combo-trial-packs') return prodCatLower.includes('combo') || prodNameLower.includes('prime trial') || prodNameLower.includes('silver trial') || prodNameLower.includes('gold trial') || prodNameLower.includes('diamond trial');
+    if (resolvedParams.subcategory === 'feet-massage-oil' || resolvedParams.subcategory === 'feet-massage-trial-packs') return prodCatLower.includes('feet') || prodNameLower.includes('feet');
+    if (resolvedParams.subcategory === 'body-massage-oil') return prodCatLower.includes('body massage') || prodNameLower.includes('body massage');
+    if (resolvedParams.subcategory === 'hair-wellness-oil') return prodCatLower.includes('hair') || prodNameLower.includes('hair');
+
+    // Gender-specific precision filters
+    if (resolvedParams.subcategory === 'women-wellness' || subNameLower.includes('women')) {
+      return prodCatLower.includes('women') || prodNameLower.includes('women');
+    }
+    if (resolvedParams.subcategory === 'men-wellness' || subNameLower.includes('men')) {
+      if (prodCatLower.includes('women') || prodNameLower.includes('women')) return false;
+      return prodCatLower.includes('men') || prodNameLower.includes('men');
+    }
+    if (resolvedParams.subcategory === 'kids-care' || subNameLower.includes('kids')) {
+      return prodCatLower.includes('kids') || prodNameLower.includes('kids');
+    }
+    if (resolvedParams.subcategory === 'senior-care' || subNameLower.includes('senior')) {
+      return prodCatLower.includes('senior') || prodNameLower.includes('senior');
     }
 
-    // Hardcoded matching for existing products in DB since they might not be strictly tagged
-    if (resolvedParams.subcategory === 'nabhi-oil-blends') return prodCatLower.includes('nabhi');
-    if (resolvedParams.subcategory === 'feet-wellness-oil') return prodCatLower.includes('feet');
-    if (resolvedParams.subcategory === 'hair-wellness-oil') return prodCatLower.includes('hair');
-
-    // Fix naive "women" includes "men" bug
-      if (prodCatLower === subNameLower) return true;
-      if (prodNameLower === subNameLower) return true;
-      if (subNameLower === 'women wellness oil blend' && prodCatLower === 'men wellness oil blend') return false;
-      if (subNameLower === 'men wellness oil blend' && prodCatLower === 'women wellness oil blend') return false;
-      
-      return prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower) || prodNameLower.includes(subNameLower);
+    if (prodCatLower === subNameLower) return true;
+    if (prodNameLower === subNameLower) return true;
+    return prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower) || prodNameLower.includes(subNameLower);
   });
 
   return (

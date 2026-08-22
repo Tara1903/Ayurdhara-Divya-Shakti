@@ -2067,793 +2067,273 @@ export const products: Product[] = [
     "routineProductIds": []
   },
   {
-    "id": "individual-trial-wellness-pack",
-    "slug": "individual-trial-wellness-pack",
-    "name": "Individual Trial Wellness Pack",
-    "category": "Individual Trial Wellness Pack",
-    "shortDescription": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil. 40 ml total volume. Up to 1 Month Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil. 40 ml total volume. Up to 1 Month Wellness Care",
+    "id": "nabhi-2-variant-trial-pack",
+    "slug": "nabhi-2-variant-trial-pack",
+    "name": "Nabhi 2-Variant Trial Pack",
+    "category": "Nabhi Trial Packs",
+    "shortDescription": "2 x 5 ml = 10 ml Nabhi Wellness Oils. Up to 1 Month* Wellness Care. Select any 2 variants from one category.",
+    "fullDescription": "Customizable 2-variant Nabhi oil trial pack. Select any 2 targeted formulations from Kids, Men, Women, or Senior Care categories for up to 1 month of restorative daily wellness.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "2 x 5 ml = 10 ml Nabhi Wellness Oils. Up to 1 Month* Wellness Care",
     "benefits": [
-      {
-        "icon": "Check",
-        "text": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil"
-      },
-      {
-        "icon": "Check",
-        "text": "40 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 1 Month Wellness Care"
-      }
+      { "icon": "Check", "text": "2 x 5 ml Nabhi Oils" },
+      { "icon": "Check", "text": "10 ml Total Volume" },
+      { "icon": "Check", "text": "Up to 1 Month Wellness Care" }
     ],
     "ingredients": [],
-    "images": [
-      "/images/products/individual-trial-wellness-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 499,
-        "originalPrice": 749,
-        "image": ""
-      }
-    ],
-    "price": 499,
-    "originalPrice": 749,
-    "discount": 33,
+    "images": ["/images/categories/cat_trial_pack.jpg"],
+    "variants": [{ "size": "2 x 5 ml (10 ml)", "price": 349, "originalPrice": 499, "goldMemberPrice": 314, "image": "" }],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
     "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil",
-    "durationText": "Up to 1 Month Wellness Care",
-    "totalQuantityMl": "40 ml",
-    "selectionType": "single",
-    "memberCount": 1,
+    "reviewCount": 34,
+    "badge": "POPULAR TRIAL",
+    "durationText": "Up to 1 Month*",
+    "totalQuantityMl": "10 ml",
     "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "40 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Morning & Night", "instructions": "Apply 2-3 drops on navel daily." },
+    "specifications": { "Net Quantity": "10 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
   {
-    "id": "diamond-trial-wellness-pack",
-    "slug": "diamond-trial-wellness-pack",
-    "name": "Diamond Trial Wellness Pack",
-    "category": "Diamond Trial Wellness Pack",
-    "shortDescription": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil. 140 ml total volume. Up to 1 Month Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil. 140 ml total volume. Up to 1 Month Wellness Care",
+    "id": "nabhi-4-variant-trial-pack",
+    "slug": "nabhi-4-variant-trial-pack",
+    "name": "Nabhi 4-Variant Trial Pack",
+    "category": "Nabhi Trial Packs",
+    "shortDescription": "4 x 5 ml = 20 ml Nabhi Wellness Oils. Up to 2 Months* Wellness Care. All 4 variants from one category.",
+    "fullDescription": "Complete 4-variant Nabhi oil collection for a full category. Includes all 4 specialized formulations for comprehensive wellness care lasting up to 2 months.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "4 x 5 ml = 20 ml Nabhi Wellness Oils. Up to 2 Months* Wellness Care",
     "benefits": [
-      {
-        "icon": "Check",
-        "text": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil"
-      },
-      {
-        "icon": "Check",
-        "text": "140 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 1 Month Wellness Care"
-      }
+      { "icon": "Check", "text": "4 x 5 ml Nabhi Oils" },
+      { "icon": "Check", "text": "20 ml Total Volume" },
+      { "icon": "Check", "text": "Up to 2 Months Wellness Care" }
     ],
     "ingredients": [],
-    "images": [
-      "/images/products/diamond-trial-wellness-pack.jpg"
+    "images": ["/images/categories/cat_trial_pack.jpg"],
+    "variants": [{ "size": "4 x 5 ml (20 ml)", "price": 599, "originalPrice": 999, "goldMemberPrice": 539, "image": "" }],
+    "price": 599,
+    "originalPrice": 999,
+    "discount": 40,
+    "rating": 5,
+    "reviewCount": 42,
+    "badge": "COMPLETE PACK",
+    "durationText": "Up to 2 Months*",
+    "totalQuantityMl": "20 ml",
+    "healthGoals": [],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Morning & Night", "instructions": "Apply 2-3 drops on navel daily." },
+    "specifications": { "Net Quantity": "20 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "feet-wellness-trial-pack",
+    "slug": "feet-wellness-trial-pack",
+    "name": "Feet Wellness Trial Pack",
+    "category": "Feet Massage Oil",
+    "shortDescription": "30 ml Restorative Feet Wellness Oil. Up to 15 Days* Wellness Care.",
+    "fullDescription": "Traditional Padabhyanga foot massage oil infused with cooling, soothing herbs to relieve daily fatigue and promote deep restorative sleep.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "30 ml Restorative Feet Wellness Oil. Up to 15 Days* Wellness Care",
+    "benefits": [
+      { "icon": "Check", "text": "30 ml Foot Massage Oil" },
+      { "icon": "Check", "text": "Up to 15 Days Wellness Care" }
     ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 999,
-        "originalPrice": 1499,
-        "image": ""
-      }
+    "ingredients": [],
+    "images": ["/images/categories/cat_oil_wellness_1786556871303.jpg"],
+    "variants": [{ "size": "30 ml", "price": 349, "originalPrice": 499, "goldMemberPrice": 314, "image": "" }],
+    "price": 349,
+    "originalPrice": 499,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 29,
+    "badge": "15 DAYS TRIAL",
+    "durationText": "Up to 15 Days*",
+    "totalQuantityMl": "30 ml",
+    "healthGoals": [],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Night Before Bed", "instructions": "Massage on feet soles before sleeping." },
+    "specifications": { "Net Quantity": "30 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "feet-wellness-routine-pack",
+    "slug": "feet-wellness-routine-pack",
+    "name": "Feet Wellness Routine Pack",
+    "category": "Feet Massage Oil",
+    "shortDescription": "60 ml Daily Feet Wellness Oil. Up to 1 Month* Wellness Care.",
+    "fullDescription": "Full 1-month supply of our signature Padabhyanga foot massage oil for sustained relaxation, improved circulation, and overnight calm.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "60 ml Daily Feet Wellness Oil. Up to 1 Month* Wellness Care",
+    "benefits": [
+      { "icon": "Check", "text": "60 ml Foot Massage Oil" },
+      { "icon": "Check", "text": "Up to 1 Month Wellness Care" }
     ],
+    "ingredients": [],
+    "images": ["/images/categories/cat_oil_wellness_1786556871303.jpg"],
+    "variants": [{ "size": "60 ml", "price": 499, "originalPrice": 699, "goldMemberPrice": 449, "image": "" }],
+    "price": 499,
+    "originalPrice": 699,
+    "discount": 28,
+    "rating": 5,
+    "reviewCount": 51,
+    "badge": "1 MONTH ROUTINE",
+    "durationText": "Up to 1 Month*",
+    "totalQuantityMl": "60 ml",
+    "healthGoals": [],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Night Before Bed", "instructions": "Massage on feet soles before sleeping." },
+    "specifications": { "Net Quantity": "60 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "prime-trial-pack",
+    "slug": "prime-trial-pack",
+    "name": "Prime Trial Pack",
+    "category": "Combo Trial Packs",
+    "shortDescription": "2 x 5 ml Nabhi + 60 ml Feet Oil. Total: 70 ml. Up to 1 Month* Wellness Care.",
+    "fullDescription": "Starter wellness combo pairing 2 targeted 5 ml Nabhi wellness oils with 60 ml Feet massage oil for a synchronized 1-month daily routine.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "2 x 5 ml Nabhi + 60 ml Feet Oil. Total: 70 ml. Up to 1 Month* Wellness Care",
+    "benefits": [
+      { "icon": "Check", "text": "2 x 5 ml Nabhi Oils" },
+      { "icon": "Check", "text": "60 ml Feet Massage Oil" },
+      { "icon": "Check", "text": "Up to 1 Month Wellness Care" }
+    ],
+    "ingredients": [],
+    "images": ["/images/categories/cat_wellness_packs_1786557692487.jpg"],
+    "variants": [{ "size": "70 ml Combo", "price": 699, "originalPrice": 999, "goldMemberPrice": 629, "image": "" }],
+    "price": 699,
+    "originalPrice": 999,
+    "discount": 30,
+    "rating": 5,
+    "reviewCount": 67,
+    "badge": "STARTER COMBO",
+    "durationText": "Up to 1 Month*",
+    "totalQuantityMl": "70 ml",
+    "healthGoals": [],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Morning & Night", "instructions": "Apply Nabhi oil on navel and massage feet oil before bed." },
+    "specifications": { "Net Quantity": "70 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
+    "faqs": [],
+    "relatedProductIds": [],
+    "routineProductIds": []
+  },
+  {
+    "id": "silver-trial-pack",
+    "slug": "silver-trial-pack",
+    "name": "Silver Trial Pack",
+    "category": "Combo Trial Packs",
+    "shortDescription": "4 x 5 ml Nabhi + 120 ml Feet Oil. Total: 140 ml. Up to 2 Months* Wellness Care.",
+    "fullDescription": "Best value wellness combo offering all 4 category Nabhi oils (20 ml) plus double feet oil (120 ml) for 2 months of restorative care.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "4 x 5 ml Nabhi + 120 ml Feet Oil. Total: 140 ml. Up to 2 Months* Wellness Care",
+    "benefits": [
+      { "icon": "Check", "text": "4 x 5 ml Nabhi Oils" },
+      { "icon": "Check", "text": "120 ml Feet Massage Oil" },
+      { "icon": "Check", "text": "Up to 2 Months Wellness Care" }
+    ],
+    "ingredients": [],
+    "images": ["/images/categories/cat_wellness_packs_1786557692487.jpg"],
+    "variants": [{ "size": "140 ml Combo", "price": 999, "originalPrice": 1499, "goldMemberPrice": 899, "image": "" }],
     "price": 999,
     "originalPrice": 1499,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "10 ml Nabhi Wellness Oil + 30 ml Feet Massage Oil + 100 ml Body Massage Oil",
-    "durationText": "Up to 1 Month Wellness Care",
+    "reviewCount": 84,
+    "badge": "BEST VALUE",
+    "durationText": "Up to 2 Months*",
     "totalQuantityMl": "140 ml",
-    "selectionType": "single",
-    "memberCount": 1,
     "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "140 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Morning & Night", "instructions": "Apply Nabhi oil on navel and massage feet oil before bed." },
+    "specifications": { "Net Quantity": "140 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
   {
-    "id": "individual-gold-wellness-pack",
-    "slug": "individual-gold-wellness-pack",
-    "name": "Individual Gold Wellness Pack",
-    "category": "Individual Gold Wellness Pack",
-    "shortDescription": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil. 140 ml total volume. Up to 4 Months Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil. 140 ml total volume. Up to 4 Months Wellness Care",
+    "id": "gold-trial-pack",
+    "slug": "gold-trial-pack",
+    "name": "Gold Trial Pack",
+    "category": "Combo Trial Packs",
+    "shortDescription": "2 x 5 ml Nabhi + 60 ml Feet Oil + 100 ml Body Massage Oil. Total: 170 ml. Up to 1 Month* Wellness Care.",
+    "fullDescription": "Complete head-to-toe self-care regimen combining Nabhi oils, Feet oil, and 100 ml full-body Abhyanga massage oil for whole-body rejuvenation.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "2 x 5 ml Nabhi + 60 ml Feet Oil + 100 ml Body Massage Oil. Total: 170 ml. Up to 1 Month* Wellness Care",
     "benefits": [
-      {
-        "icon": "Check",
-        "text": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil"
-      },
-      {
-        "icon": "Check",
-        "text": "140 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 4 Months Wellness Care"
-      }
+      { "icon": "Check", "text": "2 x 5 ml Nabhi Oils" },
+      { "icon": "Check", "text": "60 ml Feet Massage Oil" },
+      { "icon": "Check", "text": "100 ml Body Massage Oil" },
+      { "icon": "Check", "text": "Up to 1 Month Wellness Care" }
     ],
     "ingredients": [],
-    "images": [
-      "/images/products/individual-gold-wellness-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 1799,
-        "originalPrice": 2499,
-        "image": ""
-      }
-    ],
-    "price": 1799,
-    "originalPrice": 2499,
-    "discount": 28,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "4 x 10 ml Nabhi Oil Blends + 100 ml Feet Massage Oil",
-    "durationText": "Up to 4 Months Wellness Care",
-    "totalQuantityMl": "140 ml",
-    "selectionType": "single",
-    "memberCount": 1,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "140 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "individual-premium-wellness-pack",
-    "slug": "individual-premium-wellness-pack",
-    "name": "Individual Premium Wellness Pack",
-    "category": "Individual Premium Wellness Pack",
-    "shortDescription": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil. 280 ml total volume. Up to 8 Months Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil. 280 ml total volume. Up to 8 Months Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil"
-      },
-      {
-        "icon": "Check",
-        "text": "280 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 8 Months Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/individual-premium-wellness-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 3999,
-        "originalPrice": 5999,
-        "image": ""
-      }
-    ],
-    "price": 3999,
-    "originalPrice": 5999,
+    "images": ["/images/categories/cat_wellness_packs_1786557692487.jpg"],
+    "variants": [{ "size": "170 ml Combo", "price": 1199, "originalPrice": 1799, "goldMemberPrice": 1079, "image": "" }],
+    "price": 1199,
+    "originalPrice": 1799,
     "discount": 33,
     "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "4 x 20 ml Nabhi Oil Blends + 200 ml Feet Massage Oil",
-    "durationText": "Up to 8 Months Wellness Care",
-    "totalQuantityMl": "280 ml",
-    "selectionType": "single",
-    "memberCount": 1,
+    "reviewCount": 92,
+    "badge": "COMPLETE SELF-CARE",
+    "durationText": "Up to 1 Month*",
+    "totalQuantityMl": "170 ml",
     "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "280 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Morning & Night", "instructions": "Apply Nabhi oil on navel, use body massage oil before bath, and massage feet oil before bed." },
+    "specifications": { "Net Quantity": "170 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []
   },
   {
-    "id": "2-member-family-trial-pack",
-    "slug": "2-member-family-trial-pack",
-    "name": "2 Member Family Trial Pack",
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "Trial packs for 2 members. 80 ml total volume. Up to 1 Month Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Trial packs for 2 members. 80 ml total volume. Up to 1 Month Wellness Care",
+    "id": "diamond-trial-pack",
+    "slug": "diamond-trial-pack",
+    "name": "Diamond Trial Pack",
+    "category": "Combo Trial Packs",
+    "shortDescription": "4 x 5 ml Nabhi + 120 ml Feet Oil + 100 ml Body Massage Oil. Total: 240 ml. Up to 2 Months* Wellness Care.",
+    "fullDescription": "The ultimate flagship Ayurvedic wellness combo. Includes all 4 category Nabhi oils (20 ml), 120 ml Feet massage oil, and 100 ml Body massage oil for up to 2 full months of complete luxury wellness care.",
+    "story": "Rooted in timeless Ayurvedic texts and handcrafted with 100% natural botanical extracts.",
+    "benefit": "4 x 5 ml Nabhi + 120 ml Feet Oil + 100 ml Body Massage Oil. Total: 240 ml. Up to 2 Months* Wellness Care",
     "benefits": [
-      {
-        "icon": "Check",
-        "text": "Trial packs for 2 members"
-      },
-      {
-        "icon": "Check",
-        "text": "80 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 1 Month Wellness Care"
-      }
+      { "icon": "Check", "text": "4 x 5 ml Nabhi Oils" },
+      { "icon": "Check", "text": "120 ml Feet Massage Oil" },
+      { "icon": "Check", "text": "100 ml Body Massage Oil" },
+      { "icon": "Check", "text": "Up to 2 Months Wellness Care" }
     ],
     "ingredients": [],
-    "images": [
-      "/images/products/2-member-family-trial-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 899,
-        "originalPrice": 1499,
-        "image": ""
-      }
-    ],
-    "price": 899,
-    "originalPrice": 1499,
-    "discount": 40,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Trial packs for 2 members",
-    "durationText": "Up to 1 Month Wellness Care",
-    "totalQuantityMl": "80 ml",
-    "selectionType": "per-member",
-    "memberCount": 2,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "80 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "3-member-family-trial-pack",
-    "slug": "3-member-family-trial-pack",
-    "name": "3 Member Family Trial Pack",
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "Trial packs for 3 members. 120 ml total volume. Up to 1 Month Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Trial packs for 3 members. 120 ml total volume. Up to 1 Month Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "Trial packs for 3 members"
-      },
-      {
-        "icon": "Check",
-        "text": "120 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 1 Month Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/3-member-family-trial-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 1299,
-        "originalPrice": 2249,
-        "image": ""
-      }
-    ],
-    "price": 1299,
-    "originalPrice": 2249,
-    "discount": 42,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Trial packs for 3 members",
-    "durationText": "Up to 1 Month Wellness Care",
-    "totalQuantityMl": "120 ml",
-    "selectionType": "per-member",
-    "memberCount": 3,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "120 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "4-member-family-trial-pack",
-    "slug": "4-member-family-trial-pack",
-    "name": "4 Member Family Trial Pack",
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "Trial packs for 4 members. 160 ml total volume. Up to 1 Month Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Trial packs for 4 members. 160 ml total volume. Up to 1 Month Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "Trial packs for 4 members"
-      },
-      {
-        "icon": "Check",
-        "text": "160 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 1 Month Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/4-member-family-trial-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 1699,
-        "originalPrice": 2999,
-        "image": ""
-      }
-    ],
-    "price": 1699,
-    "originalPrice": 2999,
-    "discount": 43,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Trial packs for 4 members",
-    "durationText": "Up to 1 Month Wellness Care",
-    "totalQuantityMl": "160 ml",
-    "selectionType": "per-member",
-    "memberCount": 4,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "160 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "5-member-family-trial-pack",
-    "slug": "5-member-family-trial-pack",
-    "name": "5 Member Family Trial Pack",
-    "category": "Family Trial Wellness Packs",
-    "shortDescription": "Trial packs for 5 members. 200 ml total volume. Up to 1 Month Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Trial packs for 5 members. 200 ml total volume. Up to 1 Month Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "Trial packs for 5 members"
-      },
-      {
-        "icon": "Check",
-        "text": "200 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 1 Month Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/5-member-family-trial-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 2099,
-        "originalPrice": 3749,
-        "image": ""
-      }
-    ],
-    "price": 2099,
-    "originalPrice": 3749,
-    "discount": 44,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Trial packs for 5 members",
-    "durationText": "Up to 1 Month Wellness Care",
-    "totalQuantityMl": "200 ml",
-    "selectionType": "per-member",
-    "memberCount": 5,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "200 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "2-member-family-gold-wellness-pack",
-    "slug": "2-member-family-gold-wellness-pack",
-    "name": "2 Member Family Gold Wellness Pack",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Gold packs for 2 members. 280 ml total volume. Up to 4 Months Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Gold packs for 2 members. 280 ml total volume. Up to 4 Months Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "Gold packs for 2 members"
-      },
-      {
-        "icon": "Check",
-        "text": "280 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 4 Months Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/2-member-family-gold-wellness-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 3999,
-        "originalPrice": 5499,
-        "image": ""
-      }
-    ],
-    "price": 3999,
-    "originalPrice": 5499,
-    "discount": 27,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Gold packs for 2 members",
-    "durationText": "Up to 4 Months Wellness Care",
-    "totalQuantityMl": "280 ml",
-    "selectionType": "per-member",
-    "memberCount": 2,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "280 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "3-member-family-gold-wellness-pack",
-    "slug": "3-member-family-gold-wellness-pack",
-    "name": "3 Member Family Gold Wellness Pack",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Gold packs for 3 members. 420 ml total volume. Up to 4 Months Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Gold packs for 3 members. 420 ml total volume. Up to 4 Months Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "Gold packs for 3 members"
-      },
-      {
-        "icon": "Check",
-        "text": "420 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 4 Months Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/3-member-family-gold-wellness-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 5799,
-        "originalPrice": 8249,
-        "image": ""
-      }
-    ],
-    "price": 5799,
-    "originalPrice": 8249,
+    "images": ["/images/categories/cat_wellness_packs_1786557692487.jpg"],
+    "variants": [{ "size": "240 ml Combo", "price": 1599, "originalPrice": 2299, "goldMemberPrice": 1439, "image": "" }],
+    "price": 1599,
+    "originalPrice": 2299,
     "discount": 30,
     "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Gold packs for 3 members",
-    "durationText": "Up to 4 Months Wellness Care",
-    "totalQuantityMl": "420 ml",
-    "selectionType": "per-member",
-    "memberCount": 3,
+    "reviewCount": 115,
+    "badge": "COMPLETE WELLNESS COMBO",
+    "durationText": "Up to 2 Months*",
+    "totalQuantityMl": "240 ml",
     "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "420 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "4-member-family-gold-wellness-pack",
-    "slug": "4-member-family-gold-wellness-pack",
-    "name": "4 Member Family Gold Wellness Pack",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Gold packs for 4 members. 560 ml total volume. Up to 4 Months Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Gold packs for 4 members. 560 ml total volume. Up to 4 Months Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "Gold packs for 4 members"
-      },
-      {
-        "icon": "Check",
-        "text": "560 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 4 Months Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/4-member-family-gold-wellness-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 7499,
-        "originalPrice": 10999,
-        "image": ""
-      }
-    ],
-    "price": 7499,
-    "originalPrice": 10999,
-    "discount": 32,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Gold packs for 4 members",
-    "durationText": "Up to 4 Months Wellness Care",
-    "totalQuantityMl": "560 ml",
-    "selectionType": "per-member",
-    "memberCount": 4,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "560 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
-    "faqs": [],
-    "relatedProductIds": [],
-    "routineProductIds": []
-  },
-  {
-    "id": "5-member-family-gold-wellness-pack",
-    "slug": "5-member-family-gold-wellness-pack",
-    "name": "5 Member Family Gold Wellness Pack",
-    "category": "Family Gold Wellness Packs",
-    "shortDescription": "Gold packs for 5 members. 700 ml total volume. Up to 4 Months Wellness Care",
-    "fullDescription": "A complete wellness routine in one convenient pack.",
-    "story": "This comprehensive pack brings together our finest natural-inspired formulations, designed to make everyday self-care and massage routines simple and accessible.",
-    "benefit": "Gold packs for 5 members. 700 ml total volume. Up to 4 Months Wellness Care",
-    "benefits": [
-      {
-        "icon": "Check",
-        "text": "Gold packs for 5 members"
-      },
-      {
-        "icon": "Check",
-        "text": "700 ml"
-      },
-      {
-        "icon": "Check",
-        "text": "Up to 4 Months Wellness Care"
-      }
-    ],
-    "ingredients": [],
-    "images": [
-      "/images/products/5-member-family-gold-wellness-pack.jpg"
-    ],
-    "variants": [
-      {
-        "size": "Pack",
-        "price": 8999,
-        "originalPrice": 13749,
-        "image": ""
-      }
-    ],
-    "price": 8999,
-    "originalPrice": 13749,
-    "discount": 35,
-    "rating": 5,
-    "reviewCount": 25,
-    "badge": "100% NATURAL",
-    "inclusions": "Gold packs for 5 members",
-    "durationText": "Up to 4 Months Wellness Care",
-    "totalQuantityMl": "700 ml",
-    "selectionType": "per-member",
-    "memberCount": 5,
-    "healthGoals": [],
-    "idealFor": [
-      "All"
-    ],
-    "usageInstructions": {
-      "serving": "As needed",
-      "timing": "Daily",
-      "instructions": "Use as part of personal wellness routine."
-    },
-    "specifications": {
-      "Net Quantity": "700 ml",
-      "Storage": "Store in a cool, dry place"
-    },
-    "certifications": [
-      "100% Natural"
-    ],
+    "idealFor": ["All"],
+    "usageInstructions": { "serving": "As needed", "timing": "Morning & Night", "instructions": "Apply Nabhi oil on navel, use body massage oil before bath, and massage feet oil before bed." },
+    "specifications": { "Net Quantity": "240 ml", "Storage": "Store in a cool, dry place" },
+    "certifications": ["100% Natural", "GMP Certified", "Ayush Approved"],
     "faqs": [],
     "relatedProductIds": [],
     "routineProductIds": []

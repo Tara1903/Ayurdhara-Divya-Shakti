@@ -18,15 +18,14 @@ export const navigationData: Category[] = [
     description: "Traditional Ayurvedic oil blends for deep nourishment and holistic healing.",
     subcategories: [
       { name: "Kids Care Oil Blend", slug: "kids-care" },
-      { name: "Men Wellness Oil Blend", slug: "men-wellness" },
-      { name: "Women Wellness Oil Blend", slug: "women-wellness" },
+      { name: "Men's Care Oil Blend", slug: "men-wellness" },
+      { name: "Women's Care Oil Blend", slug: "women-wellness" },
       { name: "Senior Care Oil Blend", slug: "senior-care" },
+      { name: "Nabhi Trial Packs", slug: "nabhi-trial-packs" },
+      { name: "Feet Massage Oils", slug: "feet-massage-oil" },
       { name: "Body Massage Oil", slug: "body-massage-oil" },
-      { name: "Feet Massage Oil", slug: "feet-massage-oil" },
       { name: "Hair Wellness Oil", slug: "hair-wellness-oil" },
-      { name: "Individual Wellness Packs", slug: "individual-wellness-packs" },
-      { name: "Family Trial Wellness Packs", slug: "family-trial-wellness-packs" },
-      { name: "Family Gold Wellness Packs", slug: "family-gold-wellness-packs" },
+      { name: "Combo Trial Packs", slug: "combo-trial-packs" },
     ]
   },
   {
@@ -97,15 +96,13 @@ export const navigationData: Category[] = [
   },
   {
     name: "Wellness Packs",
-      slug: "wellness-packs",
-    description: "Curated wellness combos and gift packs for comprehensive care.",
+    slug: "wellness-packs",
+    description: "Curated Nabhi trial packs, feet massage oils, and complete wellness combos.",
     subcategories: [
-      { name: "Trial Packs", slug: "trial-packs" },
-      { name: "Gold Wellness Packs", slug: "gold-wellness-packs" },
-      { name: "Premium Wellness Packs", slug: "premium-wellness-packs" },
-      { name: "Family Packs", slug: "family-packs" },
-      { name: "Gift Packs", slug: "gift-packs" },
-        ]
+      { name: "Combo Trial Packs", slug: "combo-trial-packs" },
+      { name: "Nabhi Trial Packs", slug: "nabhi-trial-packs" },
+      { name: "Feet Massage Oils", slug: "feet-massage-oil" },
+    ]
   },
   {
     name: "Natural Aroma",

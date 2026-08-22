@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCartStore } from '@/store/cartStore';
 import toast from 'react-hot-toast';
-import { Check, Shield, ArrowRight } from 'lucide-react';
+import { Check, Shield, ArrowRight, Award, ShoppingBag } from 'lucide-react';
 
 const CATEGORIES = [
   'Kids Care',
@@ -15,47 +15,140 @@ const CATEGORIES = [
   'Senior Care'
 ];
 
-interface BaseTrialPack {
+interface TrialPackDef {
   id: string;
   slug: string;
   name: string;
+  badge: string;
+  badgeColor?: string;
   mrp: number;
   offerPrice: number;
   contents: string[];
   totalQuantity: string;
+  duration: string;
   image: string;
-  badge: string;
+  requiresCategory: boolean;
 }
 
-const INDIVIDUAL_PACK: BaseTrialPack = {
-  id: 'individual-trial-wellness-pack',
-  slug: 'individual-trial-wellness-pack',
-  name: 'Trial Wellness Pack',
-  mrp: 749,
-  offerPrice: 499,
-  contents: ['10 ml Nabhi Wellness Oil', '30 ml Feet Massage Oil'],
-  totalQuantity: '40 ml',
-  image: '/images/products/individual-trial-wellness-pack.jpg',
-  badge: 'STARTER TRIAL'
-};
+const COMBO_PACKS: TrialPackDef[] = [
+  {
+    id: 'prime-trial-pack',
+    slug: 'prime-trial-pack',
+    name: 'Prime Trial Pack',
+    badge: 'STARTER COMBO',
+    badgeColor: 'bg-[#2D5A27]',
+    mrp: 999,
+    offerPrice: 699,
+    contents: ['2 x 5 ml Nabhi Wellness Oils (10 ml)', '60 ml Feet Massage Oil'],
+    totalQuantity: 'Total: 70 ml',
+    duration: 'Up to 1 Month*',
+    image: '/images/categories/cat_wellness_packs_1786557692487.jpg',
+    requiresCategory: true
+  },
+  {
+    id: 'silver-trial-pack',
+    slug: 'silver-trial-pack',
+    name: 'Silver Trial Pack',
+    badge: 'BEST VALUE',
+    badgeColor: 'bg-[#E88B23]',
+    mrp: 1499,
+    offerPrice: 999,
+    contents: ['4 x 5 ml Nabhi Wellness Oils (20 ml)', '120 ml Feet Massage Oil'],
+    totalQuantity: 'Total: 140 ml',
+    duration: 'Up to 2 Months*',
+    image: '/images/categories/cat_wellness_packs_1786557692487.jpg',
+    requiresCategory: true
+  },
+  {
+    id: 'gold-trial-pack',
+    slug: 'gold-trial-pack',
+    name: 'Gold Trial Pack',
+    badge: 'COMPLETE SELF-CARE',
+    badgeColor: 'bg-[#2D5A27]',
+    mrp: 1799,
+    offerPrice: 1199,
+    contents: ['2 x 5 ml Nabhi Wellness Oils (10 ml)', '60 ml Feet Massage Oil', '100 ml Body Massage Oil'],
+    totalQuantity: 'Total: 170 ml',
+    duration: 'Up to 1 Month*',
+    image: '/images/categories/cat_wellness_packs_1786557692487.jpg',
+    requiresCategory: true
+  },
+  {
+    id: 'diamond-trial-pack',
+    slug: 'diamond-trial-pack',
+    name: 'Diamond Trial Pack',
+    badge: 'COMPLETE WELLNESS COMBO',
+    badgeColor: 'bg-[#E88B23]',
+    mrp: 2299,
+    offerPrice: 1599,
+    contents: ['4 x 5 ml Nabhi Wellness Oils (20 ml)', '120 ml Feet Massage Oil', '100 ml Body Massage Oil'],
+    totalQuantity: 'Total: 240 ml',
+    duration: 'Up to 2 Months*',
+    image: '/images/categories/cat_wellness_packs_1786557692487.jpg',
+    requiresCategory: true
+  }
+];
 
-const DIAMOND_PACK: BaseTrialPack = {
-  id: 'diamond-trial-wellness-pack',
-  slug: 'diamond-trial-wellness-pack',
-  name: 'Diamond Trial Wellness Pack',
-  mrp: 1499,
-  offerPrice: 999,
-  contents: ['10 ml Nabhi Wellness Oil', '30 ml Feet Massage Oil', '100 ml Body Massage Oil'],
-  totalQuantity: '140 ml',
-  image: '/images/products/diamond-trial-wellness-pack.jpg',
-  badge: 'BEST VALUE TRIAL'
-};
+const NABHI_PACKS: TrialPackDef[] = [
+  {
+    id: 'nabhi-2-variant-trial-pack',
+    slug: 'nabhi-2-variant-trial-pack',
+    name: 'Nabhi 2-Variant Trial Pack',
+    badge: '2-VARIANT TRIAL',
+    badgeColor: 'bg-[#2D5A27]',
+    mrp: 499,
+    offerPrice: 349,
+    contents: ['2 x 5 ml Nabhi Wellness Oils (Select any 2 from 1 category)'],
+    totalQuantity: 'Total: 10 ml',
+    duration: 'Up to 1 Month*',
+    image: '/images/categories/cat_trial_pack.jpg',
+    requiresCategory: true
+  },
+  {
+    id: 'nabhi-4-variant-trial-pack',
+    slug: 'nabhi-4-variant-trial-pack',
+    name: 'Nabhi 4-Variant Trial Pack',
+    badge: 'ALL 4 VARIANTS',
+    badgeColor: 'bg-[#E88B23]',
+    mrp: 999,
+    offerPrice: 599,
+    contents: ['4 x 5 ml Nabhi Wellness Oils (Complete 4-oil category set)'],
+    totalQuantity: 'Total: 20 ml',
+    duration: 'Up to 2 Months*',
+    image: '/images/categories/cat_trial_pack.jpg',
+    requiresCategory: true
+  }
+];
 
-const FAMILY_PACKS = [
-  { members: 2, id: '2-member-family-trial-pack', name: '2 Member Family Trial Pack', mrp: 1499, offerPrice: 899 },
-  { members: 3, id: '3-member-family-trial-pack', name: '3 Member Family Trial Pack', mrp: 2249, offerPrice: 1299 },
-  { members: 4, id: '4-member-family-trial-pack', name: '4 Member Family Trial Pack', mrp: 2999, offerPrice: 1699 },
-  { members: 5, id: '5-member-family-trial-pack', name: '5 Member Family Trial Pack', mrp: 3749, offerPrice: 2099 }
+const FEET_PACKS: TrialPackDef[] = [
+  {
+    id: 'feet-wellness-trial-pack',
+    slug: 'feet-wellness-trial-pack',
+    name: 'Feet Wellness Trial Pack',
+    badge: '15 DAYS TRIAL',
+    badgeColor: 'bg-[#2D5A27]',
+    mrp: 499,
+    offerPrice: 349,
+    contents: ['30 ml Padabhyanga Feet Massage Oil'],
+    totalQuantity: 'Total: 30 ml',
+    duration: 'Up to 15 Days*',
+    image: '/images/categories/cat_oil_wellness_1786556871303.jpg',
+    requiresCategory: false
+  },
+  {
+    id: 'feet-wellness-routine-pack',
+    slug: 'feet-wellness-routine-pack',
+    name: 'Feet Wellness Routine Pack',
+    badge: '1 MONTH ROUTINE',
+    badgeColor: 'bg-[#E88B23]',
+    mrp: 699,
+    offerPrice: 499,
+    contents: ['60 ml Padabhyanga Feet Massage Oil'],
+    totalQuantity: 'Total: 60 ml',
+    duration: 'Up to 1 Month*',
+    image: '/images/categories/cat_oil_wellness_1786556871303.jpg',
+    requiresCategory: false
+  }
 ];
 
 export default function TrialPacksClient() {
@@ -63,189 +156,259 @@ export default function TrialPacksClient() {
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useCartStore((state) => state.openCart);
 
-  const [individualCategory, setIndividualCategory] = useState<string>('');
-  const [diamondCategory, setDiamondCategory] = useState<string>('');
-  const [selectedFamilyPackIndex, setSelectedFamilyPackIndex] = useState<number>(0);
-  const [familySelections, setFamilySelections] = useState<Record<number, string>>({});
+  const [categorySelections, setCategorySelections] = useState<Record<string, string>>({
+    'prime-trial-pack': 'Kids Care',
+    'silver-trial-pack': 'Kids Care',
+    'gold-trial-pack': 'Kids Care',
+    'diamond-trial-pack': 'Kids Care',
+    'nabhi-2-variant-trial-pack': 'Kids Care',
+    'nabhi-4-variant-trial-pack': 'Kids Care'
+  });
 
-  const handleAddToCart = (
-    productId: string, 
-    name: string, 
-    price: number, 
-    originalPrice: number, 
-    sizePrefix: string, 
-    selectedConfig: string,
-    image: string
-  ) => {
-    if (!selectedConfig) {
-      toast.error('Please select a wellness category before adding to cart.');
-      return;
-    }
-
-    const fullVariantString = `${sizePrefix} | ${selectedConfig}`;
+  const handleAddToCart = (pack: TrialPackDef) => {
+    const selectedCat = categorySelections[pack.id] || (pack.requiresCategory ? 'Kids Care' : '');
+    const variantSize = selectedCat ? `${pack.totalQuantity} | ${selectedCat}` : pack.totalQuantity;
 
     addItem({
-      productId,
-      name,
-      image,
-      price,
-      originalPrice,
-      size: fullVariantString,
-      quantity: 1,
+      productId: pack.id,
+      name: pack.name,
+      image: pack.image,
+      price: pack.offerPrice,
+      originalPrice: pack.mrp,
+      size: variantSize,
+      quantity: 1
     });
-    
-    toast.success('Trial pack added to cart!');
+
+    toast.success(`${pack.name} added to cart!`);
     openCart();
   };
 
-  const currentFamilyPack = FAMILY_PACKS[selectedFamilyPackIndex];
-
-  const handleFamilySelectionChange = (memberIndex: number, category: string) => {
-    setFamilySelections(prev => ({ ...prev, [memberIndex]: category }));
-  };
-
-  const handleFamilyAddToCart = () => {
-    for (let i = 0; i < currentFamilyPack.members; i++) {
-      if (!familySelections[i]) {
-        toast.error(`Please select a category for Member ${i + 1}`);
-        return;
-      }
-    }
-
-    const selectionsString = Array.from({ length: currentFamilyPack.members })
-      .map((_, i) => `M${i + 1}: ${familySelections[i]}`)
-      .join(', ');
-
-    handleAddToCart(
-      currentFamilyPack.id,
-      currentFamilyPack.name,
-      currentFamilyPack.offerPrice,
-      currentFamilyPack.mrp,
-      'Trial',
-      selectionsString,
-      `/images/products/${currentFamilyPack.members}-member-family-trial-pack.jpg`
-    );
-  };
-
   return (
-    <div className="bg-[#fcfcfc] min-h-screen">
+    <div className="bg-[#FAF8F5] min-h-screen text-[#1A1A1A] pb-24">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#4B7B3B] to-[#2D5A27] text-white py-16 text-center">
-        <div className="container mx-auto px-4">
-          <div className="inline-flex items-center justify-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full mb-6">
+      <section className="bg-gradient-to-r from-[#1B3617] via-[#2D5A27] to-[#1B3617] text-white py-14 px-4 text-center relative overflow-hidden shadow-md">
+        <div className="container mx-auto max-w-4xl relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full mb-4 border border-white/20">
             <Shield size={16} className="text-[#E88B23]" />
-            <span className="text-sm font-semibold tracking-wider">FIRST TIME CUSTOMERS</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#E88B23]">
+              AYURDHARA DIVYA SHAKTI &bull; OIL WELLNESS CARE
+            </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4">
-            ?? TRY OUR TRIAL PACKS
+          <h1 className="text-3xl md:text-5xl font-serif font-extrabold mb-3">
+            TRY OUR TRIAL WELLNESS PACKS
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-6 font-medium">
-            Start Small. Experience Your Wellness Routine.
+          <p className="text-base md:text-lg text-white/90 max-w-xl mx-auto font-medium">
+            Start Small. Experience Authentic Ayurvedic Restorative Care.
           </p>
-          <div className="bg-[#E88B23] text-white px-6 py-2 rounded-full inline-block font-bold text-lg shadow-lg">
-            Trial Wellness Packs Starting ₹499
+          <div className="mt-4 inline-block bg-[#E88B23] text-white px-5 py-1.5 rounded-full font-extrabold text-sm shadow-sm">
+            Trial Packs Starting ₹349
           </div>
-          <p className="mt-6 text-sm text-white/70 max-w-lg mx-auto">
-            Choose your category and experience up to 1 month of premium Ayurvedic wellness formulations.
-          </p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16 max-w-5xl space-y-16">
+      {/* Main Container */}
+      <div className="container mx-auto max-w-6xl px-4 py-12 space-y-16">
 
-        {/* 1. INDIVIDUAL TRIAL */}
-        <ProductSection 
-          pack={INDIVIDUAL_PACK}
-          selectedCategory={individualCategory}
-          onSelectCategory={setIndividualCategory}
-          onAddToCart={() => handleAddToCart(INDIVIDUAL_PACK.id, INDIVIDUAL_PACK.name, INDIVIDUAL_PACK.offerPrice, INDIVIDUAL_PACK.mrp, 'Trial', individualCategory, INDIVIDUAL_PACK.image)}
-        />
-
-        {/* 2. DIAMOND TRIAL */}
-        <ProductSection 
-          pack={DIAMOND_PACK}
-          selectedCategory={diamondCategory}
-          onSelectCategory={setDiamondCategory}
-          onAddToCart={() => handleAddToCart(DIAMOND_PACK.id, DIAMOND_PACK.name, DIAMOND_PACK.offerPrice, DIAMOND_PACK.mrp, 'Trial', diamondCategory, DIAMOND_PACK.image)}
-        />
-
-        {/* 3. FAMILY PACKS */}
-        <section className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden relative">
-          <div className="bg-[#E0EBDC]/30 p-8 text-center border-b border-[#4B7B3B]/10 relative">
-            <span className="absolute top-4 right-4 bg-[#E88B23] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-              FAMILY TRIAL
-            </span>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1A1A1A] mb-2">??????????? FAMILY TRIAL WELLNESS PACKS</h2>
-            <p className="text-gray-600 font-medium">Up to 1 Month Wellness Care. Everyone gets their own targeted category.</p>
+        {/* 1. COMBO TRIAL PACKS */}
+        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200">
+          <div className="border-b border-stone-200 pb-4 mb-8">
+            <div className="inline-block bg-[#2D5A27] text-white text-xs font-bold uppercase px-3 py-1 rounded-md mb-2">
+              SECTION 1 &bull; STARTER &amp; COMPLETE COMBOS
+            </div>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B3617]">
+              Combo Trial Packs (Family Trial Oil Wellness Packs)
+            </h2>
+            <p className="text-stone-600 text-sm mt-1">
+              Synchronized bundles pairing targeted Nabhi wellness oils with soothing Feet &amp; Body massage oils.
+            </p>
           </div>
 
-          <div className="p-8 lg:p-10">
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
-              {FAMILY_PACKS.map((pack, index) => (
-                <button
-                  key={pack.members}
-                  onClick={() => setSelectedFamilyPackIndex(index)}
-                  className={`px-6 py-2.5 rounded-full font-bold transition-all ${
-                    selectedFamilyPackIndex === index 
-                      ? 'bg-[#2D5A27] text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                >
-                  {pack.members} Member (₹{pack.offerPrice})
-                </button>
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-5 gap-10 items-start">
-              <div className="md:col-span-2 relative aspect-square bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 flex items-center justify-center p-8">
-                 <div className="w-full h-full relative">
-                    <Image src={`/images/products/${currentFamilyPack.members}-member-family-trial-pack.jpg`} alt={currentFamilyPack.name} fill className="object-cover" unoptimized />
-                 </div>
-              </div>
-
-              <div className="md:col-span-3 space-y-6">
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-gray-400 text-lg line-through font-medium">MRP: ₹{currentFamilyPack.mrp}</span>
-                    <span className="text-3xl font-bold text-[#E88B23]">₹{currentFamilyPack.offerPrice}</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {COMBO_PACKS.map((pack) => (
+              <div key={pack.id} className="bg-[#FAF8F5] rounded-2xl border border-stone-200 p-5 flex flex-col justify-between hover:shadow-lg transition-all">
+                <div className="space-y-3.5">
+                  <span className={`${pack.badgeColor} text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md inline-block`}>
+                    {pack.badge}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-serif font-bold text-[#1B3617]">{pack.name}</h3>
+                    <div className="flex items-baseline gap-2 mt-1">
+                      <span className="text-2xl font-extrabold text-[#E88B23]">₹{pack.offerPrice}</span>
+                      <span className="text-xs text-stone-400 line-through">MRP: ₹{pack.mrp}</span>
+                    </div>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#1A1A1A] mb-1">Customize Your Family Pack</h3>
-                  <p className="text-sm text-gray-500 mb-6">Each member receives: <span className="font-bold text-[#2D5A27]">10 ml Nabhi Oil + 30 ml Feet Massage Oil</span></p>
-                  
-                  <div className="space-y-4">
-                    {Array.from({ length: currentFamilyPack.members }).map((_, idx) => (
-                      <div key={idx} className="bg-[#fcfcfc] p-4 rounded-xl border border-gray-200">
-                        <label className="block text-sm font-bold text-[#2D5A27] mb-2">Member {idx + 1} Wellness Category</label>
-                        <div className="flex flex-wrap gap-2">
-                          {CATEGORIES.map(c => (
-                            <button
-                              key={c}
-                              onClick={() => handleFamilySelectionChange(idx, c)}
-                              className={`py-1.5 px-3 rounded-md text-xs font-bold border transition-all ${
-                                familySelections[idx] === c 
-                                  ? 'border-[#2D5A27] bg-[#2D5A27]/5 text-[#2D5A27]' 
-                                  : 'border-gray-200 bg-white text-gray-500 hover:border-[#2D5A27]/30'
-                              }`}
-                            >
-                              {c}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                  <div className="space-y-1.5 text-xs border-y border-stone-200 py-3">
+                    {pack.contents.map((item, idx) => (
+                      <p key={idx} className="font-semibold text-stone-800 flex items-start gap-1.5">
+                        <Check size={14} className="text-[#2D5A27] flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </p>
                     ))}
+                    <div className="pt-1.5 text-stone-500 font-medium">
+                      {pack.totalQuantity} | {pack.duration}
+                    </div>
+                  </div>
+
+                  {pack.requiresCategory && (
+                    <div className="space-y-1">
+                      <label className="text-[11px] font-bold text-stone-600">Category:</label>
+                      <select 
+                        value={categorySelections[pack.id] || 'Kids Care'}
+                        onChange={(e) => setCategorySelections(prev => ({ ...prev, [pack.id]: e.target.value }))}
+                        className="w-full bg-white border border-stone-300 rounded-md p-1.5 text-xs font-semibold text-stone-800"
+                      >
+                        {CATEGORIES.map(c => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => handleAddToCart(pack)}
+                  className="w-full bg-[#E88B23] hover:bg-[#d07b1d] text-white font-bold py-2.5 rounded-xl transition-all mt-6 text-sm shadow-sm flex items-center justify-center gap-1.5"
+                >
+                  <ShoppingBag size={15} /> Add to Cart (₹{pack.offerPrice})
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        {/* 2. NABHI TRIAL PACKS */}
+        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200">
+          <div className="border-b border-stone-200 pb-4 mb-8">
+            <div className="inline-block bg-[#2D5A27] text-white text-xs font-bold uppercase px-3 py-1 rounded-md mb-2">
+              SECTION 2 &bull; NABHI TRIAL PACKS
+            </div>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B3617]">
+              Nabhi 2-Variant &amp; 4-Variant Trial Packs
+            </h2>
+            <p className="text-stone-600 text-sm mt-1">
+              Select 2 targeted oils or get the complete 4-oil category set for comprehensive care.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {NABHI_PACKS.map((pack) => (
+              <div key={pack.id} className="bg-[#FAF8F5] rounded-2xl border-2 border-stone-200 p-6 md:p-8 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className={`${pack.badgeColor} text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md inline-block mb-1.5`}>
+                        {pack.badge}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-serif font-bold text-[#1B3617]">{pack.name}</h3>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs text-stone-400 line-through">MRP: ₹{pack.mrp}</span>
+                      <span className="text-2xl md:text-3xl font-extrabold text-[#E88B23] block">₹{pack.offerPrice}</span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 py-3 border-y border-stone-200 text-xs">
+                    <div>
+                      <span className="text-stone-500 font-bold uppercase block">Volume</span>
+                      <span className="font-bold text-stone-900 text-sm">{pack.totalQuantity}</span>
+                    </div>
+                    <div>
+                      <span className="text-stone-500 font-bold uppercase block">Duration</span>
+                      <span className="font-bold text-stone-900 text-sm">{pack.duration}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-stone-600">
+                    &bull; {pack.contents[0]}
+                  </p>
+
+                  <div className="space-y-1.5 pt-2">
+                    <label className="text-xs font-bold text-stone-700">Select Category:</label>
+                    <select 
+                      value={categorySelections[pack.id] || 'Kids Care'}
+                      onChange={(e) => setCategorySelections(prev => ({ ...prev, [pack.id]: e.target.value }))}
+                      className="w-full bg-white border border-stone-300 rounded-lg p-2.5 text-sm font-semibold text-stone-800"
+                    >
+                      {CATEGORIES.map(c => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
-                <button 
-                  onClick={handleFamilyAddToCart}
-                  className="w-full bg-[#E88B23] hover:bg-[#d07b1d] text-white font-bold text-lg py-4 rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 mt-8"
-                >
-                  Buy {currentFamilyPack.name} Now <ArrowRight size={20} />
-                </button>
+                <div className="mt-8 pt-4">
+                  <button
+                    onClick={() => handleAddToCart(pack)}
+                    className="w-full bg-[#2D5A27] hover:bg-[#1B3617] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    Buy Now (₹{pack.offerPrice}) <ArrowRight size={18} />
+                  </button>
+                </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+
+        {/* 3. FEET MASSAGE OILS */}
+        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200">
+          <div className="border-b border-stone-200 pb-4 mb-8">
+            <div className="inline-block bg-[#2D5A27] text-white text-xs font-bold uppercase px-3 py-1 rounded-md mb-2">
+              SECTION 3 &bull; FEET MASSAGE OILS
             </div>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1B3617]">
+              Feet Massage Oils (Trial Packs)
+            </h2>
+            <p className="text-stone-600 text-sm mt-1">
+              Deep relaxation Padabhyanga formulation for calm nerves and overnight foot recovery.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {FEET_PACKS.map((pack) => (
+              <div key={pack.id} className="bg-[#FAF8F5] rounded-2xl border border-stone-200 p-6 md:p-8 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className={`${pack.badgeColor} text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md inline-block mb-1.5`}>
+                        {pack.badge}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-serif font-bold text-[#1B3617]">{pack.name}</h3>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs text-stone-400 line-through">MRP: ₹{pack.mrp}</span>
+                      <span className="text-2xl md:text-3xl font-extrabold text-[#E88B23] block">₹{pack.offerPrice}</span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 py-3 border-y border-stone-200 text-xs">
+                    <div>
+                      <span className="text-stone-500 font-bold uppercase block">Bottle Size</span>
+                      <span className="font-bold text-stone-900 text-sm">{pack.totalQuantity}</span>
+                    </div>
+                    <div>
+                      <span className="text-stone-500 font-bold uppercase block">Duration</span>
+                      <span className="font-bold text-stone-900 text-sm">{pack.duration}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-stone-600">
+                    &bull; {pack.contents[0]}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-4">
+                  <button
+                    onClick={() => handleAddToCart(pack)}
+                    className="w-full bg-[#E88B23] hover:bg-[#d07b1d] text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    Buy Now (₹{pack.offerPrice}) <ArrowRight size={18} />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -254,89 +417,3 @@ export default function TrialPacksClient() {
   );
 }
 
-function ProductSection({ pack, selectedCategory, onSelectCategory, onAddToCart }: { 
-  pack: BaseTrialPack, 
-  selectedCategory: string, 
-  onSelectCategory: (c: string) => void,
-  onAddToCart: () => void 
-}) {
-  const router = useRouter();
-  return (
-    <section className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col md:flex-row relative">
-      <span className="absolute top-4 right-4 bg-[#E88B23] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm z-10">
-        {pack.badge}
-      </span>
-      <div className="md:w-5/12 bg-gray-50 relative p-8 flex items-center justify-center min-h-[300px]">
-        <div className="w-full h-full relative aspect-square rounded-xl overflow-hidden shadow-inner border border-gray-200 bg-white">
-          <Image src={pack.image} alt={pack.name} fill className="object-cover" unoptimized />
-        </div>
-      </div>
-      <div className="md:w-7/12 p-8 lg:p-10 flex flex-col justify-center">
-        <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1A1A1A] mb-2">{pack.name}</h2>
-        
-        <div className="flex items-center gap-3 mb-6">
-          <span className="text-gray-400 text-lg line-through font-medium">MRP: ₹{pack.mrp}</span>
-          <span className="text-3xl font-bold text-[#E88B23]">₹{pack.offerPrice}</span>
-        </div>
-
-        <div className="space-y-4 mb-8">
-          <div>
-            <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Contents</h4>
-            <ul className="space-y-1">
-              {pack.contents.map((c, i) => (
-                <li key={i} className="flex items-center gap-2 text-[#2D5A27] font-medium">
-                  <Check size={16} className="text-[#E88B23]" /> {c}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex gap-6">
-            <div>
-              <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Quantity</h4>
-              <p className="font-bold text-[#1A1A1A]">{pack.totalQuantity}</p>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Duration</h4>
-              <p className="font-bold text-[#1A1A1A]">Up to 1 Month</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-[#fcfcfc] p-5 rounded-xl border border-gray-200 mb-6">
-          <label className="block text-sm font-bold text-[#2D5A27] mb-3">Choose Your Wellness Category</label>
-          <div className="grid grid-cols-2 gap-3">
-            {CATEGORIES.map(c => (
-              <button
-                key={c}
-                onClick={() => onSelectCategory(c)}
-                className={`py-2.5 px-3 rounded-lg text-sm font-bold border-2 transition-all ${
-                  selectedCategory === c 
-                    ? 'border-[#2D5A27] bg-[#2D5A27]/5 text-[#2D5A27]' 
-                    : 'border-gray-200 bg-white text-gray-500 hover:border-[#2D5A27]/30'
-                }`}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
-          <p className="text-xs text-center text-gray-400 mt-3">* Select 1 Category for all products in this pack</p>
-        </div>
-
-        <div className="flex gap-4">
-          <button 
-            onClick={onAddToCart}
-            className="flex-1 bg-[#E88B23] hover:bg-[#d07b1d] text-white font-bold text-lg py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-          >
-            Buy Now <ArrowRight size={18} />
-          </button>
-          <button 
-            onClick={() => router.push(`/products/${pack.slug}`)}
-            className="flex-1 bg-white hover:bg-gray-50 text-[#2D5A27] border-2 border-[#2D5A27] font-bold text-lg py-3.5 rounded-xl transition-all flex items-center justify-center"
-          >
-            View Details
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
