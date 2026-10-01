@@ -1,4 +1,4 @@
-﻿plugins {
+plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
@@ -41,4 +41,7 @@ dependencies {
         implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
     implementation(libs.androidx.hilt.navigation.compose)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.junit)
 }
