@@ -6,7 +6,6 @@ import com.ayurdhara.core.network.model.AddressDto
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
-import io.github.jan.supabase.postgrest.query.Columns
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -38,13 +37,13 @@ class SupabaseAddressRepositoryImpl @Inject constructor(
         supabase.postgrest["addresses"].insert(
             buildJsonObject {
                 put("user_id", userId)
-                put("type", address.type)
-                put("name", address.name)
-                put("phone", address.phone)
+                put("address_type", address.type)
+                put("full_name", address.name)
+                put("mobile", address.phone)
                 put("pincode", address.pincode)
                 put("state", address.state)
                 put("city", address.city)
-                put("line1", address.line1)
+                put("address_line_1", address.line1)
                 address.landmark?.let { put("landmark", it) }
                 put("is_default", address.isDefault)
             }
@@ -54,13 +53,13 @@ class SupabaseAddressRepositoryImpl @Inject constructor(
     override suspend fun updateAddress(address: Address): Result<Unit> = runCatching {
         supabase.postgrest["addresses"].update(
             buildJsonObject {
-                put("type", address.type)
-                put("name", address.name)
-                put("phone", address.phone)
+                put("address_type", address.type)
+                put("full_name", address.name)
+                put("mobile", address.phone)
                 put("pincode", address.pincode)
                 put("state", address.state)
                 put("city", address.city)
-                put("line1", address.line1)
+                put("address_line_1", address.line1)
                 address.landmark?.let { put("landmark", it) }
                 put("is_default", address.isDefault)
             }
@@ -89,13 +88,13 @@ class SupabaseAddressRepositoryImpl @Inject constructor(
 
     private fun AddressDto.toDomain() = Address(
         id = id,
-        type = type,
-        name = name,
-        phone = phone,
+        type = resolvedType,
+        name = resolvedName,
+        phone = resolvedPhone,
         pincode = pincode,
         state = state,
         city = city,
-        line1 = line1,
+        line1 = resolvedLine1,
         landmark = landmark,
         isDefault = isDefault
     )

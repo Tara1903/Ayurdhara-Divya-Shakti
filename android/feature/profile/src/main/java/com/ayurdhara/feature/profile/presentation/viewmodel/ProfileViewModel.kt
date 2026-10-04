@@ -7,6 +7,7 @@ import com.ayurdhara.feature.profile.data.UserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,7 +27,28 @@ class ProfileViewModel @Inject constructor(
     val uiState: StateFlow<ProfileUiState> = _uiState
 
     init {
-        loadProfile()
+        listenToProfileRealtime()
+    }
+
+    fun listenToProfileRealtime() {
+        if (!profileRepository.isLoggedIn()) {
+            _uiState.value = ProfileUiState.LoggedOut
+            return
+        }
+        viewModelScope.launch {
+            _uiState.value = ProfileUiState.Loading
+            profileRepository.getProfileRealtimeFlow()
+                .catch { loadProfile() }
+                .collect { profile ->
+                    if (profile != null) {
+                        _uiState.value = ProfileUiState.Success(profile)
+                    } else if (profileRepository.isLoggedIn()) {
+                        loadProfile()
+                    } else {
+                        _uiState.value = ProfileUiState.LoggedOut
+                    }
+                }
+        }
     }
 
     fun loadProfile() {
@@ -35,7 +57,6 @@ class ProfileViewModel @Inject constructor(
             return
         }
         viewModelScope.launch {
-            _uiState.value = ProfileUiState.Loading
             profileRepository.getCurrentProfile()
                 .onSuccess { _uiState.value = ProfileUiState.Success(it) }
                 .onFailure { _uiState.value = ProfileUiState.Error(it.message ?: "Failed to load profile") }

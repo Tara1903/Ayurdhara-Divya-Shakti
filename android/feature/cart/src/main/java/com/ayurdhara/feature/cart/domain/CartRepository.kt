@@ -1,4 +1,4 @@
-﻿package com.ayurdhara.feature.cart.domain
+package com.ayurdhara.feature.cart.domain
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
@@ -21,11 +21,15 @@ class CartRepository @Inject constructor(
     private val CART_KEY = stringPreferencesKey("cart_items")
 
     val cartItems: Flow<List<CartItem>> = context.cartDataStore.data.map { prefs ->
-        val jsonString = prefs[CART_KEY] ?: "[]"
-        try {
-            Json.decodeFromString(jsonString)
-        } catch (e: Exception) {
+        val jsonString = prefs[CART_KEY]
+        if (jsonString == null) {
             emptyList()
+        } else {
+            try {
+                Json.decodeFromString(jsonString)
+            } catch (e: Exception) {
+                emptyList()
+            }
         }
     }
 

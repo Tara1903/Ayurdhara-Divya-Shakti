@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
+import { Smartphone, Globe } from 'lucide-react';
 import { UpdateOrderStatusButton } from './UpdateOrderStatusButton';
 import { UpdatePaymentStatusButton } from './UpdatePaymentStatusButton';
 
@@ -32,11 +33,22 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
           <h1 className="text-2xl font-serif text-gray-900">Order {order.order_ref}</h1>
           <p className="text-gray-500 mt-1">{new Date(order.created_at).toLocaleString('en-IN')}</p>
         </div>
-        <span className={`px-3 py-1 rounded-full text-sm font-medium capitalize ${
-          order.order_status === 'delivered' ? 'bg-green-100 text-green-800' :
-          order.order_status === 'cancelled' ? 'bg-red-100 text-red-800' :
-          'bg-blue-100 text-blue-800'
-        }`}>{order.order_status}</span>
+        <div className="flex items-center gap-2">
+          {order.shipping_address_snapshot?.platform === 'android' || order.shipping_address_snapshot?.source === 'android' ? (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <Smartphone size={13} className="text-emerald-600" /> Android App
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
+              <Globe size={13} className="text-blue-600" /> Website
+            </span>
+          )}
+          <span className={`px-3 py-1 rounded-full text-sm font-medium capitalize ${
+            order.order_status === 'delivered' ? 'bg-green-100 text-green-800' :
+            order.order_status === 'cancelled' ? 'bg-red-100 text-red-800' :
+            'bg-blue-100 text-blue-800'
+          }`}>{order.order_status}</span>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -5,30 +5,46 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.CompositionLocalProvider
 
-private val LightColorScheme = lightColorScheme(
-    primary = AyurdharaPrimary,
-    primaryContainer = AyurdharaPrimaryContainer,
-    secondary = AyurdharaSecondary,
-    background = AyurdharaBackground,
-    surface = AyurdharaSurface,
-    surfaceVariant = AyurdharaSurfaceVariant,
-    onPrimary = AyurdharaOnPrimary,
-    onBackground = AyurdharaOnBackground,
-    error = AyurdharaError
-)
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF81C784), // Lighter Green for Dark Mode
-    primaryContainer = Color(0xFF1B3020),
-    secondary = Color(0xFFFFD54F),
-    background = Color(0xFF121212),
-    surface = Color(0xFF1E1E1E),
-    surfaceVariant = Color(0xFF2C2C2C),
-    onPrimary = Color(0xFF003300),
-    onBackground = Color(0xFFE0E0E0),
-    error = Color(0xFFCF6679)
+private fun AyColors.toScheme() = if (isDark) darkColorScheme(
+    primary = accent,
+    onPrimary = onGoldFill,
+    primaryContainer = chipHigh,
+    onPrimaryContainer = text,
+    secondary = accent,
+    onSecondary = onGoldFill,
+    background = canvas,
+    onBackground = text,
+    surface = canvas,
+    onSurface = text,
+    surfaceVariant = card,
+    onSurfaceVariant = textSub,
+    surfaceContainer = card,
+    surfaceContainerHigh = chipHigh,
+    outline = textMuted,
+    outlineVariant = outline,
+    error = error
+) else lightColorScheme(
+    primary = primaryBtn,
+    onPrimary = onPrimaryBtn,
+    primaryContainer = Shape.primaryFixed,
+    onPrimaryContainer = Shape.onPrimaryFixed,
+    secondary = accent,
+    onSecondary = onGoldFill,
+    secondaryContainer = goldFill,
+    onSecondaryContainer = onGoldFill,
+    background = canvas,
+    onBackground = text,
+    surface = canvas,
+    onSurface = text,
+    surfaceVariant = chip,
+    onSurfaceVariant = textSub,
+    surfaceContainer = chip,
+    surfaceContainerHigh = chipHigh,
+    outline = textMuted,
+    outlineVariant = outline,
+    error = error
 )
 
 @Composable
@@ -36,12 +52,13 @@ fun AyurdharaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-    androidx.compose.runtime.CompositionLocalProvider(
-        LocalSpacing provides Spacing()
+    val ay = if (darkTheme) AyDarkColors else AyLightColors
+    CompositionLocalProvider(
+        LocalSpacing provides Spacing(),
+        LocalAyColors provides ay
     ) {
         MaterialTheme(
-            colorScheme = colorScheme,
+            colorScheme = ay.toScheme(),
             typography = AppTypography,
             shapes = AppShapes,
             content = content

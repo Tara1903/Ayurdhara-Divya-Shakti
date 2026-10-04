@@ -1,9 +1,11 @@
-﻿package com.ayurdhara.feature.home.domain
+package com.ayurdhara.feature.home.domain
 
 import com.ayurdhara.core.common.domain.repository.SupabaseAyurdharaRepositoryImpl
 import com.ayurdhara.core.common.result.AppResult
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,9 +27,30 @@ class HomeRepository @Inject constructor(
                     categories = categoriesResult.data
                 )
             )
+        } else if (productsResult is AppResult.Success) {
+            AppResult.Success(
+                HomeData(
+                    featuredProducts = productsResult.data,
+                    categories = emptyList()
+                )
+            )
         } else {
-            // In a real app, you might want to return partial data or a specific error
             AppResult.Error(Exception("Failed to fetch home data"))
+        }
+    }
+
+    /**
+     * Realtime home data stream combining products and categories
+     */
+    fun getHomeDataRealtimeFlow(): Flow<HomeData> {
+        return combine(
+            ayurdharaRepository.getProductsRealtimeFlow(),
+            ayurdharaRepository.getCategoriesRealtimeFlow()
+        ) { products, categories ->
+            HomeData(
+                featuredProducts = products,
+                categories = categories
+            )
         }
     }
 }

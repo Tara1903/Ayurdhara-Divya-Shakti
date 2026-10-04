@@ -308,7 +308,7 @@ export async function processServerOrder(payload: CreateOrderPayload): Promise<{
       referral_reward_status: 'pending',
       shipping_charge: shippingCharge,
       final_total: finalTotal,
-      shipping_address_snapshot: payload.shippingAddress,
+      shipping_address_snapshot: { ...(payload.shippingAddress || {}), platform: 'web' },
       idempotency_key: payload.idempotencyKey
     })
     .select()

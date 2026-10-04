@@ -1,93 +1,41 @@
-﻿package com.ayurdhara.core.designsystem.theme
+package com.ayurdhara.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.googlefonts.Font
-import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
-import com.ayurdhara.core.designsystem.R
 
-val provider = GoogleFont.Provider(
-    providerAuthority = "com.google.android.gms.fonts",
-    providerPackage = "com.google.android.gms",
-    certificates = R.array.com_google_android_gms_fonts_certs
-)
+/** Headline face from the Stitch design system (Native Android Serif = Noto Serif). */
+val NotoSerif: FontFamily = FontFamily.Serif
 
-val CormorantGaramond = FontFamily(
-    Font(googleFont = GoogleFont("Cormorant Garamond"), fontProvider = provider, weight = FontWeight.Normal),
-    Font(googleFont = GoogleFont("Cormorant Garamond"), fontProvider = provider, weight = FontWeight.Bold)
-)
+/** Body / label face from the Stitch design system (Native Android Sans-Serif). */
+val PlusJakartaSans: FontFamily = FontFamily.SansSerif
 
-val Outfit = FontFamily(
-    Font(googleFont = GoogleFont("Outfit"), fontProvider = provider, weight = FontWeight.Normal),
-    Font(googleFont = GoogleFont("Outfit"), fontProvider = provider, weight = FontWeight.Medium),
-    Font(googleFont = GoogleFont("Outfit"), fontProvider = provider, weight = FontWeight.Bold)
-)
+// Kept for source-compat with older code.
+val CormorantGaramond = NotoSerif
+val Outfit = PlusJakartaSans
+
+private fun serif(w: FontWeight, size: Int, lh: Int) =
+    TextStyle(fontFamily = NotoSerif, fontWeight = w, fontSize = size.sp, lineHeight = lh.sp)
+
+private fun sans(w: FontWeight, size: Int, lh: Int, ls: Double = 0.0) =
+    TextStyle(fontFamily = PlusJakartaSans, fontWeight = w, fontSize = size.sp, lineHeight = lh.sp, letterSpacing = ls.sp)
 
 val AppTypography = Typography(
-    displayLarge = TextStyle(
-        fontFamily = CormorantGaramond,
-        fontWeight = FontWeight.Bold,
-        fontSize = 57.sp,
-        lineHeight = 64.sp,
-        letterSpacing = (-0.25).sp
-    ),
-    displayMedium = TextStyle(
-        fontFamily = CormorantGaramond,
-        fontWeight = FontWeight.Bold,
-        fontSize = 45.sp,
-        lineHeight = 52.sp,
-        letterSpacing = 0.sp
-    ),
-    headlineLarge = TextStyle(
-        fontFamily = CormorantGaramond,
-        fontWeight = FontWeight.Bold,
-        fontSize = 32.sp,
-        lineHeight = 40.sp,
-        letterSpacing = 0.sp
-    ),
-    headlineMedium = TextStyle(
-        fontFamily = CormorantGaramond,
-        fontWeight = FontWeight.Bold,
-        fontSize = 28.sp,
-        lineHeight = 36.sp,
-        letterSpacing = 0.sp
-    ),
-    titleLarge = TextStyle(
-        fontFamily = Outfit,
-        fontWeight = FontWeight.Bold,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    titleMedium = TextStyle(
-        fontFamily = Outfit,
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.15.sp
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = Outfit,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    ),
-    bodyMedium = TextStyle(
-        fontFamily = Outfit,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
-    ),
-    labelLarge = TextStyle(
-        fontFamily = Outfit,
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp
-    )
+    displayLarge = serif(FontWeight.Bold, 44, 52),
+    displayMedium = serif(FontWeight.Bold, 36, 44),
+    displaySmall = serif(FontWeight.Bold, 30, 38),
+    headlineLarge = serif(FontWeight.Bold, 28, 36),
+    headlineMedium = serif(FontWeight.SemiBold, 24, 32),
+    headlineSmall = serif(FontWeight.SemiBold, 20, 28),
+    titleLarge = serif(FontWeight.SemiBold, 20, 28),
+    titleMedium = sans(FontWeight.SemiBold, 16, 24, 0.1),
+    titleSmall = sans(FontWeight.SemiBold, 14, 20, 0.1),
+    bodyLarge = sans(FontWeight.Normal, 16, 24, 0.2),
+    bodyMedium = sans(FontWeight.Normal, 14, 21, 0.2),
+    bodySmall = sans(FontWeight.Normal, 12, 18, 0.2),
+    labelLarge = sans(FontWeight.SemiBold, 14, 20, 0.1),
+    labelMedium = sans(FontWeight.SemiBold, 12, 16, 0.4),
+    labelSmall = sans(FontWeight.Bold, 10, 14, 1.0)
 )

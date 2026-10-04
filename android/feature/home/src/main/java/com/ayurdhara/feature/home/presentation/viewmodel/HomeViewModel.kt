@@ -1,4 +1,4 @@
-﻿package com.ayurdhara.feature.home.presentation.viewmodel
+package com.ayurdhara.feature.home.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,6 +9,7 @@ import com.ayurdhara.feature.home.domain.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,12 +22,31 @@ class HomeViewModel @Inject constructor(
     val uiState: StateFlow<UiState<HomeData>> = _uiState
 
     init {
-        fetchHomeData()
+        listenToHomeDataRealtime()
+    }
+
+    fun listenToHomeDataRealtime() {
+        viewModelScope.launch {
+            _uiState.value = UiState.Loading
+            
+            // Immediate fast fetch so data shows up instantly
+            fetchHomeData()
+
+            // Collect real-time flow for live updates
+            homeRepository.getHomeDataRealtimeFlow()
+                .catch {
+                    // Failures in realtime channel do not interrupt already loaded data
+                }
+                .collect { data ->
+                    if (data.featuredProducts.isNotEmpty() || data.categories.isNotEmpty()) {
+                        _uiState.value = UiState.Success(data)
+                    }
+                }
+        }
     }
 
     fun fetchHomeData() {
         viewModelScope.launch {
-            _uiState.value = UiState.Loading
             when (val result = homeRepository.getHomeData()) {
                 is AppResult.Success -> _uiState.value = UiState.Success(result.data)
                 is AppResult.Error -> _uiState.value = UiState.Error(result.message ?: "Failed to fetch data")

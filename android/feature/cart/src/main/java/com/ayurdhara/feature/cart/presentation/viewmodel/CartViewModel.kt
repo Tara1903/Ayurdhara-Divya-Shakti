@@ -11,12 +11,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
     private val cartRepository: CartRepository
 ) : ViewModel() {
+
+    /** Serialises read-modify-write cart updates so rapid calls (e.g. adding a quantity of 3) are never lost. */
+    private val cartMutex = Mutex()
 
     val cartState: StateFlow<List<CartItem>> = cartRepository.cartItems.stateIn(
         scope = viewModelScope,
@@ -26,23 +31,27 @@ class CartViewModel @Inject constructor(
 
     fun addToCart(product: Product) {
         viewModelScope.launch {
-            val currentCart = cartRepository.cartItems.first().toMutableList()
-            val existingIndex = currentCart.indexOfFirst { it.product.id == product.id }
-            if (existingIndex >= 0) {
-                val existing = currentCart[existingIndex]
-                currentCart[existingIndex] = existing.copy(quantity = existing.quantity + 1)
-            } else {
-                currentCart.add(CartItem(product = product, quantity = 1))
+            cartMutex.withLock {
+                val currentCart = cartRepository.cartItems.first().toMutableList()
+                val existingIndex = currentCart.indexOfFirst { it.product.id == product.id }
+                if (existingIndex >= 0) {
+                    val existing = currentCart[existingIndex]
+                    currentCart[existingIndex] = existing.copy(quantity = existing.quantity + 1)
+                } else {
+                    currentCart.add(CartItem(product = product, quantity = 1))
+                }
+                cartRepository.updateCart(currentCart)
             }
-            cartRepository.updateCart(currentCart)
         }
     }
 
     fun removeFromCart(productId: String) {
         viewModelScope.launch {
-            val currentCart = cartRepository.cartItems.first().toMutableList()
-            currentCart.removeAll { it.product.id == productId }
-            cartRepository.updateCart(currentCart)
+            cartMutex.withLock {
+                val currentCart = cartRepository.cartItems.first().toMutableList()
+                currentCart.removeAll { it.product.id == productId }
+                cartRepository.updateCart(currentCart)
+            }
         }
     }
 
@@ -52,23 +61,35 @@ class CartViewModel @Inject constructor(
             return
         }
         viewModelScope.launch {
-            val currentCart = cartRepository.cartItems.first().toMutableList()
-            val existingIndex = currentCart.indexOfFirst { it.product.id == productId }
-            if (existingIndex >= 0) {
-                currentCart[existingIndex] = currentCart[existingIndex].copy(quantity = quantity)
-                cartRepository.updateCart(currentCart)
+            cartMutex.withLock {
+                val currentCart = cartRepository.cartItems.first().toMutableList()
+                val existingIndex = currentCart.indexOfFirst { it.product.id == productId }
+                if (existingIndex >= 0) {
+                    currentCart[existingIndex] = currentCart[existingIndex].copy(quantity = quantity)
+                    cartRepository.updateCart(currentCart)
+                }
             }
         }
     }
 
     fun toggleSaveForLater(productId: String) {
         viewModelScope.launch {
-            val currentCart = cartRepository.cartItems.first().toMutableList()
-            val existingIndex = currentCart.indexOfFirst { it.product.id == productId }
-            if (existingIndex >= 0) {
-                val existing = currentCart[existingIndex]
-                currentCart[existingIndex] = existing.copy(savedForLater = !existing.savedForLater)
-                cartRepository.updateCart(currentCart)
+            cartMutex.withLock {
+                val currentCart = cartRepository.cartItems.first().toMutableList()
+                val existingIndex = currentCart.indexOfFirst { it.product.id == productId }
+                if (existingIndex >= 0) {
+                    val existing = currentCart[existingIndex]
+                    currentCart[existingIndex] = existing.copy(savedForLater = !existing.savedForLater)
+                    cartRepository.updateCart(currentCart)
+                }
+            }
+        }
+    }
+
+    fun clearCart() {
+        viewModelScope.launch {
+            cartMutex.withLock {
+                cartRepository.updateCart(emptyList())
             }
         }
     }

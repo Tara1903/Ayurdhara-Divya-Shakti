@@ -11,7 +11,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 34
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -39,4 +39,5 @@ dependencies {
         implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.2")
 }

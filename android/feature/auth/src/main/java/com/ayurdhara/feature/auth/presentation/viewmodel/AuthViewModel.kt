@@ -50,6 +50,39 @@ class AuthViewModel @Inject constructor(
         }
     }
     
+    fun sendOtp() {
+        viewModelScope.launch {
+            _uiState.value = AuthState.Loading
+            when (val result = authRepository.sendOtp(email.value)) {
+                is AppResult.Success -> _uiState.value = AuthState.Success
+                is AppResult.Error -> _uiState.value = AuthState.Error(result.message ?: "An error occurred")
+                is AppResult.Loading -> {}
+            }
+        }
+    }
+
+    fun verifyOtp(otp: String) {
+        viewModelScope.launch {
+            _uiState.value = AuthState.Loading
+            when (val result = authRepository.verifyOtp(otp)) {
+                is AppResult.Success -> _uiState.value = AuthState.Success
+                is AppResult.Error -> _uiState.value = AuthState.Error(result.message ?: "An error occurred")
+                is AppResult.Loading -> {}
+            }
+        }
+    }
+
+    fun resetPassword(newPass: String) {
+        viewModelScope.launch {
+            _uiState.value = AuthState.Loading
+            when (val result = authRepository.resetPassword(newPass)) {
+                is AppResult.Success -> _uiState.value = AuthState.Success
+                is AppResult.Error -> _uiState.value = AuthState.Error(result.message ?: "An error occurred")
+                is AppResult.Loading -> {}
+            }
+        }
+    }
+
     fun resetState() {
         _uiState.value = AuthState.Idle
     }

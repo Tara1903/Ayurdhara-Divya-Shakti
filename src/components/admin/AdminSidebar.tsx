@@ -34,7 +34,8 @@ import {
   History,
   LogOut,
   Printer,
-  Sparkles
+  Sparkles,
+  Smartphone
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
@@ -116,6 +117,7 @@ const NAV_SECTIONS = [
     title: 'SYSTEM',
     items: [
       { label: 'Settings', href: '/admin/settings', icon: Settings },
+      { label: 'Mobile App', href: '/admin/mobile-app', icon: Smartphone },
       { label: 'Admin Users', href: '/admin/admin-users', icon: Shield },
       { label: 'Permissions', href: '/admin/permissions', icon: Shield },
       { label: 'Audit Log', href: '/admin/audit-log', icon: History },

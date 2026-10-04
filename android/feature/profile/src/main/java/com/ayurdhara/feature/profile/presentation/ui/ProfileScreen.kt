@@ -1,33 +1,45 @@
 package com.ayurdhara.feature.profile.presentation.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material3.*
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ayurdhara.core.designsystem.components.AyAvatarRing
+import com.ayurdhara.core.designsystem.components.AyBackBar
+import com.ayurdhara.core.designsystem.components.AyBadge
+import com.ayurdhara.core.designsystem.components.AyErrorPanel
+import com.ayurdhara.core.designsystem.components.AyGroupLabel
+import com.ayurdhara.core.designsystem.components.AyHeroBrush
+import com.ayurdhara.core.designsystem.components.AyLoading
+import com.ayurdhara.core.designsystem.components.AyLogoMark
+import com.ayurdhara.core.designsystem.components.AyMenuRow
+import com.ayurdhara.core.designsystem.components.AyPrimaryButton
+import com.ayurdhara.core.designsystem.theme.AyTheme
+import com.ayurdhara.core.designsystem.theme.NotoSerif
+import com.ayurdhara.core.designsystem.theme.PlusJakartaSans
 import com.ayurdhara.feature.profile.presentation.viewmodel.ProfileUiState
 import com.ayurdhara.feature.profile.presentation.viewmodel.ProfileViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
     onNavigateToOrders: () -> Unit = {},
@@ -37,163 +49,137 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val c = AyTheme.colors
 
-    // Navigate away if user signs out
-    if (uiState is ProfileUiState.LoggedOut) {
-        onSignedOut()
-    }
+    Column(Modifier.fillMaxSize().background(c.canvas)) {
+        AyBackBar(title = "Profile", onBack = null)
+        Box(Modifier.weight(1f).fillMaxWidth()) {
+            when (val state = uiState) {
+                is ProfileUiState.Loading -> AyLoading()
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text("Profile", style = MaterialTheme.typography.headlineSmall) },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
-            )
-        }
-    ) { paddingValues ->
-        when (val state = uiState) {
-            is ProfileUiState.Loading -> {
-                Box(
-                    modifier = Modifier.fillMaxSize().padding(paddingValues),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
-            }
+                is ProfileUiState.Error -> AyErrorPanel(state.message, onRetry = { viewModel.loadProfile() })
 
-            is ProfileUiState.Error -> {
-                Box(
-                    modifier = Modifier.fillMaxSize().padding(paddingValues),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(state.message, color = MaterialTheme.colorScheme.error)
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Button(onClick = { viewModel.loadProfile() }) { Text("Retry") }
-                    }
-                }
-            }
-
-            is ProfileUiState.LoggedOut -> {
-                Box(
-                    modifier = Modifier.fillMaxSize().padding(paddingValues),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("Not logged in")
-                }
-            }
-
-            is ProfileUiState.Success -> {
-                val profile = state.profile
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues)
-                        .background(MaterialTheme.colorScheme.background)
-                ) {
-                    item {
-                        // User Header
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(100.dp)
-                                    .clip(CircleShape)
-                                    .background(MaterialTheme.colorScheme.primaryContainer),
-                                contentAlignment = Alignment.Center
+                is ProfileUiState.LoggedOut -> {
+                    LazyColumn(
+                        Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        item {
+                            Column(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .background(AyHeroBrush(), RoundedCornerShape(24.dp))
+                                    .padding(horizontal = 20.dp, vertical = 28.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                Text(
-                                    text = profile.fullName.firstOrNull()?.toString() ?: "?",
-                                    style = MaterialTheme.typography.headlineLarge,
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Text(
-                                profile.fullName,
-                                style = MaterialTheme.typography.headlineSmall,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                profile.email,
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            if (profile.mobile != null) {
-                                Text(
-                                    profile.mobile,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-
-                            Spacer(modifier = Modifier.height(24.dp))
-
-                            // Gold Membership Pill
-                            if (profile.isGoldMember) {
-                                Surface(
-                                    color = MaterialTheme.colorScheme.secondaryContainer,
-                                    shape = RoundedCornerShape(16.dp)
+                                Box(
+                                    Modifier.size(72.dp).background(c.goldFill.copy(alpha = 0.3f), CircleShape),
+                                    contentAlignment = Alignment.Center
                                 ) {
-                                    Text(
-                                        "✦ Gold Member",
-                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                                        style = MaterialTheme.typography.labelLarge,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                                        fontWeight = FontWeight.Bold
-                                    )
+                                    AyLogoMark(46.dp)
                                 }
+                                Spacer(Modifier.height(14.dp))
+                                Text(
+                                    "Welcome to Ayurdhara",
+                                    fontFamily = NotoSerif,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 22.sp,
+                                    color = c.onHero,
+                                    textAlign = TextAlign.Center
+                                )
+                                Spacer(Modifier.height(6.dp))
+                                Text(
+                                    "Sign in to access your Prakriti profile, track orders, and sync cart across devices.",
+                                    fontFamily = PlusJakartaSans,
+                                    fontSize = 13.sp,
+                                    color = c.onHeroSub,
+                                    textAlign = TextAlign.Center
+                                )
+                                Spacer(Modifier.height(18.dp))
+                                AyPrimaryButton(
+                                    text = "Sign In or Register →",
+                                    onClick = onSignedOut,
+                                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                                    gold = true
+                                )
                             }
                         }
-
-                        HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
-                    }
-
-                    item {
-                        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-                            Text(
-                                "Account Details",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-                            )
-
-                            ProfileMenuItem("My Orders", Icons.Default.List, onClick = onNavigateToOrders)
-                            ProfileMenuItem("Saved Addresses", Icons.Default.LocationOn, onClick = {})
-
-                            Spacer(modifier = Modifier.height(24.dp))
-
-                            Text(
-                                "Preferences",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-                            )
-
-                            ProfileMenuItem("Settings", Icons.Default.Settings, onClick = onNavigateToSettings)
-                            ProfileMenuItem("Help & Support", Icons.Default.Info, onClick = onNavigateToSupport)
-
-                            Spacer(modifier = Modifier.height(24.dp))
-
-                            // Sign Out Button
-                            OutlinedButton(
-                                onClick = { viewModel.signOut() },
-                                modifier = Modifier.fillMaxWidth(),
-                                colors = ButtonDefaults.outlinedButtonColors(
-                                    contentColor = MaterialTheme.colorScheme.error
-                                )
-                            ) {
-                                Text("Sign Out", fontWeight = FontWeight.SemiBold)
+                        item {
+                            AyGroupLabel("Preferences")
+                            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                                AyMenuRow(Icons.Default.Settings, "Settings", subtitle = "Notifications & appearance", onClick = onNavigateToSettings)
+                                AyMenuRow(Icons.Default.Info, "Help & Support", subtitle = "FAQs and contact", onClick = onNavigateToSupport)
                             }
+                        }
+                    }
+                }
 
-                            Spacer(modifier = Modifier.height(32.dp))
+                is ProfileUiState.Success -> {
+                    val profile = state.profile
+                    LazyColumn(
+                        Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        item {
+                            // User header
+                            Column(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .background(AyHeroBrush(), RoundedCornerShape(24.dp))
+                                    .padding(horizontal = 20.dp, vertical = 24.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                AyAvatarRing(initialsOf(profile.fullName))
+                                Spacer(Modifier.height(14.dp))
+                                Text(
+                                    profile.fullName, fontFamily = NotoSerif, fontWeight = FontWeight.Bold,
+                                    fontSize = 24.sp, color = c.onHero, textAlign = TextAlign.Center,
+                                    maxLines = 2, overflow = TextOverflow.Ellipsis
+                                )
+                                Spacer(Modifier.height(2.dp))
+                                Text(
+                                    profile.email, fontFamily = PlusJakartaSans, fontSize = 14.sp,
+                                    color = c.onHeroSub, textAlign = TextAlign.Center
+                                )
+                                if (profile.mobile != null) {
+                                    Text(
+                                        profile.mobile, fontFamily = PlusJakartaSans, fontSize = 13.sp,
+                                        color = c.onHeroSub, textAlign = TextAlign.Center
+                                    )
+                                }
+                                // Gold Membership pill
+                                if (profile.isGoldMember) {
+                                    Spacer(Modifier.height(14.dp))
+                                    AyBadge("✦ Gold Member")
+                                }
+                            }
+                            Spacer(Modifier.height(16.dp))
+                        }
+
+                        item {
+                            AyGroupLabel("Account Details")
+                            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                                AyMenuRow(Icons.Default.List, "My Orders", subtitle = "Track live deliveries & reorder", onClick = onNavigateToOrders)
+                                AyMenuRow(Icons.Default.LocationOn, "Saved Addresses", subtitle = "Manage delivery locations", onClick = {})
+                            }
+                            Spacer(Modifier.height(20.dp))
+                            AyGroupLabel("Preferences")
+                            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                                AyMenuRow(Icons.Default.Settings, "Settings", subtitle = "Notifications & appearance", onClick = onNavigateToSettings)
+                                AyMenuRow(Icons.Default.Info, "Help & Support", subtitle = "FAQs and contact", onClick = onNavigateToSupport)
+                            }
+                            Spacer(Modifier.height(20.dp))
+                            // Sign out
+                            AyMenuRow(
+                                Icons.AutoMirrored.Filled.Logout, "Sign Out",
+                                onClick = {
+                                    viewModel.signOut()
+                                    onSignedOut()
+                                }, destructive = true, trailing = {}
+                            )
+                            Spacer(Modifier.height(16.dp))
                         }
                     }
                 }
@@ -202,39 +188,21 @@ fun ProfileScreen(
     }
 }
 
+private fun initialsOf(name: String): String {
+    val parts = name.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }
+    return when {
+        parts.isEmpty() -> "?"
+        parts.size == 1 -> parts[0].take(1)
+        else -> "${parts[0].first()}${parts[1].first()}"
+    }
+}
+
+/** Kept for source compatibility; delegates to the shared design-system menu row. */
 @Composable
 fun ProfileMenuItem(
     title: String,
     icon: ImageVector,
     onClick: () -> Unit
 ) {
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp)
-            .clickable { onClick() }
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(MaterialTheme.colorScheme.surfaceVariant),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
-            }
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-    }
+    AyMenuRow(icon, title, onClick = onClick)
 }

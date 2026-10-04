@@ -26,12 +26,21 @@ class MainActivity : ComponentActivity() {
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        window.navigationBarColor = android.graphics.Color.TRANSPARENT
         setContent {
             AyurdharaTheme {
+                val dark = androidx.compose.foundation.isSystemInDarkTheme()
+                androidx.compose.runtime.LaunchedEffect(dark) {
+                    val c = WindowCompat.getInsetsController(window, window.decorView)
+                    c.isAppearanceLightStatusBars = !dark
+                    c.isAppearanceLightNavigationBars = !dark
+                }
                 val startDestination = viewModel.startDestination.collectAsState().value
                 val networkState = viewModel.networkState.collectAsState().value
+                val userName = viewModel.userName.collectAsState().value
                 if (startDestination != null) {
-                    AppNavigation(startDestination, networkState)
+                    AppNavigation(startDestination, networkState, userName = userName)
                 }
             }
         }

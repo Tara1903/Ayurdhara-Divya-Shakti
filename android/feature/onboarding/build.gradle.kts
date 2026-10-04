@@ -10,7 +10,7 @@ android {
     namespace = "com.ayurdhara.feature.onboarding"
     compileSdk = 34
     defaultConfig {
-        minSdk = 34
+        minSdk = 26
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

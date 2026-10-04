@@ -8,17 +8,33 @@ import kotlinx.serialization.json.JsonElement
 data class AddressDto(
     val id: String = "",
     @SerialName("user_id") val userId: String = "",
-    @SerialName("type") val type: String = "home",
+    @SerialName("address_type") val addressType: String? = null,
+    val type: String = "home",
+    @SerialName("full_name") val fullName: String? = null,
     val name: String = "",
+    val mobile: String? = null,
     val phone: String = "",
     val pincode: String = "",
     val state: String = "",
     val city: String = "",
-    @SerialName("line1") val line1: String = "",
+    @SerialName("address_line_1") val addressLine1: String? = null,
+    val line1: String = "",
     val landmark: String? = null,
     @SerialName("is_default") val isDefault: Boolean = false,
     @SerialName("created_at") val createdAt: String? = null
-)
+) {
+    val resolvedType: String
+        get() = addressType ?: type
+
+    val resolvedName: String
+        get() = fullName ?: name
+
+    val resolvedPhone: String
+        get() = mobile ?: phone
+
+    val resolvedLine1: String
+        get() = addressLine1 ?: line1
+}
 
 @Serializable
 data class ProfileDto(
@@ -35,20 +51,38 @@ data class ProfileDto(
 @Serializable
 data class OrderDto(
     val id: String = "",
-    @SerialName("display_id") val displayId: String = "",
+    @SerialName("order_ref") val orderRef: String? = null,
+    @SerialName("display_id") val displayId: String? = null,
+    @SerialName("customer_id") val customerId: String? = null,
     @SerialName("user_id") val userId: String? = null,
     val subtotal: Double = 0.0,
-    val discount: Double = 0.0,
+    @SerialName("item_discount") val itemDiscount: Double = 0.0,
+    @SerialName("discount") val discount: Double = 0.0,
+    @SerialName("shipping_charge") val shippingCharge: Double = 0.0,
     @SerialName("shipping_fee") val shippingFee: Double = 0.0,
-    val total: Double = 0.0,
-    val status: String = "PENDING_PAYMENT",
+    @SerialName("final_total") val finalTotal: Double = 0.0,
+    @SerialName("total") val total: Double = 0.0,
+    @SerialName("order_status") val orderStatus: String? = null,
+    @SerialName("status") val status: String? = null,
+    @SerialName("payment_status") val paymentStatus: String? = null,
     @SerialName("customer_name") val customerName: String? = null,
     @SerialName("customer_phone") val customerPhone: String? = null,
     @SerialName("customer_email") val customerEmail: String? = null,
+    @SerialName("guest_email") val guestEmail: String? = null,
+    @SerialName("guest_mobile") val guestMobile: String? = null,
     @SerialName("shipping_address_snapshot") val shippingAddressSnapshot: JsonElement? = null,
     @SerialName("created_at") val createdAt: String? = null,
     @SerialName("order_items") val items: List<OrderItemDto> = emptyList()
-)
+) {
+    val resolvedDisplayId: String
+        get() = orderRef ?: displayId ?: "AYD-ORD"
+
+    val resolvedTotal: Double
+        get() = if (finalTotal > 0.0) finalTotal else total
+
+    val resolvedStatus: String
+        get() = orderStatus ?: status ?: "CONFIRMED"
+}
 
 @Serializable
 data class OrderItemDto(

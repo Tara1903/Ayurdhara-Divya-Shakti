@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Save, Store, Truck, Info } from 'lucide-react';
+import Link from 'next/link';
+import { Save, Store, Truck, Info, Smartphone, ArrowRight } from 'lucide-react';
 
 export function SettingsClient({ settings }: { settings: Record<string, any> }) {
   const [store, setStore] = useState({
@@ -84,6 +85,28 @@ export function SettingsClient({ settings }: { settings: Record<string, any> }) 
             <input type="number" value={shipping.charge} onChange={e => setShipping(s => ({...s, charge: Number(e.target.value)}))} className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm outline-none focus:ring-1 focus:ring-emerald-500" />
           </div>
         </div>
+      </div>
+
+      {/* Mobile App */}
+      <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Smartphone size={18} className="text-emerald-600" />
+            <h3 className="font-semibold text-gray-900">Mobile App (Android APK)</h3>
+          </div>
+          <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+            v1.0.0 Active
+          </span>
+        </div>
+        <p className="text-sm text-gray-600">
+          Manage live Android APK releases, enforce minimum app versions, trigger force updates, and inspect mobile sync status.
+        </p>
+        <Link
+          href="/admin/mobile-app"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+        >
+          Open Mobile App Control Center <ArrowRight size={15} />
+        </Link>
       </div>
 
       <button onClick={handleSave} disabled={loading} className="flex items-center gap-2 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-sm font-medium rounded-lg">

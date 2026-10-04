@@ -5,35 +5,33 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Schedule
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import androidx.compose.ui.unit.sp
+import com.ayurdhara.core.designsystem.components.AyBackBar
+import com.ayurdhara.core.designsystem.components.AyBadge
+import com.ayurdhara.core.designsystem.components.AyImage
+import com.ayurdhara.core.designsystem.components.ayCard
+import com.ayurdhara.core.designsystem.theme.AyTheme
+import com.ayurdhara.core.designsystem.theme.NotoSerif
+import com.ayurdhara.core.designsystem.theme.PlusJakartaSans
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BlogScreen() {
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text("Ayurveda Journal", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
-            )
-        }
-    ) { paddingValues ->
+fun BlogScreen(onBackClick: (() -> Unit)? = null) {
+    val c = AyTheme.colors
+    Column(Modifier.fillMaxSize().background(c.canvas)) {
+        AyBackBar(title = "Ayurveda Journal", onBack = onBackClick)
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .background(MaterialTheme.colorScheme.background),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            Modifier.weight(1f).fillMaxWidth(),
+            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             item {
                 BlogCard(
@@ -70,43 +68,25 @@ fun BlogCard(
     readTime: String,
     imageUrl: String
 ) {
-    Card(
-        shape = RoundedCornerShape(24.dp),
-        modifier = Modifier.fillMaxWidth().clickable { },
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+    val c = AyTheme.colors
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .ayCard(RoundedCornerShape(24.dp))
+            .clickable { }
     ) {
-        Column {
-            AsyncImage(
-                model = imageUrl,
-                contentDescription = title,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .clip(RoundedCornerShape(24.dp)),
-                contentScale = ContentScale.Crop
-            )
-            Column(modifier = Modifier.padding(16.dp)) {
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(
-                        text = category.uppercase(),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = readTime,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    title,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
+        Box(Modifier.fillMaxWidth().height(200.dp)) {
+            AyImage(imageUrl, title, Modifier.fillMaxSize())
+            AyBadge(category, Modifier.align(Alignment.TopStart).padding(12.dp))
+        }
+        Column(Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Filled.Schedule, null, tint = c.accent, modifier = Modifier.size(14.dp))
+                Spacer(Modifier.width(4.dp))
+                Text(readTime, fontFamily = PlusJakartaSans, fontWeight = FontWeight.SemiBold, fontSize = 12.sp, color = c.textMuted)
             }
+            Spacer(Modifier.height(8.dp))
+            Text(title, fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 19.sp, lineHeight = 26.sp, color = c.heading)
         }
     }
 }

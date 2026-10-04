@@ -1,4 +1,4 @@
-﻿package com.ayurdhara.core.network.monitor
+package com.ayurdhara.core.network.monitor
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -25,7 +25,12 @@ class ConnectivityManagerNetworkMonitor @Inject constructor(
 ) : NetworkMonitor {
 
     override val isOnline: Flow<NetworkState> = callbackFlow {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        if (connectivityManager == null) {
+            trySend(NetworkState.Online)
+            awaitClose {}
+            return@callbackFlow
+        }
 
         val callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
@@ -39,29 +44,28 @@ class ConnectivityManagerNetworkMonitor @Inject constructor(
             override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
                 super.onCapabilitiesChanged(network, networkCapabilities)
                 val isOnline = networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
-                if (isOnline) {
-                    // Could implement PoorConnection logic here based on signal strength
-                    trySend(NetworkState.Online)
-                } else {
-                    trySend(NetworkState.Offline)
-                }
+                trySend(if (isOnline) NetworkState.Online else NetworkState.Offline)
             }
         }
 
-        val request = NetworkRequest.Builder()
-            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-            .build()
-            
-        connectivityManager.registerNetworkCallback(request, callback)
+        try {
+            val request = NetworkRequest.Builder()
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                .build()
+            connectivityManager.registerNetworkCallback(request, callback)
 
-        // Initial state
-        val currentNetwork = connectivityManager.activeNetwork
-        val currentCapabilities = connectivityManager.getNetworkCapabilities(currentNetwork)
-        val initialIsOnline = currentCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) == true
-        trySend(if (initialIsOnline) NetworkState.Online else NetworkState.Offline)
+            val currentNetwork = connectivityManager.activeNetwork
+            val currentCapabilities = currentNetwork?.let { connectivityManager.getNetworkCapabilities(it) }
+            val initialIsOnline = currentCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) == true
+            trySend(if (initialIsOnline) NetworkState.Online else NetworkState.Offline)
+        } catch (e: Exception) {
+            trySend(NetworkState.Online)
+        }
 
         awaitClose {
-            connectivityManager.unregisterNetworkCallback(callback)
+            try {
+                connectivityManager.unregisterNetworkCallback(callback)
+            } catch (_: Exception) {}
         }
     }.distinctUntilChanged()
 }

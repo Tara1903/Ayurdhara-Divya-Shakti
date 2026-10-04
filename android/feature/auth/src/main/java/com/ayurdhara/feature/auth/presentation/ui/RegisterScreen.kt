@@ -1,23 +1,33 @@
 package com.ayurdhara.feature.auth.presentation.ui
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
-import com.ayurdhara.core.designsystem.components.AyurdharaButton
+import com.ayurdhara.core.designsystem.components.*
+import com.ayurdhara.core.designsystem.theme.AyTheme
+import com.ayurdhara.core.designsystem.theme.PlusJakartaSans
 import com.ayurdhara.feature.auth.presentation.viewmodel.AuthState
 import com.ayurdhara.feature.auth.presentation.viewmodel.AuthViewModel
 
@@ -26,12 +36,15 @@ fun RegisterScreen(
     onNavigateToLogin: () -> Unit,
     viewModel: AuthViewModel = hiltViewModel()
 ) {
+    val c = AyTheme.colors
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
     val uiState by viewModel.uiState.collectAsState()
-    
+
     var name by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
+    var showPassword by remember { mutableStateOf(false) }
+    val comingSoon = rememberAyComingSoon()
 
     LaunchedEffect(uiState) {
         if (uiState is AuthState.Success) {
@@ -40,145 +53,100 @@ fun RegisterScreen(
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        AsyncImage(
-            model = "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1000&auto=format&fit=crop",
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop,
-            alpha = 0.15f
+    val mismatch = confirmPassword.isNotEmpty() && password != confirmPassword
+
+    AyAuthScaffold(title = "Join Ayurdhara", onBack = onNavigateToLogin) {
+        AyAuthStepPill(step = 1, total = 2)
+        Spacer(Modifier.height(20.dp))
+        AyAuthBrandHeader()
+        Spacer(Modifier.height(24.dp))
+        AyAuthTitle(
+            title = "Begin Your Wellness Journey",
+            subtitle = "Create your account to unlock authentic Vedic botanicals."
         )
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background.copy(alpha = 0.85f))
+        Spacer(Modifier.height(24.dp))
+
+        AyAuthField(
+            value = name,
+            onValueChange = { name = it },
+            label = "Full Name",
+            placeholder = "Your full name",
+            leadingIcon = Icons.Filled.Person,
+            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words, imeAction = ImeAction.Next)
         )
-        
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 24.dp)
-                .systemBarsPadding(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.weight(0.3f))
-            
-            Text(
-                "JOIN AYURDHARA",
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.primary,
-                letterSpacing = androidx.compose.ui.unit.TextUnit(4f, androidx.compose.ui.unit.TextUnitType.Sp)
-            )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                "Begin your wellness journey",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            
-            Spacer(Modifier.height(32.dp))
-            
-            Card(
-                shape = RoundedCornerShape(24.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Column(modifier = Modifier.padding(24.dp)) {
-                    OutlinedTextField(
-                        value = name,
-                        onValueChange = { name = it },
-                        label = { Text("Full Name") },
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color.Transparent,
-                            unfocusedContainerColor = Color.Transparent,
-                            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                            unfocusedIndicatorColor = MaterialTheme.colorScheme.surfaceVariant
-                        )
-                    )
-                    Spacer(Modifier.height(16.dp))
-                    
-                    OutlinedTextField(
-                        value = email,
-                        onValueChange = { viewModel.email.value = it },
-                        label = { Text("Email Address") },
-                        modifier = Modifier.fillMaxWidth(),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                        singleLine = true,
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color.Transparent,
-                            unfocusedContainerColor = Color.Transparent,
-                            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                            unfocusedIndicatorColor = MaterialTheme.colorScheme.surfaceVariant
-                        )
-                    )
-                    Spacer(Modifier.height(16.dp))
-                    
-                    OutlinedTextField(
-                        value = password,
-                        onValueChange = { viewModel.password.value = it },
-                        label = { Text("Password") },
-                        visualTransformation = PasswordVisualTransformation(),
-                        modifier = Modifier.fillMaxWidth(),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                        singleLine = true,
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color.Transparent,
-                            unfocusedContainerColor = Color.Transparent,
-                            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                            unfocusedIndicatorColor = MaterialTheme.colorScheme.surfaceVariant
-                        )
-                    )
-                    Spacer(Modifier.height(16.dp))
-                    
-                    OutlinedTextField(
-                        value = confirmPassword,
-                        onValueChange = { confirmPassword = it },
-                        label = { Text("Confirm Password") },
-                        visualTransformation = PasswordVisualTransformation(),
-                        modifier = Modifier.fillMaxWidth(),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                        singleLine = true,
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color.Transparent,
-                            unfocusedContainerColor = Color.Transparent,
-                            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                            unfocusedIndicatorColor = MaterialTheme.colorScheme.surfaceVariant
-                        )
-                    )
-                    
-                    Spacer(Modifier.height(32.dp))
-                    
-                    AyurdharaButton(
-                        text = "Create Account",
-                        onClick = { viewModel.register(name) },
-                        modifier = Modifier.fillMaxWidth().height(56.dp),
-                        enabled = uiState !is AuthState.Loading && password == confirmPassword && name.isNotBlank()
-                    )
-                    
-                    if (uiState is AuthState.Error) {
-                        Spacer(Modifier.height(8.dp))
-                        Text(
-                            (uiState as AuthState.Error).message, 
-                            color = MaterialTheme.colorScheme.error,
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                    }
-                }
-            }
-            
-            Spacer(Modifier.height(24.dp))
-            
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Already a member? ", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                TextButton(onClick = onNavigateToLogin) {
-                    Text("Sign In", fontWeight = FontWeight.Bold)
-                }
-            }
-            
-            Spacer(modifier = Modifier.weight(1f))
+        Spacer(Modifier.height(16.dp))
+        AyAuthField(
+            value = email,
+            onValueChange = { viewModel.email.value = it },
+            label = "Email Address",
+            placeholder = "you@example.com",
+            leadingIcon = Icons.Filled.Email,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next)
+        )
+        Spacer(Modifier.height(16.dp))
+        AyAuthField(
+            value = password,
+            onValueChange = { viewModel.password.value = it },
+            label = "Password",
+            placeholder = "Create a password",
+            leadingIcon = Icons.Filled.Lock,
+            trailing = {
+                Icon(
+                    if (showPassword) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
+                    contentDescription = if (showPassword) "Hide password" else "Show password",
+                    modifier = Modifier.clickable { showPassword = !showPassword }
+                )
+            },
+            visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Next)
+        )
+        Spacer(Modifier.height(16.dp))
+        AyAuthField(
+            value = confirmPassword,
+            onValueChange = { confirmPassword = it },
+            label = "Confirm Password",
+            placeholder = "Re-enter your password",
+            leadingIcon = Icons.Filled.Lock,
+            visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
+            isError = mismatch,
+            errorText = if (mismatch) "Passwords do not match" else null
+        )
+
+        Spacer(Modifier.height(24.dp))
+        AyAuthButton(
+            text = "Create Account",
+            onClick = { viewModel.register(name) },
+            loading = uiState is AuthState.Loading,
+            enabled = password == confirmPassword && name.isNotBlank(),
+            trailingIcon = Icons.AutoMirrored.Filled.ArrowForward
+        )
+        (uiState as? AuthState.Error)?.let {
+            Spacer(Modifier.height(12.dp))
+            AyAuthError(it.message)
         }
+
+        Spacer(Modifier.height(24.dp))
+        AyAuthOrDivider()
+        Spacer(Modifier.height(16.dp))
+        AyGoogleButton(onClick = comingSoon)
+
+        Spacer(Modifier.height(20.dp))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+            Text("Already a member? ", fontFamily = PlusJakartaSans, fontSize = 14.sp, color = c.textSub)
+            Text(
+                "Sign In",
+                modifier = Modifier
+                    .clip(androidx.compose.foundation.shape.RoundedCornerShape(6.dp))
+                    .clickable(onClick = onNavigateToLogin)
+                    .padding(horizontal = 6.dp, vertical = 8.dp),
+                fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 14.sp, color = c.heading
+            )
+        }
+
+        Spacer(Modifier.height(16.dp))
+        AyAuthAssuranceCard()
+        Spacer(Modifier.height(16.dp))
+        AyAuthTerms()
     }
 }

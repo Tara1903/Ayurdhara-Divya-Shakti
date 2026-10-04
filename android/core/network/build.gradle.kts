@@ -26,7 +26,7 @@ android {
     defaultConfig {
         buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"$supabaseAnonKey\"")
-        minSdk = 34
+        minSdk = 26
     }
 
     compileOptions {

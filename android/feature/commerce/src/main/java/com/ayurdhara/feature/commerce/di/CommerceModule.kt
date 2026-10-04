@@ -25,4 +25,10 @@ abstract class CommerceModule {
     abstract fun bindOrderRepository(
         impl: SupabaseOrderRepositoryImpl
     ): OrderRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindPaymentProvider(
+        impl: com.ayurdhara.feature.commerce.starpay.StarPayPaymentProviderImpl
+    ): com.ayurdhara.feature.commerce.domain.provider.PaymentProvider
 }

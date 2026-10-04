@@ -1,88 +1,73 @@
 package com.ayurdhara.feature.settings.presentation.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.ayurdhara.core.designsystem.components.AyBackBar
+import com.ayurdhara.core.designsystem.components.AyGroupLabel
+import com.ayurdhara.core.designsystem.components.AyMenuRow
+import com.ayurdhara.core.designsystem.components.AySwitchRow
+import com.ayurdhara.core.designsystem.theme.AyTheme
+import com.ayurdhara.core.designsystem.theme.PlusJakartaSans
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    onLogout: () -> Unit = {}
+    onLogout: () -> Unit = {},
+    onBackClick: (() -> Unit)? = null
 ) {
     var notificationsEnabled by remember { mutableStateOf(true) }
     var darkModeEnabled by remember { mutableStateOf(false) }
+    val c = AyTheme.colors
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text("Settings", style = MaterialTheme.typography.headlineSmall) },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
-            )
-        }
-    ) { paddingValues ->
+    Column(Modifier.fillMaxSize().background(c.canvas)) {
+        AyBackBar(title = "Settings", onBack = onBackClick)
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .background(MaterialTheme.colorScheme.background),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            Modifier.weight(1f).fillMaxWidth(),
+            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
+            item { AyGroupLabel("Preferences") }
             item {
-                Text("Preferences", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
-                
                 SettingToggleItem(
                     title = "Push Notifications",
                     description = "Receive updates on orders and offers",
                     checked = notificationsEnabled,
                     onCheckedChange = { notificationsEnabled = it }
                 )
-                
+            }
+            item {
                 SettingToggleItem(
                     title = "Dark Mode",
                     description = "Toggle dark theme for the app",
                     checked = darkModeEnabled,
-                    onCheckedChange = { darkModeEnabled = it }
+                    onCheckedChange = { darkModeEnabled = it },
+                    iconIsDark = true
                 )
             }
-            
+
             item {
-                Spacer(modifier = Modifier.height(24.dp))
-                Text("Account", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 8.dp))
-                
-                Card(
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
-                    modifier = Modifier.fillMaxWidth().clickable { onLogout() }
-                ) {
-                    Text(
-                        "Log Out",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onErrorContainer,
-                        modifier = Modifier.padding(16.dp)
-                    )
-                }
+                Spacer(Modifier.height(14.dp))
+                AyGroupLabel("Account")
+                AyMenuRow(Icons.AutoMirrored.Filled.Logout, "Log Out", onClick = onLogout, destructive = true, trailing = {})
             }
-            
+
             item {
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(Modifier.height(24.dp))
                 Text(
                     "App Version 1.0.0",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontFamily = PlusJakartaSans, fontSize = 12.sp, color = c.textMuted,
                     modifier = Modifier.fillMaxWidth(),
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    textAlign = TextAlign.Center
                 )
             }
         }
@@ -94,28 +79,14 @@ fun SettingToggleItem(
     title: String,
     description: String,
     checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
+    iconIsDark: Boolean = false
 ) {
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(title, style = MaterialTheme.typography.titleMedium)
-                Text(description, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-            Switch(
-                checked = checked,
-                onCheckedChange = onCheckedChange,
-                colors = SwitchDefaults.colors(checkedTrackColor = MaterialTheme.colorScheme.primary)
-            )
-        }
-    }
+    AySwitchRow(
+        title = title,
+        description = description,
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        icon = if (iconIsDark) Icons.Filled.DarkMode else Icons.Filled.Notifications
+    )
 }
