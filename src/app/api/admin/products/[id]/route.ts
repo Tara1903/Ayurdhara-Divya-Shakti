@@ -42,7 +42,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     const { name, slug, short_description, full_description, category_id, is_active, variants, images } = body;
 
     const supabase = createAdminClient();
-    const primaryImage = images && images.length > 0 && images[0]?.url ? images[0].url : null;
 
     // Check if product exists by id or slug
     let targetProductId = id;
@@ -72,7 +71,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
             full_description: full_description || '',
             category_id: category_id || null,
             is_active: is_active ?? true,
-            primary_image_url: primaryImage,
             updated_at: new Date().toISOString()
           })
           .select()
@@ -93,7 +91,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
         full_description: full_description || '',
         category_id: category_id || null,
         is_active: is_active ?? true,
-        primary_image_url: primaryImage,
         updated_at: new Date().toISOString()
       })
       .eq('id', targetProductId);

@@ -16,15 +16,25 @@ export default async function ProductsListPage() {
       name,
       slug,
       is_active,
-      primary_image_url,
+      product_images(url, display_order),
       categories(name)
     `)
     .order('created_at', { ascending: false });
     
-  let products = dbProducts;
+  let products = dbProducts?.map((p: any) => {
+    const sortedImages = (p.product_images || []).sort((a: any, b: any) => (a.display_order ?? 0) - (b.display_order ?? 0));
+    return {
+      id: p.id,
+      name: p.name,
+      slug: p.slug,
+      is_active: p.is_active,
+      primary_image_url: sortedImages[0]?.url || null,
+      categories: p.categories
+    };
+  });
   
   // If DB fails or returns null (e.g., placeholder config), fallback to DAL which manages the static fallback
-  if (error || !dbProducts || dbProducts.length === 0) {
+  if (error || !products || products.length === 0) {
     const dalProducts = await getActiveProducts();
     products = dalProducts.map(p => ({
       id: p.id,

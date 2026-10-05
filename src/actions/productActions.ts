@@ -56,7 +56,6 @@ export async function createProduct(formData: any, adminId: string) {
         total_quantity_ml: formData.total_quantity_ml || null,
         gold_membership_eligible: formData.gold_membership_eligible || false,
         is_active: formData.is_active ?? false,
-        primary_image_url: formData.images?.[0] || null,
       })
       .select()
       .single();
@@ -162,7 +161,6 @@ export async function updateProduct(productId: string, formData: any, adminId: s
         total_quantity_ml: formData.total_quantity_ml || null,
         gold_membership_eligible: formData.gold_membership_eligible || false,
         is_active: formData.is_active ?? false,
-        primary_image_url: formData.images?.[0] || null,
         updated_at: new Date().toISOString(),
       })
       .eq('id', productId);

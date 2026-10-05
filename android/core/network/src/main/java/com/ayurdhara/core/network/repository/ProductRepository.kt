@@ -15,7 +15,7 @@ class ProductRepository @Inject constructor(
     suspend fun getActiveProducts(): List<ProductDto> {
         return withContext(Dispatchers.IO) {
             val columns = """
-                id, slug, name, short_description, primary_image_url, rating, review_count, is_active,
+                id, slug, name, short_description, rating, review_count, is_active,
                 categories(id, name, slug, description),
                 product_variants(id, size, price, original_price, is_active),
                 product_images(url, display_order, variant_id)

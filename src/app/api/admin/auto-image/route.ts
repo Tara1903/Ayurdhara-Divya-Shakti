@@ -70,7 +70,6 @@ export async function POST(req: Request) {
         display_order: 0
       });
       await supabase.from('products').update({
-        primary_image_url: finalImageUrl,
         updated_at: new Date().toISOString()
       }).eq('id', productId);
 

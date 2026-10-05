@@ -282,7 +282,7 @@ export async function getRecommendedProducts(categoryNames: string[], excludeSlu
   const { data, error } = await supabase
     .from('products')
     .select(`
-      id, slug, name, short_description, primary_image_url, badge, rating, review_count,
+      id, slug, name, short_description, badge, rating, review_count,
       product_variants(price, original_price, size, is_active),
       product_images(url, display_order, variant_id),
       categories!inner(name)

@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 import { revalidateStorefront } from '@/app/actions/revalidate';
@@ -31,8 +31,7 @@ export async function POST(req: NextRequest) {
     const { name, slug, short_description, full_description, category_id, is_active, variants, images } = body;
 
     const supabase = createAdminClient();
-    const primaryImage = images && images.length > 0 && images[0]?.url ? images[0].url : null;
-
+    
     // 1. Insert product
     const { data: product, error: pErr } = await supabase
       .from('products')
@@ -43,7 +42,6 @@ export async function POST(req: NextRequest) {
         full_description: full_description || '',
         category_id: category_id || null,
         is_active: is_active ?? true,
-        primary_image_url: primaryImage,
         updated_at: new Date().toISOString()
       })
       .select()
