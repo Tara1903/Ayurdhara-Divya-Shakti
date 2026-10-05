@@ -46,13 +46,14 @@ fun ProfileScreen(
     onNavigateToSettings: () -> Unit = {},
     onNavigateToSupport: () -> Unit = {},
     onSignedOut: () -> Unit = {},
+    onBackClick: (() -> Unit)? = null,
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val c = AyTheme.colors
 
     Column(Modifier.fillMaxSize().background(c.canvas)) {
-        AyBackBar(title = "Profile", onBack = null)
+        AyBackBar(title = "Profile", onBack = onBackClick)
         Box(Modifier.weight(1f).fillMaxWidth()) {
             when (val state = uiState) {
                 is ProfileUiState.Loading -> AyLoading()

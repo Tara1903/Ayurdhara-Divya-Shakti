@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingBag
 import androidx.compose.material.icons.filled.Spa
 import androidx.compose.material.icons.filled.Storefront
@@ -26,6 +27,7 @@ import com.ayurdhara.feature.home.presentation.ui.HomeScreen
 import com.ayurdhara.feature.orders.presentation.ui.OrderHistoryScreen
 import com.ayurdhara.feature.profile.presentation.ui.ProfileScreen
 import com.ayurdhara.feature.search.presentation.ui.SearchScreen
+import com.ayurdhara.feature.settings.presentation.ui.SettingsScreen
 import com.ayurdhara.feature.shop.presentation.ui.ShopScreen
 import com.ayurdhara.feature.shop.presentation.ui.ProductDetailScreen
 import com.ayurdhara.feature.onboarding.presentation.ui.OnboardingScreen
@@ -49,7 +51,7 @@ fun AppNavigation(
             Triple(Routes.SHOP, AyNavItem("Shop", Icons.Filled.Storefront), 1),
             Triple(Routes.SEARCH, AyNavItem("Search", Icons.Filled.Search), 2),
             Triple(Routes.CART, AyNavItem("Bag", Icons.Filled.ShoppingBag, bagCount), 3),
-            Triple(Routes.PROFILE, AyNavItem("Profile", Icons.Filled.Person), 4)
+            Triple(Routes.SETTINGS, AyNavItem("Settings", Icons.Filled.Settings), 4)
         )
     }
     val navTo: (String) -> Unit = { route ->
@@ -139,7 +141,8 @@ fun AppNavigation(
                             },
                             onProductClick = { slug -> navController.navigate(Routes.productRoute(slug)) },
                             onShopClick = { navTo(Routes.SHOP) },
-                            onCartClick = { navTo(Routes.CART) }
+                            onCartClick = { navTo(Routes.CART) },
+                            onProfileClick = { navController.navigate(Routes.PROFILE) }
                         )
                     }
                     composable(Routes.SHOP) {
@@ -169,9 +172,22 @@ fun AppNavigation(
                             onContinueShopping = { navTo(Routes.SHOP) }
                         )
                     }
+                    composable(Routes.SETTINGS) {
+                        SettingsScreen(
+                            onNavigateToProfile = { navController.navigate(Routes.PROFILE) },
+                            onNavigateToOrders = { navController.navigate(Routes.ORDER_HISTORY) },
+                            onLogout = {
+                                navController.navigate(Routes.AUTH_GRAPH) {
+                                    popUpTo(Routes.MAIN_GRAPH) { inclusive = true }
+                                }
+                            }
+                        )
+                    }
                     composable(Routes.PROFILE) {
                         ProfileScreen(
+                            onBackClick = { navController.popBackStack() },
                             onNavigateToOrders = { navController.navigate(Routes.ORDER_HISTORY) },
+                            onNavigateToSettings = { navTo(Routes.SETTINGS) },
                             onSignedOut = {
                                 navController.navigate(Routes.AUTH_GRAPH) {
                                     popUpTo(Routes.MAIN_GRAPH) { inclusive = true }

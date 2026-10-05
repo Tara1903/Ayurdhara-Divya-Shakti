@@ -105,6 +105,7 @@ fun HomeScreen(
     /** Profile name for the greeting; falls back to "Rahul" when unavailable. */
     userName: String? = null,
     onSearchClick: () -> Unit = {},
+    onProfileClick: () -> Unit = {},
     /** Receives the tapped category slug (empty for the built-in fallback circles). */
     onCategoryClick: (String) -> Unit = { onShopClick() }
 ) {
@@ -144,7 +145,7 @@ fun HomeScreen(
         AyBrandBar(
             trailing = {
                 AyIconButton(Icons.Filled.Notifications, "Notifications", onClick = {})
-                AyAvatar(32.dp)
+                AyAvatar(32.dp, onClick = onProfileClick)
             }
         )
         LazyColumn(
@@ -152,7 +153,7 @@ fun HomeScreen(
             contentPadding = PaddingValues(top = 8.dp, bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            // 1. Delivery location + quick actions
+            // 1. Delivery location + search action (single profile icon preserved in top bar)
             item {
                 Row(
                     Modifier.fillMaxWidth().padding(horizontal = 20.dp),
@@ -172,11 +173,7 @@ fun HomeScreen(
                         Icon(Icons.Filled.ExpandMore, null, tint = c.textSub, modifier = Modifier.size(14.dp))
                     }
                     Spacer(Modifier.weight(1f))
-                    QuickAction(Icons.Filled.Search, "Search", dot = true, onClick = onSearchClick)
-                    Spacer(Modifier.width(8.dp))
-                    QuickAction(Icons.Filled.Notifications, "Notifications", dot = true, onClick = {})
-                    Spacer(Modifier.width(8.dp))
-                    AyAvatar(36.dp)
+                    QuickAction(Icons.Filled.Search, "Search", dot = false, onClick = onSearchClick)
                 }
             }
 

@@ -76,6 +76,7 @@ dependencies {
     implementation(project(":feature:search"))
     implementation(project(":feature:orders"))
     implementation(project(":feature:commerce"))
+    implementation(project(":feature:settings"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)

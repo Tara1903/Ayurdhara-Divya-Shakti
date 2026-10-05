@@ -30,6 +30,12 @@ class MainViewModel @Inject constructor(
     private val _userName = MutableStateFlow<String?>(null)
     val userName: StateFlow<String?> = _userName
 
+    val themeMode: StateFlow<String> = sessionManager.themeMode.stateIn(
+        scope = viewModelScope,
+        started = kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5_000),
+        initialValue = "SYSTEM"
+    )
+
     val networkState = networkMonitor.isOnline.stateIn(
         scope = viewModelScope,
         started = kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5_000),

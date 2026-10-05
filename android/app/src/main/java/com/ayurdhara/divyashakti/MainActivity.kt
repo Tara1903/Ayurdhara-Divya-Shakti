@@ -29,8 +29,14 @@ class MainActivity : ComponentActivity() {
         window.statusBarColor = android.graphics.Color.TRANSPARENT
         window.navigationBarColor = android.graphics.Color.TRANSPARENT
         setContent {
-            AyurdharaTheme {
-                val dark = androidx.compose.foundation.isSystemInDarkTheme()
+            val themeMode = viewModel.themeMode.collectAsState().value
+            val systemDark = androidx.compose.foundation.isSystemInDarkTheme()
+            val dark = when (themeMode) {
+                "LIGHT" -> false
+                "DARK" -> true
+                else -> systemDark
+            }
+            AyurdharaTheme(darkTheme = dark) {
                 androidx.compose.runtime.LaunchedEffect(dark) {
                     val c = WindowCompat.getInsetsController(window, window.decorView)
                     c.isAppearanceLightStatusBars = !dark

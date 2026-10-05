@@ -21,30 +21,67 @@ class SessionManager @Inject constructor(
 ) {
     private val ONBOARDING_COMPLETED = booleanPreferencesKey("onboarding_completed")
     private val USER_NAME = stringPreferencesKey("user_name")
+    private val THEME_MODE = stringPreferencesKey("theme_mode") // "SYSTEM", "LIGHT", "DARK"
+    private val NOTIFS_ENABLED = booleanPreferencesKey("notifs_enabled")
+    private val ORDER_NOTIFS_ENABLED = booleanPreferencesKey("order_notifs_enabled")
+    private val PROMO_NOTIFS_ENABLED = booleanPreferencesKey("promo_notifs_enabled")
+    private val AYURVEDA_TIPS_ENABLED = booleanPreferencesKey("ayurveda_tips_enabled")
+    private val APP_LANGUAGE = stringPreferencesKey("app_language") // "English", "हिन्दी"
+    private val BIOMETRIC_LOCK = booleanPreferencesKey("biometric_lock")
 
     val isOnboardingCompleted: Flow<Boolean> = context.dataStore.data
         .catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
         }
-        .map { preferences ->
-            preferences[ONBOARDING_COMPLETED] ?: false
-        }
+        .map { preferences -> preferences[ONBOARDING_COMPLETED] ?: false }
 
     val userName: Flow<String?> = context.dataStore.data
         .catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
         }
-        .map { preferences ->
-            preferences[USER_NAME]
+        .map { preferences -> preferences[USER_NAME] }
+
+    val themeMode: Flow<String> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
         }
+        .map { preferences -> preferences[THEME_MODE] ?: "SYSTEM" }
+
+    val notificationsEnabled: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[NOTIFS_ENABLED] ?: true }
+
+    val orderNotifsEnabled: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[ORDER_NOTIFS_ENABLED] ?: true }
+
+    val promoNotifsEnabled: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[PROMO_NOTIFS_ENABLED] ?: true }
+
+    val ayurvedaTipsEnabled: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[AYURVEDA_TIPS_ENABLED] ?: true }
+
+    val appLanguage: Flow<String> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[APP_LANGUAGE] ?: "English" }
+
+    val biometricLockEnabled: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[BIOMETRIC_LOCK] ?: false }
 
     suspend fun setOnboardingCompleted(completed: Boolean) {
         try {
@@ -62,6 +99,62 @@ class SessionManager @Inject constructor(
                 } else {
                     preferences.remove(USER_NAME)
                 }
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setThemeMode(mode: String) {
+        try {
+            context.dataStore.edit { preferences ->
+                preferences[THEME_MODE] = mode
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setNotificationsEnabled(enabled: Boolean) {
+        try {
+            context.dataStore.edit { preferences ->
+                preferences[NOTIFS_ENABLED] = enabled
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setOrderNotifsEnabled(enabled: Boolean) {
+        try {
+            context.dataStore.edit { preferences ->
+                preferences[ORDER_NOTIFS_ENABLED] = enabled
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setPromoNotifsEnabled(enabled: Boolean) {
+        try {
+            context.dataStore.edit { preferences ->
+                preferences[PROMO_NOTIFS_ENABLED] = enabled
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setAyurvedaTipsEnabled(enabled: Boolean) {
+        try {
+            context.dataStore.edit { preferences ->
+                preferences[AYURVEDA_TIPS_ENABLED] = enabled
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setAppLanguage(language: String) {
+        try {
+            context.dataStore.edit { preferences ->
+                preferences[APP_LANGUAGE] = language
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setBiometricLockEnabled(enabled: Boolean) {
+        try {
+            context.dataStore.edit { preferences ->
+                preferences[BIOMETRIC_LOCK] = enabled
             }
         } catch (_: Exception) {}
     }

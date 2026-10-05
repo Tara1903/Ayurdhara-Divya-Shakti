@@ -36,7 +36,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     
-        implementation(project(":core:designsystem"))
+    implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
+    implementation(project(":core:datastore"))
     implementation(libs.androidx.hilt.navigation.compose)
 }

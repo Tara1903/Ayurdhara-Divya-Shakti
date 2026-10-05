@@ -21,6 +21,7 @@ object Routes {
     const val SHOP = "shop"
     const val SEARCH = "search"
     const val CART = "cart"
+    const val SETTINGS = "settings"
     const val PROFILE = "profile"
 
     // Detail & Flow Screens
