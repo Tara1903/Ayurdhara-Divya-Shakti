@@ -91,7 +91,7 @@ private fun categoryIcon(title: String): ImageVector {
 }
 
 private fun Product.matches(keywords: List<String>): Boolean {
-    val haystack = listOfNotNull(title, shortDescription, primaryBenefit, category).joinToString(" ").lowercase()
+    val haystack = (listOfNotNull(title, shortDescription, primaryBenefit, category) + categories).joinToString(" ").lowercase()
     return keywords.any { it in haystack }
 }
 
