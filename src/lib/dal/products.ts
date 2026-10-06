@@ -78,11 +78,32 @@ function mapDbProductToAppProduct(dbProduct: any): Product {
     images.push(dbProduct.primary_image_url);
   }
 
+  // Extract all categories from junction table product_categories + fallback to primary category
+  const junctionCategories = (dbProduct.product_categories || [])
+    .map((pc: any) => pc.categories)
+    .filter(Boolean);
+
+  const primaryCategory = dbProduct.categories;
+  const allCategoryRecords = junctionCategories.length > 0
+    ? junctionCategories
+    : (primaryCategory ? [primaryCategory] : []);
+
+  const categories = Array.from(new Set(allCategoryRecords.map((c: any) => c.name).filter(Boolean))) as string[];
+  const categoryIds = (dbProduct.product_categories || [])
+    .map((pc: any) => pc.category_id)
+    .filter(Boolean) as string[];
+  const categorySlugs = Array.from(new Set(allCategoryRecords.map((c: any) => c.slug).filter(Boolean))) as string[];
+
+  const primaryCategoryName = categories[0] || primaryCategory?.name || 'Uncategorized';
+
   return {
     id: dbProduct.id,
     slug: dbProduct.slug,
     name: dbProduct.name,
-    category: dbProduct.categories?.name || 'Uncategorized',
+    category: primaryCategoryName,
+    categories,
+    categoryIds,
+    categorySlugs,
     shortDescription: dbProduct.short_description || '',
     fullDescription: dbProduct.full_description || '',
     story: dbProduct.story || '',
@@ -139,6 +160,7 @@ const PRODUCT_QUERY = `
   certifications, faqs, related_product_ids, routine_product_ids, duration_text, total_quantity_ml,
   gold_membership_eligible,
   categories(name, slug),
+  product_categories(category_id, categories(id, name, slug)),
   product_variants(id, size, price, original_price, gold_member_price, pricing_status, gold_pricing_enabled, is_active),
   product_images(url, variant_id, display_order),
   product_ingredients(display_order, ingredients(name, botanical_name, role, image_url)),
@@ -225,22 +247,13 @@ export const getAllActiveProductSlugs = unstable_cache(
 
 export const getProductsByCategory = unstable_cache(
   async (categorySlug: string): Promise<Product[]> => {
-    const isReady = await checkDatabaseInitialization();
-    if (!isReady) {
-      return staticProducts.filter(p => p.category.toLowerCase().replace(/ /g, '-') === categorySlug || p.slug.includes(categorySlug));
-    }
-
-    const supabase = getStatelessClient();
-    const { data, error } = await supabase
-      .from('products')
-      .select(PRODUCT_QUERY)
-      .eq('is_active', true)
-      .eq('categories.slug', categorySlug);
-
-    if (error) {
-      return staticProducts.filter(p => p.category.toLowerCase().replace(/ /g, '-') === categorySlug || p.slug.includes(categorySlug));
-    }
-    return (data || []).map(mapDbProductToAppProduct);
+    const allProducts = await getActiveProducts();
+    const cleanSlug = categorySlug.toLowerCase().trim();
+    return allProducts.filter(p => {
+      const slugs = (p.categorySlugs || []).map(s => s.toLowerCase());
+      const names = (p.categories && p.categories.length > 0 ? p.categories : [p.category]).map(n => n.toLowerCase().replace(/\s+/g, '-'));
+      return slugs.includes(cleanSlug) || names.includes(cleanSlug);
+    });
   },
   ['products-by-category'],
   { revalidate: 60, tags: ['products'] }
@@ -273,27 +286,12 @@ export async function searchProductsFromDB(term: string, limit = 6): Promise<Pro
 }
 
 export async function getRecommendedProducts(categoryNames: string[], excludeSlugs: string[] = [], limit = 4): Promise<Product[]> {
-  const isReady = await checkDatabaseInitialization();
-  if (!isReady) {
-    return staticProducts.filter(p => categoryNames.includes(p.category) && !excludeSlugs.includes(p.slug)).slice(0, limit);
-  }
-
-  const supabase = getStatelessClient();
-  const { data, error } = await supabase
-    .from('products')
-    .select(`
-      id, slug, name, short_description, badge, rating, review_count,
-      product_variants(price, original_price, size, is_active),
-      product_images(url, display_order, variant_id),
-      categories!inner(name)
-    `)
-    .eq('is_active', true)
-    .in('categories.name', categoryNames)
-    .not('slug', 'in', `(${excludeSlugs.map(s => `"${s}"`).join(',')})`)
-    .limit(limit);
-
-  if (error || !data) {
-    return staticProducts.filter(p => categoryNames.includes(p.category) && !excludeSlugs.includes(p.slug)).slice(0, limit);
-  }
-  return data.map(mapDbProductToAppProduct);
+  const allProducts = await getActiveProducts();
+  const lowerCatNames = categoryNames.map(c => c.toLowerCase());
+  return allProducts.filter(p => {
+    if (excludeSlugs.includes(p.slug)) return false;
+    const pCats = (p.categories && p.categories.length > 0 ? p.categories : [p.category]).map(c => c.toLowerCase());
+    return pCats.some(c => lowerCatNames.includes(c));
+  }).slice(0, limit);
 }
+

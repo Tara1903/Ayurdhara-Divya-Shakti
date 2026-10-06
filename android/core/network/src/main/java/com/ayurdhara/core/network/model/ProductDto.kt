@@ -35,6 +35,12 @@ data class ProductImageDto(
 )
 
 @Serializable
+data class ProductCategoryDto(
+    @SerialName("category_id") val categoryId: String? = null,
+    val categories: CategoryDto? = null
+)
+
+@Serializable
 data class ProductDto(
     val id: String = "",
     val slug: String = "",
@@ -49,6 +55,7 @@ data class ProductDto(
     val badge: String? = null,
     @SerialName("is_active") val isActive: Boolean = true,
     @SerialName("categories") val category: CategoryDto? = null,
+    @SerialName("product_categories") val productCategories: List<ProductCategoryDto> = emptyList(),
     @SerialName("product_variants") val variants: List<ProductVariantDto> = emptyList(),
     @SerialName("product_images") val images: List<ProductImageDto> = emptyList()
 )

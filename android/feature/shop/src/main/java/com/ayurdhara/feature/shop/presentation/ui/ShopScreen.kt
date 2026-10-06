@@ -66,7 +66,7 @@ private enum class QuickFilter(val label: String) {
 }
 
 private fun Product.text(): String =
-    listOfNotNull(title, shortDescription, primaryBenefit, badge, category).joinToString(" ").lowercase()
+    (listOfNotNull(title, shortDescription, primaryBenefit, badge, category) + categories).joinToString(" ").lowercase()
 
 private fun Product.passes(filter: QuickFilter): Boolean = when (filter) {
     QuickFilter.UNDER_500 -> price < 500
@@ -101,7 +101,11 @@ fun ShopScreen(
         val cat = categories.firstOrNull { it.slug == selectedSlug }
         val q = query.trim().lowercase()
         val filtered = allProducts.filter { p ->
-            (cat == null || p.category.equals(cat.title, true) || p.category.equals(cat.slug, true)) &&
+            val matchesCategory = cat == null ||
+                p.category.equals(cat.title, true) ||
+                p.category.equals(cat.slug, true) ||
+                p.categories.any { it.equals(cat.title, true) || it.equals(cat.slug, true) }
+            matchesCategory &&
                 (q.isEmpty() || p.text().contains(q)) &&
                 quick.all { p.passes(it) }
         }

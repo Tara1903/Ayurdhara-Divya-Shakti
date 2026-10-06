@@ -15,14 +15,15 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   const { id } = await params;
   const supabase = createAdminClient();
 
-  let query = supabase.from('products').select('*, categories(name, slug), product_variants(*), product_images(*)');
+  const selectFields = '*, categories(name, slug), product_categories(category_id, categories(id, name, slug)), product_variants(*), product_images(*)';
+  let query = supabase.from('products').select(selectFields);
 
   // Query by id or slug
   const { data, error } = await query.eq('id', id).single();
   if (!data) {
     const { data: bySlug, error: slugErr } = await supabase
       .from('products')
-      .select('*, categories(name, slug), product_variants(*), product_images(*)')
+      .select(selectFields)
       .eq('slug', id)
       .single();
     if (slugErr || !bySlug) return NextResponse.json({ error: 'Product not found' }, { status: 404 });
@@ -39,9 +40,14 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   try {
     const { id } = await params;
     const body = await req.json();
-    const { name, slug, short_description, full_description, category_id, is_active, variants, images } = body;
+    const { name, slug, short_description, full_description, category_id, category_ids, is_active, variants, images } = body;
 
     const supabase = createAdminClient();
+
+    const selectedCategoryIds: string[] | undefined = Array.isArray(category_ids) ? category_ids : undefined;
+    const primaryCategoryId = selectedCategoryIds !== undefined 
+      ? (selectedCategoryIds[0] || null)
+      : (category_id || null);
 
     // Check if product exists by id or slug
     let targetProductId = id;
@@ -69,7 +75,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
             slug: slug || id,
             short_description: short_description || '',
             full_description: full_description || '',
-            category_id: category_id || null,
+            category_id: primaryCategoryId,
             is_active: is_active ?? true,
             updated_at: new Date().toISOString()
           })
@@ -89,13 +95,25 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
         slug,
         short_description: short_description || '',
         full_description: full_description || '',
-        category_id: category_id || null,
+        category_id: primaryCategoryId,
         is_active: is_active ?? true,
         updated_at: new Date().toISOString()
       })
       .eq('id', targetProductId);
 
     if (pErr) throw pErr;
+
+    // 1.1 Synchronize product_categories junction table
+    if (selectedCategoryIds !== undefined) {
+      await supabase.from('product_categories').delete().eq('product_id', targetProductId);
+      if (selectedCategoryIds.length > 0) {
+        const pcRows = selectedCategoryIds.map((cid: string) => ({
+          product_id: targetProductId,
+          category_id: cid,
+        }));
+        await supabase.from('product_categories').insert(pcRows);
+      }
+    }
 
     // 2. Replace variants
     if (variants !== undefined) {

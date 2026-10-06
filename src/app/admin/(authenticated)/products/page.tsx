@@ -17,19 +17,25 @@ export default async function ProductsListPage() {
       slug,
       is_active,
       product_images(url, display_order),
-      categories(name)
+      categories(name),
+      product_categories(categories(name))
     `)
     .order('created_at', { ascending: false });
     
   let products = dbProducts?.map((p: any) => {
     const sortedImages = (p.product_images || []).sort((a: any, b: any) => (a.display_order ?? 0) - (b.display_order ?? 0));
+    const junctionCats = (p.product_categories || []).map((pc: any) => pc.categories?.name).filter(Boolean);
+    const catList = junctionCats.length > 0 
+      ? (Array.from(new Set(junctionCats)) as string[])
+      : (p.categories?.name ? [p.categories.name as string] : []);
+
     return {
       id: p.id,
       name: p.name,
       slug: p.slug,
       is_active: p.is_active,
       primary_image_url: sortedImages[0]?.url || null,
-      categories: p.categories
+      categoryNames: catList
     };
   });
   
@@ -42,7 +48,7 @@ export default async function ProductsListPage() {
       slug: p.slug,
       is_active: true,
       primary_image_url: p.images[0] || null,
-      categories: { name: p.category }
+      categoryNames: p.categories && p.categories.length > 0 ? p.categories : [p.category]
     })) as any;
   }
 
@@ -115,7 +121,24 @@ export default async function ProductsListPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
-                    {product.categories ? product.categories.name : 'Uncategorized'}
+                    {product.categoryNames && product.categoryNames.length > 0 ? (
+                      <div className="flex flex-wrap gap-1 max-w-xs">
+                        {product.categoryNames.map((cName: string, idx: number) => (
+                          <span 
+                            key={idx}
+                            className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                              idx === 0 
+                                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' 
+                                : 'bg-gray-100 text-gray-700'
+                            }`}
+                          >
+                            {cName}
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <span className="text-gray-400 italic">Uncategorized</span>
+                    )}
                   </td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${

@@ -28,7 +28,10 @@ export async function createProduct(formData: any, adminId: string) {
 
   try {
     // 1. Get or create category
-    let categoryId = formData.category_id;
+    const selectedCategoryIds: string[] = Array.isArray(formData.category_ids) && formData.category_ids.length > 0
+      ? formData.category_ids
+      : (formData.category_id ? [formData.category_id] : []);
+    const categoryId = selectedCategoryIds[0] || formData.category_id || null;
 
     // 2. Insert product
     const { data: product, error: productError } = await supabase
@@ -61,6 +64,15 @@ export async function createProduct(formData: any, adminId: string) {
       .single();
 
     if (productError) throw productError;
+
+    // 2.1 Insert product_categories
+    if (selectedCategoryIds.length > 0) {
+      const pcRows = selectedCategoryIds.map((cid: string) => ({
+        product_id: product.id,
+        category_id: cid,
+      }));
+      await supabase.from('product_categories').upsert(pcRows, { onConflict: 'product_id,category_id' });
+    }
 
     // 3. Insert variants
     if (formData.variants && formData.variants.length > 0) {
@@ -135,13 +147,21 @@ export async function updateProduct(productId: string, formData: any, adminId: s
       .eq('id', productId)
       .single();
 
+    // Determine primary category and category_ids
+    const selectedCategoryIds: string[] | undefined = Array.isArray(formData.category_ids) 
+      ? formData.category_ids 
+      : undefined;
+    const categoryId = selectedCategoryIds !== undefined 
+      ? (selectedCategoryIds[0] || null)
+      : (formData.category_id || null);
+
     // Update product core fields
     const { error: productError } = await supabase
       .from('products')
       .update({
         name: formData.name,
         slug: formData.slug,
-        category_id: formData.category_id || null,
+        category_id: categoryId,
         short_description: formData.short_description || '',
         full_description: formData.full_description || '',
         story: formData.story || '',
@@ -166,6 +186,18 @@ export async function updateProduct(productId: string, formData: any, adminId: s
       .eq('id', productId);
 
     if (productError) throw productError;
+
+    // Synchronize product_categories junction table
+    if (selectedCategoryIds !== undefined) {
+      await supabase.from('product_categories').delete().eq('product_id', productId);
+      if (selectedCategoryIds.length > 0) {
+        const pcRows = selectedCategoryIds.map((cid: string) => ({
+          product_id: productId,
+          category_id: cid,
+        }));
+        await supabase.from('product_categories').insert(pcRows);
+      }
+    }
 
     // Update variants (delete existing, re-insert)
     if (formData.variants) {

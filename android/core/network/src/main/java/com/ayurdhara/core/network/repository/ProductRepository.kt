@@ -17,6 +17,7 @@ class ProductRepository @Inject constructor(
             val columns = """
                 id, slug, name, short_description, rating, review_count, is_active,
                 categories(id, name, slug, description),
+                product_categories(category_id, categories(id, name, slug)),
                 product_variants(id, size, price, original_price, is_active),
                 product_images(url, display_order, variant_id)
             """.trimIndent()

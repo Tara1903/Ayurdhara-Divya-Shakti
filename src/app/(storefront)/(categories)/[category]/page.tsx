@@ -23,35 +23,33 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
   const allProducts = await getActiveProducts();
   
-  // Custom logic to match products to category
-  // If product.category has our exact category name, or if we map it
+  // Strict matching logic against explicitly assigned categories & subcategories
   const matchingProducts = allProducts.filter(p => {
-    // Basic fallback matching logic:
-    const prodCatLower = p.category.toLowerCase();
-    const catNameLower = category.name.toLowerCase();
-    
-    // Special handling since db categories might not strictly match the new navigation yet
-    if (resolvedParams.category === 'oil-wellness-care') return prodCatLower.includes('oil') || prodCatLower.includes('nabhi') || prodCatLower.includes('feet');
-    if (resolvedParams.category === 'wellness-combos') {
-      const prodNameLower = p.name.toLowerCase();
-      return prodCatLower.includes('pack') || prodCatLower.includes('combo') || prodNameLower.includes('pack') || prodNameLower.includes('combo');
-    }
-    if (resolvedParams.category === 'hair-wellness-oil') return prodCatLower.includes('hair');
+    const assignedNames = (p.categories && p.categories.length > 0 ? p.categories : [p.category])
+      .filter(Boolean)
+      .map(c => c.toLowerCase().trim());
+    const assignedSlugs = (p.categorySlugs || [])
+      .filter(Boolean)
+      .map(s => s.toLowerCase().trim());
 
-    if (!prodCatLower) return false; // Prevent empty category string from matching everything
-    
-    // Check if the product belongs directly to this category
-    if (prodCatLower === catNameLower || prodCatLower.includes(catNameLower) || catNameLower.includes(prodCatLower)) {
+    const targetSlug = category.slug.toLowerCase().trim();
+    const targetName = category.name.toLowerCase().trim();
+
+    // Check direct match on main category
+    if (assignedSlugs.includes(targetSlug) || assignedNames.includes(targetName)) {
       return true;
     }
 
-    // Check if the product belongs to any subcategory of this main category
-    const belongsToSubcategory = category.subcategories?.some(sub => {
-      const subNameLower = sub.name.toLowerCase();
-      return prodCatLower === subNameLower || prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower);
-    });
+    // Check match against any subcategories of this main category
+    if (category.subcategories && category.subcategories.length > 0) {
+      return category.subcategories.some(sub => {
+        const subSlug = sub.slug.toLowerCase().trim();
+        const subName = sub.name.toLowerCase().trim();
+        return assignedSlugs.includes(subSlug) || assignedNames.includes(subName);
+      });
+    }
 
-    return !!belongsToSubcategory;
+    return false;
   });
 
   return (

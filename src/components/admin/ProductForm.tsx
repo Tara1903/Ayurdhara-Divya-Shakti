@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Save, ArrowLeft, Plus, Trash2, UploadCloud, Sparkles, RefreshCw, CheckCircle, Info } from 'lucide-react';
+import { Save, ArrowLeft, Plus, Trash2, UploadCloud, Sparkles, RefreshCw, CheckCircle, Info, X, Search, Tag } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { analyzeProductForImages, ProductImageIntelligence } from '@/lib/image-system';
@@ -18,16 +18,43 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Robust initialization of categories
-  const matchedCategoryId = initialData?.category_id || 
-    categories?.find(c => c.name?.toLowerCase() === initialData?.category?.toLowerCase())?.id || '';
+  // Robust initialization of multiple categories
+  const getInitialCategoryIds = (): string[] => {
+    const ids = new Set<string>();
+    if (Array.isArray(initialData?.category_ids)) {
+      initialData.category_ids.forEach((id: string) => id && ids.add(id));
+    }
+    if (Array.isArray(initialData?.product_categories)) {
+      initialData.product_categories.forEach((pc: any) => {
+        const id = pc.category_id || pc.category?.id || pc.categories?.id;
+        if (id) ids.add(id);
+      });
+    }
+    if (initialData?.category_id) {
+      ids.add(initialData.category_id);
+    }
+    if (Array.isArray(initialData?.categories)) {
+      initialData.categories.forEach((cName: string) => {
+        const match = categories?.find(c => c.name?.toLowerCase() === cName.toLowerCase());
+        if (match?.id) ids.add(match.id);
+      });
+    }
+    if (initialData?.category) {
+      const match = categories?.find(c => c.name?.toLowerCase() === initialData.category.toLowerCase());
+      if (match?.id) ids.add(match.id);
+    }
+    return Array.from(ids);
+  };
+
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>(getInitialCategoryIds);
+  const [categorySearchQuery, setCategorySearchQuery] = useState('');
 
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
     slug: initialData?.slug || '',
     short_description: initialData?.short_description || initialData?.shortDescription || '',
     full_description: initialData?.full_description || initialData?.fullDescription || '',
-    category_id: matchedCategoryId,
+    category_id: selectedCategoryIds[0] || initialData?.category_id || '',
     is_active: initialData?.is_active ?? true,
     image_mode: 'Auto',
     image_keyword: '',
@@ -79,17 +106,22 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
 
   const [images, setImages] = useState<any[]>(initialImages);
 
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, category_id: selectedCategoryIds[0] || '' }));
+  }, [selectedCategoryIds]);
+
   // Automatically compute Image Intelligence & Keywords on name / category changes
   useEffect(() => {
     if (formData.name) {
-      const selectedCategory = categories?.find(c => c.id === formData.category_id)?.name || '';
+      const primaryCatId = selectedCategoryIds[0] || formData.category_id;
+      const selectedCategory = categories?.find(c => c.id === primaryCatId)?.name || '';
       const intel = analyzeProductForImages(formData.name, selectedCategory);
       setImageIntelligence(intel);
       if (!formData.image_keyword || formData.image_mode === 'Auto') {
         setFormData(prev => ({ ...prev, image_keyword: intel.generatedKeywords }));
       }
     }
-  }, [formData.name, formData.category_id, categories]);
+  }, [formData.name, selectedCategoryIds, formData.category_id, categories]);
 
   const handleAutoGenerateImage = async () => {
     if (!formData.name) {
@@ -99,7 +131,8 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
     setIsAutoGenerating(true);
     const toastId = toast.loading('Resolving best product image...');
     try {
-      const selectedCategory = categories?.find(c => c.id === formData.category_id)?.name || '';
+      const primaryCatId = selectedCategoryIds[0] || formData.category_id;
+      const selectedCategory = categories?.find(c => c.id === primaryCatId)?.name || '';
       const res = await fetch('/api/admin/auto-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -203,7 +236,8 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
         slug: formData.slug,
         short_description: formData.short_description,
         full_description: formData.full_description,
-        category_id: formData.category_id || null,
+        category_id: selectedCategoryIds[0] || null,
+        category_ids: selectedCategoryIds,
         is_active: formData.is_active,
         variants: validVariants,
         images: validImages
@@ -499,19 +533,121 @@ export default function ProductForm({ initialData, categories = [] }: ProductFor
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">Category</label>
-              <select 
-                name="category_id"
-                value={formData.category_id}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border bg-white text-gray-900 border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-[#4B7B3B] outline-none bg-white"
-              >
-                <option value="">Select Category...</option>
-                {categories?.map(cat => (
-                  <option key={cat.id} value={cat.id}>{cat.name}</option>
-                ))}
-              </select>
+            {/* Multi-Category Selector */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="block text-sm font-bold text-gray-700">Categories</label>
+                <span className="text-xs text-gray-500 font-medium">
+                  {selectedCategoryIds.length} selected
+                </span>
+              </div>
+              
+              {/* Selected Category Badges / Pills */}
+              <div className="min-h-[42px] p-2 bg-gray-50 border border-gray-200 rounded-lg flex flex-wrap gap-1.5 items-center">
+                {selectedCategoryIds.length === 0 ? (
+                  <span className="text-xs text-gray-400 italic">No categories assigned yet</span>
+                ) : (
+                  selectedCategoryIds.map((catId, idx) => {
+                    const cat = categories.find(c => c.id === catId);
+                    if (!cat) return null;
+                    const isPrimary = idx === 0;
+                    return (
+                      <span 
+                        key={catId} 
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium shadow-sm transition-all ${
+                          isPrimary 
+                            ? 'bg-[#2D5A27] text-white border border-[#23471f]' 
+                            : 'bg-white text-gray-800 border border-gray-300'
+                        }`}
+                      >
+                        <span>{cat.name}</span>
+                        {isPrimary && (
+                          <span className="bg-amber-400 text-amber-950 font-bold px-1 rounded text-[9px] uppercase tracking-wider">
+                            Primary
+                          </span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedCategoryIds(prev => prev.filter(id => id !== catId));
+                          }}
+                          className="text-current opacity-70 hover:opacity-100 hover:text-red-500 transition-opacity ml-0.5"
+                          title="Remove category"
+                        >
+                          <X size={13} />
+                        </button>
+                      </span>
+                    );
+                  })
+                )}
+              </div>
+
+              {/* Category Search & Checklist */}
+              <div className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
+                <div className="relative border-b border-gray-100 p-2 bg-gray-50/50">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
+                  <input
+                    type="text"
+                    placeholder="Search categories..."
+                    value={categorySearchQuery}
+                    onChange={(e) => setCategorySearchQuery(e.target.value)}
+                    className="w-full pl-7 pr-2 py-1 bg-white border border-gray-200 rounded text-xs focus:ring-1 focus:ring-[#4B7B3B] outline-none text-gray-800"
+                  />
+                </div>
+                
+                <div className="max-h-52 overflow-y-auto p-1 divide-y divide-gray-50">
+                  {(categories || [])
+                    .filter(c => !categorySearchQuery || c.name?.toLowerCase().includes(categorySearchQuery.toLowerCase()))
+                    .map(cat => {
+                      const isSelected = selectedCategoryIds.includes(cat.id);
+                      return (
+                        <label 
+                          key={cat.id} 
+                          className="flex items-center justify-between px-2.5 py-2 hover:bg-emerald-50/50 rounded cursor-pointer transition-colors text-xs text-gray-800"
+                        >
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => {
+                                setSelectedCategoryIds(prev => 
+                                  isSelected ? prev.filter(id => id !== cat.id) : [...prev, cat.id]
+                                );
+                              }}
+                              className="rounded border-gray-300 text-[#2D5A27] focus:ring-[#2D5A27] h-3.5 w-3.5"
+                            />
+                            <span className={isSelected ? 'font-semibold text-[#2D5A27]' : ''}>{cat.name}</span>
+                          </div>
+                          {isSelected && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                // Move this category to index 0 (Primary)
+                                setSelectedCategoryIds(prev => [cat.id, ...prev.filter(id => id !== cat.id)]);
+                              }}
+                              className={`text-[10px] px-1.5 py-0.5 rounded font-medium transition-colors ${
+                                selectedCategoryIds[0] === cat.id 
+                                  ? 'text-emerald-700 bg-emerald-100 font-bold' 
+                                  : 'text-gray-500 hover:bg-gray-100'
+                              }`}
+                            >
+                              {selectedCategoryIds[0] === cat.id ? '★ Primary' : 'Make Primary'}
+                            </button>
+                          )}
+                        </label>
+                      );
+                    })}
+                  {(categories || []).filter(c => !categorySearchQuery || c.name?.toLowerCase().includes(categorySearchQuery.toLowerCase())).length === 0 && (
+                    <div className="p-3 text-center text-xs text-gray-400">
+                      No matching categories found
+                    </div>
+                  )}
+                </div>
+              </div>
+              <p className="text-[11px] text-gray-500">
+                Products will appear in all selected categories. The first category is designated as Primary.
+              </p>
             </div>
           </div>
         </div>

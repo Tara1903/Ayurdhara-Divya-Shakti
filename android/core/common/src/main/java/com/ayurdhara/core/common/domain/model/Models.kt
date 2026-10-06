@@ -28,6 +28,7 @@ data class Product(
     val reviewCount: Int = 0,
     val badge: String? = null,
     val category: String = "Ayurvedic Wellness",
+    val categories: List<String> = emptyList(),
     val imageUrl: String = "",
     val images: List<String> = emptyList(),
     val variants: List<ProductVariant> = emptyList()

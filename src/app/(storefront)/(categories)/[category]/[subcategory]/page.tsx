@@ -40,39 +40,25 @@ export default async function SubcategoryPage({ params }: { params: Promise<{ ca
     return <BodyMassageOilLandingClient initialProducts={allProducts} />;
   }
 
-  // Custom logic to match products to subcategory
+  // Strict matching logic against assigned categories & subcategories
   const matchingProducts = allProducts.filter(p => {
-    const prodCatLower = p.category.toLowerCase();
-    const prodNameLower = p.name.toLowerCase();
-    const subNameLower = subcategory.name.toLowerCase();
-    
-    if (!prodCatLower) return false;
+    const assignedNames = (p.categories && p.categories.length > 0 ? p.categories : [p.category])
+      .filter(Boolean)
+      .map(c => c.toLowerCase().trim());
+    const assignedSlugs = (p.categorySlugs || [])
+      .filter(Boolean)
+      .map(s => s.toLowerCase().trim());
 
-    // Direct slug matching for Oil Wellness & Trial categories
-    if (resolvedParams.subcategory === 'nabhi-trial-packs') return prodCatLower.includes('nabhi trial') || (prodNameLower.includes('nabhi') && prodNameLower.includes('trial'));
-    if (resolvedParams.subcategory === 'combo-trial-packs') return prodCatLower.includes('combo') || prodNameLower.includes('prime trial') || prodNameLower.includes('silver trial') || prodNameLower.includes('gold trial') || prodNameLower.includes('diamond trial');
-    if (resolvedParams.subcategory === 'feet-massage-oil' || resolvedParams.subcategory === 'feet-massage-trial-packs') return prodCatLower.includes('feet') || prodNameLower.includes('feet');
-    if (resolvedParams.subcategory === 'body-massage-oil') return prodCatLower.includes('body massage') || prodNameLower.includes('body massage');
-    if (resolvedParams.subcategory === 'hair-wellness-oil') return prodCatLower.includes('hair') || prodNameLower.includes('hair');
+    const targetSubSlug = subcategory.slug.toLowerCase().trim();
+    const targetSubName = subcategory.name.toLowerCase().trim();
+    const cleanSubName = targetSubName.replace(/['’]/g, '');
 
-    // Gender-specific precision filters
-    if (resolvedParams.subcategory === 'women-wellness' || subNameLower.includes('women')) {
-      return prodCatLower.includes('women') || prodNameLower.includes('women');
-    }
-    if (resolvedParams.subcategory === 'men-wellness' || subNameLower.includes('men')) {
-      if (prodCatLower.includes('women') || prodNameLower.includes('women')) return false;
-      return prodCatLower.includes('men') || prodNameLower.includes('men');
-    }
-    if (resolvedParams.subcategory === 'kids-care' || subNameLower.includes('kids')) {
-      return prodCatLower.includes('kids') || prodNameLower.includes('kids');
-    }
-    if (resolvedParams.subcategory === 'senior-care' || subNameLower.includes('senior')) {
-      return prodCatLower.includes('senior') || prodNameLower.includes('senior');
-    }
-
-    if (prodCatLower === subNameLower) return true;
-    if (prodNameLower === subNameLower) return true;
-    return prodCatLower.includes(subNameLower) || subNameLower.includes(prodCatLower) || prodNameLower.includes(subNameLower);
+    return assignedSlugs.includes(targetSubSlug) || 
+           assignedNames.includes(targetSubName) ||
+           assignedNames.some(name => {
+             const cleanName = name.replace(/['’]/g, '');
+             return cleanName === cleanSubName || cleanName.replace(/\s+/g, '-') === targetSubSlug;
+           });
   });
 
   return (

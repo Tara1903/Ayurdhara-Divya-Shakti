@@ -31,6 +31,7 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
     private val productColumns = """
         id, slug, name, short_description, full_description, story, primary_benefit, rating, review_count, badge, is_active,
         categories(id, name, slug, description, image_url),
+        product_categories(category_id, categories(id, name, slug)),
         product_variants(id, size, price, original_price, gold_member_price, sku, stock_quantity, is_active),
         product_images(url, alt_text, display_order, variant_id)
     """.trimIndent()
@@ -285,6 +286,17 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
             (((original - current) / original) * 100).toInt()
         } else 0
 
+        val primaryCatDto = category
+        val junctionCatNames = productCategories.mapNotNull { it.categories?.name }
+        val allCatNames = if (junctionCatNames.isNotEmpty()) {
+            junctionCatNames.distinct()
+        } else if (primaryCatDto?.name != null) {
+            listOf(primaryCatDto.name)
+        } else {
+            emptyList()
+        }
+        val primaryCat = allCatNames.firstOrNull() ?: primaryCatDto?.name ?: "Ayurvedic Wellness"
+
         return Product(
             id = id,
             slug = slug,
@@ -300,7 +312,8 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
             rating = rating ?: 5.0,
             reviewCount = reviewCount ?: 1,
             badge = badge ?: "100% NATURAL",
-            category = category?.name ?: "Ayurvedic Wellness",
+            category = primaryCat,
+            categories = allCatNames,
             imageUrl = firstImg,
             images = allImages,
             variants = activeVariants.map {

@@ -43,6 +43,9 @@ export interface Product {
   inclusions?: string;
   totalQuantityMl?: string;
   goldMembershipEligible?: boolean;
+  categories?: string[];
+  categoryIds?: string[];
+  categorySlugs?: string[];
 }
 
 export const products: Product[] = [

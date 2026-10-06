@@ -15,7 +15,7 @@ export async function GET() {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from('products')
-    .select('*, categories(name, slug), product_variants(*), product_images(*)')
+    .select('*, categories(name, slug), product_categories(category_id, categories(id, name, slug)), product_variants(*), product_images(*)')
     .order('created_at', { ascending: false });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
@@ -28,9 +28,14 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { name, slug, short_description, full_description, category_id, is_active, variants, images } = body;
+    const { name, slug, short_description, full_description, category_id, category_ids, is_active, variants, images } = body;
 
     const supabase = createAdminClient();
+
+    const selectedCategoryIds: string[] = Array.isArray(category_ids) && category_ids.length > 0
+      ? category_ids
+      : (category_id ? [category_id] : []);
+    const primaryCategoryId = selectedCategoryIds[0] || category_id || null;
     
     // 1. Insert product
     const { data: product, error: pErr } = await supabase
@@ -40,7 +45,7 @@ export async function POST(req: NextRequest) {
         slug,
         short_description: short_description || '',
         full_description: full_description || '',
-        category_id: category_id || null,
+        category_id: primaryCategoryId,
         is_active: is_active ?? true,
         updated_at: new Date().toISOString()
       })
@@ -48,6 +53,15 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (pErr) throw pErr;
+
+    // 1.1 Insert product_categories
+    if (selectedCategoryIds.length > 0) {
+      const pcRows = selectedCategoryIds.map((cid: string) => ({
+        product_id: product.id,
+        category_id: cid,
+      }));
+      await supabase.from('product_categories').upsert(pcRows, { onConflict: 'product_id,category_id' });
+    }
 
     // 2. Insert variants
     if (variants && variants.length > 0) {

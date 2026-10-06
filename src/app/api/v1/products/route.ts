@@ -9,7 +9,12 @@ export async function GET(request: Request) {
     let products = await getActiveProducts();
     
     if (category) {
-      products = products.filter(p => p.category.toLowerCase() === category.toLowerCase());
+      const catLower = category.toLowerCase().trim();
+      products = products.filter(p => {
+        const names = (p.categories && p.categories.length > 0 ? p.categories : [p.category]).map(c => c.toLowerCase().trim());
+        const slugs = (p.categorySlugs || []).map(s => s.toLowerCase().trim());
+        return names.includes(catLower) || slugs.includes(catLower) || names.some(n => n.replace(/\s+/g, '-') === catLower);
+      });
     }
 
     return NextResponse.json({

@@ -16,10 +16,11 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
 
   // 1. Try to find product by id with all relations
   let product: any = null;
+  const selectQuery = '*, product_variants(*), product_images(*), categories(id, name), product_categories(category_id, categories(id, name))';
   
   const { data: byId } = await supabase
     .from('products')
-    .select('*, product_variants(*), product_images(*), categories(id, name)')
+    .select(selectQuery)
     .eq('id', id)
     .single();
 
@@ -29,7 +30,7 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
     // 2. Try by slug
     const { data: bySlug } = await supabase
       .from('products')
-      .select('*, product_variants(*), product_images(*), categories(id, name)')
+      .select(selectQuery)
       .eq('slug', id)
       .single();
     

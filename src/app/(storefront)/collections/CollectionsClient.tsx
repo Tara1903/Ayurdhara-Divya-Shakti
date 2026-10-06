@@ -38,7 +38,15 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
     
     // Filter by Category
     if (selectedCategory !== 'all') {
-      filtered = filtered.filter(p => p.category.toLowerCase().includes(selectedCategory.toLowerCase()) || (selectedCategory === 'packs' && p.category.toLowerCase().includes('pack')));
+      const sel = selectedCategory.toLowerCase();
+      filtered = filtered.filter(p => {
+        const assigned = (p.categories && p.categories.length > 0 ? p.categories : [p.category])
+          .filter(Boolean)
+          .map(c => c.toLowerCase());
+        const slugs = (p.categorySlugs || []).map(s => s.toLowerCase());
+        return slugs.includes(sel) || 
+               assigned.some(c => c.includes(sel) || (sel === 'packs' && c.includes('pack')));
+      });
     }
 
     // Filter by Search Query
