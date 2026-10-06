@@ -1,176 +1,83 @@
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
-import { Plus, Search, Filter, Edit, Trash2, Image as ImageIcon } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { getActiveProducts } from '@/lib/dal/products';
+import ProductsTableClient, { AdminProductItem } from '@/components/admin/ProductsTableClient';
 
 export const revalidate = 0;
 
 export default async function ProductsListPage() {
   const supabase = await createClient();
-  
-  // Attempt to fetch from DB
-  const { data: dbProducts, error } = await supabase
-    .from('products')
-    .select(`
-      id,
-      name,
-      slug,
-      is_active,
-      product_images(url, display_order),
-      categories(name),
-      product_categories(categories(name))
-    `)
-    .order('created_at', { ascending: false });
-    
-  let products = dbProducts?.map((p: any) => {
-    const sortedImages = (p.product_images || []).sort((a: any, b: any) => (a.display_order ?? 0) - (b.display_order ?? 0));
-    const junctionCats = (p.product_categories || []).map((pc: any) => pc.categories?.name).filter(Boolean);
-    const catList = junctionCats.length > 0 
-      ? (Array.from(new Set(junctionCats)) as string[])
-      : (p.categories?.name ? [p.categories.name as string] : []);
 
-    return {
-      id: p.id,
-      name: p.name,
-      slug: p.slug,
-      is_active: p.is_active,
-      primary_image_url: sortedImages[0]?.url || null,
-      categoryNames: catList
-    };
-  });
-  
-  // If DB fails or returns null (e.g., placeholder config), fallback to DAL which manages the static fallback
-  if (error || !products || products.length === 0) {
+  // Fetch products and categories from Supabase concurrently
+  const [productsRes, categoriesRes] = await Promise.all([
+    supabase
+      .from('products')
+      .select('id, name, slug, is_active, category_id, categories(id, name, slug), product_images(url, display_order)')
+      .order('created_at', { ascending: false }),
+    supabase
+      .from('categories')
+      .select('id, name')
+      .order('name')
+  ]);
+
+  let products: AdminProductItem[] = [];
+
+  if (productsRes.data && productsRes.data.length > 0) {
+    products = productsRes.data.map((p: any) => {
+      const sortedImages = (p.product_images || []).sort(
+        (a: any, b: any) => (a.display_order ?? 0) - (b.display_order ?? 0)
+      );
+      const catName = p.categories?.name || 'Uncategorized';
+
+      return {
+        id: p.id,
+        name: p.name,
+        slug: p.slug,
+        is_active: p.is_active ?? true,
+        primary_image_url: sortedImages[0]?.url || null,
+        categoryName: catName,
+        category_id: p.category_id,
+        categoryNames: [catName],
+      };
+    });
+  } else {
+    // Graceful fallback to DAL catalog if DB returned empty or error
     const dalProducts = await getActiveProducts();
-    products = dalProducts.map(p => ({
+    products = dalProducts.map((p) => ({
       id: p.id,
       name: p.name,
       slug: p.slug,
       is_active: true,
       primary_image_url: p.images[0] || null,
-      categoryNames: p.categories && p.categories.length > 0 ? p.categories : [p.category]
-    })) as any;
+      categoryName: p.category || 'Ayurvedic Wellness',
+      category_id: null,
+      categoryNames: p.categories && p.categories.length > 0 ? p.categories : [p.category],
+    }));
   }
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      {/* Header with Title and Add Product Button */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-serif text-gray-900 tracking-wide">Products</h1>
-          <p className="text-gray-500 mt-1">Manage your catalog, pricing, and inventory.</p>
+          <p className="text-gray-500 text-sm mt-1">Manage your catalog, pricing, and inventory.</p>
         </div>
-        <Link 
-          href="/admin/products/new" 
-          className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md font-medium transition-colors"
+        <Link
+          href="/admin/products/new"
+          className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-lg font-medium text-sm transition-colors shadow-sm w-full sm:w-auto"
         >
           <Plus size={18} />
           <span>Add Product</span>
         </Link>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden flex flex-col">
-        {/* Toolbar */}
-        <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between bg-gray-50/50">
-          <div className="relative w-96">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-            <input 
-              type="text" 
-              placeholder="Search products..." 
-              className="pl-9 pr-4 py-2 w-full border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
-            />
-          </div>
-          <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-              <Filter size={16} />
-              <span>Filter</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="bg-white border-b border-gray-200 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                <th className="px-6 py-4">Product</th>
-                <th className="px-6 py-4">Category</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {products?.map((product: any) => (
-                <tr key={product.id} className="hover:bg-gray-50/50 transition-colors group">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-md bg-gray-100 border border-gray-200 overflow-hidden relative flex-shrink-0">
-                        {product.primary_image_url ? (
-                          <img src={product.primary_image_url} alt={product.name} className="object-cover w-full h-full" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-gray-400">
-                            <ImageIcon size={20} />
-                          </div>
-                        )}
-                      </div>
-                      <div>
-                        <Link href={`/admin/products/${product.id}`} className="font-medium text-gray-900 hover:text-emerald-600">
-                          {product.name}
-                        </Link>
-                        <p className="text-xs text-gray-500 mt-0.5">{product.slug}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
-                    {product.categoryNames && product.categoryNames.length > 0 ? (
-                      <div className="flex flex-wrap gap-1 max-w-xs">
-                        {product.categoryNames.map((cName: string, idx: number) => (
-                          <span 
-                            key={idx}
-                            className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
-                              idx === 0 
-                                ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' 
-                                : 'bg-gray-100 text-gray-700'
-                            }`}
-                          >
-                            {cName}
-                          </span>
-                        ))}
-                      </div>
-                    ) : (
-                      <span className="text-gray-400 italic">Uncategorized</span>
-                    )}
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      product.is_active ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-100 text-gray-800'
-                    }`}>
-                      {product.is_active ? 'Active' : 'Draft'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Link href={`/admin/products/${product.id}`} className="p-2 text-gray-400 hover:text-emerald-600 rounded-md hover:bg-emerald-50">
-                        <Edit size={16} />
-                      </Link>
-                      <button className="p-2 text-gray-400 hover:text-red-600 rounded-md hover:bg-red-50">
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-
-              {(!products || products.length === 0) && (
-                <tr>
-                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500">
-                    No products found. Start by creating your first product.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      {/* Interactive Products Table & Mobile Cards with Real-time Search */}
+      <ProductsTableClient
+        initialProducts={products}
+        categories={categoriesRes.data || []}
+      />
     </div>
   );
 }

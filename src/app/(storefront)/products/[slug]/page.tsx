@@ -6,17 +6,18 @@ import PDPClient from "@/components/PDPClient";
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export async function generateStaticParams() {
+  const isSafeSlug = (s: string) => !/[<>:"/\\|?*\x00-\x1F]/.test(s);
   // Try Supabase first, fall back to static
   try {
     const slugs = await getAllActiveProductSlugs();
     if (slugs.length > 0) {
-      return slugs.map((slug) => ({ slug }));
+      return slugs.filter(isSafeSlug).map((slug) => ({ slug }));
     }
   } catch {}
   
   // Fallback to static
   const slugs = getStaticSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return slugs.filter(isSafeSlug).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

@@ -15,7 +15,7 @@ export async function GET() {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from('products')
-    .select('*, categories(name, slug), product_categories(category_id, categories(id, name, slug)), product_variants(*), product_images(*)')
+    .select('*, categories(name, slug), product_variants(*), product_images(*)')
     .order('created_at', { ascending: false });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
@@ -54,13 +54,17 @@ export async function POST(req: NextRequest) {
 
     if (pErr) throw pErr;
 
-    // 1.1 Insert product_categories
+    // 1.1 Insert product_categories (graceful if table doesn't exist yet)
     if (selectedCategoryIds.length > 0) {
-      const pcRows = selectedCategoryIds.map((cid: string) => ({
-        product_id: product.id,
-        category_id: cid,
-      }));
-      await supabase.from('product_categories').upsert(pcRows, { onConflict: 'product_id,category_id' });
+      try {
+        const pcRows = selectedCategoryIds.map((cid: string) => ({
+          product_id: product.id,
+          category_id: cid,
+        }));
+        await supabase.from('product_categories').upsert(pcRows, { onConflict: 'product_id,category_id' });
+      } catch (pcErr) {
+        console.warn('Could not insert product_categories:', pcErr);
+      }
     }
 
     // 2. Insert variants

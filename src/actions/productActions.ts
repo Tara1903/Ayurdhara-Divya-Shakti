@@ -65,13 +65,17 @@ export async function createProduct(formData: any, adminId: string) {
 
     if (productError) throw productError;
 
-    // 2.1 Insert product_categories
+    // 2.1 Insert product_categories (safely if table exists)
     if (selectedCategoryIds.length > 0) {
-      const pcRows = selectedCategoryIds.map((cid: string) => ({
-        product_id: product.id,
-        category_id: cid,
-      }));
-      await supabase.from('product_categories').upsert(pcRows, { onConflict: 'product_id,category_id' });
+      try {
+        const pcRows = selectedCategoryIds.map((cid: string) => ({
+          product_id: product.id,
+          category_id: cid,
+        }));
+        await supabase.from('product_categories').upsert(pcRows, { onConflict: 'product_id,category_id' });
+      } catch (pcErr) {
+        console.warn('Could not insert product_categories:', pcErr);
+      }
     }
 
     // 3. Insert variants
@@ -187,15 +191,19 @@ export async function updateProduct(productId: string, formData: any, adminId: s
 
     if (productError) throw productError;
 
-    // Synchronize product_categories junction table
+    // Synchronize product_categories junction table (safely if table exists)
     if (selectedCategoryIds !== undefined) {
-      await supabase.from('product_categories').delete().eq('product_id', productId);
-      if (selectedCategoryIds.length > 0) {
-        const pcRows = selectedCategoryIds.map((cid: string) => ({
-          product_id: productId,
-          category_id: cid,
-        }));
-        await supabase.from('product_categories').insert(pcRows);
+      try {
+        await supabase.from('product_categories').delete().eq('product_id', productId);
+        if (selectedCategoryIds.length > 0) {
+          const pcRows = selectedCategoryIds.map((cid: string) => ({
+            product_id: productId,
+            category_id: cid,
+          }));
+          await supabase.from('product_categories').insert(pcRows);
+        }
+      } catch (pcErr) {
+        console.warn('Could not sync product_categories:', pcErr);
       }
     }
 

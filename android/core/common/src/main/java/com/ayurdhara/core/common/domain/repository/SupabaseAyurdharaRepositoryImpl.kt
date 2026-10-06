@@ -31,7 +31,6 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
     private val productColumns = """
         id, slug, name, short_description, full_description, story, primary_benefit, rating, review_count, badge, is_active,
         categories(id, name, slug, description, image_url),
-        product_categories(category_id, categories(id, name, slug)),
         product_variants(id, size, price, original_price, gold_member_price, sku, stock_quantity, is_active),
         product_images(url, alt_text, display_order, variant_id)
     """.trimIndent()

@@ -1,4 +1,4 @@
-﻿-keep class com.ayurdhara.** { *; }
+-keep class com.ayurdhara.** { *; }
 -keepclassmembers class * {
     @androidx.annotation.Keep *;
 }
@@ -7,3 +7,4 @@
 -allowaccessmodification
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 -keepattributes Signature,*Annotation*,Exceptions
+-dontwarn org.slf4j.**

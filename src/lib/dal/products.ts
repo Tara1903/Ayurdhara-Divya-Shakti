@@ -160,7 +160,6 @@ const PRODUCT_QUERY = `
   certifications, faqs, related_product_ids, routine_product_ids, duration_text, total_quantity_ml,
   gold_membership_eligible,
   categories(name, slug),
-  product_categories(category_id, categories(id, name, slug)),
   product_variants(id, size, price, original_price, gold_member_price, pricing_status, gold_pricing_enabled, is_active),
   product_images(url, variant_id, display_order),
   product_ingredients(display_order, ingredients(name, botanical_name, role, image_url)),
@@ -238,7 +237,9 @@ export const getAllActiveProductSlugs = unstable_cache(
     const { data, error } = await supabase.from('products').select('slug').eq('is_active', true);
 
     if (error || !data) return staticProducts.map(p => p.slug);
-    const dbSlugs = data.map((p: any) => p.slug);
+    const dbSlugs = data
+      .map((p: any) => p.slug)
+      .filter((s: string) => s && !/[<>:"/\\|?*\x00-\x1F]/.test(s));
     return Array.from(new Set([...dbSlugs, ...staticProducts.map(p => p.slug)]));
   },
   ['all-product-slugs'],

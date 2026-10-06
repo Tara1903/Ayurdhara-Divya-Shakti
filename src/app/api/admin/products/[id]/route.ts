@@ -15,7 +15,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   const { id } = await params;
   const supabase = createAdminClient();
 
-  const selectFields = '*, categories(name, slug), product_categories(category_id, categories(id, name, slug)), product_variants(*), product_images(*)';
+  const selectFields = '*, categories(name, slug), product_variants(*), product_images(*)';
   let query = supabase.from('products').select(selectFields);
 
   // Query by id or slug
@@ -103,15 +103,19 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
     if (pErr) throw pErr;
 
-    // 1.1 Synchronize product_categories junction table
+    // 1.1 Synchronize product_categories junction table (safely if table exists)
     if (selectedCategoryIds !== undefined) {
-      await supabase.from('product_categories').delete().eq('product_id', targetProductId);
-      if (selectedCategoryIds.length > 0) {
-        const pcRows = selectedCategoryIds.map((cid: string) => ({
-          product_id: targetProductId,
-          category_id: cid,
-        }));
-        await supabase.from('product_categories').insert(pcRows);
+      try {
+        await supabase.from('product_categories').delete().eq('product_id', targetProductId);
+        if (selectedCategoryIds.length > 0) {
+          const pcRows = selectedCategoryIds.map((cid: string) => ({
+            product_id: targetProductId,
+            category_id: cid,
+          }));
+          await supabase.from('product_categories').insert(pcRows);
+        }
+      } catch (pcErr) {
+        console.warn('Could not sync product_categories:', pcErr);
       }
     }
 
