@@ -63,6 +63,18 @@ class SettingsViewModel @Inject constructor(
         initialValue = null
     )
 
+    val deliveryPincode: StateFlow<String?> = sessionManager.deliveryPincode.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = null
+    )
+
+    fun setDeliveryPincode(pincode: String) {
+        viewModelScope.launch {
+            sessionManager.setDeliveryPincode(pincode.trim().take(6))
+        }
+    }
+
     fun setThemeMode(mode: String) {
         viewModelScope.launch {
             sessionManager.setThemeMode(mode)

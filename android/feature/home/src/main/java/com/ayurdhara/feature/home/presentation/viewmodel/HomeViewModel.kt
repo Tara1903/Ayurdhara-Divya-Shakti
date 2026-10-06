@@ -6,20 +6,36 @@ import com.ayurdhara.core.common.result.AppResult
 import com.ayurdhara.core.common.result.UiState
 import com.ayurdhara.feature.home.domain.HomeData
 import com.ayurdhara.feature.home.domain.HomeRepository
+import com.ayurdhara.core.datastore.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val homeRepository: HomeRepository
+    private val homeRepository: HomeRepository,
+    private val sessionManager: SessionManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState<HomeData>>(UiState.Loading)
     val uiState: StateFlow<UiState<HomeData>> = _uiState
+
+    val deliveryPincode: StateFlow<String?> = sessionManager.deliveryPincode.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = null
+    )
+
+    fun setDeliveryPincode(pincode: String) {
+        viewModelScope.launch {
+            sessionManager.setDeliveryPincode(pincode.trim().take(6))
+        }
+    }
 
     init {
         listenToHomeDataRealtime()

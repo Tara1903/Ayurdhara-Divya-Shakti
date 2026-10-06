@@ -40,11 +40,26 @@ fun CheckoutScreen(
     val subtotal = cartItems.sumOf { it.product.price * it.quantity }
     val haptic = rememberAyurdharaHapticFeedback()
 
-    var fullName by remember { mutableStateOf("Rahul Sharma") }
-    var phone by remember { mutableStateOf("9876543210") }
-    var addressLine by remember { mutableStateOf("402, Green Avenue, Sector 15") }
-    var city by remember { mutableStateOf("Jaipur") }
-    var pincode by remember { mutableStateOf("302001") }
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val savedName by cartViewModel.savedUserName.collectAsState(initial = null)
+    val savedPhoneVal by cartViewModel.savedPhone.collectAsState(initial = null)
+    val savedAddrVal by cartViewModel.savedAddress.collectAsState(initial = null)
+    val savedCityVal by cartViewModel.savedCity.collectAsState(initial = null)
+    val savedPinVal by cartViewModel.savedPincode.collectAsState(initial = null)
+
+    var fullName by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
+    var addressLine by remember { mutableStateOf("") }
+    var city by remember { mutableStateOf("") }
+    var pincode by remember { mutableStateOf("") }
+
+    LaunchedEffect(savedName, savedPhoneVal, savedAddrVal, savedCityVal, savedPinVal) {
+        if (fullName.isBlank() && !savedName.isNullOrBlank()) fullName = savedName.orEmpty()
+        if (phone.isBlank() && !savedPhoneVal.isNullOrBlank()) phone = savedPhoneVal.orEmpty()
+        if (addressLine.isBlank() && !savedAddrVal.isNullOrBlank()) addressLine = savedAddrVal.orEmpty()
+        if (city.isBlank() && !savedCityVal.isNullOrBlank()) city = savedCityVal.orEmpty()
+        if (pincode.isBlank() && !savedPinVal.isNullOrBlank()) pincode = savedPinVal.orEmpty()
+    }
 
     val scrollState = rememberScrollState()
 
@@ -348,8 +363,31 @@ fun CheckoutScreen(
                     text = "Pay with StarPay UPI ⚡",
                     onClick = {
                         try { haptic.medium() } catch (_: Exception) {}
-                        val fullAddress = "$addressLine, $city - $pincode"
-                        onProceedToStarPay(subtotal.toDouble(), fullName, phone, fullAddress)
+                        if (fullName.trim().isBlank()) {
+                            android.widget.Toast.makeText(context, "Please enter your full name", android.widget.Toast.LENGTH_SHORT).show()
+                            return@AyPrimaryButton
+                        }
+                        if (phone.trim().length < 10) {
+                            android.widget.Toast.makeText(context, "Please enter a valid 10-digit mobile number", android.widget.Toast.LENGTH_SHORT).show()
+                            return@AyPrimaryButton
+                        }
+                        if (addressLine.trim().isBlank()) {
+                            android.widget.Toast.makeText(context, "Please enter your delivery address", android.widget.Toast.LENGTH_SHORT).show()
+                            return@AyPrimaryButton
+                        }
+                        if (pincode.trim().length < 6) {
+                            android.widget.Toast.makeText(context, "Please enter a valid 6-digit PIN code", android.widget.Toast.LENGTH_SHORT).show()
+                            return@AyPrimaryButton
+                        }
+                        cartViewModel.saveDeliveryDetails(
+                            fullName.trim(),
+                            phone.trim(),
+                            addressLine.trim(),
+                            city.trim(),
+                            pincode.trim()
+                        )
+                        val fullAddress = if (city.isNotBlank()) "${addressLine.trim()}, ${city.trim()} - ${pincode.trim()}" else "${addressLine.trim()} - ${pincode.trim()}"
+                        onProceedToStarPay(subtotal.toDouble(), fullName.trim(), phone.trim(), fullAddress)
                     },
                     modifier = Modifier.widthIn(min = 200.dp)
                 )

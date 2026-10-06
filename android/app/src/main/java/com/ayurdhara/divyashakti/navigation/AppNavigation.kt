@@ -134,15 +134,24 @@ fun AppNavigation(
 
                 navigation(startDestination = Routes.HOME, route = Routes.MAIN_GRAPH) {
                     composable(Routes.HOME) {
+                        val cartQuantities = remember(cartItems) {
+                            cartItems.associate { it.product.id to it.quantity }
+                        }
                         HomeScreen(
                             userName = userName,
+                            cartQuantities = cartQuantities,
                             onAddToCart = { product ->
                                 cartViewModel.addToCart(product)
+                            },
+                            onUpdateCartQuantity = { product, qty ->
+                                cartViewModel.updateQuantity(product.id, qty)
                             },
                             onProductClick = { slug -> navController.navigate(Routes.productRoute(slug)) },
                             onShopClick = { navTo(Routes.SHOP) },
                             onCartClick = { navTo(Routes.CART) },
-                            onProfileClick = { navController.navigate(Routes.PROFILE) }
+                            onSearchClick = { navTo(Routes.SEARCH) },
+                            onProfileClick = { navController.navigate(Routes.PROFILE) },
+                            onCategoryClick = { _ -> navTo(Routes.SHOP) }
                         )
                     }
                     composable(Routes.SHOP) {
@@ -202,8 +211,8 @@ fun AppNavigation(
                         cartViewModel = cartViewModel,
                         onBackClick = { navController.popBackStack() },
                         onProceedToStarPay = { amount, name, phone, address ->
-                            val encName = java.net.URLEncoder.encode(name.ifBlank { "Rahul Sharma" }, "UTF-8")
-                            val encPhone = java.net.URLEncoder.encode(phone.ifBlank { "9876543210" }, "UTF-8")
+                            val encName = java.net.URLEncoder.encode(name.trim().ifBlank { "Customer" }, "UTF-8")
+                            val encPhone = java.net.URLEncoder.encode(phone.trim(), "UTF-8")
                             navController.navigate("${Routes.STARPAY_PAYMENT}?amount=$amount&name=$encName&phone=$encPhone&orderId=&token=")
                         }
                     )

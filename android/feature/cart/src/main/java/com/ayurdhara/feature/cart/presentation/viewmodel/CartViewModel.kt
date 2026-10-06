@@ -12,13 +12,31 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
+import com.ayurdhara.core.datastore.SessionManager
 import kotlinx.coroutines.sync.withLock
 import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
-    private val cartRepository: CartRepository
+    private val cartRepository: CartRepository,
+    val sessionManager: SessionManager
 ) : ViewModel() {
+
+    val savedUserName = sessionManager.userName
+    val savedPhone = sessionManager.userPhone
+    val savedAddress = sessionManager.userAddress
+    val savedCity = sessionManager.userCity
+    val savedPincode = sessionManager.deliveryPincode
+
+    fun saveDeliveryDetails(name: String, phone: String, address: String, city: String, pincode: String) {
+        viewModelScope.launch {
+            if (name.isNotBlank()) sessionManager.setUserName(name)
+            if (phone.isNotBlank()) sessionManager.setUserPhone(phone)
+            if (address.isNotBlank()) sessionManager.setUserAddress(address)
+            if (city.isNotBlank()) sessionManager.setUserCity(city)
+            if (pincode.isNotBlank()) sessionManager.setDeliveryPincode(pincode)
+        }
+    }
 
     /** Serialises read-modify-write cart updates so rapid calls (e.g. adding a quantity of 3) are never lost. */
     private val cartMutex = Mutex()

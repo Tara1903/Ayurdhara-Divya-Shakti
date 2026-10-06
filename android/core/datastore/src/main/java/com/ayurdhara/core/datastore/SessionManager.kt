@@ -28,6 +28,10 @@ class SessionManager @Inject constructor(
     private val AYURVEDA_TIPS_ENABLED = booleanPreferencesKey("ayurveda_tips_enabled")
     private val APP_LANGUAGE = stringPreferencesKey("app_language") // "English", "हिन्दी"
     private val BIOMETRIC_LOCK = booleanPreferencesKey("biometric_lock")
+    private val USER_PHONE = stringPreferencesKey("user_phone")
+    private val USER_ADDRESS = stringPreferencesKey("user_address")
+    private val USER_CITY = stringPreferencesKey("user_city")
+    private val DELIVERY_PINCODE = stringPreferencesKey("delivery_pincode")
 
     val isOnboardingCompleted: Flow<Boolean> = context.dataStore.data
         .catch { exception ->
@@ -82,6 +86,30 @@ class SessionManager @Inject constructor(
             if (exception is IOException) emit(emptyPreferences()) else throw exception
         }
         .map { preferences -> preferences[BIOMETRIC_LOCK] ?: false }
+
+    val userPhone: Flow<String?> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[USER_PHONE] }
+
+    val userAddress: Flow<String?> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[USER_ADDRESS] }
+
+    val userCity: Flow<String?> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[USER_CITY] }
+
+    val deliveryPincode: Flow<String?> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException) emit(emptyPreferences()) else throw exception
+        }
+        .map { preferences -> preferences[DELIVERY_PINCODE] }
 
     suspend fun setOnboardingCompleted(completed: Boolean) {
         try {
@@ -155,6 +183,38 @@ class SessionManager @Inject constructor(
         try {
             context.dataStore.edit { preferences ->
                 preferences[BIOMETRIC_LOCK] = enabled
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setUserPhone(phone: String?) {
+        try {
+            context.dataStore.edit { preferences ->
+                if (phone != null) preferences[USER_PHONE] = phone else preferences.remove(USER_PHONE)
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setUserAddress(address: String?) {
+        try {
+            context.dataStore.edit { preferences ->
+                if (address != null) preferences[USER_ADDRESS] = address else preferences.remove(USER_ADDRESS)
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setUserCity(city: String?) {
+        try {
+            context.dataStore.edit { preferences ->
+                if (city != null) preferences[USER_CITY] = city else preferences.remove(USER_CITY)
+            }
+        } catch (_: Exception) {}
+    }
+
+    suspend fun setDeliveryPincode(pincode: String?) {
+        try {
+            context.dataStore.edit { preferences ->
+                if (pincode != null) preferences[DELIVERY_PINCODE] = pincode else preferences.remove(DELIVERY_PINCODE)
             }
         } catch (_: Exception) {}
     }

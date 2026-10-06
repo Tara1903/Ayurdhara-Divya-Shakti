@@ -77,9 +77,12 @@ fun SettingsScreen(
     val appLanguage by viewModel.appLanguage.collectAsState()
     val biometricLockEnabled by viewModel.biometricLockEnabled.collectAsState()
     val userName by viewModel.userName.collectAsState()
+    val deliveryPincode by viewModel.deliveryPincode.collectAsState()
 
     var showLanguageDialog by remember { mutableStateOf(false) }
     var showLogoutDialog by remember { mutableStateOf(false) }
+    var showPincodeDialog by remember { mutableStateOf(false) }
+    var pincodeInput by remember(deliveryPincode) { mutableStateOf(deliveryPincode.orEmpty()) }
     var cacheClearedMessage by remember { mutableStateOf<String?>(null) }
 
     if (showLanguageDialog) {
@@ -140,6 +143,69 @@ fun SettingsScreen(
             confirmButton = {
                 TextButton(onClick = { showLanguageDialog = false }) {
                     Text("Done", color = c.accent, fontWeight = FontWeight.Bold)
+                }
+            },
+            containerColor = c.card,
+            shape = RoundedCornerShape(20.dp)
+        )
+    }
+
+    if (showPincodeDialog) {
+        AlertDialog(
+            onDismissRequest = { showPincodeDialog = false },
+            title = {
+                Text(
+                    "Set Delivery Pincode",
+                    fontFamily = NotoSerif,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    color = c.heading
+                )
+            },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(
+                        "Enter your 6-digit postal pincode to check dispatch availability & artisanal batch tracking.",
+                        fontFamily = PlusJakartaSans,
+                        fontSize = 13.sp,
+                        color = c.textSub
+                    )
+                    OutlinedTextField(
+                        value = pincodeInput,
+                        onValueChange = { pincodeInput = it.filter { ch -> ch.isDigit() }.take(6) },
+                        placeholder = { Text("e.g. 110001", color = c.textMuted) },
+                        singleLine = true,
+                        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                            keyboardType = androidx.compose.ui.text.input.KeyboardType.Number
+                        ),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = c.accent,
+                            unfocusedBorderColor = c.border,
+                            focusedTextColor = c.text,
+                            unfocusedTextColor = c.text
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        if (pincodeInput.length == 6) {
+                            viewModel.setDeliveryPincode(pincodeInput)
+                            Toast.makeText(context, "Delivery pincode set to $pincodeInput", Toast.LENGTH_SHORT).show()
+                            showPincodeDialog = false
+                        } else {
+                            Toast.makeText(context, "Please enter a 6-digit pincode", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                ) {
+                    Text("Save", color = c.accent, fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showPincodeDialog = false }) {
+                    Text("Cancel", color = c.textSub)
                 }
             },
             containerColor = c.card,
@@ -374,9 +440,11 @@ fun SettingsScreen(
                     AyMenuRow(
                         icon = Icons.Filled.LocationOn,
                         title = "Delivery Pincode",
-                        subtitle = "Jaipur 302001, Rajasthan",
+                        subtitle = if (!deliveryPincode.isNullOrBlank()) "Pincode: $deliveryPincode • Pan-India Dispatch" else "Deliver Pan-India • Tap to set pincode",
                         onClick = {
-                            Toast.makeText(context, "Currently delivering to Jaipur 302001", Toast.LENGTH_SHORT).show()
+                            haptic.selection()
+                            pincodeInput = deliveryPincode.orEmpty()
+                            showPincodeDialog = true
                         }
                     )
                 }
