@@ -3,6 +3,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import type { Product } from '@/data/productData';
+import { allCategories } from '@/data/categoryData';
 import { SlidersHorizontal, X } from 'lucide-react';
 
 interface CollectionsClientProps {
@@ -25,17 +26,10 @@ export default function CollectionsClient({ initialProducts }: CollectionsClient
     }
   }, [categoryQuery]);
 
-  const categories = [
+  const categories = useMemo(() => [
     { id: 'all', label: 'All Products' },
-    { id: 'oil-wellness-care', label: 'Oil Wellness Care' },
-    { id: 'raw-herbs', label: 'Raw Herbs' },
-    { id: 'herbal-powders', label: 'Herbal Powders' },
-    { id: 'herbal-tea-drinks', label: 'Herbal Tea & Drinks' },
-    { id: 'natural-foods', label: 'Natural Foods' },
-    { id: 'pure-spices', label: 'Pure Spices' },
-    { id: 'wellness-packs', label: 'Wellness Packs' },
-    { id: 'natural-aroma', label: 'Natural Aroma' }
-  ];
+    ...allCategories.map(cat => ({ id: cat.slug, label: cat.name }))
+  ], []);
 
   const filteredProducts = useMemo(() => {
     let filtered = [...initialProducts];

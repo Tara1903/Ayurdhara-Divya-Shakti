@@ -400,27 +400,38 @@ function InfoIndiaIcon() {
 // ----------------------------------------------------------------------
 function Section1CategoryIcons() {
   const categories = [
-    { name: 'Oil Wellness', image: '/images/categories/cat_oil_wellness_1786556871303.jpg', link: '/oil-wellness-care' },
-    { name: 'Raw Herbs', image: '/images/categories/cat_raw_herbs_1786556977927.jpg', link: '/raw-herbs' },
-    { name: 'Herbal Powders', image: '/images/categories/cat_herbal_powders_1786556998830.jpg', link: '/herbal-powders' },
-    { name: 'Herbal Capsules', image: '/images/categories/cat_herbal_capsules_1786557023735.jpg', link: '/herbal-capsules' },
-    { name: 'Herbal Tea', image: '/images/categories/cat_herbal_tea_1786557231547.jpg', link: '/herbal-tea' },
-    { name: 'Natural Foods', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/natural-foods' },
-    { name: 'Pure Spices', image: '/images/categories/cat_pure_spices_1786557545627.jpg', link: '/pure-spices' },
-    { name: 'Wellness Packs', image: '/images/categories/cat_wellness_packs_1786557692487.jpg', link: '/wellness-packs' },
-    { name: 'Natural Aroma', image: '/images/categories/cat_natural_fragrance.jpg', link: '/natural-aroma' },
+    { name: 'Cold Pressed Oils', image: '/images/categories/cat_oil_wellness_1786556871303.jpg', link: '/cold-pressed-oils' },
+    { name: 'Healthy Seeds', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/healthy-seeds' },
+    { name: 'Kids Care', image: '/images/categories/cat_kids_care.jpg', link: '/kids-wellness-products' },
+    { name: 'Men Wellness', image: '/images/categories/cat_mens_wellness.jpg', link: '/men-wellness-products' },
+    { name: 'Women Wellness', image: '/images/categories/cat_womens_wellness.jpg', link: '/women-wellness-products' },
+    { name: 'Senior Wellness', image: '/images/categories/cat_senior_care.jpg', link: '/senior-wellness-products' },
+    { name: 'Nabhi Oils', image: '/images/category_nabhi_1784743910260.jpg', link: '/nabhi-oil-wellness' },
+    { name: 'Body Massage', image: '/images/categories/cat_oil_wellness_1786556871303.jpg', link: '/body-massage-oil' },
+    { name: 'Feet Massage', image: '/images/category_feet_1784743921281.jpg', link: '/feet-wellness-oil' },
+    { name: 'Raw Herbs', image: '/images/categories/cat_raw_herbs_1786556977927.jpg', link: '/hebs-natural-raw' },
+    { name: 'Herbal Powders', image: '/images/categories/cat_herbal_powders_1786556998830.jpg', link: '/natural-herbs-powder' },
+    { name: 'Raw Spices', image: '/images/categories/cat_pure_spices_1786557545627.jpg', link: '/raw-spices' },
+    { name: 'Powder Spices', image: '/images/categories/cat_pure_spices_1786557545627.jpg', link: '/powder-shape-spices-herbs' },
+    { name: 'Dry Fruits & Nuts', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/dry-fruits-and-nuts' },
+    { name: 'Super Foods', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/super-foods' },
+    { name: 'Raw Honey & Sweetener', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/natural-sweetner-raw-honey' },
+    { name: 'Herbal Teas', image: '/images/categories/cat_herbal_tea_1786557231547.jpg', link: '/herbal-teas' },
+    { name: 'Morning Fresh Cup', image: '/images/categories/cat_herbal_tea_1786557231547.jpg', link: '/morning-fresh-herbal-cup' },
+    { name: 'Combo Trial Packs', image: '/images/categories/cat_wellness_packs_1786557692487.jpg', link: '/combo-trial-packs' },
+    { name: 'Desi Ghee', image: '/images/categories/cat_natural_foods_1786557531655.jpg', link: '/desi-ghee' },
   ];
 
   return (
     <section className="py-8 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-3 xl:gap-6 flex-wrap lg:flex-nowrap max-w-[1400px] mx-auto w-full">
+        <div className="flex overflow-x-auto pb-4 gap-3 sm:gap-4 md:gap-5 scrollbar-hide justify-start 2xl:justify-center max-w-[1600px] mx-auto w-full">
           {categories.map((cat, i) => (
-            <Link href={cat.link} key={i} className="group flex flex-col items-center text-center w-24 md:w-28 lg:w-24 xl:w-28 shrink-0">
-              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 xl:w-20 xl:h-20 relative rounded-full overflow-hidden mb-3 bg-gray-100 shadow-sm border-[3px] border-white group-hover:border-[#E88B23] transition-all duration-300 group-hover:shadow-lg">
+            <Link href={cat.link} key={i} className="group flex flex-col items-center text-center w-20 sm:w-24 md:w-28 shrink-0">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 relative rounded-full overflow-hidden mb-3 bg-gray-100 shadow-sm border-[3px] border-white group-hover:border-[#E88B23] transition-all duration-300 group-hover:shadow-lg">
                 <Image src={cat.image} alt={cat.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
-              <h3 className="text-[10px] md:text-xs lg:text-[10px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider group-hover:text-[#4B7B3B] transition-colors leading-tight">
+              <h3 className="text-[10px] md:text-xs font-bold text-gray-700 uppercase tracking-wider group-hover:text-[#4B7B3B] transition-colors leading-tight">
                 {cat.name}
               </h3>
             </Link>
