@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, ShoppingBag, Eye, ChevronDown } from "lucide-react";
+import { Heart, Lock, ShoppingBag, Eye, ChevronDown } from "lucide-react";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { useAuthStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
@@ -41,10 +41,11 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { hasItem, addItem: addWishlist, removeItem: removeWishlist } = useWishlistStore();
   const { user } = useAuthStore();
   const addCart = useCartStore(state => state.addItem);
+  const isGoldMember = user?.isGoldMember || false;
 
   const inWishlist = hasItem(product.slug);
 
-  const isMassage = product.category === 'Body Massage Oil' || product.category === 'Feet Wellness Oil' || product.category === 'Hair Wellness Oil';
+  const isMassage = product.category === 'Body Massage Oil' || product.category === 'Feet Massage Oil' || product.category === 'Hair Wellness Oil';
   const isIndividualPack = product.name === 'Trial Wellness Pack' || product.name === 'Diamond Trial Wellness Pack';
   const isFamilyPack = product.category === 'Family Trial Wellness Packs' || product.category === 'Family Gold Wellness Packs';
   const isGoldPack = product.name === 'Gold Wellness Pack' || product.name === 'Premium Wellness Pack';
@@ -102,18 +103,18 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className={`group relative flex flex-col bg-white border ${isComplexPack ? 'border-[#E0EBDC] shadow-sm' : 'border-[#E5E2DD]'} rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_12px_32px_rgba(27,67,50,0.08)] hover:border-[#D4AF37]/40 h-full`}>
-      <Link href={`/products/${product.slug}`} className="relative aspect-square w-full block bg-[#FAF7F2] overflow-hidden">
+    <div className={`group relative flex flex-col bg-white border ${isComplexPack ? 'border-[#E0EBDC] shadow-sm' : 'border-gray-100'} rounded-xl overflow-hidden transition-all duration-200 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-gray-200 h-full`}>
+      <Link href={`/products/${product.slug}`} className="relative aspect-square w-full block bg-[#f9f9f9] overflow-hidden">
         {product.badge && (
-          <span className="absolute top-2.5 left-2.5 z-10 bg-[#1B4332] text-[#FFE088] text-[9.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
+          <span className={`absolute top-2 left-2 z-10 ${isComplexPack ? 'bg-[#E88B23]' : 'bg-[#2D5A27]'} text-white text-[10px] md:text-xs font-bold uppercase tracking-wider px-2 py-1 rounded shadow-sm`}>
             {product.badge}
           </span>
         )}
         <button 
           onClick={toggleWishlist}
-          className="absolute top-2.5 right-2.5 z-10 p-2 rounded-full bg-white/90 backdrop-blur-sm shadow-sm text-gray-400 hover:text-red-500 hover:bg-white transition-colors"
+          className="absolute top-2 right-2 z-10 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm text-gray-400 hover:text-red-500 hover:bg-white transition-colors"
         >
-          <Heart size={16} className={inWishlist ? "fill-red-500 text-red-500" : ""} />
+          <Heart size={18} className={inWishlist ? "fill-red-500 text-red-500" : ""} />
         </button>
         <Image
           src={product.images?.[0] || '/images/categories/cat_raw_herbs_1786556977927.jpg'}
@@ -125,52 +126,46 @@ export default function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       <div className="p-4 flex flex-col flex-grow">
-        <Link href={`/products/${product.slug}`} className="block group-hover:text-[#1B4332] transition-colors">
-          <h3 className="font-serif font-bold text-gray-900 text-[15px] md:text-base leading-snug mb-1.5 line-clamp-2">
+        <Link href={`/products/${product.slug}`} className="block group-hover:text-[#2D5A27] transition-colors">
+          <h3 className="font-bold text-gray-900 text-[15px] md:text-base leading-tight mb-1 line-clamp-2">
             {product.name}
           </h3>
         </Link>
-        <p className="text-[10px] md:text-[11px] text-gray-500 mb-2 font-semibold uppercase tracking-wider">
-          <span className="text-[#1B4332] font-bold">{product.category}</span>
-        </p>
+        <p className="text-[10px] md:text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wider">PRODUCT TYPE: <br className="hidden md:block" /><span className="text-[#2D5A27] font-bold">{product.category}</span></p>
         
-        <p className="text-xs text-gray-600 mb-3 line-clamp-2 leading-relaxed">{product.benefit}</p>
+        <p className="text-xs md:text-sm text-gray-600 mb-3 line-clamp-2">{product.benefit}</p>
           
-        {(product.inclusions || product.durationText) && (
-          <div className="flex flex-col gap-1 mb-3 bg-[#FCF9F4] p-2.5 rounded-lg border border-[#E5E2DD]">
-            {product.inclusions && (
-              <div className="text-xs text-gray-700 whitespace-pre-line">
-                <span className="font-semibold text-gray-900 block mb-1">What's Included:</span>
-                {product.inclusions}
-              </div>
-            )}
-            {product.durationText && (
-              <div className="text-xs text-[#1B4332] font-medium mt-0.5">
-                ⏳ {product.durationText}
-              </div>
-            )}
-          </div>
-        )}
+          {(product.inclusions || product.durationText) && (
+            <div className="flex flex-col gap-1 mb-3 bg-[#f8fbfa] p-2 rounded-md border border-[#e8f2e9]">
+              {product.inclusions && (
+                <div className="text-xs text-gray-700 whitespace-pre-line">
+                  <span className="font-semibold text-gray-900 block mb-1">What's Included:</span>
+                  {product.inclusions}
+                </div>
+              )}
+              {product.durationText && (
+                <div className="text-xs text-[#2D5A27] font-medium mt-1">
+                  ⏳ {product.durationText}
+                </div>
+              )}
+            </div>
+          )}
 
-        <div className="flex items-baseline gap-2 mb-4 mt-auto">
-          <span className="text-lg md:text-xl font-extrabold text-[#1B4332]">₹{priceToDisplay}</span>
-          {originalPriceToDisplay > priceToDisplay && (
-            <span className="text-xs text-gray-400 line-through">₹{originalPriceToDisplay}</span>
-          )}
-          {discountToDisplay > 0 && (
-            <span className="text-xs font-bold text-[#735C00] ml-auto bg-[#FFE088]/30 px-2 py-0.5 rounded-full">{discountToDisplay}% OFF</span>
-          )}
+        <div className="flex items-end gap-2 mb-4">
+          <span className="text-lg md:text-xl font-bold text-gray-900">₹{priceToDisplay}</span>
+          <span className="text-sm text-gray-400 line-through mb-1">₹{originalPriceToDisplay}</span>
+          <span className="text-xs font-bold text-green-600 mb-1 ml-auto">{discountToDisplay}% OFF</span>
         </div>
         
         {/* Dropdowns */}
         {!isComplexPack && (
-          <div className="flex flex-col gap-2 mb-3">
+          <div className="flex flex-col gap-2 mb-4 mt-auto">
             {requiresCategory && (
               <div className="relative">
                 <select 
                   value={selectedCategory} 
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full appearance-none border border-gray-200 text-gray-700 py-1.5 px-3 pr-8 rounded-lg text-xs focus:outline-none focus:border-[#1B4332] bg-white"
+                  className="w-full appearance-none border border-gray-300 text-gray-700 py-1.5 px-3 pr-8 rounded text-xs focus:outline-none focus:border-[#4B7B3B] bg-white"
                 >
                   <option value="" disabled>Choose Your Wellness Category</option>
                   <option value="Kids Care">Kids Care</option>
@@ -186,7 +181,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <select 
                   value={selectedVariantIdx} 
                   onChange={(e) => setSelectedVariantIdx(Number(e.target.value))}
-                  className="w-full appearance-none border border-gray-200 text-gray-700 py-1.5 px-3 pr-8 rounded-lg text-xs focus:outline-none focus:border-[#1B4332] bg-white"
+                  className="w-full appearance-none border border-gray-300 text-gray-700 py-1.5 px-3 pr-8 rounded text-xs focus:outline-none focus:border-[#4B7B3B] bg-white"
                 >
                   {product.variants.map((v, i) => (
                     <option key={i} value={i}>{v.size}</option>
@@ -201,23 +196,23 @@ export default function ProductCard({ product }: ProductCardProps) {
         {isComplexPack ? (
           <Link 
             href={`/products/${product.slug}`}
-            className="w-full bg-[#FFE088] text-[#241A00] text-center py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl block hover:bg-[#FCD870] transition-colors shadow-sm"
+            className="w-full bg-[#E88B23] text-white text-center py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg block hover:bg-[#D67A18] transition-colors shadow-sm mt-auto"
           >
             View Details
           </Link>
         ) : (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2 mt-auto">
             <button 
               onClick={handleAddToCart}
-              className="w-full bg-[#FFE088] hover:bg-[#FCD870] text-[#241A00] py-2.5 text-xs font-bold tracking-wide rounded-xl flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+              className="w-full bg-[#E88B23] text-white py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider rounded flex items-center justify-center gap-1 hover:bg-[#D67A18] transition-colors shadow-sm"
             >
-              <ShoppingBag size={14} /> Add to Bag
+              <ShoppingBag size={12} /> Buy Now
             </button>
             <Link 
               href={`/products/${product.slug}`}
-              className="w-full bg-white text-[#1B4332] border border-[#1B4332] py-2.5 text-xs font-bold tracking-wide rounded-xl flex items-center justify-center gap-1.5 hover:bg-[#FCF9F4] transition-colors"
+              className="w-full bg-white text-[#2D5A27] border border-[#2D5A27] py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider rounded flex items-center justify-center gap-1 hover:bg-gray-50 transition-colors shadow-sm"
             >
-              <Eye size={14} /> Details
+              <Eye size={12} /> Details
             </Link>
           </div>
         )}
