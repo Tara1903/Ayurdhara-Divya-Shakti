@@ -75,10 +75,10 @@ fun ProfileScreen(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Box(
-                                    Modifier.size(72.dp).background(c.goldFill.copy(alpha = 0.3f), CircleShape),
+                                    Modifier.size(80.dp).background(c.goldFill.copy(alpha = 0.3f), CircleShape),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    AyLogoMark(46.dp)
+                                    AyLogoMark(60.dp)
                                 }
                                 Spacer(Modifier.height(14.dp))
                                 Text(

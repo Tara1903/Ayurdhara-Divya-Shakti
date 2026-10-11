@@ -30,6 +30,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-text-google-fonts:1.6.0")
     api(libs.coil.compose)
     implementation(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.foundation)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

@@ -118,7 +118,7 @@ fun OnboardingScreen(
     ) {
         // Brand
         Spacer(Modifier.height(8.dp))
-        AyLogoMark(44.dp)
+        AyLogoMark(60.dp)
         Spacer(Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Box(Modifier.width(24.dp).height(1.dp).background(c.accent.copy(alpha = 0.5f)))

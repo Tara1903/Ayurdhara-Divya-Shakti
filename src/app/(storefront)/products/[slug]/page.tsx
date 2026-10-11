@@ -1,38 +1,25 @@
 import { notFound } from "next/navigation";
 import { getAllActiveProductSlugs, getProductBySlugFromDB } from "@/lib/dal/products";
-import { getProductBySlug as getStaticProductBySlug, getAllProductSlugs as getStaticSlugs } from "@/data/productData";
 import PDPClient from "@/components/PDPClient";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export async function generateStaticParams() {
   const isSafeSlug = (s: string) => !/[<>:"/\\|?*\x00-\x1F]/.test(s);
-  // Try Supabase first, fall back to static
   try {
     const slugs = await getAllActiveProductSlugs();
-    if (slugs.length > 0) {
-      return slugs.filter(isSafeSlug).map((slug) => ({ slug }));
-    }
-  } catch {}
-  
-  // Fallback to static
-  const slugs = getStaticSlugs();
-  return slugs.filter(isSafeSlug).map((slug) => ({ slug }));
+    return slugs.filter(isSafeSlug).map((slug) => ({ slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  
-  // Try Supabase first
   let product = null;
   try {
     product = await getProductBySlugFromDB(resolvedParams.slug);
   } catch {}
-  
-  // Fall back to static data
-  if (!product) {
-    product = getStaticProductBySlug(resolvedParams.slug) || null;
-  }
 
   if (!product) return { title: "Product Not Found" };
 
@@ -49,20 +36,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  
-  // Try Supabase first
   let product = null;
   try {
     product = await getProductBySlugFromDB(resolvedParams.slug);
   } catch {}
-  
-  // Fall back to static data if Supabase returns nothing
-  if (!product) {
-    const staticProduct = getStaticProductBySlug(resolvedParams.slug);
-    if (staticProduct) {
-      product = staticProduct;
-    }
-  }
 
   if (!product) {
     notFound();

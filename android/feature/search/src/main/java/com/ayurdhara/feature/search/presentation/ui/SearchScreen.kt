@@ -90,9 +90,9 @@ fun SearchScreen(
     val searchResults by viewModel.searchResults.collectAsState()
     val focusManager = LocalFocusManager.current
     val c = AyTheme.colors
-    // Seeded with the design's sample trail; new searches are prepended.
+    // User's recent searches; new searches are prepended dynamically.
     val recents = remember {
-        mutableStateListOf("Kumkumadi Tailam saffron drops", "Organic Triphala churna 250g", "Pure wild honey unprocessed")
+        mutableStateListOf<String>()
     }
 
     fun commitSearch() {
@@ -111,7 +111,7 @@ fun SearchScreen(
             Modifier.fillMaxWidth().background(c.bar).statusBarsPadding().padding(horizontal = 20.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AyLogoMark(32.dp)
+            AyLogoMark(38.dp)
             Spacer(Modifier.width(10.dp))
             Text("Search", Modifier.weight(1f), fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 22.sp, color = c.heading)
             AyIconButton(Icons.Filled.Search, "Search", onClick = {})

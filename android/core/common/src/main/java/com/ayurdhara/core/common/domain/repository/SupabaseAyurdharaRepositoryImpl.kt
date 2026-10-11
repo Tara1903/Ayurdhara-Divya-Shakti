@@ -29,7 +29,7 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
     private val supabaseClient: SupabaseClient
 ) {
     private val productColumns = """
-        id, slug, name, short_description, full_description, story, primary_benefit, rating, review_count, badge, is_active,
+        id, slug, name, category_id, short_description, full_description, story, primary_benefit, rating, review_count, badge, is_active,
         categories(id, name, slug, description, image_url),
         product_variants(id, size, price, original_price, gold_member_price, sku, stock_quantity, is_active),
         product_images(url, alt_text, display_order, variant_id)
@@ -38,8 +38,8 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
     @Volatile
     private var cachedProducts: List<Product> = emptyList()
 
-    suspend fun getFeaturedProducts(): AppResult<List<Product>> {
-        if (cachedProducts.isNotEmpty()) {
+    suspend fun getFeaturedProducts(forceRefresh: Boolean = false): AppResult<List<Product>> {
+        if (!forceRefresh && cachedProducts.isNotEmpty()) {
             return AppResult.Success(cachedProducts)
         }
         return withContext(Dispatchers.IO) {
@@ -62,8 +62,8 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
         }
     }
 
-    suspend fun getAllProducts(): AppResult<List<Product>> {
-        if (cachedProducts.isNotEmpty()) {
+    suspend fun getAllProducts(forceRefresh: Boolean = false): AppResult<List<Product>> {
+        if (!forceRefresh && cachedProducts.isNotEmpty()) {
             return AppResult.Success(cachedProducts)
         }
         return withContext(Dispatchers.IO) {
@@ -99,10 +99,10 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
                 val categories = dtoList.map { dto ->
                     Category(
                         id = dto.id,
-                        title = dto.name,
-                        slug = dto.slug,
+                        title = dto.name.trim(),
+                        slug = dto.slug.trim(),
                         imageUrl = dto.imageUrl?.toAbsoluteUrl() ?: "",
-                        description = dto.description
+                        description = dto.description?.trim()
                     )
                 }
                 AppResult.Success(categories)
@@ -182,8 +182,8 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
             trySend(emptyList())
         }
 
-        var channel = supabaseClient.realtime.channel("public:products_live_feed")
-        val changeFlow = try {
+        val channel = supabaseClient.realtime.channel("public:products_live_feed")
+        val productsChangeFlow = try {
             channel.postgresChangeFlow<PostgresAction>(schema = "public") {
                 table = "products"
             }
@@ -191,10 +191,29 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
             null
         }
 
-        val job = launch {
+        val variantsChangeFlow = try {
+            channel.postgresChangeFlow<PostgresAction>(schema = "public") {
+                table = "product_variants"
+            }
+        } catch (_: Exception) {
+            null
+        }
+
+        val jobProducts = launch {
             try {
-                changeFlow?.collect {
-                    val fresh = getAllProducts()
+                productsChangeFlow?.collect {
+                    val fresh = getAllProducts(forceRefresh = true)
+                    if (fresh is AppResult.Success) {
+                        trySend(fresh.data)
+                    }
+                }
+            } catch (_: Exception) {}
+        }
+
+        val jobVariants = launch {
+            try {
+                variantsChangeFlow?.collect {
+                    val fresh = getAllProducts(forceRefresh = true)
                     if (fresh is AppResult.Success) {
                         trySend(fresh.data)
                     }
@@ -209,7 +228,8 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
         }
 
         awaitClose {
-            job.cancel()
+            jobProducts.cancel()
+            jobVariants.cancel()
             launch {
                 try {
                     channel.unsubscribe()
@@ -286,15 +306,24 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
         } else 0
 
         val primaryCatDto = category
-        val junctionCatNames = productCategories.mapNotNull { it.categories?.name }
+        val resolvedCategoryId = categoryId ?: primaryCatDto?.id
+        val resolvedCategorySlug = primaryCatDto?.slug?.trim()
+        val junctionCatNames = productCategories.mapNotNull { it.categories?.name?.trim() }
+        val junctionCatIds = productCategories.mapNotNull { it.categoryId ?: it.categories?.id }
+        val junctionCatSlugs = productCategories.mapNotNull { it.categories?.slug?.trim() }
+
         val allCatNames = if (junctionCatNames.isNotEmpty()) {
             junctionCatNames.distinct()
         } else if (primaryCatDto?.name != null) {
-            listOf(primaryCatDto.name)
+            listOf(primaryCatDto.name.trim())
         } else {
             emptyList()
         }
-        val primaryCat = allCatNames.firstOrNull() ?: primaryCatDto?.name ?: "Ayurvedic Wellness"
+
+        val allCatIds = (junctionCatIds + listOfNotNull(resolvedCategoryId)).distinct()
+        val allCatSlugs = (junctionCatSlugs + listOfNotNull(resolvedCategorySlug)).distinct()
+
+        val primaryCat = allCatNames.firstOrNull() ?: primaryCatDto?.name?.trim() ?: "Ayurvedic Wellness"
 
         return Product(
             id = id,
@@ -311,6 +340,10 @@ class SupabaseAyurdharaRepositoryImpl @Inject constructor(
             rating = rating ?: 5.0,
             reviewCount = reviewCount ?: 1,
             badge = badge ?: "100% NATURAL",
+            categoryId = resolvedCategoryId,
+            categoryIds = allCatIds,
+            categorySlug = resolvedCategorySlug,
+            categorySlugs = allCatSlugs,
             category = primaryCat,
             categories = allCatNames,
             imageUrl = firstImg,

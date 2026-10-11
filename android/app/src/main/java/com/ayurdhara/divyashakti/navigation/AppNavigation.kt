@@ -67,7 +67,8 @@ fun AppNavigation(
         bottomBar = {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDestination = navBackStackEntry?.destination
-            val selected = tabs.indexOfFirst { it.first == currentDestination?.route }
+            val currentRoute = currentDestination?.route?.substringBefore("?")
+            val selected = tabs.indexOfFirst { it.first == currentRoute }
             if (selected >= 0) {
                 AyBottomBar(
                     items = tabs.map { it.second },
@@ -151,11 +152,39 @@ fun AppNavigation(
                             onCartClick = { navTo(Routes.CART) },
                             onSearchClick = { navTo(Routes.SEARCH) },
                             onProfileClick = { navController.navigate(Routes.PROFILE) },
-                            onCategoryClick = { _ -> navTo(Routes.SHOP) }
+                            onCategoryClick = { catSlug ->
+                                if (catSlug.isNotBlank()) {
+                                    navController.navigate(Routes.shopCategoryRoute(catSlug)) {
+                                        popUpTo(Routes.HOME) { inclusive = false }
+                                        launchSingleTop = true
+                                    }
+                                } else {
+                                    navTo(Routes.SHOP)
+                                }
+                            }
                         )
                     }
-                    composable(Routes.SHOP) {
+                    composable(
+                        route = "${Routes.SHOP}?category={category}",
+                        arguments = listOf(
+                            androidx.navigation.navArgument("category") {
+                                type = androidx.navigation.NavType.StringType
+                                nullable = true
+                                defaultValue = null
+                            }
+                        ),
+                        deepLinks = listOf(
+                            androidx.navigation.navDeepLink { uriPattern = "ayurdhara://shop" },
+                            androidx.navigation.navDeepLink { uriPattern = "https://ayurdhara.org/shop" }
+                        )
+                    ) { backStackEntry ->
+                        val rawCategory = backStackEntry.arguments?.getString("category")
+                        val initialCat = rawCategory?.takeIf { it.isNotBlank() }?.let {
+                            val decoded = try { java.net.URLDecoder.decode(it, "UTF-8") } catch (_: Exception) { it }
+                            decoded.replace("+", " ").trim()
+                        }
                         ShopScreen(
+                            initialCategorySlug = initialCat,
                             onAddToCart = { product ->
                                 cartViewModel.addToCart(product)
                             },
@@ -267,7 +296,13 @@ fun AppNavigation(
                     )
                 }
 
-                composable(Routes.ORDER_HISTORY) {
+                composable(
+                    route = Routes.ORDER_HISTORY,
+                    deepLinks = listOf(
+                        androidx.navigation.navDeepLink { uriPattern = "ayurdhara://orders" },
+                        androidx.navigation.navDeepLink { uriPattern = "https://ayurdhara.org/orders" }
+                    )
+                ) {
                     OrderHistoryScreen(
                         onBackClick = { navController.popBackStack() }
                     )
@@ -275,7 +310,11 @@ fun AppNavigation(
 
                 composable(
                     route = "product/{slug}",
-                    arguments = listOf(androidx.navigation.navArgument("slug") { type = androidx.navigation.NavType.StringType })
+                    arguments = listOf(androidx.navigation.navArgument("slug") { type = androidx.navigation.NavType.StringType }),
+                    deepLinks = listOf(
+                        androidx.navigation.navDeepLink { uriPattern = "ayurdhara://product/{slug}" },
+                        androidx.navigation.navDeepLink { uriPattern = "https://ayurdhara.org/products/{slug}" }
+                    )
                 ) {
                     ProductDetailScreen(
                         onBackClick = { navController.popBackStack() },

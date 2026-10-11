@@ -16,9 +16,9 @@ object Routes {
     const val FORGOT_PASSWORD = "forgot_password"
     const val OTP = "otp"
 
-    // Main Tabs
     const val HOME = "home"
     const val SHOP = "shop"
+    fun shopCategoryRoute(category: String): String = "shop?category=${java.net.URLEncoder.encode(category, "UTF-8")}"
     const val SEARCH = "search"
     const val CART = "cart"
     const val SETTINGS = "settings"

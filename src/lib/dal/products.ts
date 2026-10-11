@@ -2,7 +2,6 @@
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { unstable_cache } from 'next/cache';
 import type { Product } from '@/data/productData';
-import { products as staticProducts } from '@/data/productData';
 import { logger } from '../logger';
 import { safeGetConfig } from '../config/env';
 
@@ -15,47 +14,6 @@ function getStatelessClient() {
   }
   return createSupabaseClient(config.supabase.url, config.supabase.anonKey);
 }
-
-/**
- * Checks if the database is both configured and properly seeded.
- * Caches the true state to avoid repeated metadata lookups.
- */
-const checkDatabaseInitialization = unstable_cache(
-  async (): Promise<boolean> => {
-    const config = safeGetConfig();
-    if (!config) return false;
-
-    const supabase = getStatelessClient();
-    try {
-      // First try to check app_metadata
-      const { data, error } = await supabase
-        .from('app_metadata')
-        .select('database_initialized')
-        .single();
-        
-      if (!error && data && data.database_initialized === true) {
-        return true;
-      }
-      
-      // Fallback: If app_metadata doesn't exist, check if products exist
-      const { count, error: countError } = await supabase
-        .from('products')
-        .select('*', { count: 'exact', head: true });
-        
-      if (!countError && count && count > 0) {
-        return true;
-      }
-
-      return false;
-    } catch (err) {
-      logger.error({ message: 'Error checking database initialization', context: 'DAL', data: err });
-      return false;
-    }
-  },
-  ['db-initialization-check'],
-  { revalidate: 60, tags: ['metadata'] }
-);
-
 
 // ─── DB → App Mapper ─────────────────────────────────────────────────────────
 
@@ -78,7 +36,7 @@ function mapDbProductToAppProduct(dbProduct: any): Product {
     images.push(dbProduct.primary_image_url);
   }
 
-  // Extract all categories from junction table product_categories + fallback to primary category
+  // Extract all categories — fallback to primary category from FK
   const junctionCategories = (dbProduct.product_categories || [])
     .map((pc: any) => pc.categories)
     .filter(Boolean);
@@ -89,12 +47,14 @@ function mapDbProductToAppProduct(dbProduct: any): Product {
     : (primaryCategory ? [primaryCategory] : []);
 
   const categories = Array.from(new Set(allCategoryRecords.map((c: any) => c.name).filter(Boolean))) as string[];
-  const categoryIds = (dbProduct.product_categories || [])
-    .map((pc: any) => pc.category_id)
-    .filter(Boolean) as string[];
+  const categoryIds = Array.from(new Set([
+    dbProduct.category_id,
+    ...(dbProduct.product_categories || []).map((pc: any) => pc.category_id),
+    ...allCategoryRecords.map((c: any) => c.id)
+  ].filter(Boolean))) as string[];
   const categorySlugs = Array.from(new Set(allCategoryRecords.map((c: any) => c.slug).filter(Boolean))) as string[];
 
-  const primaryCategoryName = categories[0] || primaryCategory?.name || 'Uncategorized';
+  const primaryCategoryName = categories[0] || primaryCategory?.name || 'Ayurvedic Wellness';
 
   return {
     id: dbProduct.id,
@@ -135,8 +95,8 @@ function mapDbProductToAppProduct(dbProduct: any): Product {
     originalPrice: variants[0]?.original_price || 0,
     goldMemberPrice: variants[0]?.gold_member_price || undefined,
     discount: calculateDiscount(variants[0]?.original_price, variants[0]?.price),
-    rating: dbProduct.rating || 0,
-    reviewCount: dbProduct.review_count || 0,
+    rating: dbProduct.rating || 5.0,
+    reviewCount: dbProduct.review_count || 1,
     badge: dbProduct.badge || undefined,
     healthGoals: (dbProduct.product_health_goals || []).map(
       (phg: any) => phg.health_goals?.name
@@ -158,24 +118,57 @@ const PRODUCT_QUERY = `
   id, slug, name, short_description, full_description, story, primary_benefit,
   rating, review_count, badge, ideal_for, usage_instructions, benefits, specifications,
   certifications, faqs, related_product_ids, routine_product_ids, duration_text, total_quantity_ml,
-  gold_membership_eligible,
-  categories(name, slug),
+  gold_membership_eligible, category_id,
+  categories(id, name, slug),
+  product_categories(category_id, categories(id, name, slug)),
   product_variants(id, size, price, original_price, gold_member_price, pricing_status, gold_pricing_enabled, is_active),
   product_images(url, variant_id, display_order),
   product_ingredients(display_order, ingredients(name, botanical_name, role, image_url)),
   product_health_goals(health_goals(name, slug))
 `;
 
+export interface DbCategory {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  image_url?: string | null;
+  display_order?: number | null;
+  is_active?: boolean;
+}
+
 // ─── Cached DAL Functions ─────────────────────────────────────────────────────
+
+export const getActiveCategories = unstable_cache(
+  async (): Promise<DbCategory[]> => {
+    const config = safeGetConfig();
+    if (!config) return [];
+
+    const supabase = getStatelessClient();
+    const { data, error } = await supabase
+      .from('categories')
+      .select('id, name, slug, description, image_url, display_order, is_active')
+      .eq('is_active', true)
+      .order('name', { ascending: true });
+
+    if (error || !data) {
+      logger.error({ message: 'getActiveCategories failed', context: 'DAL', data: error });
+      return [];
+    }
+    return data;
+  },
+  ['all-active-categories'],
+  { revalidate: 60, tags: ['categories'] }
+);
 
 export const getActiveProducts = unstable_cache(
   async (): Promise<Product[]> => {
-    const isReady = await checkDatabaseInitialization();
-    if (!isReady) {
-      logger.info({ message: 'Using static fallback for getActiveProducts', context: 'DAL' });
-      return staticProducts;
+    const config = safeGetConfig();
+    if (!config) {
+      logger.warn({ message: 'Supabase not configured — returning empty product list', context: 'DAL' });
+      return [];
     }
-    
+
     const startTime = Date.now();
     const supabase = getStatelessClient();
     const { data, error } = await supabase
@@ -185,44 +178,53 @@ export const getActiveProducts = unstable_cache(
       .order('created_at', { ascending: false });
 
     if (error) {
-      logger.error({ message: 'Query failed, using fallback', context: 'DAL', data: error });
-      return staticProducts;
+      logger.error({ message: 'getActiveProducts query failed', context: 'DAL', data: error });
+      return [];
     }
 
     logger.debug({ message: 'getActiveProducts success', context: 'DAL', duration: Date.now() - startTime });
-    const dbAppProducts = (data || []).map(mapDbProductToAppProduct);
-    const dbSlugs = new Set(dbAppProducts.map(p => p.slug));
-    const unseededStaticProducts = staticProducts.filter(p => !dbSlugs.has(p.slug));
-    return [...dbAppProducts, ...unseededStaticProducts];
+    return (data || []).map(mapDbProductToAppProduct);
   },
   ['all-products'],
   { revalidate: 60, tags: ['products'] }
 );
 
 export const getProductBySlugFromDB = unstable_cache(
-  async (slug: string): Promise<Product | null> => {
-    const isReady = await checkDatabaseInitialization();
-    if (!isReady) {
-      logger.info({ message: `Using static fallback for getProductBySlug: ${slug}`, context: 'DAL' });
-      return staticProducts.find(p => p.slug === slug) || null;
-    }
+  async (slugOrId: string): Promise<Product | null> => {
+    const config = safeGetConfig();
+    if (!config) return null;
 
     const startTime = Date.now();
     const supabase = getStatelessClient();
-    const { data, error } = await supabase
+
+    // 1. Direct search by slug
+    const { data: bySlug } = await supabase
       .from('products')
       .select(PRODUCT_QUERY)
-      .eq('slug', slug)
+      .eq('slug', slugOrId)
       .eq('is_active', true)
-      .single();
+      .limit(1);
 
-    if (error || !data) {
-      logger.warn({ message: `Product not found in DB: ${slug}`, context: 'DAL' });
-      return staticProducts.find(p => p.slug === slug) || null;
+    if (bySlug && bySlug.length > 0) {
+      logger.debug({ message: `getProductBySlug success (slug): ${slugOrId}`, context: 'DAL', duration: Date.now() - startTime });
+      return mapDbProductToAppProduct(bySlug[0]);
     }
 
-    logger.debug({ message: `getProductBySlug success: ${slug}`, context: 'DAL', duration: Date.now() - startTime });
-    return mapDbProductToAppProduct(data);
+    // 2. Direct search by ID
+    const { data: byId } = await supabase
+      .from('products')
+      .select(PRODUCT_QUERY)
+      .eq('id', slugOrId)
+      .eq('is_active', true)
+      .limit(1);
+
+    if (byId && byId.length > 0) {
+      logger.debug({ message: `getProductBySlug success (id): ${slugOrId}`, context: 'DAL', duration: Date.now() - startTime });
+      return mapDbProductToAppProduct(byId[0]);
+    }
+
+    logger.warn({ message: `Product not found in DB: ${slugOrId}`, context: 'DAL' });
+    return null;
   },
   ['product-by-slug'],
   { revalidate: 60, tags: ['products'] }
@@ -230,30 +232,41 @@ export const getProductBySlugFromDB = unstable_cache(
 
 export const getAllActiveProductSlugs = unstable_cache(
   async (): Promise<string[]> => {
-    const isReady = await checkDatabaseInitialization();
-    if (!isReady) return staticProducts.map(p => p.slug);
+    const config = safeGetConfig();
+    if (!config) return [];
 
     const supabase = getStatelessClient();
     const { data, error } = await supabase.from('products').select('slug').eq('is_active', true);
 
-    if (error || !data) return staticProducts.map(p => p.slug);
-    const dbSlugs = data
+    if (error || !data) return [];
+    return data
       .map((p: any) => p.slug)
       .filter((s: string) => s && !/[<>:"/\\|?*\x00-\x1F]/.test(s));
-    return Array.from(new Set([...dbSlugs, ...staticProducts.map(p => p.slug)]));
   },
   ['all-product-slugs'],
   { revalidate: 60, tags: ['products'] }
 );
 
 export const getProductsByCategory = unstable_cache(
-  async (categorySlug: string): Promise<Product[]> => {
+  async (categorySlugOrId: string): Promise<Product[]> => {
     const allProducts = await getActiveProducts();
-    const cleanSlug = categorySlug.toLowerCase().trim();
+    const clean = categorySlugOrId.toLowerCase().trim();
+
     return allProducts.filter(p => {
-      const slugs = (p.categorySlugs || []).map(s => s.toLowerCase());
-      const names = (p.categories && p.categories.length > 0 ? p.categories : [p.category]).map(n => n.toLowerCase().replace(/\s+/g, '-'));
-      return slugs.includes(cleanSlug) || names.includes(cleanSlug);
+      const assignedNames = (p.categories && p.categories.length > 0 ? p.categories : [p.category])
+        .filter(Boolean)
+        .map(c => c.toLowerCase().trim());
+      const assignedSlugs = (p.categorySlugs || [])
+        .filter(Boolean)
+        .map(s => s.toLowerCase().trim());
+      const assignedIds = (p.categoryIds || []).map(id => id.toLowerCase().trim());
+
+      return (
+        assignedSlugs.includes(clean) ||
+        assignedIds.includes(clean) ||
+        assignedNames.some(n => n === clean || n.replace(/\s+/g, '-') === clean || clean.includes(n) || n.includes(clean)) ||
+        assignedSlugs.some(s => s.includes(clean) || clean.includes(s))
+      );
     });
   },
   ['products-by-category'],
@@ -261,14 +274,8 @@ export const getProductsByCategory = unstable_cache(
 );
 
 export async function searchProductsFromDB(term: string, limit = 6): Promise<Product[]> {
-  const isReady = await checkDatabaseInitialization();
-  const lowerTerm = term.toLowerCase();
-  
-  if (!isReady) {
-    return staticProducts.filter(p => 
-      p.name.toLowerCase().includes(lowerTerm) || p.shortDescription.toLowerCase().includes(lowerTerm)
-    ).slice(0, limit);
-  }
+  const config = safeGetConfig();
+  if (!config) return [];
 
   const supabase = getStatelessClient();
   const { data, error } = await supabase
@@ -279,9 +286,7 @@ export async function searchProductsFromDB(term: string, limit = 6): Promise<Pro
     .limit(limit);
 
   if (error || !data) {
-    return staticProducts.filter(p => 
-      p.name.toLowerCase().includes(lowerTerm) || p.shortDescription.toLowerCase().includes(lowerTerm)
-    ).slice(0, limit);
+    return [];
   }
   return data.map(mapDbProductToAppProduct);
 }
@@ -295,4 +300,3 @@ export async function getRecommendedProducts(categoryNames: string[], excludeSlu
     return pCats.some(c => lowerCatNames.includes(c));
   }).slice(0, limit);
 }
-

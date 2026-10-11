@@ -39,6 +39,9 @@ import com.ayurdhara.core.designsystem.theme.NotoSerif
 import com.ayurdhara.core.designsystem.theme.PlusJakartaSans
 import coil.compose.AsyncImage
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.ayurdhara.core.designsystem.R
 
 // ───────────────────────────── Surfaces ─────────────────────────────
 
@@ -65,26 +68,15 @@ fun AyDivider(modifier: Modifier = Modifier) {
 
 // ───────────────────────────── Brand ─────────────────────────────
 
-/** Leaf logo mark: gold-outlined leaf with a gold seed. */
+/** Official Ayurdhara Divya Shakti Logo: uncropped, perfectly centered, crisp badge. */
 @Composable
-fun AyLogoMark(size: Dp = 36.dp, modifier: Modifier = Modifier) {
-    val c = AyTheme.colors
-    val fill = if (c.isDark) c.card else c.heading
-    val gold = if (c.isDark) c.accent else Color(0xFFD4AF37)
-    Canvas(modifier.size(size)) {
-        val w = this.size.width
-        val h = this.size.height
-        val leaf = Path().apply {
-            moveTo(w * 0.5f, h * 0.02f)
-            cubicTo(w * 1.02f, h * 0.30f, w * 0.92f, h * 0.80f, w * 0.5f, h * 0.98f)
-            cubicTo(w * 0.08f, h * 0.80f, -w * 0.02f, h * 0.30f, w * 0.5f, h * 0.02f)
-            close()
-        }
-        drawPath(leaf, fill)
-        drawPath(leaf, gold, style = Stroke(width = w * 0.07f))
-        drawLine(gold, Offset(w * 0.5f, h * 0.42f), Offset(w * 0.5f, h * 0.88f), strokeWidth = w * 0.04f)
-        drawCircle(gold, radius = w * 0.075f, center = Offset(w * 0.5f, h * 0.36f))
-    }
+fun AyLogoMark(size: Dp = 38.dp, modifier: Modifier = Modifier) {
+    Image(
+        painter = painterResource(id = R.drawable.ic_ayurdhara_logo),
+        contentDescription = "Ayurdhara Divya Shakti Logo",
+        modifier = modifier.size(size),
+        contentScale = ContentScale.Fit
+    )
 }
 
 /** Top bar with logo, "Ayurdhara / DIVYA SHAKTI" wordmark and trailing actions. */
@@ -102,7 +94,7 @@ fun AyBrandBar(
             .padding(horizontal = 20.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        AyLogoMark(34.dp)
+        AyLogoMark(38.dp)
         Spacer(Modifier.width(10.dp))
         Column(Modifier.weight(1f)) {
             Text("Ayurdhara", fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 20.sp, color = c.heading, lineHeight = 22.sp)

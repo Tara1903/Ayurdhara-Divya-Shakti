@@ -18,3 +18,5 @@ build/
 app/build/
 core/build/
 feature/build/
+*.jks
+*.keystore

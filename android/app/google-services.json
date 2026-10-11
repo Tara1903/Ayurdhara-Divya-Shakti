@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1043923981945",
+    "project_id": "ayurdhara-divya-shakti",
+    "storage_bucket": "ayurdhara-divya-shakti.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043923981945:android:7d87cb02f38de0aaebe6a8",
+        "android_client_info": {
+          "package_name": "com.ayurdhara.divyashakti"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYhzJcn_b4XidUQ2L6abW_6-fQa_hrDQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

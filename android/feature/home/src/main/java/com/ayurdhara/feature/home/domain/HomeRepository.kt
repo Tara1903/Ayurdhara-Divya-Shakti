@@ -13,27 +13,27 @@ import javax.inject.Singleton
 class HomeRepository @Inject constructor(
     private val ayurdharaRepository: SupabaseAyurdharaRepositoryImpl
 ) {
-    suspend fun getHomeData(): AppResult<HomeData> = coroutineScope {
-        val productsDeferred = async { ayurdharaRepository.getFeaturedProducts() }
+    suspend fun getHomeData(forceRefresh: Boolean = false): AppResult<HomeData> = coroutineScope {
+        val productsDeferred = async { ayurdharaRepository.getFeaturedProducts(forceRefresh) }
         val categoriesDeferred = async { ayurdharaRepository.getCategories() }
 
         val productsResult = productsDeferred.await()
         val categoriesResult = categoriesDeferred.await()
 
-        if (productsResult is AppResult.Success && categoriesResult is AppResult.Success) {
+        val prods = if (productsResult is AppResult.Success) productsResult.data else emptyList()
+        val cats = if (categoriesResult is AppResult.Success) categoriesResult.data else emptyList()
+
+        if (prods.isNotEmpty() || cats.isNotEmpty()) {
             AppResult.Success(
                 HomeData(
-                    featuredProducts = productsResult.data,
-                    categories = categoriesResult.data
+                    featuredProducts = prods,
+                    categories = cats
                 )
             )
-        } else if (productsResult is AppResult.Success) {
-            AppResult.Success(
-                HomeData(
-                    featuredProducts = productsResult.data,
-                    categories = emptyList()
-                )
-            )
+        } else if (productsResult is AppResult.Error) {
+            AppResult.Error(productsResult.exception, productsResult.message)
+        } else if (categoriesResult is AppResult.Error) {
+            AppResult.Error(categoriesResult.exception, categoriesResult.message)
         } else {
             AppResult.Error(Exception("Failed to fetch home data"))
         }

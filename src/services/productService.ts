@@ -1,17 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/lib/supabase/client';
-import { products as staticProducts, type Product, type ProductVariant } from '@/data/productData';
+import type { Product, ProductVariant } from '@/data/productData';
 
 export const productService = {
   async getProducts(): Promise<Product[]> {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      console.warn('Supabase URL not found. Falling back to static products.');
-      return staticProducts;
-    }
-
     const supabase = createClient();
-    
-    // Fetch products with their relationships
+
     const { data, error } = await supabase
       .from('products')
       .select(`
@@ -37,12 +31,8 @@ export const productService = {
   },
 
   async getProductBySlug(slug: string): Promise<Product | null> {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-      return staticProducts.find(p => p.slug === slug) || null;
-    }
-
     const supabase = createClient();
-    
+
     const { data, error } = await supabase
       .from('products')
       .select(`
@@ -105,7 +95,7 @@ function mapDbProductToAppProduct(dbProduct: any): Product {
         pricingStatus: v.pricing_status,
         goldPricingEnabled: v.gold_pricing_enabled,
         image: vImg ? vImg.url : ''
-      };
+      } as ProductVariant;
     }),
     price: dbProduct.product_variants?.[0]?.price || 0,
     originalPrice: dbProduct.product_variants?.[0]?.original_price || 0,

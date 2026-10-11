@@ -1,32 +1,45 @@
-/* Design Tokens - Organic India Inspired */
+/* Design Tokens - Authentic Ayurdhara Vedic Luxury */
 :root {
-  /* Colors */
-  --ivory: #F9F9F9;
-  --cream: #F2F5F0;
+  /* Semantic Brand Tokens matching Android AyLightColors */
+  --ay-canvas: #FCF9F4;
+  --ay-heading: #1B4332;
+  --ay-accent: #735C00;
+  --ay-gold: #D4AF37;
+  --ay-gold-fill: #FFE088;
+  --ay-on-gold-fill: #241A00;
+  --ay-banner-bg: #00452E;
+  --ay-card: #FFFFFF;
+  --ay-chip: #F0EDE9;
+  --ay-chip-high: #EBE8E3;
+  --ay-border: #E5E2DD;
+
+  /* Legacy Colors */
+  --ivory: #FCF9F4;
+  --cream: #F6F3EE;
   --parchment: #FFFFFF;
-  --forest: #2D5A27; /* Deep earthy green */
-  --olive: #4B7B3B; /* Primary brand green */
-  --earth: #628C23; /* Lighter secondary green */
-  --stone: #666666; /* Subdued text */
-  --charcoal: #333333; /* Main text */
-  --deep: #1A1A1A; /* Headings */
-  --gold: #E88B23; /* Orange accent / CTAs */
+  --forest: #1B4332; /* Deep sacred forest green */
+  --olive: #2E4C34; /* Primary brand forest green */
+  --earth: #4B7B3B; /* Secondary botanical green */
+  --stone: #717973; /* Subdued text */
+  --charcoal: #1C1C19; /* Main text */
+  --deep: #1B4332; /* Headings */
+  --gold: #D4AF37; /* Radiant sacred gold */
   --sage: #E0EBDC; /* Very light green bg */
-  --sand: #F0EDE5; /* Alternative light bg */
-  --moss: #386A32; /* Hover state for green */
-  --danger: #D9381E; /* Sale tags / errors */
+  --sand: #FCF9F4; /* Canvas bg */
+  --moss: #143326; /* Hover state for green */
+  --danger: #BA1A1A; /* Sale tags / errors */
 
   /* Hero Luxury Tokens */
-  --luxury-gold: #C5A572;
-  --hero-bg: #FAF7F2;
-  --hero-warm-beige: #F0EBE0;
-  --hero-text-primary: #1A2E14;
-  --hero-text-secondary: #4A5D42;
-  --hero-border-gold: rgba(197, 165, 114, 0.35);
-  --hero-shadow-product: 0 24px 64px rgba(45, 41, 38, 0.12);
-  --hero-shadow-card: 0 8px 32px rgba(45, 41, 38, 0.06);
-  --hero-shadow-btn-hover: 0 12px 40px rgba(197, 165, 114, 0.3);
-  --hero-glow-gold: 0 0 24px rgba(197, 165, 114, 0.15);
+  --luxury-gold: #D4AF37;
+  --hero-bg: #FCF9F4;
+  --hero-warm-beige: #F6F3EE;
+  --hero-text-primary: #1B4332;
+  --hero-text-secondary: #414844;
+  --hero-border-gold: rgba(212, 175, 55, 0.4);
+  --hero-shadow-product: 0 24px 64px rgba(27, 67, 50, 0.12);
+  --hero-shadow-card: 0 8px 32px rgba(27, 67, 50, 0.06);
+  --hero-shadow-btn-hover: 0 12px 40px rgba(212, 175, 55, 0.3);
+  --hero-glow-gold: 0 0 24px rgba(212, 175, 55, 0.2);
 
   /* Typography Scale */
   --text-display: clamp(2.5rem, 5vw + 1rem, 4.5rem);

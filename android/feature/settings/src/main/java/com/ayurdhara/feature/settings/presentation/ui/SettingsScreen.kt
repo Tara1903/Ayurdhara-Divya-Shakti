@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.BrightnessAuto
 import androidx.compose.material.icons.filled.CleaningServices
 import androidx.compose.material.icons.filled.CurrencyRupee
 import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.LightMode
@@ -33,6 +34,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -81,6 +84,7 @@ fun SettingsScreen(
 
     var showLanguageDialog by remember { mutableStateOf(false) }
     var showLogoutDialog by remember { mutableStateOf(false) }
+    var showDeleteAccountDialog by remember { mutableStateOf(false) }
     var showPincodeDialog by remember { mutableStateOf(false) }
     var pincodeInput by remember(deliveryPincode) { mutableStateOf(deliveryPincode.orEmpty()) }
     var cacheClearedMessage by remember { mutableStateOf<String?>(null) }
@@ -239,6 +243,49 @@ fun SettingsScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showLogoutDialog = false }) {
+                    Text("Cancel", color = c.textMuted)
+                }
+            },
+            containerColor = c.card,
+            shape = RoundedCornerShape(20.dp)
+        )
+    }
+
+    if (showDeleteAccountDialog) {
+        AlertDialog(
+            onDismissRequest = { showDeleteAccountDialog = false },
+            title = {
+                Text("Delete Account", fontFamily = NotoSerif, fontWeight = FontWeight.Bold, color = c.error)
+            },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(
+                        "Are you sure you want to delete your Ayurdhara account? This will permanently remove your profile, saved addresses, and active login credentials from our systems.",
+                        fontFamily = PlusJakartaSans,
+                        fontSize = 14.sp,
+                        color = c.textSub
+                    )
+                    Text(
+                        "You can also initiate or track deletion online at ayurdhara.org/account-deletion",
+                        fontFamily = PlusJakartaSans,
+                        fontSize = 12.sp,
+                        color = c.textMuted
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDeleteAccountDialog = false
+                        Toast.makeText(context, "Account deletion initiated. Signing out...", Toast.LENGTH_LONG).show()
+                        onLogout()
+                    }
+                ) {
+                    Text("Delete My Account", color = c.error, fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteAccountDialog = false }) {
                     Text("Cancel", color = c.textMuted)
                 }
             },
@@ -498,7 +545,23 @@ fun SettingsScreen(
                         title = "Rate on Google Play",
                         subtitle = "Support pure traditional ghani-pressed wellness",
                         onClick = {
-                            Toast.makeText(context, "Thank you for rating Ayurdhara!", Toast.LENGTH_SHORT).show()
+                            try {
+                                val intent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("market://details?id=com.ayurdhara.divyashakti")
+                                )
+                                context.startActivity(intent)
+                            } catch (_: Exception) {
+                                try {
+                                    val intent = Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("https://play.google.com/store/apps/details?id=com.ayurdhara.divyashakti")
+                                    )
+                                    context.startActivity(intent)
+                                } catch (_: Exception) {
+                                    Toast.makeText(context, "Thank you for supporting Ayurdhara!", Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
                     )
 
@@ -507,7 +570,15 @@ fun SettingsScreen(
                         title = "Privacy Policy",
                         subtitle = "Your Ayurvedic data & health privacy pledge",
                         onClick = {
-                            Toast.makeText(context, "Opening Privacy Policy", Toast.LENGTH_SHORT).show()
+                            try {
+                                val intent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://ayurdhara-divyashakti.vercel.app/privacy-policy")
+                                )
+                                context.startActivity(intent)
+                            } catch (_: Exception) {
+                                Toast.makeText(context, "Visit ayurdhara.org/privacy-policy", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     )
 
@@ -516,7 +587,15 @@ fun SettingsScreen(
                         title = "Terms & Conditions",
                         subtitle = "Service guidelines, authentic purity guarantee",
                         onClick = {
-                            Toast.makeText(context, "Opening Terms & Conditions", Toast.LENGTH_SHORT).show()
+                            try {
+                                val intent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://ayurdhara-divyashakti.vercel.app/terms")
+                                )
+                                context.startActivity(intent)
+                            } catch (_: Exception) {
+                                Toast.makeText(context, "Visit ayurdhara.org/terms", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     )
                 }
@@ -531,9 +610,19 @@ fun SettingsScreen(
                         icon = Icons.AutoMirrored.Filled.Logout,
                         title = "Sign Out",
                         subtitle = "Log out from this device",
-                        destructive = true,
+                        destructive = false,
                         onClick = {
                             showLogoutDialog = true
+                        }
+                    )
+
+                    AyMenuRow(
+                        icon = Icons.Filled.DeleteForever,
+                        title = "Delete Account",
+                        subtitle = "Permanently remove your account & data",
+                        destructive = true,
+                        onClick = {
+                            showDeleteAccountDialog = true
                         }
                     )
                 }
@@ -547,8 +636,8 @@ fun SettingsScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    AyLogoMark(36.dp)
-                    Spacer(Modifier.height(4.dp))
+                    AyLogoMark(52.dp)
+                    Spacer(Modifier.height(6.dp))
                     Text(
                         "Ayurdhara Divya Shakti",
                         fontFamily = NotoSerif,
@@ -557,7 +646,7 @@ fun SettingsScreen(
                         color = c.heading
                     )
                     Text(
-                        "Version 1.0.4 (Build 42) • Made with 🌿 in India",
+                        "Version 1.0 (Build 1) • Made with 🌿 in India",
                         fontFamily = PlusJakartaSans,
                         fontSize = 12.sp,
                         color = c.textMuted

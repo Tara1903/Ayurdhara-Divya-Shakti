@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -34,10 +35,27 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            val storeFileName = localProperties.getProperty("RELEASE_STORE_FILE") ?: "release-upload.jks"
+            val store = rootProject.file(storeFileName)
+            if (store.exists()) {
+                storeFile = store
+                storePassword = localProperties.getProperty("RELEASE_STORE_PASSWORD") ?: "ayurdhara2026"
+                keyAlias = localProperties.getProperty("RELEASE_KEY_ALIAS") ?: "ayurdhara-upload"
+                keyPassword = localProperties.getProperty("RELEASE_KEY_PASSWORD") ?: "ayurdhara2026"
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            val storeFileName = localProperties.getProperty("RELEASE_STORE_FILE") ?: "release-upload.jks"
+            if (rootProject.file(storeFileName).exists()) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
     compileOptions {
@@ -88,6 +106,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
@@ -98,6 +117,11 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -98,7 +98,7 @@ fun AyAuthScaffold(
                     Spacer(Modifier.width(8.dp))
                 }
                 if (title.isNotBlank()) {
-                    AyLogoMark(26.dp)
+                    AyLogoMark(32.dp)
                     Spacer(Modifier.width(10.dp))
                     Text(title, fontFamily = NotoSerif, fontWeight = FontWeight.SemiBold, fontSize = 19.sp, color = c.heading, maxLines = 1)
                 }
@@ -150,8 +150,8 @@ fun AyAuthBrandHeader(modifier: Modifier = Modifier, caption: String = "SACRED V
     val c = AyTheme.colors
     Column(modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
         Box(contentAlignment = Alignment.Center) {
-            Box(Modifier.size(72.dp).background(c.goldFill.copy(alpha = if (c.isDark) 0.14f else 0.35f), CircleShape))
-            AyLogoMark(46.dp)
+            Box(Modifier.size(80.dp).background(c.goldFill.copy(alpha = if (c.isDark) 0.14f else 0.35f), CircleShape))
+            AyLogoMark(64.dp)
         }
         Spacer(Modifier.height(8.dp))
         Text(

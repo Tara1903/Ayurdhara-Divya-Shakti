@@ -1,3 +1,5 @@
+@file:OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
+
 package com.ayurdhara.feature.home.presentation.ui
 
 import androidx.compose.foundation.background
@@ -7,24 +9,38 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Adjust
 import androidx.compose.material.icons.filled.Balance
+import androidx.compose.material.icons.filled.CardGiftcard
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.ChildCare
+import androidx.compose.material.icons.filled.DirectionsWalk
+import androidx.compose.material.icons.filled.Eco
+import androidx.compose.material.icons.filled.Elderly
 import androidx.compose.material.icons.filled.EmojiFoodBeverage
 import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material.icons.filled.Eco
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Grain
 import androidx.compose.material.icons.filled.Grass
+import androidx.compose.material.icons.filled.Hive
+import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.material.icons.filled.LocalFlorist
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Opacity
+import androidx.compose.material.icons.filled.Park
+import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.SelfImprovement
 import androidx.compose.material.icons.filled.Spa
 import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material3.AlertDialog
@@ -32,18 +48,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -55,20 +66,15 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ayurdhara.core.common.domain.model.Product
 import com.ayurdhara.core.common.result.UiState
-import com.ayurdhara.core.designsystem.components.AyBrandBar
-import com.ayurdhara.core.designsystem.components.AyAvatar
-import com.ayurdhara.core.designsystem.components.AyHeroBrush
-import com.ayurdhara.core.designsystem.components.AyHomeProductCard
-import com.ayurdhara.core.designsystem.components.AyIconButton
-import com.ayurdhara.core.designsystem.components.AyOutlineButton
-import com.ayurdhara.core.designsystem.components.AyPill
-import com.ayurdhara.core.designsystem.components.ayCard
-import com.ayurdhara.core.designsystem.components.ayDiscountPercent
+import com.ayurdhara.core.designsystem.components.*
 import com.ayurdhara.core.designsystem.theme.AyTheme
 import com.ayurdhara.core.designsystem.theme.NotoSerif
 import com.ayurdhara.core.designsystem.theme.PlusJakartaSans
 import com.ayurdhara.feature.home.presentation.viewmodel.HomeViewModel
+import kotlinx.coroutines.delay
 import java.util.Calendar
+
+// ─── Data Models ─────────────────────────────────────────────────────────────
 
 private data class Remedy(val label: String, val keywords: List<String>)
 
@@ -80,18 +86,94 @@ private val remedies = listOf(
     Remedy("Deep Sleep", listOf("sleep", "ashwagandha", "brahmi", "stress"))
 )
 
-/** Fallback circles shown until the realtime categories arrive. */
-private val defaultCategories = listOf("Cold Pressed Oils", "Raw Herbs", "Teas & Kadha", "Powders", "Superfoods", "Natural Aroma")
+/**
+ * Clean data model representing a promotional slide in the dynamic carousel.
+ */
+data class PromoSlide(
+    val id: String,
+    val badge: String,
+    val title: String,
+    val subtitle: String,
+    val ctaText: String = "Shop Now",
+    val destination: String = "",
+    val backgroundBrush: Brush,
+    val icon: ImageVector = Icons.Filled.Spa
+)
+
+/**
+ * Curated Ayurdhara promotional slides aligned with the authentic brand catalog.
+ */
+private val defaultPromoSlides = listOf(
+    PromoSlide(
+        id = "cold-pressed-oils",
+        badge = "100% RAW & UNREFINED",
+        title = "Divya Shakti Cold Pressed Sesame & Herbal Oils",
+        subtitle = "Extracted in slow traditional stone ghani mills without heat, synthetic solvents, or chemical preservatives.",
+        ctaText = "Shop Now",
+        destination = "cold-pressed-oils",
+        backgroundBrush = Brush.linearGradient(listOf(Color(0xFF0C3829), Color(0xFF07241A))),
+        icon = Icons.Filled.Spa
+    ),
+    PromoSlide(
+        id = "herbal-teas",
+        badge = "SACRED BOTANICALS",
+        title = "Immunity Kadhas & Pure Herbal Teas",
+        subtitle = "Hand-crafted blends with wild tulsi, giloy, and sun-dried mountain spices for circadian vitality.",
+        ctaText = "Explore Teas",
+        destination = "Herbal Teas",
+        backgroundBrush = Brush.linearGradient(listOf(Color(0xFF1D3E24), Color(0xFF0E2314))),
+        icon = Icons.Filled.EmojiFoodBeverage
+    ),
+    PromoSlide(
+        id = "herbal-powders",
+        badge = "DAILY VEDA ESSENTIALS",
+        title = "Authentic Churnas & Single Herbs",
+        subtitle = "Time-tested micronized herbs for gentle digestive balance, natural Agni stimulation, and deep calm.",
+        ctaText = "View Powders",
+        destination = "Natural Herbs Powder",
+        backgroundBrush = Brush.linearGradient(listOf(Color(0xFF382C1B), Color(0xFF1E170C))),
+        icon = Icons.Filled.Grain
+    ),
+    PromoSlide(
+        id = "super-foods",
+        badge = "100% PURE OJAS",
+        title = "Artisanal Superfoods & Natural Vitality",
+        subtitle = "Pure botanical and organic nutrient-dense superfoods crafted to uplift your sacred personal sanctuary.",
+        ctaText = "Discover More",
+        destination = "Super Foods",
+        backgroundBrush = Brush.linearGradient(listOf(Color(0xFF173238), Color(0xFF0A1C20))),
+        icon = Icons.Filled.Eco
+    )
+)
+
+/** Fallback categories shown until realtime categories load from Supabase. */
+private val defaultCategories = listOf(
+    "Cold Pressed Oils", "Hebs Natural Raw", "Herbal Teas", "Natural Herbs Powder",
+    "Super Foods", "Kids wellness products", "Dry Fruits And Nuts", "Combo Trial Packs"
+)
 
 private fun categoryIcon(title: String): ImageVector {
-    val t = title.lowercase()
+    val t = title.lowercase().trim()
     return when {
-        "oil" in t -> Icons.Filled.Opacity
-        "herb" in t -> Icons.Filled.Grass
-        "tea" in t || "kadha" in t -> Icons.Filled.EmojiFoodBeverage
+        "ghee" in t -> Icons.Filled.Restaurant
+        "honey" in t || "sweet" in t -> Icons.Filled.Hive
+        "nut" in t || "fruit" in t -> Icons.Filled.Park
+        "seed" in t -> Icons.Filled.Grain
+        "spice" in t -> Icons.Filled.LocalFireDepartment
         "powder" in t || "churna" in t -> Icons.Filled.Grain
+        "tea" in t || "kadha" in t -> Icons.Filled.EmojiFoodBeverage
+        "nabhi" in t -> Icons.Filled.Adjust
+        "feet" in t || "foot" in t -> Icons.Filled.DirectionsWalk
+        "massage" in t || "body" in t -> Icons.Filled.SelfImprovement
+        "kid" in t || "child" in t -> Icons.Filled.ChildCare
+        "men" in t -> Icons.Filled.FitnessCenter
+        "women" in t -> Icons.Filled.Favorite
+        "senior" in t -> Icons.Filled.Elderly
+        "combo" in t || "pack" in t || "trial" in t -> Icons.Filled.CardGiftcard
+        "cup" in t || "aroma" in t || "flor" in t -> Icons.Filled.LocalFlorist
+        "oil" in t -> Icons.Filled.Opacity
         "super" in t || "food" in t -> Icons.Filled.Eco
-        "aroma" in t || "flor" in t -> Icons.Filled.LocalFlorist
+        "herb" in t || "jadi" in t -> Icons.Filled.Grass
         else -> Icons.Filled.Spa
     }
 }
@@ -102,6 +184,8 @@ private fun Product.matches(keywords: List<String>): Boolean {
     return keywords.any { it in haystack }
 }
 
+// ─── Main HomeScreen Composable ──────────────────────────────────────────────
+
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
@@ -109,7 +193,7 @@ fun HomeScreen(
     onProductClick: (String) -> Unit = {},
     onShopClick: () -> Unit = {},
     onCartClick: () -> Unit = {},
-    /** Profile name for the greeting; falls back to "Rahul" when unavailable. */
+    /** Display name passed from the navigation host (from Supabase auth profile). */
     userName: String? = null,
     onSearchClick: () -> Unit = {},
     onProfileClick: () -> Unit = {},
@@ -126,420 +210,807 @@ fun HomeScreen(
     val c = AyTheme.colors
     var selectedRemedy by remember { mutableIntStateOf(0) }
 
+    // Dynamic time-of-day greeting
     val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-    val (greeting, doshaBadge, doshaAdvice) = remember(hour) {
-        when (hour) {
-            in 5..11 -> Triple(
-                "Good Morning",
-                "Kapha Awaken",
-                "Awaken your vitality today with energizing herbal infusions and fresh morning rituals."
-            )
-            in 12..16 -> Triple(
-                "Good Afternoon",
-                "Pitta Balance",
-                "Soothe your internal fire today and stay centered with cooling herbal preparations."
-            )
-            in 17..20 -> Triple(
-                "Good Evening",
-                "Vata-Pitta Balance",
-                "Balance your Vata dosha today with warm sesame oil rituals and herbal soothing infusions."
-            )
-            else -> Triple(
-                "Good Night",
-                "Sattva Rest",
-                "Unwind your senses tonight with tranquil rest rituals and soothing herbal elixirs."
-            )
-        }
+    val greetingPrefix = when (hour) {
+        in 5..11 -> "Good Morning"
+        in 12..16 -> "Good Afternoon"
+        in 17..20 -> "Good Evening"
+        else -> "Good Night"
     }
-    val displayName = userName?.trim()?.takeIf { it.isNotBlank() }
-    val greetingText = if (!displayName.isNullOrBlank()) "$greeting, $displayName 🌿" else "$greeting 🌿"
+    val cleanName = userName?.trim()?.takeIf {
+        it.isNotBlank() && !it.equals("null", ignoreCase = true) && !it.equals("undefined", ignoreCase = true)
+    }
+    val greetingText = if (!cleanName.isNullOrBlank()) "$greetingPrefix, $cleanName" else greetingPrefix
 
     Column(Modifier.fillMaxSize().background(c.canvas)) {
+        // TOP APP HEADER
         AyBrandBar(
             trailing = {
                 AyIconButton(Icons.Filled.Notifications, "Notifications", onClick = {})
                 AyAvatar(32.dp, onClick = onProfileClick)
             }
         )
+
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(top = 8.dp, bottom = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            contentPadding = PaddingValues(top = 4.dp, bottom = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // 1. Delivery location + search action (single profile icon preserved in top bar)
+            // 1. INLINE GREETING + DISCREET DELIVERY LOCATION CHIP
             item {
-                Row(
-                    Modifier.fillMaxWidth().padding(horizontal = 20.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Row(
-                        Modifier
-                            .ayCard(RoundedCornerShape(50), color = c.cardLow, elevation = 1.dp)
-                            .clickable {
-                                pincodeInput = savedPincode ?: ""
-                                showPincodeDialog = true
-                            }
-                            .padding(horizontal = 12.dp, vertical = 6.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(Icons.Filled.LocationOn, null, tint = c.accent, modifier = Modifier.size(16.dp))
-                        Spacer(Modifier.width(6.dp))
-                        Text("Deliver to: ", fontFamily = PlusJakartaSans, fontSize = 12.sp, color = c.textSub)
-                        Text(
-                            if (!savedPincode.isNullOrBlank()) savedPincode!! else "Jaipur 302001",
-                            fontFamily = PlusJakartaSans,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 12.sp,
-                            color = c.text
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Icon(Icons.Filled.ExpandMore, null, tint = c.textSub, modifier = Modifier.size(14.dp))
+                HomeGreetingRow(
+                    greetingText = greetingText,
+                    deliveryPincode = savedPincode,
+                    onPincodeClick = {
+                        pincodeInput = savedPincode ?: ""
+                        showPincodeDialog = true
                     }
-                    Spacer(Modifier.weight(1f))
-                    QuickAction(Icons.Filled.Search, "Search", dot = false, onClick = onSearchClick)
-                }
+                )
             }
 
-            // 2. Greeting card
+            // 2. COMPACT DYNAMIC PROMOTIONAL CAROUSEL
             item {
-                val shape = RoundedCornerShape(16.dp)
-                Box(
-                    Modifier
-                        .padding(horizontal = 20.dp)
-                        .fillMaxWidth()
-                        .clip(shape)
-                        .background(Brush.horizontalGradient(listOf(c.cardLow, c.chip, c.goldFill.copy(alpha = 0.2f))), shape)
-                ) {
-                    Box(
-                        Modifier.align(Alignment.BottomEnd).offset(x = 24.dp, y = 24.dp).size(96.dp)
-                            .background(Brush.radialGradient(listOf(c.goldFill.copy(alpha = 0.4f), c.goldFill.copy(alpha = 0f))), CircleShape)
-                    )
-                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                greetingText, Modifier.weight(1f),
-                                fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 20.sp, lineHeight = 26.sp, color = c.heading
-                            )
-                            Spacer(Modifier.width(8.dp))
-                            Row(
-                                Modifier.background(c.goldFill, RoundedCornerShape(50)).padding(horizontal = 10.dp, vertical = 2.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(Icons.Filled.Balance, null, tint = c.onGoldFill, modifier = Modifier.size(12.dp))
-                                Spacer(Modifier.width(4.dp))
-                                Text(
-                                    doshaBadge, fontFamily = PlusJakartaSans, fontWeight = FontWeight.SemiBold,
-                                    fontSize = 11.sp, color = c.onGoldFill, maxLines = 1
-                                )
-                            }
-                        }
-                        Text(
-                            doshaAdvice,
-                            Modifier.padding(end = 16.dp),
-                            fontFamily = PlusJakartaSans, fontSize = 14.sp, lineHeight = 20.sp, color = c.textSub
-                        )
-                    }
-                }
-            }
-
-            // 3. Hero banner
-            item {
-                val shape = RoundedCornerShape(16.dp)
-                Box(
-                    Modifier.padding(horizontal = 20.dp).fillMaxWidth().clip(shape).background(AyHeroBrush(), shape)
-                ) {
-                    Icon(
-                        Icons.Filled.Spa, null, tint = c.goldFill,
-                        modifier = Modifier.align(Alignment.TopEnd).size(144.dp).alpha(0.10f)
-                    )
-                    Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text(
-                            "100% RAW & UNREFINED",
-                            Modifier.background(c.goldFill, RoundedCornerShape(50)).padding(horizontal = 10.dp, vertical = 2.dp),
-                            fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 11.sp, letterSpacing = 0.8.sp, color = c.onGoldFill
-                        )
-                        Text(
-                            "Divya Shakti Cold Pressed Sesame & Herbal Oils",
-                            fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 24.sp, lineHeight = 30.sp, color = c.onHero
-                        )
-                        Text(
-                            "Extracted in slow traditional stone ghani mills without heat, synthetic solvents, or chemical preservatives.",
-                            Modifier.widthIn(max = 270.dp),
-                            fontFamily = PlusJakartaSans, fontSize = 12.sp, lineHeight = 18.sp, color = c.onHeroSub
-                        )
-                        Row(
-                            Modifier.padding(top = 2.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(c.goldFill, RoundedCornerShape(12.dp))
-                                .clickable(onClick = onShopClick)
-                                .padding(horizontal = 16.dp, vertical = 10.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text("Shop Now", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 14.sp, color = c.onGoldFill)
-                            Spacer(Modifier.width(6.dp))
-                            Icon(Icons.AutoMirrored.Filled.ArrowForward, null, tint = c.onGoldFill, modifier = Modifier.size(16.dp))
+                HomePromoCarousel(
+                    slides = defaultPromoSlides,
+                    onSlideClick = { slide ->
+                        if (slide.destination.isNotBlank()) {
+                            onCategoryClick(slide.destination)
+                        } else {
+                            onShopClick()
                         }
                     }
-                }
+                )
             }
 
-            // 4. Sacred Formulations (category circles)
+            // 3. SACRED FORMULATIONS — 4-COLUMN VERTICALLY EXPANDING GRID
             item {
-                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Text("Sacred Formulations", Modifier.weight(1f), fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 20.sp, color = c.heading)
-                        Text(
-                            "EXPLORE ALL", Modifier.clickable(onClick = onShopClick),
-                            fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 11.sp, letterSpacing = 0.8.sp, color = c.accent
-                        )
-                    }
-                    val liveCategories = (uiState as? UiState.Success)?.data?.categories.orEmpty()
-                    val circles = if (liveCategories.isNotEmpty()) liveCategories.map { it.title to it.slug } else defaultCategories.map { it to "" }
-                    LazyRow(
-                        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 4.dp),
-                        horizontalArrangement = Arrangement.spacedBy(14.dp)
-                    ) {
-                        items(circles) { (title, slug) ->
-                            Column(
-                                Modifier.width(64.dp).clickable { onCategoryClick(slug) },
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.spacedBy(6.dp)
-                            ) {
-                                Box(
-                                    Modifier.size(56.dp).ayCard(CircleShape, color = c.chipHigh, elevation = 1.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Icon(categoryIcon(title), null, tint = c.heading, modifier = Modifier.size(24.dp))
-                                }
-                                Text(
-                                    title, fontFamily = PlusJakartaSans, fontWeight = FontWeight.Medium, fontSize = 11.sp,
-                                    lineHeight = 14.sp, color = c.text, maxLines = 2, textAlign = TextAlign.Center, overflow = TextOverflow.Ellipsis
-                                )
-                            }
-                        }
-                    }
+                val liveCategories = (uiState as? UiState.Success)?.data?.categories.orEmpty()
+                val circles = if (liveCategories.isNotEmpty()) {
+                    liveCategories.map { it.title to it.id }
+                } else {
+                    defaultCategories.map { it to it }
                 }
+
+                SacredFormulationsSection(
+                    categories = circles,
+                    onCategoryClick = onCategoryClick,
+                    onExploreAllClick = onShopClick
+                )
             }
 
-            // 5. Targeted Remedies chips
+            // 4. TARGETED REMEDIES CHIPS
             item {
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(
-                        "TARGETED REMEDIES", Modifier.padding(horizontal = 20.dp),
-                        fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 11.sp, letterSpacing = 0.8.sp, color = c.textSub
-                    )
-                    LazyRow(
-                        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 2.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        items(remedies.size) { i ->
-                            AyPill(
-                                text = remedies[i].label,
-                                selected = i == selectedRemedy,
-                                onClick = { selectedRemedy = i },
-                                leadingIcon = if (i == selectedRemedy) Icons.Filled.Check else null
-                            )
-                        }
-                    }
-                }
+                TargetedRemediesSection(
+                    remedies = remedies,
+                    selectedIndex = selectedRemedy,
+                    onSelect = { selectedRemedy = it }
+                )
             }
 
-            // 6. Ayurvedic Bestsellers
+            // 5. AYURVEDIC BESTSELLERS
             item {
                 val products = (uiState as? UiState.Success)?.data?.featuredProducts.orEmpty()
-                Column(Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Column(Modifier.weight(1f)) {
-                            Text("Ayurvedic Bestsellers", fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 20.sp, color = c.heading)
-                            Text("Time-tested potent artisanal batches", fontFamily = PlusJakartaSans, fontSize = 12.sp, color = c.textSub)
-                        }
-                        Row(Modifier.clickable(onClick = onShopClick), verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                if (products.isNotEmpty()) "VIEW ${products.size}" else "VIEW ALL",
-                                fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 11.sp, letterSpacing = 0.8.sp, color = c.accent
-                            )
-                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null, tint = c.accent, modifier = Modifier.size(14.dp))
-                        }
-                    }
-                    when (val state = uiState) {
-                        is UiState.Success -> {
-                            val keywords = remedies[selectedRemedy].keywords
-                            // Products matching the chosen concern float to the top; nothing is hidden.
-                            val ordered = products.sortedByDescending { it.matches(keywords) }.take(6)
-                            ordered.chunked(2).forEach { pair ->
-                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                    pair.forEach { p ->
-                                        AyHomeProductCard(
-                                            title = p.title,
-                                            price = p.price,
-                                            originalPrice = p.originalPrice,
-                                            discount = ayDiscountPercent(p.price, p.originalPrice, p.discount),
-                                            rating = p.rating,
-                                            reviewCount = p.reviewCount,
-                                            badge = p.badge,
-                                            imageUrl = p.imageUrl,
-                                            onClick = { onProductClick(p.slug) },
-                                            onAddToBag = { onAddToCart(p) },
-                                            modifier = Modifier.weight(1f)
-                                        )
-                                    }
-                                    if (pair.size == 1) Spacer(Modifier.weight(1f))
-                                }
-                            }
-                        }
-                        is UiState.Error -> {
-                            Column(
-                                Modifier.fillMaxWidth().ayCard(RoundedCornerShape(16.dp)).padding(16.dp),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Text("Cannot reach our servers", fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 16.sp, color = c.heading)
-                                Text(state.message, fontFamily = PlusJakartaSans, fontSize = 12.sp, color = c.error, textAlign = TextAlign.Center)
-                                AyOutlineButton("Retry", onClick = { viewModel.fetchHomeData() }, height = 44.dp)
-                            }
-                        }
-                        else -> {
-                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                repeat(2) { SkeletonCard(Modifier.weight(1f)) }
-                            }
-                        }
-                    }
-                }
+                AyurvedicBestsellersSection(
+                    uiState = uiState,
+                    products = products,
+                    selectedRemedy = remedies[selectedRemedy],
+                    onProductClick = onProductClick,
+                    onAddToCart = onAddToCart,
+                    onViewAllClick = onShopClick,
+                    onRetry = { viewModel.fetchHomeData(forceRefresh = true) }
+                )
             }
 
-            // 7. Business Opportunity banner
+            // 6. BUSINESS OPPORTUNITY BANNER
             item {
-                val shape = RoundedCornerShape(16.dp)
-                Box(
-                    Modifier.padding(horizontal = 20.dp).fillMaxWidth().clip(shape)
-                        .background(c.bannerBg, shape)
-                        .then(if (c.isDark) Modifier.border(1.dp, c.border, shape) else Modifier)
-                ) {
-                    Box(
-                        Modifier.align(Alignment.BottomEnd).offset(x = 40.dp, y = 40.dp).size(160.dp)
-                            .background(Brush.radialGradient(listOf(c.goldFill.copy(alpha = 0.25f), c.goldFill.copy(alpha = 0f))), CircleShape)
-                    )
-                    Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Filled.WorkspacePremium, null, tint = c.goldFill, modifier = Modifier.size(20.dp))
-                            Spacer(Modifier.width(8.dp))
-                            Text(
-                                "DIVYA SHAKTI NETWORK", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold,
-                                fontSize = 11.sp, letterSpacing = 0.8.sp, color = c.goldFill
-                            )
-                        }
-                        Text(
-                            "Natural Aroma & Business Opportunity",
-                            fontFamily = NotoSerif, fontWeight = FontWeight.Bold, fontSize = 20.sp, lineHeight = 26.sp, color = c.onBanner
-                        )
-                        Text(
-                            "Partner with Ayurdhara as a certified Ayurvedic Wellness Consultant & Distributor to grow together in sacred health.",
-                            fontFamily = PlusJakartaSans, fontSize = 12.sp, lineHeight = 19.sp, color = c.onBanner.copy(alpha = 0.85f)
-                        )
-                        Row(Modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Text("Learn More", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold, fontSize = 14.sp, color = c.goldFill)
-                            Spacer(Modifier.width(6.dp))
-                            Icon(Icons.AutoMirrored.Filled.ArrowForward, null, tint = c.goldFill, modifier = Modifier.size(16.dp))
-                        }
-                    }
-                }
+                BusinessOpportunityBanner(onShopClick = onShopClick)
             }
 
-            // Ritual of the Day
+            // 7. RITUAL OF THE DAY
             item {
-                Row(
-                    Modifier.padding(horizontal = 20.dp).fillMaxWidth()
-                        .ayCard(RoundedCornerShape(12.dp), color = c.chipHigh, elevation = 1.dp)
-                        .padding(14.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Box(Modifier.size(40.dp).background(c.card, CircleShape), contentAlignment = Alignment.Center) {
-                        Icon(Icons.Filled.Spa, null, tint = c.accent, modifier = Modifier.size(20.dp))
-                    }
-                    Spacer(Modifier.width(12.dp))
-                    Column(Modifier.weight(1f)) {
-                        Text(
-                            "RITUAL OF THE DAY", fontFamily = PlusJakartaSans, fontWeight = FontWeight.Bold,
-                            fontSize = 10.sp, letterSpacing = 1.5.sp, color = c.accent
-                        )
-                        Text(
-                            "\"Swasthyasya swasthya rakshanam — Nurture your natural rhythm.\"",
-                            fontFamily = PlusJakartaSans, fontStyle = FontStyle.Italic, fontSize = 12.sp, color = c.text,
-                            maxLines = 1, overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                }
+                RitualOfTheDayCard()
             }
         }
     }
 
     // Dynamic pincode dialog
     if (showPincodeDialog) {
-        AlertDialog(
-            onDismissRequest = { showPincodeDialog = false },
-            title = {
-                Text("Delivery Location", fontFamily = NotoSerif, fontWeight = FontWeight.Bold, color = c.heading)
-            },
-            text = {
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(
-                        "Enter your 6-digit postal code to check product availability & fastest delivery.",
-                        fontFamily = PlusJakartaSans,
-                        fontSize = 13.sp,
-                        color = c.textSub
-                    )
-                    OutlinedTextField(
-                        value = pincodeInput,
-                        onValueChange = { input ->
-                            if (input.length <= 6 && input.all { it.isDigit() }) {
-                                pincodeInput = input
-                            }
-                        },
-                        placeholder = { Text("e.g. 302001", color = c.textMuted) },
-                        singleLine = true,
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                        modifier = Modifier.fillMaxWidth()
-                    )
+        DeliveryPincodeDialog(
+            pincodeInput = pincodeInput,
+            onPincodeInputChange = { input ->
+                if (input.length <= 6 && input.all { it.isDigit() }) {
+                    pincodeInput = input
                 }
             },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        if (pincodeInput.length == 6) {
-                            viewModel.setDeliveryPincode(pincodeInput)
-                            showPincodeDialog = false
-                        }
-                    }
-                ) {
-                    Text("Apply", fontWeight = FontWeight.Bold, color = c.accent)
+            onApply = {
+                if (pincodeInput.length == 6) {
+                    viewModel.setDeliveryPincode(pincodeInput)
+                    showPincodeDialog = false
                 }
             },
-            dismissButton = {
-                TextButton(onClick = { showPincodeDialog = false }) {
-                    Text("Cancel", color = c.textMuted)
-                }
-            }
+            onDismiss = { showPincodeDialog = false }
         )
     }
 }
 
-/** 36dp round action button (search / notifications) with an optional gold dot. */
+// ─── Component: Inline Greeting Row ──────────────────────────────────────────
+
 @Composable
-private fun QuickAction(icon: ImageVector, description: String, dot: Boolean, onClick: () -> Unit) {
+private fun HomeGreetingRow(
+    greetingText: String,
+    deliveryPincode: String?,
+    onPincodeClick: () -> Unit
+) {
     val c = AyTheme.colors
-    Box(
-        Modifier.size(36.dp).ayCard(CircleShape, color = c.chip, elevation = 1.dp).clickable(onClick = onClick),
-        contentAlignment = Alignment.Center
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 2.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon(icon, description, tint = c.heading, modifier = Modifier.size(18.dp))
-        if (dot) Box(Modifier.align(Alignment.TopEnd).padding(6.dp).size(8.dp).background(c.accent, CircleShape))
+        // Compact inline greeting (no colored card, no illustration, minimal vertical space)
+        Text(
+            text = greetingText,
+            fontFamily = PlusJakartaSans,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 15.sp,
+            color = c.textSub,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f, fill = false)
+        )
+
+        Spacer(Modifier.width(8.dp))
+
+        // Discreet delivery location chip
+        Row(
+            modifier = Modifier
+                .ayCard(RoundedCornerShape(50), color = c.chip, elevation = 0.dp)
+                .clickable(onClick = onPincodeClick)
+                .padding(horizontal = 10.dp, vertical = 5.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(Icons.Filled.LocationOn, "Delivery Location", tint = c.accent, modifier = Modifier.size(13.dp))
+            Spacer(Modifier.width(4.dp))
+            Text(
+                text = if (!deliveryPincode.isNullOrBlank()) deliveryPincode else "Jaipur 302001",
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.Medium,
+                fontSize = 11.sp,
+                color = c.text,
+                maxLines = 1
+            )
+            Spacer(Modifier.width(2.dp))
+            Icon(Icons.Filled.ExpandMore, null, tint = c.textSub, modifier = Modifier.size(12.dp))
+        }
+    }
+}
+
+// ─── Component: Compact Dynamic Promotional Carousel ─────────────────────────
+
+@Composable
+private fun HomePromoCarousel(
+    slides: List<PromoSlide>,
+    onSlideClick: (PromoSlide) -> Unit
+) {
+    if (slides.isEmpty()) return
+
+    val c = AyTheme.colors
+    val pagerState = rememberPagerState(pageCount = { slides.size })
+
+    // Auto-rotation every 5 seconds; skips scroll if user is actively interacting/scrolling
+    LaunchedEffect(pagerState, slides.size) {
+        if (slides.size <= 1) return@LaunchedEffect
+        while (true) {
+            delay(5000L)
+            if (!pagerState.isScrollInProgress) {
+                val nextPage = (pagerState.currentPage + 1) % slides.size
+                pagerState.animateScrollToPage(nextPage)
+            }
+        }
+    }
+
+    if (slides.size == 1) {
+        // Single slide: static banner without pager or animation overhead
+        Box(Modifier.padding(horizontal = 20.dp)) {
+            PromoSlideCard(slide = slides[0], onClick = { onSlideClick(slides[0]) })
+        }
+    } else {
+        // Multiple slides: smooth horizontal pager with auto-rotation and pagination
+        Column(Modifier.fillMaxWidth()) {
+            HorizontalPager(
+                state = pagerState,
+                contentPadding = PaddingValues(horizontal = 20.dp),
+                pageSpacing = 12.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(154.dp)
+            ) { page ->
+                val slide = slides[page]
+                PromoSlideCard(
+                    slide = slide,
+                    onClick = { onSlideClick(slide) },
+                    pagination = {
+                        // Pagination dots aligned in the bottom bar of each card
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(5.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            repeat(slides.size) { index ->
+                                val isActive = index == pagerState.currentPage
+                                Box(
+                                    modifier = Modifier
+                                        .height(5.dp)
+                                        .width(if (isActive) 16.dp else 5.dp)
+                                        .clip(RoundedCornerShape(50))
+                                        .background(
+                                            if (isActive) c.goldFill else Color.White.copy(alpha = 0.35f)
+                                        )
+                                )
+                            }
+                        }
+                    }
+                )
+            }
+        }
     }
 }
 
 @Composable
+private fun PromoSlideCard(
+    slide: PromoSlide,
+    onClick: () -> Unit,
+    pagination: @Composable (() -> Unit)? = null
+) {
+    val c = AyTheme.colors
+    val shape = RoundedCornerShape(16.dp)
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(154.dp)
+            .clip(shape)
+            .background(slide.backgroundBrush, shape)
+            .clickable(onClick = onClick)
+    ) {
+        // Subtle watermark botanical icon in the background
+        Icon(
+            imageVector = slide.icon,
+            contentDescription = null,
+            tint = Color.White,
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .offset(x = 16.dp, y = (-8).dp)
+                .size(136.dp)
+                .alpha(0.08f)
+        )
+
+        // Radial gold highlight shimmer in top right
+        Box(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .size(110.dp)
+                .background(
+                    Brush.radialGradient(
+                        listOf(c.goldFill.copy(alpha = 0.18f), Color.Transparent)
+                    ),
+                    CircleShape
+                )
+        )
+
+        // Content layout
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            // Upper content: Badge + Title + Subtitle
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                // Badge
+                Text(
+                    text = slide.badge,
+                    modifier = Modifier
+                        .background(c.goldFill, RoundedCornerShape(50))
+                        .padding(horizontal = 8.dp, vertical = 2.dp),
+                    fontFamily = PlusJakartaSans,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 9.5.sp,
+                    letterSpacing = 0.8.sp,
+                    color = c.onGoldFill,
+                    maxLines = 1
+                )
+
+                // Title
+                Text(
+                    text = slide.title,
+                    fontFamily = NotoSerif,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp,
+                    color = Color.White,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+
+                // Subtitle
+                Text(
+                    text = slide.subtitle,
+                    fontFamily = PlusJakartaSans,
+                    fontSize = 11.sp,
+                    lineHeight = 14.sp,
+                    color = Color.White.copy(alpha = 0.82f),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.fillMaxWidth(0.85f)
+                )
+            }
+
+            // Lower content: CTA Button on Left, Pagination Dots on Right
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Compact CTA button
+                Row(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(c.goldFill, RoundedCornerShape(8.dp))
+                        .padding(horizontal = 12.dp, vertical = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = slide.ctaText,
+                        fontFamily = PlusJakartaSans,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp,
+                        color = c.onGoldFill
+                    )
+                    Spacer(Modifier.width(4.dp))
+                    Icon(
+                        Icons.AutoMirrored.Filled.ArrowForward,
+                        contentDescription = null,
+                        tint = c.onGoldFill,
+                        modifier = Modifier.size(13.dp)
+                    )
+                }
+
+                // Pagination indicator
+                pagination?.invoke()
+            }
+        }
+    }
+}
+
+// ─── Component: Sacred Formulations (4-Column Grid) ──────────────────────────
+
+@Composable
+private fun SacredFormulationsSection(
+    categories: List<Pair<String, String>>,
+    onCategoryClick: (String) -> Unit,
+    onExploreAllClick: () -> Unit
+) {
+    val c = AyTheme.colors
+
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        // Section Header
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Sacred Formulations",
+                modifier = Modifier.weight(1f),
+                fontFamily = NotoSerif,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                color = c.heading
+            )
+            Text(
+                text = "EXPLORE ALL",
+                modifier = Modifier.clickable(onClick = onExploreAllClick),
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.Bold,
+                fontSize = 11.sp,
+                letterSpacing = 0.8.sp,
+                color = c.accent
+            )
+        }
+
+        // 4-Column Vertically Expanding Grid (No horizontal scrolling!)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 14.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
+        ) {
+            categories.chunked(4).forEach { rowItems ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    rowItems.forEach { (title, slug) ->
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(12.dp))
+                                .clickable { onCategoryClick(slug) }
+                                .padding(vertical = 4.dp, horizontal = 2.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            // Circular icon container
+                            Box(
+                                modifier = Modifier
+                                    .size(52.dp)
+                                    .ayCard(CircleShape, color = c.chipHigh, elevation = 1.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = categoryIcon(title),
+                                    contentDescription = title,
+                                    tint = c.heading,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            }
+
+                            // Centered label allowing natural 2-line wrapping
+                            Text(
+                                text = title,
+                                fontFamily = PlusJakartaSans,
+                                fontWeight = FontWeight.Medium,
+                                fontSize = 11.sp,
+                                lineHeight = 14.sp,
+                                color = c.text,
+                                maxLines = 2,
+                                minLines = 2,
+                                textAlign = TextAlign.Center,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }
+
+                    // Pad empty slots if last row has fewer than 4 items so column widths remain equal
+                    if (rowItems.size < 4) {
+                        repeat(4 - rowItems.size) {
+                            Spacer(Modifier.weight(1f))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ─── Component: Targeted Remedies ────────────────────────────────────────────
+
+@Composable
+private fun TargetedRemediesSection(
+    remedies: List<Remedy>,
+    selectedIndex: Int,
+    onSelect: (Int) -> Unit
+) {
+    val c = AyTheme.colors
+
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(
+            text = "TARGETED REMEDIES",
+            modifier = Modifier.padding(horizontal = 20.dp),
+            fontFamily = PlusJakartaSans,
+            fontWeight = FontWeight.Bold,
+            fontSize = 11.sp,
+            letterSpacing = 0.8.sp,
+            color = c.textSub
+        )
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 20.dp, vertical = 2.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(remedies.size) { i ->
+                AyPill(
+                    text = remedies[i].label,
+                    selected = i == selectedIndex,
+                    onClick = { onSelect(i) },
+                    leadingIcon = if (i == selectedIndex) Icons.Filled.Check else null
+                )
+            }
+        }
+    }
+}
+
+// ─── Component: Ayurvedic Bestsellers ────────────────────────────────────────
+
+@Composable
+private fun AyurvedicBestsellersSection(
+    uiState: UiState<*>,
+    products: List<Product>,
+    selectedRemedy: Remedy,
+    onProductClick: (String) -> Unit,
+    onAddToCart: (Product) -> Unit,
+    onViewAllClick: () -> Unit,
+    onRetry: () -> Unit
+) {
+    val c = AyTheme.colors
+
+    Column(
+        modifier = Modifier.padding(horizontal = 20.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1f)) {
+                Text(
+                    text = "Ayurvedic Bestsellers",
+                    fontFamily = NotoSerif,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = c.heading
+                )
+                Text(
+                    text = "Time-tested potent artisanal batches",
+                    fontFamily = PlusJakartaSans,
+                    fontSize = 12.sp,
+                    color = c.textSub
+                )
+            }
+            Row(
+                modifier = Modifier.clickable(onClick = onViewAllClick),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = if (products.isNotEmpty()) "VIEW ${products.size}" else "VIEW ALL",
+                    fontFamily = PlusJakartaSans,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 11.sp,
+                    letterSpacing = 0.8.sp,
+                    color = c.accent
+                )
+                Icon(
+                    Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = c.accent,
+                    modifier = Modifier.size(14.dp)
+                )
+            }
+        }
+
+        when (uiState) {
+            is UiState.Success -> {
+                val keywords = selectedRemedy.keywords
+                val ordered = products.sortedByDescending { it.matches(keywords) }.take(6)
+                ordered.chunked(2).forEach { pair ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        pair.forEach { p ->
+                            AyHomeProductCard(
+                                title = p.title,
+                                price = p.price,
+                                originalPrice = p.originalPrice,
+                                discount = ayDiscountPercent(p.price, p.originalPrice, p.discount),
+                                rating = p.rating,
+                                reviewCount = p.reviewCount,
+                                badge = p.badge,
+                                imageUrl = p.imageUrl,
+                                onClick = { onProductClick(p.slug) },
+                                onAddToBag = { onAddToCart(p) },
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                        if (pair.size == 1) Spacer(Modifier.weight(1f))
+                    }
+                }
+            }
+            is UiState.Error -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .ayCard(RoundedCornerShape(16.dp))
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = "Cannot reach our servers",
+                        fontFamily = NotoSerif,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = c.heading
+                    )
+                    Text(
+                        text = uiState.message,
+                        fontFamily = PlusJakartaSans,
+                        fontSize = 12.sp,
+                        color = c.error,
+                        textAlign = TextAlign.Center
+                    )
+                    AyOutlineButton("Retry", onClick = onRetry, height = 44.dp)
+                }
+            }
+            else -> {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    repeat(2) { SkeletonCard(Modifier.weight(1f)) }
+                }
+            }
+        }
+    }
+}
+
+// ─── Component: Business Opportunity Banner ──────────────────────────────────
+
+@Composable
+private fun BusinessOpportunityBanner(onShopClick: () -> Unit) {
+    val c = AyTheme.colors
+    val shape = RoundedCornerShape(16.dp)
+
+    Box(
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+            .fillMaxWidth()
+            .clip(shape)
+            .background(c.bannerBg, shape)
+            .then(if (c.isDark) Modifier.border(1.dp, c.border, shape) else Modifier)
+    ) {
+        Box(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .offset(x = 40.dp, y = 40.dp)
+                .size(160.dp)
+                .background(
+                    Brush.radialGradient(listOf(c.goldFill.copy(alpha = 0.25f), c.goldFill.copy(alpha = 0f))),
+                    CircleShape
+                )
+        )
+        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Filled.WorkspacePremium, null, tint = c.goldFill, modifier = Modifier.size(20.dp))
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    text = "DIVYA SHAKTI NETWORK",
+                    fontFamily = PlusJakartaSans,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 11.sp,
+                    letterSpacing = 0.8.sp,
+                    color = c.goldFill
+                )
+            }
+            Text(
+                text = "Natural Aroma & Business Opportunity",
+                fontFamily = NotoSerif,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                lineHeight = 26.sp,
+                color = c.onBanner
+            )
+            Text(
+                text = "Partner with Ayurdhara as a certified Ayurvedic Wellness Consultant & Distributor to grow together in sacred health.",
+                fontFamily = PlusJakartaSans,
+                fontSize = 12.sp,
+                lineHeight = 19.sp,
+                color = c.onBanner.copy(alpha = 0.85f)
+            )
+            Row(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .clickable(onClick = onShopClick),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Learn More",
+                    fontFamily = PlusJakartaSans,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp,
+                    color = c.goldFill
+                )
+                Spacer(Modifier.width(6.dp))
+                Icon(Icons.AutoMirrored.Filled.ArrowForward, null, tint = c.goldFill, modifier = Modifier.size(16.dp))
+            }
+        }
+    }
+}
+
+// ─── Component: Ritual of the Day Card ───────────────────────────────────────
+
+@Composable
+private fun RitualOfTheDayCard() {
+    val c = AyTheme.colors
+    Row(
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+            .fillMaxWidth()
+            .ayCard(RoundedCornerShape(12.dp), color = c.chipHigh, elevation = 1.dp)
+            .padding(14.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(Modifier.size(40.dp).background(c.card, CircleShape), contentAlignment = Alignment.Center) {
+            Icon(Icons.Filled.Spa, null, tint = c.accent, modifier = Modifier.size(20.dp))
+        }
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text(
+                text = "RITUAL OF THE DAY",
+                fontFamily = PlusJakartaSans,
+                fontWeight = FontWeight.Bold,
+                fontSize = 10.sp,
+                letterSpacing = 1.5.sp,
+                color = c.accent
+            )
+            Text(
+                text = "\"Swasthyasya swasthya rakshanam — Nurture your natural rhythm.\"",
+                fontFamily = PlusJakartaSans,
+                fontStyle = FontStyle.Italic,
+                fontSize = 12.sp,
+                color = c.text,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+    }
+}
+
+// ─── Component: Delivery Pincode Dialog ──────────────────────────────────────
+
+@Composable
+private fun DeliveryPincodeDialog(
+    pincodeInput: String,
+    onPincodeInputChange: (String) -> Unit,
+    onApply: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    val c = AyTheme.colors
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text("Delivery Location", fontFamily = NotoSerif, fontWeight = FontWeight.Bold, color = c.heading)
+        },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    text = "Enter your 6-digit postal code to check product availability & fastest delivery.",
+                    fontFamily = PlusJakartaSans,
+                    fontSize = 13.sp,
+                    color = c.textSub
+                )
+                OutlinedTextField(
+                    value = pincodeInput,
+                    onValueChange = onPincodeInputChange,
+                    placeholder = { Text("e.g. 302001", color = c.textMuted) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onApply) {
+                Text("Apply", fontWeight = FontWeight.Bold, color = c.accent)
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel", color = c.textMuted)
+            }
+        }
+    )
+}
+
+// ─── Component: Skeleton Placeholder Card ────────────────────────────────────
+
+@Composable
 private fun SkeletonCard(modifier: Modifier = Modifier) {
     val c = AyTheme.colors
-    Column(modifier.ayCard(RoundedCornerShape(16.dp), elevation = 2.dp).padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    Column(
+        modifier = modifier
+            .ayCard(RoundedCornerShape(16.dp), elevation = 2.dp)
+            .padding(12.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         Box(Modifier.fillMaxWidth().aspectRatio(1f).background(if (c.isDark) c.chipHigh else c.chip, RoundedCornerShape(12.dp)))
         Box(Modifier.fillMaxWidth(0.4f).height(10.dp).background(if (c.isDark) c.chipHigh else c.chip, RoundedCornerShape(4.dp)))
         Box(Modifier.fillMaxWidth().height(32.dp).background(if (c.isDark) c.chipHigh else c.chip, RoundedCornerShape(4.dp)))

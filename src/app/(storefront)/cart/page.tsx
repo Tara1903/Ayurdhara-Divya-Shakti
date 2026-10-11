@@ -1,16 +1,25 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCartStore } from '@/store/cartStore';
 import { Shield, Check, Info, Minus, Plus, X, ShoppingBag } from 'lucide-react';
-import { products } from '@/data/productData';
+import type { Product } from '@/data/productData';
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getCartSubtotal, getCartOriginalTotal, partnerCode, setPartnerCode } = useCartStore();
   const [promoCode, setPromoCode] = useState('');
   const [promoStatus, setPromoStatus] = useState<'idle' | 'applied' | 'invalid'>('idle');
   const [partnerCodeInput, setPartnerCodeInput] = useState('');
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+
+  // Fetch live products for recommendations
+  useEffect(() => {
+    fetch('/api/products')
+      .then(r => r.ok ? r.json() : [])
+      .then((data: Product[]) => setAllProducts(data))
+      .catch(() => {});
+  }, []);
 
   const subtotal = getCartSubtotal();
   const originalTotal = getCartOriginalTotal();
@@ -35,13 +44,13 @@ export default function CartPage() {
     }
   };
 
-  // Recommendations logic: Find products from the same categories as items in cart
+  // Recommendations: products from the same categories as items in cart
   const cartCategories = Array.from(new Set(items.map(i => {
-    const p = products.find(prod => prod.slug === i.productId);
+    const p = allProducts.find(prod => prod.slug === i.productId);
     return p ? p.category : null;
   }).filter(Boolean)));
   
-  const recommendedProducts = products
+  const recommendedProducts = allProducts
     .filter(p => cartCategories.includes(p.category) && !items.some(i => i.productId === p.slug))
     .slice(0, 4);
 

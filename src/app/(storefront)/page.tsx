@@ -1,15 +1,20 @@
-import { getActiveProducts } from "@/lib/dal/products";
+import { getActiveProducts, getActiveCategories } from "@/lib/dal/products";
 import HomepageClient from "./HomepageClient";
 import PopupManager from "@/components/PopupManager";
 
+export const revalidate = 60;
+
 export default async function Home() {
-  const products = await getActiveProducts();
+  const [products, categories] = await Promise.all([
+    getActiveProducts(),
+    getActiveCategories(),
+  ]);
 
   return (
     <main>
       {/* Popup Manager handles sequencing of Newsletter -> Wellness popups */}
       <PopupManager />
-      <HomepageClient products={products} />
+      <HomepageClient products={products} categories={categories} />
     </main>
   );
 }

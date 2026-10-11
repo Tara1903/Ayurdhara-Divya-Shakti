@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#2E4C34</color>
+    <color name="primary_dark">#1E3323</color>
+    <color name="accent_gold">#D4AF37</color>
+    <color name="warm_cream">#FAF7F2</color>
+</resources>

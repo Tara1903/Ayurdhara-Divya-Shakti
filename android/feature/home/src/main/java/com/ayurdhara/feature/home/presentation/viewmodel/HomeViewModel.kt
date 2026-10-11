@@ -61,9 +61,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun fetchHomeData() {
+    fun fetchHomeData(forceRefresh: Boolean = false) {
         viewModelScope.launch {
-            when (val result = homeRepository.getHomeData()) {
+            _uiState.value = UiState.Loading
+            when (val result = homeRepository.getHomeData(forceRefresh)) {
                 is AppResult.Success -> _uiState.value = UiState.Success(result.data)
                 is AppResult.Error -> _uiState.value = UiState.Error(result.message ?: "Failed to fetch data")
                 is AppResult.Loading -> _uiState.value = UiState.Loading

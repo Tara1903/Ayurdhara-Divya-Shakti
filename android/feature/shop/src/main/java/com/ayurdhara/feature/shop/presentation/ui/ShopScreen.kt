@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -87,7 +88,15 @@ fun ShopScreen(
     val c = AyTheme.colors
     val focusManager = LocalFocusManager.current
 
-    var selectedSlug by remember(initialCategorySlug) { mutableStateOf(initialCategorySlug) }
+    var selectedSlug by remember(initialCategorySlug) {
+        mutableStateOf(initialCategorySlug?.trim()?.replace("+", " ")?.ifBlank { null })
+    }
+
+    LaunchedEffect(initialCategorySlug) {
+        if (!initialCategorySlug.isNullOrBlank()) {
+            selectedSlug = initialCategorySlug.trim().replace("+", " ")
+        }
+    }
     var query by remember { mutableStateOf("") }
     var sort by remember { mutableStateOf(ShopSort.BESTSELLING) }
     var sortMenu by remember { mutableStateOf(false) }
@@ -97,14 +106,46 @@ fun ShopScreen(
     val categories = data?.categories.orEmpty()
     val allProducts = data?.products.orEmpty()
 
-    val products = remember(allProducts, categories, selectedSlug, query, sort, quick) {
-        val cat = categories.firstOrNull { it.slug == selectedSlug }
+    val cat = remember(categories, selectedSlug) {
+        if (selectedSlug.isNullOrBlank()) null else {
+            val target = selectedSlug?.trim().orEmpty().replace("+", " ")
+            categories.firstOrNull { c ->
+                c.id.equals(target, ignoreCase = true) ||
+                c.slug.trim().equals(target, ignoreCase = true) ||
+                c.title.trim().equals(target, ignoreCase = true) ||
+                c.slug.trim().startsWith(target, ignoreCase = true) ||
+                target.startsWith(c.slug.trim(), ignoreCase = true)
+            }
+        }
+    }
+
+    val categoryListState = rememberLazyListState()
+    LaunchedEffect(cat, categories) {
+        if (cat != null && categories.isNotEmpty()) {
+            val index = categories.indexOfFirst { it.id == cat.id }
+            if (index >= 0) {
+                categoryListState.animateScrollToItem(index + 1)
+            }
+        }
+    }
+
+    val products = remember(allProducts, cat, query, sort, quick) {
         val q = query.trim().lowercase()
         val filtered = allProducts.filter { p ->
-            val matchesCategory = cat == null ||
-                p.category.equals(cat.title, true) ||
-                p.category.equals(cat.slug, true) ||
-                p.categories.any { it.equals(cat.title, true) || it.equals(cat.slug, true) }
+            val matchesCategory = if (cat == null) {
+                true
+            } else {
+                p.categoryId == cat.id ||
+                p.categoryIds.contains(cat.id) ||
+                (!p.categorySlug.isNullOrBlank() && p.categorySlug.equals(cat.slug, ignoreCase = true)) ||
+                p.categorySlugs.any { it.equals(cat.slug, ignoreCase = true) } ||
+                p.category.trim().equals(cat.title.trim(), ignoreCase = true) ||
+                p.category.trim().equals(cat.slug.trim(), ignoreCase = true) ||
+                p.categories.any { 
+                    it.trim().equals(cat.title.trim(), ignoreCase = true) || 
+                    it.trim().equals(cat.slug.trim(), ignoreCase = true) 
+                }
+            }
             matchesCategory &&
                 (q.isEmpty() || p.text().contains(q)) &&
                 quick.all { p.passes(it) }
@@ -176,13 +217,24 @@ fun ShopScreen(
             // Category tabs
             item(span = { GridItemSpan(maxLineSpan) }) {
                 LazyRow(
+                    state = categoryListState,
                     contentPadding = PaddingValues(horizontal = 20.dp),
                     horizontalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
-                    item { CategoryTab("All Items", selectedSlug == null) { selectedSlug = null } }
-                    items(categories, key = { it.id }) { cat ->
-                        CategoryTab(cat.title, selectedSlug == cat.slug) {
-                            selectedSlug = if (selectedSlug == cat.slug) null else cat.slug
+                    item {
+                        CategoryTab("All Items", selectedSlug == null && cat == null) {
+                            selectedSlug = null
+                        }
+                    }
+                    items(categories, key = { it.id }) { catItem ->
+                        val isSelected = cat?.id == catItem.id ||
+                            (selectedSlug != null && (
+                                catItem.slug.trim().equals(selectedSlug?.trim(), ignoreCase = true) ||
+                                catItem.id.equals(selectedSlug?.trim(), ignoreCase = true) ||
+                                catItem.title.trim().equals(selectedSlug?.trim(), ignoreCase = true)
+                            ))
+                        CategoryTab(catItem.title.trim(), isSelected) {
+                            selectedSlug = if (isSelected) null else catItem.id
                         }
                     }
                 }
@@ -355,8 +407,9 @@ fun ShopScreen(
 }
 
 private fun categoryLabel(p: Product): String {
-    val benefit = p.primaryBenefit?.takeIf { it.isNotBlank() && it.length <= 24 }
-    return if (benefit != null) "${p.category} • $benefit" else p.category
+    val catName = p.category.trim()
+    val benefit = p.primaryBenefit?.trim()?.takeIf { it.isNotBlank() && it.length <= 24 }
+    return if (benefit != null) "$catName • $benefit" else catName
 }
 
 @Composable

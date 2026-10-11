@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { products, type Product } from '@/data/productData';
+import type { Product } from '@/data/productData';
 import { createCashOrder } from '@/actions/cashOrderActions';
 import { validatePartnerCode } from '@/actions/partnerActions';
 import { createClient } from '@/lib/supabase/client';
@@ -13,6 +13,7 @@ export default function NewCashOrderPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [staffList, setStaffList] = useState<{ id: string, name: string }[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   
   // Form State
   const [customerName, setCustomerName] = useState('');
@@ -49,7 +50,15 @@ export default function NewCashOrderPage() {
         if (data.length > 0 && !staffName) setStaffName(data[0].full_name || 'Admin User');
       }
     };
+    // Fetch live products for dropdown
+    const fetchProducts = async () => {
+      fetch('/api/products')
+        .then(r => r.ok ? r.json() : [])
+        .then((data: Product[]) => setProducts(data))
+        .catch(() => {});
+    };
     fetchStaff();
+    fetchProducts();
   }, [staffName]);
 
   const handleValidatePartner = async () => {

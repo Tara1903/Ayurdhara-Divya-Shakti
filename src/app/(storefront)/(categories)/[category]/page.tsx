@@ -23,8 +23,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
   const allProducts = await getActiveProducts();
   
-  // Strict matching logic against explicitly assigned categories & subcategories
+  // Robust matching logic against explicitly assigned category_id, categories & subcategories
   const matchingProducts = allProducts.filter(p => {
+    // 1. Exact DB category_id match
+    if (category.id && (p as any).category_id && (p as any).category_id === category.id) {
+      return true;
+    }
+
     const assignedNames = (p.categories && p.categories.length > 0 ? p.categories : [p.category])
       .filter(Boolean)
       .map(c => c.toLowerCase().trim());
@@ -35,8 +40,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     const targetSlug = category.slug.toLowerCase().trim();
     const targetName = category.name.toLowerCase().trim();
 
-    // Check direct match on main category
-    if (assignedSlugs.includes(targetSlug) || assignedNames.includes(targetName)) {
+    // Check direct match on main category slug or name
+    if (
+      assignedSlugs.includes(targetSlug) ||
+      assignedNames.includes(targetName) ||
+      assignedNames.some(name => name.includes(targetName) || targetName.includes(name))
+    ) {
       return true;
     }
 
@@ -45,7 +54,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       return category.subcategories.some(sub => {
         const subSlug = sub.slug.toLowerCase().trim();
         const subName = sub.name.toLowerCase().trim();
-        return assignedSlugs.includes(subSlug) || assignedNames.includes(subName);
+        return (
+          assignedSlugs.includes(subSlug) ||
+          assignedNames.includes(subName) ||
+          assignedNames.some(name => name.includes(subName) || subName.includes(name))
+        );
       });
     }
 
